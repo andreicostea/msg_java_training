@@ -68,13 +68,6 @@ create table notifications
 ;
 
 
-create table comment
-(
-	text varchar(1000) null,
-	date datetime null
-)
-;
-
 
 -- insert data
 INSERT INTO jbugs.users (ID, counter, email, first_name, last_name, mobile_number, password, username) VALUES (1, 0, 'admin@admin.com', 'Viorica', 'Administrator', '0700000000', 'admin', 'admin');
@@ -103,4 +96,36 @@ INSERT INTO jbugs.permissions_roles (role_id, permission_id) VALUES (1, 1);
 INSERT INTO jbugs.permissions_roles (role_id, permission_id) VALUES (1, 2);
 INSERT INTO jbugs.permissions_roles (role_id, permission_id) VALUES (2, 2);
 INSERT INTO jbugs.permissions_roles (role_id, permission_id) VALUES (2, 3);
+<1-- ADDED NOW -->
+create table comments
+(
+	user_id bigint not null,
+	bugs_id bigint not null,
+	primary key (user_id, bugs_id),
+	constraint FK_comments_user_id
+		foreign key (user_id) references users (ID),
+	constraint FK_comments_bugs_id
+		foreign key (bugs_id) references bugs (ID),
+   text varchar(1000) null,
+	date datetime null
+)
 
+;
+create table bugs
+(
+	ID bigint auto_increment
+		primary key,
+	title varchar(255) not null,
+	description varchar(255) not null,
+	version datetime null,
+	targetDate datetime null,
+	 status varchar(255) not null,
+	fixedVersion datetime null,
+	severity varchar(255) not null,
+	user_id bigint not null,
+	primary key (user_id),
+	constraint FK_bugs_user_id
+		foreign key (user_id) references users (ID),
+)
+;
+;
