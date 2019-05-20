@@ -78,4 +78,11 @@ public class UserControl {
         }
         return builder.toString();
     }
+
+    public void loginUser(UserInputDTO user) {
+        if (!userDao.loginUser(user.get)){
+            throw new BusinessException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD);
+        }
+
+    }
 }

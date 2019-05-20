@@ -39,4 +39,8 @@ public class UserDao {
         em.persist(user);
         return user;
     }
+
+    public boolean loginUser() {
+
+    }
 }

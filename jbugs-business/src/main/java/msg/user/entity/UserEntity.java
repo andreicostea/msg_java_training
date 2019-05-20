@@ -1,7 +1,7 @@
 package msg.user.entity;
 
 import edu.msg.ro.persistence.entity.BaseEntity;
-import edu.msg.ro.persistence.entity.Comment;
+
 import msg.role.entity.Role;
 
 import java.util.ArrayList;
@@ -25,10 +25,15 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="users")
-@NamedQueries({@NamedQuery(name= UserEntity.USER_FIND_BY_EMAIL,query= "SELECT count(u) from UserEntity u where u.email = :" + UserEntity.EMAIL)})
+@NamedQueries({
+        @NamedQuery(name= UserEntity.USER_FIND_BY_EMAIL,query= "SELECT count(u) from UserEntity u where u.email = :" + UserEntity.EMAIL),
+        @NamedQuery(name= UserEntity.USER_FIND_BY_USERNAME_AND_PASSWORD, query = "SELECT u from UserEntity u where u.username = :" + UserEntity.USERNAME + "and u.password = :" + UserEntity.PASSWORD)})
 public class UserEntity extends BaseEntity<Long> {
     public static final String USER_FIND_BY_EMAIL = "UserEntity.findByEmail";
     public static final String EMAIL = "email";
+    public static final String USERNAME = "username";
+    public static final String PASSWORD = "password";
+    public static final String USER_FIND_BY_USERNAME_AND_PASSWORD = "UserEntity.findByUserNameAndPassword";
 
     @Column(name="first_name",nullable = false)
     private String firstName;
