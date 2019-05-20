@@ -1,4 +1,6 @@
-package edu.msg.ro.persistence.entity;
+package msg.comment;
+
+import edu.msg.ro.persistence.entity.BaseEntity;
 
 import java.util.Date;
 import java.util.Objects;

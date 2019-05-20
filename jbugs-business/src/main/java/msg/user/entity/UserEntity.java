@@ -1,7 +1,6 @@
 package msg.user.entity;
 
 import edu.msg.ro.persistence.entity.BaseEntity;
-import edu.msg.ro.persistence.entity.Comment;
 import msg.role.entity.Role;
 
 import java.util.ArrayList;

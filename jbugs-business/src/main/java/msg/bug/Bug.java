@@ -1,8 +1,8 @@
-package edu.msg.ro.persistence.entity;
+package msg.bug;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import edu.msg.ro.persistence.entity.BaseEntity;
+
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -13,7 +13,10 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "bugs")
-public class Bug extends BaseEntity<Long>{
+@NamedQueries({
+        @NamedQuery(name="getAllBugs",
+                query="select b.title, b.description, b.version, b.targetDate, b.status, b.fixed_version, b.severity from Bugs b")})
+public class Bug extends BaseEntity<Long> {
 
     @Column(name = "title")
     private String title;
