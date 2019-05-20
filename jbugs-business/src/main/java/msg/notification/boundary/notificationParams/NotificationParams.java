@@ -1,7 +1,7 @@
 // =================================================================================================
 // Copyright (c) 2017-2020 BMW Group. All rights reserved.
 // =================================================================================================
-package msg.notifications.boundary.notificationParams;
+package msg.notification.boundary.notificationParams;
 
 /**
  * The Parameters necessary for building a Notification.

@@ -1,7 +1,7 @@
 // =================================================================================================
 // Copyright (c) 2017-2020 BMW Group. All rights reserved.
 // =================================================================================================
-package msg.exeptions;
+package msg.exceptions;
 
 /**
  * The Message structure for the {@link BusinessException}.

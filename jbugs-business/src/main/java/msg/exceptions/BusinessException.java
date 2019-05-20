@@ -1,4 +1,4 @@
-package msg.exeptions;
+package msg.exceptions;
 
 import javax.ejb.ApplicationException;
 

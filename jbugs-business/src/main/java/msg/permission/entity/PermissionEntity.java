@@ -1,6 +1,6 @@
-package msg.role.entity;
+package msg.permission.entity;
 
-import edu.msg.ro.persistence.entity.BaseEntity;
+import msg.base.BaseEntity;
 
 import java.util.Objects;
 import javax.persistence.Column;
@@ -14,8 +14,8 @@ import javax.persistence.Table;
  * @since 19.1.2
  */
 @Entity
-@Table(name="permission")
-public class Permission extends BaseEntity<Long> {
+@Table(name= "permissions")
+public class PermissionEntity extends BaseEntity<Long> {
 
     @Column(name="type", nullable = false)
     private String type;
@@ -23,10 +23,10 @@ public class Permission extends BaseEntity<Long> {
     private String description;
 
 
-    public Permission() {
+    public PermissionEntity() {
     }
 
-    public Permission(String type, String description) {
+    public PermissionEntity(String type, String description) {
         this.type = type;
         this.description = description;
     }
@@ -51,7 +51,7 @@ public class Permission extends BaseEntity<Long> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Permission that = (Permission) o;
+        PermissionEntity that = (PermissionEntity) o;
         return Objects.equals(type, that.type) &&
                 Objects.equals(description, that.description);
     }

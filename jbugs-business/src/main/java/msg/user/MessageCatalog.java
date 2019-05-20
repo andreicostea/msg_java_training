@@ -3,7 +3,7 @@
 // =================================================================================================
 package msg.user;
 
-import msg.exeptions.ExceptionMessage;
+import msg.exceptions.ExceptionMessage;
 
 /**
  * A catalog of all the Messages thrown from the User component.

@@ -1,4 +1,4 @@
-package msg.notifications.entity;
+package msg.notification.entity;
 
 /**
  * The Notification Types.

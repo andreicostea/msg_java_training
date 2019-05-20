@@ -1,9 +1,9 @@
 // =================================================================================================
 // Copyright (c) 2017-2020 BMW Group. All rights reserved.
 // =================================================================================================
-package msg.notifications;
+package msg.notification;
 
-import msg.exeptions.ExceptionMessage;
+import msg.exceptions.ExceptionMessage;
 
 /**
  * A catalog of all the Messages thrown from the Notification component.

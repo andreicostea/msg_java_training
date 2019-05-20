@@ -3,15 +3,15 @@
 // =================================================================================================
 package msg.role.control;
 
-import msg.role.entity.Role;
-import msg.role.entity.RoleDao;
+import msg.role.entity.RoleEntity;
+import msg.role.entity.dao.RoleDAO;
 
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
- * Control operations for all the Role related operations.
+ * Control operations for all the RoleEntity related operations.
  *
  * @author msg-system ag;
  * @since 1.0
@@ -20,15 +20,15 @@ import javax.ejb.Stateless;
 public class RoleControl {
 
     @EJB
-    private RoleDao roleDao;
+    private RoleDAO roleDao;
 
     /**
-     * Given a input list of {@link Role#getType()}s, returns the corresponding list of Role Entities.
+     * Given a input list of {@link RoleEntity#getType()}s, returns the corresponding list of RoleEntity Entities.
      *
      * @param typeList a list of role types.
      * @return a list of role entities.
      */
-    public List<Role> getRolesByTypeList(List<String> typeList){
+    public List<RoleEntity> getRolesByTypeList(List<String> typeList){
         return roleDao.getRolesByTypeList(typeList);
     }
 }

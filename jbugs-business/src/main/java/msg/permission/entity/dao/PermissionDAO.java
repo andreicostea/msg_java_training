@@ -1,4 +1,6 @@
-package msg.role.entity;
+package msg.permission.entity.dao;
+
+import msg.permission.entity.PermissionEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -11,7 +13,7 @@ import javax.persistence.PersistenceContext;
  * @since 19.1.2
  */
 @Stateless
-public class PermissionDao {
+public class PermissionDAO {
 
     @PersistenceContext(unitName="jbugs-persistence")
     private EntityManager em;
@@ -22,13 +24,13 @@ public class PermissionDao {
      * @param p the input entity to be saved.
      * @return the persisted entity.
      */
-    public Permission createPermission(Permission p){
+    public PermissionEntity createPermission(PermissionEntity p){
         em.persist(p);
         return p;
     }
 
 
-    public void removePermission(Permission p){
+    public void removePermission(PermissionEntity p){
         em.remove(p);
     }
 }

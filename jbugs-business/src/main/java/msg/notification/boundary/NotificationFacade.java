@@ -1,8 +1,8 @@
-package msg.notifications.boundary;
+package msg.notification.boundary;
 
-import msg.notifications.boundary.notificationParams.NotificationParams;
-import msg.notifications.control.NotificationControl;
-import msg.notifications.entity.NotificationType;
+import msg.notification.boundary.notificationParams.NotificationParams;
+import msg.notification.control.NotificationControl;
+import msg.notification.entity.NotificationType;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

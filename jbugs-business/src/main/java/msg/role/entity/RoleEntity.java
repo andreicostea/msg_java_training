@@ -1,6 +1,7 @@
 package msg.role.entity;
 
-import edu.msg.ro.persistence.entity.BaseEntity;
+import msg.base.BaseEntity;
+import msg.permission.entity.PermissionEntity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -17,11 +18,11 @@ import java.util.Objects;
 @Table(name="roles")
 @NamedQueries({
         @NamedQuery(name="getPermissions",
-            query="select r.permissions from Role r where r.type=:type "),
-        @NamedQuery(name= Role.QUERY_GET_ROLES_BY_TYPE_LIST,
-            query= "select r from Role r "
-                + "where r.type in :" + Role.INPUT_TYPE_LIST )})
-public class Role extends BaseEntity<Long> {
+            query="select r.permissions from RoleEntity r where r.type=:type "),
+        @NamedQuery(name= RoleEntity.QUERY_GET_ROLES_BY_TYPE_LIST,
+            query= "select r from RoleEntity r "
+                + "where r.type in :" + RoleEntity.INPUT_TYPE_LIST )})
+public class RoleEntity extends BaseEntity<Long> {
 
     public static final String QUERY_GET_ROLES_BY_TYPE_LIST = "getRolesByTypeList";
     public static final String INPUT_TYPE_LIST = "type";
@@ -33,22 +34,22 @@ public class Role extends BaseEntity<Long> {
             joinColumns = @JoinColumn(name="role_id", referencedColumnName = "id",nullable = false),
             inverseJoinColumns = @JoinColumn(name="permission_id",referencedColumnName = "id",nullable = false)
     )
-    private List<Permission> permissions=new ArrayList<>();
+    private List<PermissionEntity> permissions=new ArrayList<>();
 
 
-    public Role() {
+    public RoleEntity() {
     }
 
-    public Role(String type, List<Permission> permissions) {
+    public RoleEntity(String type, List<PermissionEntity> permissions) {
         this.type = type;
         this.permissions = permissions;
     }
 
-    public List<Permission> getPermissions() {
+    public List<PermissionEntity> getPermissions() {
         return permissions;
     }
 
-    public void setPermissions(List<Permission> permissions) {
+    public void setPermissions(List<PermissionEntity> permissions) {
         this.permissions = permissions;
     }
 
@@ -64,7 +65,7 @@ public class Role extends BaseEntity<Long> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Role role = (Role) o;
+        RoleEntity role = (RoleEntity) o;
         return Objects.equals(type, role.type);
     }
 

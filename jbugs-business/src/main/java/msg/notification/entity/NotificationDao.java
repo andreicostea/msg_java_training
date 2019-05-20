@@ -1,4 +1,4 @@
-package msg.notifications.entity;
+package msg.notification.entity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

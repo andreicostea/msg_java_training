@@ -1,10 +1,10 @@
 // =================================================================================================
 // Copyright (c) 2017-2020 BMW Group. All rights reserved.
 // =================================================================================================
-package msg.notifications.boundary.notificationParams;
+package msg.notification.boundary.notificationParams;
 
 /**
- * The message parameters of the message type {@link msg.notifications.entity.NotificationType#WELCOME_NEW_USER}.
+ * The message parameters of the message type {@link msg.notification.entity.NotificationType#WELCOME_NEW_USER}.
  *
  * @author msg-system ag;  Daniel Donea
  * @since 1.0

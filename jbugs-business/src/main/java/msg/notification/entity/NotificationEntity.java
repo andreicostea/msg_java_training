@@ -1,6 +1,6 @@
-package msg.notifications.entity;
+package msg.notification.entity;
 
-import edu.msg.ro.persistence.entity.BaseEntity;
+import msg.base.BaseEntity;
 
 import java.util.Date;
 import java.util.Objects;
@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
  * @since 19.1.2
  */
 @Entity
-@Table(name = "notifications")
+@Table(name = "notification")
 public class NotificationEntity extends BaseEntity<Long> {
 
     @Enumerated(EnumType.STRING)

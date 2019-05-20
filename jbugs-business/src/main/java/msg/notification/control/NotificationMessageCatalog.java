@@ -1,4 +1,4 @@
-package msg.notifications.control;
+package msg.notification.control;
 
 import java.text.MessageFormat;
 

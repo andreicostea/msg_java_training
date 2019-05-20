@@ -1,13 +1,13 @@
-package msg.notifications.control;
+package msg.notification.control;
 
-import msg.exeptions.BusinessException;
-import msg.notifications.MessageCatalog;
-import msg.notifications.boundary.notificationParams.NotificationParams;
-import msg.notifications.boundary.notificationParams.NotificationParamsUserChanges;
-import msg.notifications.boundary.notificationParams.NotificationParamsWelcomeUser;
-import msg.notifications.entity.NotificationDao;
-import msg.notifications.entity.NotificationEntity;
-import msg.notifications.entity.NotificationType;
+import msg.exceptions.BusinessException;
+import msg.notification.MessageCatalog;
+import msg.notification.boundary.notificationParams.NotificationParams;
+import msg.notification.boundary.notificationParams.NotificationParamsUserChanges;
+import msg.notification.boundary.notificationParams.NotificationParamsWelcomeUser;
+import msg.notification.entity.NotificationDao;
+import msg.notification.entity.NotificationEntity;
+import msg.notification.entity.NotificationType;
 
 import java.util.Date;
 import javax.ejb.EJB;
@@ -42,7 +42,7 @@ public class NotificationControl {
     }
 
     /**
-     * Creates the notifications for the {@link NotificationType#WELCOME_NEW_USER} message type.
+     * Creates the notification for the {@link NotificationType#WELCOME_NEW_USER} message type.
      *
      * @param params the input params.
      */
@@ -65,7 +65,7 @@ public class NotificationControl {
     }
 
     /**
-     * Creates the notifications for the {@link NotificationType#USER_UPDATED} message type.
+     * Creates the notification for the {@link NotificationType#USER_UPDATED} message type.
      *
      * @param params the input params.
      */
