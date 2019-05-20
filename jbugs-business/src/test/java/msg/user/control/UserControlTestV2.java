@@ -73,7 +73,7 @@ public class UserControlTestV2 {
 
 //    @Test
 //    public void testCreateUserNotificationSent(){
-//        UserInputDTO user = createTestInputDTO();
+//        NotificationInputDTO user = createTestInputDTO();
 //
 //        ArgumentCaptor<NotificationType> sentNotificationType = ArgumentCaptor.forClass(NotificationType.class);
 //        Mockito.when(userConverter.convertInputDTOtoEntity(Mockito.any())).thenCallRealMethod();

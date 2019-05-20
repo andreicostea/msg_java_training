@@ -2,15 +2,9 @@ package msg.notifications.entity;
 
 import edu.msg.ro.persistence.entity.BaseEntity;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  * The Notification Entity.
@@ -20,7 +14,11 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "notifications")
+@NamedQueries({@NamedQuery(name = NotificationEntity.NOTIFICATION_FIND_USER_ID, query = "SELECT n from NotificationEntity n where n.userID = :" + NotificationEntity.USER_ID)})
 public class NotificationEntity extends BaseEntity<Long> {
+
+    public static final String NOTIFICATION_FIND_USER_ID = "NotificationEntity.findById";
+    public static final int USER_ID = 0;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type")

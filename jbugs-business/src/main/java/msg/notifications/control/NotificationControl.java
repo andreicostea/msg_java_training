@@ -8,10 +8,14 @@ import msg.notifications.boundary.notificationParams.NotificationParamsWelcomeUs
 import msg.notifications.entity.NotificationDao;
 import msg.notifications.entity.NotificationEntity;
 import msg.notifications.entity.NotificationType;
+import msg.notifications.entity.dto.NotificationConverter;
+import msg.notifications.entity.dto.NotificationDTO;
 
-import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Control operations for all the Notification related operations.
@@ -24,6 +28,9 @@ public class NotificationControl {
     @EJB
     private NotificationDao notificationDao;
 
+    @EJB
+    private NotificationConverter notificationConverter;
+
     private static final String SERVER_ADDRESS = "http://" + System.getProperty("myServerAddress");
 
     /**
@@ -32,6 +39,18 @@ public class NotificationControl {
      * @param notificationType the type of the notification.
      * @param params the parameters for the notification type.
      */
+    public List<NotificationDTO> getNotificationsById(int id) {
+
+        return notificationDao
+                .getAllById(id)
+                .stream()
+                .map(notificationConverter::convertEntityToDTO)//pentru fiec elem din lista apeleaza convertEntityToDTO
+                //si apoi ce returneaza colecteaza
+                .collect(Collectors.toList());
+
+    }
+
+
     public void createNotification(final NotificationType notificationType, final NotificationParams params){
         switch(notificationType){
             case WELCOME_NEW_USER: this.createWelcomeUserNotification(params);
