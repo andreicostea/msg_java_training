@@ -1,0 +1,7 @@
+*.log
+**/.settings/
+**.classpath
+**.project
+**.factorypath
+**/.idea/
+/**/target

@@ -1,0 +1,6 @@
+<glassfish-web-app>
+    <security-role-mapping>
+        <role-name>USER_MANAGEMENT</role-name>
+        <group-name>USER_MANAGEMENT</group-name>
+    </security-role-mapping>
+</glassfish-web-app>
