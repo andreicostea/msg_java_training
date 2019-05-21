@@ -10,9 +10,9 @@ package msg.permission.entity;
  * @since 1.0
  */
 // todo: this should be an enum
-public class Permission {
+public class PermissionType {
     // a class with Strings is used as JAAS expects String values
-    // can be refactored to enum and Permission.type will be of this enum
+    // can be refactored to enum and PermissionType.type will be of this enum
     // but adds additional method calls to role checks
 
     public static final String PERMISSION_MANAGEMENT = "PERMISSION_MANAGEMENT";

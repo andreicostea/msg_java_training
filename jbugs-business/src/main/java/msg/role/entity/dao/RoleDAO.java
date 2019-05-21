@@ -19,7 +19,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class RoleDAO {
 
-    @PersistenceContext(unitName="jbugs-persistence")
+    @PersistenceContext(unitName="persistenceUnit")
     private EntityManager em;
 
     /**

@@ -1,6 +1,6 @@
 package msg.comment.entity.dao;
 
-import edu.msg.ro.persistence.entity.Comment;
+import msg.comment.entity.CommentEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -13,11 +13,11 @@ import javax.persistence.PersistenceContext;
  * @since 19.1.2
  */
 @Stateless
-public class CommentDao {
-    @PersistenceContext(unitName = "jbugs-persistence")
+public class CommentDAO {
+    @PersistenceContext(unitName = "persistenceUnit")
     private EntityManager em;
 
-    public Comment createComment(Comment c){
+    public CommentEntity createComment(CommentEntity c) {
         em.persist(c);
         em.flush();
         return c;

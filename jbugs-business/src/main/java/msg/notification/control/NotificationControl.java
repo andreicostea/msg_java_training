@@ -5,7 +5,7 @@ import msg.notification.MessageCatalog;
 import msg.notification.boundary.notificationParams.NotificationParams;
 import msg.notification.boundary.notificationParams.NotificationParamsUserChanges;
 import msg.notification.boundary.notificationParams.NotificationParamsWelcomeUser;
-import msg.notification.entity.NotificationDao;
+import msg.notification.entity.dao.NotificationDAO;
 import msg.notification.entity.NotificationEntity;
 import msg.notification.entity.NotificationType;
 
@@ -22,7 +22,7 @@ import javax.ejb.Stateless;
 @Stateless
 public class NotificationControl {
     @EJB
-    private NotificationDao notificationDao;
+    private NotificationDAO notificationDao;
 
     private static final String SERVER_ADDRESS = "http://" + System.getProperty("myServerAddress");
 

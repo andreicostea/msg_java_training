@@ -13,7 +13,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class UserDAO {
 
-    @PersistenceContext(unitName="jbugs-persistence")
+    @PersistenceContext(unitName="persistenceUnit")
     private EntityManager em;
 
     /**

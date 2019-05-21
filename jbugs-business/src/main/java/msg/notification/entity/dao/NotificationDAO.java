@@ -1,4 +1,6 @@
-package msg.notification.entity;
+package msg.notification.entity.dao;
+
+import msg.notification.entity.NotificationEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -11,8 +13,8 @@ import javax.persistence.PersistenceContext;
  * @since 19.1.2
  */
 @Stateless
-public class NotificationDao {
-    @PersistenceContext(unitName = "jbugs-persistence")
+public class NotificationDAO {
+    @PersistenceContext(unitName = "persistenceUnit")
     private EntityManager em;
 
     /**
