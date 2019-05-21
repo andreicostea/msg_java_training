@@ -39,7 +39,7 @@ public class NotificationControl {
      * @param notificationType the type of the notification.
      * @param params the parameters for the notification type.
      */
-    public List<NotificationDTO> getNotificationsById(int id) {
+    public List<NotificationDTO> getNotificationsById(long id) {
 
         return notificationDao
                 .getAllById(id)

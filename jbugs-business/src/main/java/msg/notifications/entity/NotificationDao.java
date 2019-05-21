@@ -25,9 +25,9 @@ public class NotificationDao {
         this.em.persist(notificationEntity);
     }
 
-    public List<NotificationEntity> getAllById(int id) {
+    public List<NotificationEntity> getAllById(long id) {
         return em.createNamedQuery(NotificationEntity.NOTIFICATION_FIND_USER_ID, NotificationEntity.class)
-                .setParameter(NotificationEntity.USER_ID, id)
+                .setParameter("id", id)
                 .getResultList();
 
     }

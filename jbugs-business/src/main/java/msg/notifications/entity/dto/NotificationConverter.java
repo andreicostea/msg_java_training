@@ -47,9 +47,15 @@ public class NotificationConverter {
         final NotificationDTO notificationDTO = new NotificationDTO();
         notificationDTO.setDate(notificationEntity.getDate());
         notificationDTO.setMessage(notificationEntity.getMessage());
+        System.out.println("message" + notificationEntity.getMessage());
         notificationDTO.setNotificationType(notificationEntity.getNotificationType());
-        notificationDTO.setUrlBug(notificationEntity.getUrl());
 
+        notificationDTO.setUrlBug(notificationEntity.getUrl());
+        System.out.println("type " + notificationEntity.getNotificationType());
+
+        System.out.println("id " + notificationEntity.getId());
+
+        System.out.println("user_id" + notificationEntity.getId());
         return notificationDTO;
     }
 

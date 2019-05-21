@@ -14,21 +14,21 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "notifications")
-@NamedQueries({@NamedQuery(name = NotificationEntity.NOTIFICATION_FIND_USER_ID, query = "SELECT n from NotificationEntity n where n.userID = :" + NotificationEntity.USER_ID)})
+@NamedQueries({@NamedQuery(name = NotificationEntity.NOTIFICATION_FIND_USER_ID, query = "SELECT n from NotificationEntity n where n.userID =:id")})
 public class NotificationEntity extends BaseEntity<Long> {
 
     public static final String NOTIFICATION_FIND_USER_ID = "NotificationEntity.findById";
-    public static final int USER_ID = 0;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
-
     private NotificationType notificationType;
+
     @Column(name ="url")
     private String url;
 
     @Column(name ="message")
     private String message;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column( name = "date")
     private Date date;
@@ -64,6 +64,7 @@ public class NotificationEntity extends BaseEntity<Long> {
     }
 
     public String getUrl() {
+
         return url;
     }
 
