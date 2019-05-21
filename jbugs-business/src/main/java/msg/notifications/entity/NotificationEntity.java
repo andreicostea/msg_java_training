@@ -14,10 +14,13 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "notifications")
-@NamedQueries({@NamedQuery(name = NotificationEntity.NOTIFICATION_FIND_USER_ID, query = "SELECT n from NotificationEntity n where n.userID =:id")})
+@NamedQueries({@NamedQuery(name = NotificationEntity.NOTIFICATION_FIND_USER_ID, query = "SELECT n from NotificationEntity n where n.userID =:id"),
+        @NamedQuery(name = NotificationEntity.NOTIFICATION_FIND_BY_NOTIFICATION_TYPE, query = "SELECT n from NotificationEntity n  where n.userID =:id and n.notificationType =:notificationType")
+})
 public class NotificationEntity extends BaseEntity<Long> {
 
     public static final String NOTIFICATION_FIND_USER_ID = "NotificationEntity.findById";
+    public static final String NOTIFICATION_FIND_BY_NOTIFICATION_TYPE = "NotificationEntity.findByNotificationType";
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type")

@@ -21,6 +21,7 @@ public class JBugsApplication extends Application {
     public Set<Class<?>> getClasses() {
         Set<Class<?>> classes = new HashSet<>();
         classes.add(NotificationResource.class);
+//         classes.add(RuntimeExceptionMapper.class);
 //        classes.add(BusinessExceptionMapper.class);
 //        classes.add(RuntimeExceptionMapper.class);
 //        classes.add(AuthResource.class);

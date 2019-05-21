@@ -37,7 +37,7 @@ public class NotificationControl {
      * Creates a notification based on the input {@link NotificationType} and {@link NotificationParams}.
      *
      * @param notificationType the type of the notification.
-     * @param params the parameters for the notification type.
+     * @param params           the parameters for the notification type.
      */
     public List<NotificationDTO> getNotificationsById(long id) {
 
@@ -47,15 +47,23 @@ public class NotificationControl {
                 .map(notificationConverter::convertEntityToDTO)//pentru fiec elem din lista apeleaza convertEntityToDTO
                 //si apoi ce returneaza colecteaza
                 .collect(Collectors.toList());
+    }
+
+    public NotificationDTO getWelcomeNotificationById(long id) {
+
+        return notificationConverter.convertEntityToDTO(notificationDao.
+                getWelcomeNotificationById(id));
 
     }
 
 
-    public void createNotification(final NotificationType notificationType, final NotificationParams params){
-        switch(notificationType){
-            case WELCOME_NEW_USER: this.createWelcomeUserNotification(params);
+    public void createNotification(final NotificationType notificationType, final NotificationParams params) {
+        switch (notificationType) {
+            case WELCOME_NEW_USER:
+                this.createWelcomeUserNotification(params);
                 break;
-            case USER_UPDATED: this.createUserUpdateNotification(params);
+            case USER_UPDATED:
+                this.createUserUpdateNotification(params);
                 break;
         }
     }
@@ -65,8 +73,8 @@ public class NotificationControl {
      *
      * @param params the input params.
      */
-    private void createWelcomeUserNotification(final NotificationParams params){
-        if (!(params instanceof NotificationParamsWelcomeUser)){
+    private void createWelcomeUserNotification(final NotificationParams params) {
+        if (!(params instanceof NotificationParamsWelcomeUser)) {
             throw new BusinessException(MessageCatalog.MESSAGE_PARAMS_AND_TYPE_ARE_INCOMPATIBLE);
         }
 
@@ -88,8 +96,8 @@ public class NotificationControl {
      *
      * @param params the input params.
      */
-    private void createUserUpdateNotification(final NotificationParams params){
-        if (!(params instanceof NotificationParamsUserChanges)){
+    private void createUserUpdateNotification(final NotificationParams params) {
+        if (!(params instanceof NotificationParamsUserChanges)) {
             throw new BusinessException(MessageCatalog.MESSAGE_PARAMS_AND_TYPE_ARE_INCOMPATIBLE);
         }
 
@@ -98,9 +106,9 @@ public class NotificationControl {
         this.createWelcomeUpdateSource(messageParams);
     }
 
-    private void createWelcomeUpdateTarget( final NotificationParamsUserChanges messageParams) {
+    private void createWelcomeUpdateTarget(final NotificationParamsUserChanges messageParams) {
         final NotificationEntity notificationEntity = new NotificationEntity();
-        notificationEntity.setMessage( NotificationMessageCatalog
+        notificationEntity.setMessage(NotificationMessageCatalog
                 .getFullMessageForUserUpdatedTarget(messageParams.getUsernameSource(),
                         messageParams.getUsernameTarget(), messageParams.getData()));
         notificationEntity.setNotificationType(NotificationType.USER_UPDATED);
@@ -110,7 +118,8 @@ public class NotificationControl {
         this.notificationDao.createNotification(notificationEntity);
 
     }
-    private void createWelcomeUpdateSource( final NotificationParamsUserChanges messageParams) {
+
+    private void createWelcomeUpdateSource(final NotificationParamsUserChanges messageParams) {
         final NotificationEntity notificationEntity = new NotificationEntity();
         notificationEntity.setMessage(
                 NotificationMessageCatalog.getFullMessageForUserUpdatedSource(

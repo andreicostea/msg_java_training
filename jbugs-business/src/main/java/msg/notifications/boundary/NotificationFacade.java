@@ -31,7 +31,15 @@ public class NotificationFacade {
         this.notificationControl.createNotification(notificationType, params);
     }
 
-    public Object getNotificationById(long id) {
+    public Object getAllNotificationById(long id) {
+        return this.notificationControl.getNotificationsById(id);
+    }
+
+    public Object getWelcomeNotificationById(long id) {
+        return this.notificationControl.getWelcomeNotificationById(id);
+    }
+
+    public Object getUpdateNotificationById(long id) {
         return this.notificationControl.getNotificationsById(id);
     }
 }

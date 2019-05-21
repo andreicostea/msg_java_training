@@ -31,6 +31,14 @@ public class NotificationDao {
                 .getResultList();
 
     }
+
+    public NotificationEntity getWelcomeNotificationById(long id) {
+        return em.createNamedQuery(NotificationEntity.NOTIFICATION_FIND_BY_NOTIFICATION_TYPE, NotificationEntity.class)
+                .setParameter("id", id)
+                .setParameter("notificationType", NotificationType.USER_UPDATED)
+                .getSingleResult();
+
+    }
 }
 
 
