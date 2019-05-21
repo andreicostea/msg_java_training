@@ -1,20 +1,16 @@
 package msg.user.entity;
 
+import msg.bugs.BugEntity;
+import msg.comment.Comment;
+import msg.role.entity.Role;
 import msg.base.BaseEntity;
 import msg.role.entity.RoleEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import java.util.Set;
+import javax.persistence.*;
 
 /**
  * The User entity.
@@ -48,9 +44,40 @@ public class UserEntity extends BaseEntity<Long> {
             joinColumns = @JoinColumn(name="user_id", referencedColumnName = "id",nullable = false),
             inverseJoinColumns = @JoinColumn(name="role_id",referencedColumnName = "id",nullable = false)
     )
-    private List<RoleEntity> roles=new ArrayList<>();
+    private List<Role> roles=new ArrayList<>();
+    
+  public UserEntity() { }
 
-    public UserEntity() { }
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
+
+    @OneToMany
+   Set<Comment> comments;
+  @OneToMany
+  Set<BugEntity> assigned;
+  @OneToMany
+  Set<BugEntity> created;
+
+    public Set<BugEntity> getCreated() {
+        return created;
+    }
+
+    public void setCreated(Set<BugEntity> created) {
+        this.created = created;
+    }
+
+    public Set<BugEntity> getAssigned() {
+        return assigned;
+    }
+
+    public void setAssigned(Set<BugEntity> assigned) {
+        this.assigned = assigned;
+    }
 
     public String getFirstName() {
         return firstName;
