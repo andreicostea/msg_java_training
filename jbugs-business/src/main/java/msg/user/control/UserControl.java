@@ -3,15 +3,15 @@
 // =================================================================================================
 package msg.user.control;
 
-import msg.exeptions.BusinessException;
-import msg.notifications.boundary.NotificationFacade;
-import msg.notifications.boundary.notificationParams.NotificationParamsWelcomeUser;
-import msg.notifications.entity.NotificationType;
+import msg.exceptions.BusinessException;
+import msg.notification.boundary.NotificationFacade;
+import msg.notification.boundary.notificationParams.NotificationParamsWelcomeUser;
+import msg.notification.entity.NotificationType;
 import msg.user.MessageCatalog;
 import msg.user.entity.dto.UserInputDTO;
 import msg.user.entity.UserEntity;
 import msg.user.entity.dto.UserConverter;
-import msg.user.entity.UserDao;
+import msg.user.entity.UserDAO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -26,7 +26,7 @@ import javax.ejb.Stateless;
 public class UserControl {
 
     @EJB
-    private UserDao userDao;
+    private UserDAO userDao;
 
     @EJB
     private UserConverter userConverter;
@@ -41,8 +41,8 @@ public class UserControl {
      * @param userDTO the input User DTO. mandatory
      * @return the username of the newly created user.
      */
-    public String createUser(final UserInputDTO userDTO){
-        if (userDao.existsEmail(userDTO.getEmail())){
+    public String createUser(final UserInputDTO userDTO) {
+        if (userDao.existsEmail(userDTO.getEmail())) {
             throw new BusinessException(MessageCatalog.USER_WITH_SAME_MAIL_EXISTS);
         }
 
@@ -64,16 +64,16 @@ public class UserControl {
      * Creates a unique user name based on the inputs.
      *
      * @param firstName the first name of the user. mandatory
-     * @param lastName the last name of the user. mandatory
+     * @param lastName  the last name of the user. mandatory
      * @return a unique identifier for the input user.
      */
     //TODO Replace with logic based on the specification
-    private String createUserName(final String firstName, final String lastName){
+    private String createUserName(final String firstName, final String lastName) {
         String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         int count = 8;
         StringBuilder builder = new StringBuilder();
         while (count-- != 0) {
-            int character = (int)(Math.random()*ALPHA_NUMERIC_STRING.length());
+            int character = (int) (Math.random() * ALPHA_NUMERIC_STRING.length());
             builder.append(ALPHA_NUMERIC_STRING.charAt(character));
         }
         return builder.toString();

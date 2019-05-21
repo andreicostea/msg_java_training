@@ -1,7 +1,7 @@
 package servlet;
 
 import msg.ejb.SomeEjb;
-import msg.right.Permission;
+import msg.permission.entity.Permission;
 
 import java.io.IOException;
 import java.io.PrintWriter;
