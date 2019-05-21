@@ -1,41 +1,28 @@
-package msg.bug;
+package msg.bug.entity.dto;
 
-import edu.msg.ro.persistence.entity.BaseEntity;
-
-import javax.persistence.*;
 import java.util.Date;
 
-/**
- * Document me.
- *
- * @author msg systems AG; User Name.
- * @since 19.1.2
- */
-@Entity
-@Table(name = "bugs")
-@NamedQueries({
-        @NamedQuery(name=Bug.BUG_GET_ALL,
-                query="select b.title, b.description, b.version, b.date, b.Status, b.fixedVersion, b.severity from Bug b")})
-public class Bug extends BaseEntity<Long> {
-    public static final String BUG_GET_ALL = "Bug.getAllBugs";
+public class BugDTO {
 
-    @Column(name = "title")
     private String title;
-    @Column(name = "description")
     private String description;
-    @Column(name ="version")
     private String version;
-    @Column(name ="targetDate")
     private Date date;
-    @Column(name = "Status")
     private String Status;
-    @Column(name = "fixed_version")
     private String fixedVersion;
-    @Column (name ="severity")
     private String severity;
-    /* todo: createByUser assigned to */
 
-    public Bug() {
+    public BugDTO() {
+    }
+
+    public BugDTO(String title, String description, String version, Date date, String status, String fixedVersion, String severity) {
+        this.title = title;
+        this.description = description;
+        this.version = version;
+        this.date = date;
+        Status = status;
+        this.fixedVersion = fixedVersion;
+        this.severity = severity;
     }
 
     public String getTitle() {
