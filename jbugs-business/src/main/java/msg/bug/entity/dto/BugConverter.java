@@ -19,6 +19,17 @@ public class BugConverter {
         b.setStatus(bugDTO.getStatus());
         return b;
     }
+    public Bug convertInputDTOToEntity(BugInputDTO input)
+    {
+        final Bug b = new Bug();
+        b.setTitle(input.getTitle());
+        b.setDescription(input.getDescription());
+        b.setVersion(input.getVersion());
+        b.setFixedVersion(input.getFixedVersion());
+        b.setDate(input.getDate());
+        b.setSeverity(input.getSeverity());
+        return b;
+    }
 
     public BugDTO convertEntityDTOtoEntity(Bug bug)
     {

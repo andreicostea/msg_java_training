@@ -9,11 +9,15 @@ import java.util.List;
 
 @Stateless
 public class BugDao {
-    @PersistenceContext(unitName="jbugs-persistence")
+    @PersistenceContext(unitName = "jbugs-persistence")
     private EntityManager em;
 
-    public List<Bug> getAll()
-    {
+    public Bug createBug(Bug bug) {
+        em.persist(bug);
+        return bug;
+    }
+
+    public List<Bug> getAll() {
         return em.createNamedQuery(Bug.BUG_GET_ALL, Bug.class).getResultList();
     }
 
