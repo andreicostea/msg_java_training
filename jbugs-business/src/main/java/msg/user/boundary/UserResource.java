@@ -5,9 +5,7 @@ import msg.user.entity.dto.UserLoginDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -32,6 +30,12 @@ public class UserResource {
     @POST
     public Response userLogin(UserLoginDTO input){
         userFacade.loginUser(input);
+        return Response.ok().build();
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @GET
+    public Response getAll(){
         return Response.ok().build();
     }
 }

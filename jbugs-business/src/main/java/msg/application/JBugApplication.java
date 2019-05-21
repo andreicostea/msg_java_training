@@ -1,5 +1,8 @@
 package msg.application;
 
+import msg.exeptions.BusinessException;
+import msg.exeptions.BusinessExceptionMapper;
+import msg.exeptions.RuntimeExceptionMapper;
 import msg.user.boundary.UserResource;
 
 import javax.ws.rs.ApplicationPath;
@@ -15,6 +18,8 @@ public class JBugApplication extends Application {
     public Set<Class<?>> getClasses(){
         Set<Class<?>> classes = new HashSet<>();
         classes.add(UserResource.class);
+        classes.add(BusinessExceptionMapper.class);
+       // classes.add(BusinessException.class);
 
         return classes;
     }
