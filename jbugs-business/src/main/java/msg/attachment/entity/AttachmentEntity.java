@@ -1,7 +1,7 @@
-package msg.attachments;
+package msg.attachment.entity;
 
-import edu.msg.ro.persistence.entity.BaseEntity;
-import msg.bugs.BugEntity;
+import msg.base.BaseEntity;
+import msg.bug.entity.BugEntity;
 
 import javax.persistence.*;
 

@@ -1,7 +1,7 @@
 package msg.history;
 
-import edu.msg.ro.persistence.entity.BaseEntity;
-import msg.bugs.BugEntity;
+import msg.base.BaseEntity;
+import msg.bug.entity.BugEntity;
 
 import javax.persistence.*;
 import java.util.Date;

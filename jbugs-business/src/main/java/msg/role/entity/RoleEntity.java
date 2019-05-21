@@ -15,26 +15,26 @@ import java.util.Objects;
  * @since 19.1.2
  */
 @Entity
-@Table(name="roles")
+@Table(name = "roles")
 @NamedQueries({
-        @NamedQuery(name="getPermissions",
-            query="select r.permissions from RoleEntity r where r.type=:type "),
-        @NamedQuery(name= RoleEntity.QUERY_GET_ROLES_BY_TYPE_LIST,
-            query= "select r from RoleEntity r "
-                + "where r.type in :" + RoleEntity.INPUT_TYPE_LIST )})
+        @NamedQuery(name = "getPermissions",
+                query = "select r.permissions from RoleEntity r where r.type=:type "),
+        @NamedQuery(name = RoleEntity.QUERY_GET_ROLES_BY_TYPE_LIST,
+                query = "select r from RoleEntity r "
+                        + "where r.type in :" + RoleEntity.INPUT_TYPE_LIST)})
 public class RoleEntity extends BaseEntity<Long> {
 
     public static final String QUERY_GET_ROLES_BY_TYPE_LIST = "getRolesByTypeList";
     public static final String INPUT_TYPE_LIST = "type";
-    @Column(name="type",nullable = false)
+    @Column(name = "type", nullable = false)
     private String type;
 
-    @ManyToMany(cascade= CascadeType.PERSIST)
-    @JoinTable(name="permissions_roles",
-            joinColumns = @JoinColumn(name="role_id", referencedColumnName = "id",nullable = false),
-            inverseJoinColumns = @JoinColumn(name="permission_id",referencedColumnName = "id",nullable = false)
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "permissions_roles",
+            joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "permission_id", referencedColumnName = "id", nullable = false)
     )
-    private List<PermissionEntity> permissions=new ArrayList<>();
+    private List<PermissionEntity> permissions = new ArrayList<>();
 
 
     public RoleEntity() {

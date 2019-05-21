@@ -1,16 +1,15 @@
 package msg.user.entity;
 
-import msg.bugs.BugEntity;
-import msg.comment.Comment;
-import msg.role.entity.Role;
 import msg.base.BaseEntity;
+import msg.bug.entity.BugEntity;
+import msg.comment.entity.CommentEntity;
 import msg.role.entity.RoleEntity;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import javax.persistence.*;
 
 /**
  * The User entity.
@@ -19,49 +18,50 @@ import javax.persistence.*;
  * @since 19.1.2
  */
 @Entity
-@Table(name="users")
-@NamedQueries({@NamedQuery(name= UserEntity.USER_FIND_BY_EMAIL,query= "SELECT count(u) from UserEntity u where u.email = :" + UserEntity.EMAIL)})
+@Table(name = "users")
+@NamedQueries({@NamedQuery(name = UserEntity.USER_FIND_BY_EMAIL, query = "SELECT count(u) from UserEntity u where u.email = :" + UserEntity.EMAIL)})
 public class UserEntity extends BaseEntity<Long> {
     public static final String USER_FIND_BY_EMAIL = "UserEntity.findByEmail";
     public static final String EMAIL = "email";
 
-    @Column(name="first_name",nullable = false)
+    @Column(name = "first_name", nullable = false)
     private String firstName;
-    @Column(name="last_name",nullable = false)
+    @Column(name = "last_name", nullable = false)
     private String lastName;
-    @Column(name="email",nullable = false)//todo: @Pattern
+    @Column(name = "email", nullable = false)//todo: @Pattern
     private String email;
-    @Column(name="mobile_number",nullable = false)
+    @Column(name = "mobile_number", nullable = false)
     private String mobileNumber;
-    @Column(name="username",nullable = false)
+    @Column(name = "username", nullable = false)
     private String username;
-    @Column(name="password",nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
-    @Column(name="counter")
+    @Column(name = "counter")
     private int counter;
-    @ManyToMany(cascade= CascadeType.PERSIST)
-    @JoinTable(name="users_roles",
-            joinColumns = @JoinColumn(name="user_id", referencedColumnName = "id",nullable = false),
-            inverseJoinColumns = @JoinColumn(name="role_id",referencedColumnName = "id",nullable = false)
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
     )
-    private List<Role> roles=new ArrayList<>();
-    
-  public UserEntity() { }
+    private List<RoleEntity> roles = new ArrayList<>();
 
-    public Set<Comment> getComments() {
+    public UserEntity() {
+    }
+
+    public Set<CommentEntity> getComments() {
         return comments;
     }
 
-    public void setComments(Set<Comment> comments) {
+    public void setComments(Set<CommentEntity> comments) {
         this.comments = comments;
     }
 
     @OneToMany
-   Set<Comment> comments;
-  @OneToMany
-  Set<BugEntity> assigned;
-  @OneToMany
-  Set<BugEntity> created;
+    Set<CommentEntity> comments;
+    @OneToMany
+    Set<BugEntity> assigned;
+    @OneToMany
+    Set<BugEntity> created;
 
     public Set<BugEntity> getCreated() {
         return created;

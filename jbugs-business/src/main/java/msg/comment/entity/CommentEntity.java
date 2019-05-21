@@ -1,14 +1,12 @@
 package msg.comment.entity;
 
 import msg.base.BaseEntity;
+import msg.bug.entity.BugEntity;
+import msg.user.entity.UserEntity;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  * Document me.
@@ -24,11 +22,12 @@ public class CommentEntity extends BaseEntity<Long> {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date")
     private Date date;
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User user;
-
-
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity userEntity;
+    @ManyToOne
+    @JoinColumn(name = "bug_id")
+    private BugEntity bugEntity;
 
     public CommentEntity() {
     }
@@ -36,6 +35,14 @@ public class CommentEntity extends BaseEntity<Long> {
     public CommentEntity(String text, Date date) {
         this.text = text;
         this.date = date;
+    }
+
+    public BugEntity getBugEntity() {
+        return bugEntity;
+    }
+
+    public void setBugEntity(BugEntity bugEntity) {
+        this.bugEntity = bugEntity;
     }
 
     public String getText() {
@@ -53,13 +60,6 @@ public class CommentEntity extends BaseEntity<Long> {
     public void setDate(Date date) {
         this.date = date;
     }
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
 
     @Override
     public boolean equals(Object o) {
@@ -67,11 +67,20 @@ public class CommentEntity extends BaseEntity<Long> {
         if (o == null || getClass() != o.getClass()) return false;
         CommentEntity comment = (CommentEntity) o;
         return Objects.equals(text, comment.text) &&
-                Objects.equals(date, comment.date);
+                Objects.equals(date, comment.date) &&
+                Objects.equals(userEntity, comment.userEntity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(text, date);
+        return Objects.hash(text, date, userEntity);
+    }
+
+    public UserEntity getUserEntity() {
+        return userEntity;
+    }
+
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
     }
 }

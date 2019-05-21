@@ -1,6 +1,6 @@
 package msg.comment.dao;
 
-import msg.comment.Comment;
+import msg.comment.entity.CommentEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -17,13 +17,13 @@ public class CommentDao {
     @PersistenceContext(unitName = "jbugs-persistence")
     private EntityManager em;
 
-    public Comment createComment(Comment c){
+    public CommentEntity createComment(CommentEntity c){
         em.persist(c);
         em.flush();
         return c;
     }
-//    public List<Comment> getCommentsByUser(User user){
-//        return em.createNamedQuery("User.findComment",Comment.class).setParameter("id",user.getId()).getResultList();
+//    public List<CommentEntity> getCommentsByUser(User user){
+//        return em.createNamedQuery("User.findComment",CommentEntity.class).setParameter("id",user.getId()).getResultList();
 //    }
 
 }
