@@ -1,26 +1,26 @@
 // =================================================================================================
 // Copyright (c) 2017-2020 BMW Group. All rights reserved.
 // =================================================================================================
-package msg.role.control;
+package msg.role.entity.dao;
 
 import msg.role.entity.RoleEntity;
-import msg.role.entity.dao.RoleDAO;
 
 import java.util.List;
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
- * Control operations for all the RoleEntity related operations.
+ * The DAO for the RoleEntity Entities.
  *
- * @author msg-system ag;
+ * @author msg-system ag;  Daniel Donea
  * @since 1.0
  */
 @Stateless
-public class RoleControl {
+public class RoleDAO {
 
-    @EJB
-    private RoleDAO roleDao;
+    @PersistenceContext(unitName="jbugs-persistence")
+    private EntityManager em;
 
     /**
      * Given a input list of {@link RoleEntity#getType()}s, returns the corresponding list of RoleEntity Entities.
@@ -28,7 +28,9 @@ public class RoleControl {
      * @param typeList a list of role types.
      * @return a list of role entities.
      */
-    public List<RoleEntity> getRolesByTypeList(List<String> typeList){
-        return roleDao.getRolesByTypeList(typeList);
+    public List<RoleEntity> getRolesByTypeList(final List<String> typeList){
+        return em.createNamedQuery(RoleEntity.QUERY_GET_ROLES_BY_TYPE_LIST, RoleEntity.class)
+                .setParameter(RoleEntity.INPUT_TYPE_LIST, typeList)
+                .getResultList();
     }
 }

@@ -3,9 +3,9 @@
 // =================================================================================================
 package msg.user.control;
 
-import msg.exeptions.BusinessException;
-import msg.notifications.boundary.NotificationFacade;
-import msg.user.entity.UserDao;
+import msg.exceptions.BusinessException;
+import msg.notification.boundary.NotificationFacade;
+import msg.user.entity.UserDAO;
 import msg.user.entity.dto.UserConverter;
 import msg.user.entity.dto.UserInputDTO;
 import org.junit.Before;
@@ -30,7 +30,7 @@ public class UserControlTestV2 {
     UserControl userControl;
 
     @Mock
-    UserDao userDao;
+    UserDAO userDao;
 
     @Mock
     UserConverter userConverter;

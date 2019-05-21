@@ -3,10 +3,10 @@
 // =================================================================================================
 package msg.user.control;
 
-import msg.exeptions.BusinessException;
-import msg.notifications.boundary.NotificationFacade;
-import msg.notifications.entity.NotificationType;
-import msg.user.entity.UserDao;
+import msg.exceptions.BusinessException;
+import msg.notification.boundary.NotificationFacade;
+import msg.notification.entity.NotificationType;
+import msg.user.entity.UserDAO;
 import msg.user.entity.dto.UserConverter;
 import msg.user.entity.dto.UserInputDTO;
 import org.junit.Assert;
@@ -32,7 +32,7 @@ public class UserControlTest {
     UserControl userControl;
 
     @Mock
-    UserDao userDao;
+    UserDAO userDao;
 
     @Mock
     UserConverter userConverter;

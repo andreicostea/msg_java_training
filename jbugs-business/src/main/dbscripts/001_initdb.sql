@@ -48,7 +48,7 @@ create table permissions_roles
 	permission_id bigint not null,
 	primary key (role_id, permission_id),
 	constraint FK_permissions_roles_permission_id
-		foreign key (permission_id) references permission (ID),
+		foreign key (permission_id) references permissions (ID),
 	constraint FK_permissions_roles_role_id
 		foreign key (role_id) references roles (ID)
 )

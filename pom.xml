@@ -131,7 +131,7 @@
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>2.19.1</version>
 					<configuration>
-						<linkXRef>false</linkXRef>
+<!--						<linkXRef>false</linkXRef>-->
 						<parallel>methods</parallel>
 						<threadCount>10</threadCount>
 					</configuration>
@@ -156,7 +156,6 @@
 			</activation>
 
 			<modules>
-				<module>jbugs-persistence</module>
 				<module>jbugs-business</module>
 				<module>jbugs-client</module>
 				<module>jbugs-ear</module>
@@ -179,15 +178,15 @@
 		<profile>
 			<id>payara-remote</id>
 
-			<dependencies>
-				<!-- The actual Arquillian connector -->
-				<dependency>
-					<groupId>org.omnifaces</groupId>
-					<artifactId>arquillian-payara-server-4-remote</artifactId>
-					<version>1.0-beta-SNAPSHOT</version>
-					<scope>test</scope>
-				</dependency>
-			</dependencies>
+<!--			<dependencies>-->
+<!--				&lt;!&ndash; The actual Arquillian connector &ndash;&gt;-->
+<!--				<dependency>-->
+<!--					<groupId>org.omnifaces</groupId>-->
+<!--					<artifactId>arquillian-payara-server-4-remote</artifactId>-->
+<!--					<version>1.0-beta-SNAPSHOT</version>-->
+<!--					<scope>test</scope>-->
+<!--				</dependency>-->
+<!--			</dependencies>-->
 
 			<build>
 				<plugins>
@@ -213,7 +212,6 @@
 			</build>
 
 			<modules>
-				<module>jbugs-persistence</module>
 				<module>jbugs-business</module>
 			</modules>
 		</profile>

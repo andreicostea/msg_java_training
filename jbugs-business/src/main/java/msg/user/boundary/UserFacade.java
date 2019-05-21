@@ -3,7 +3,7 @@
 // =================================================================================================
 package msg.user.boundary;
 
-import msg.right.Permission;
+import msg.permission.entity.Permission;
 import msg.user.control.UserControl;
 import msg.user.entity.dto.UserInputDTO;
 

@@ -11,7 +11,7 @@ import javax.persistence.PersistenceContext;
  * @since 19.1.2
  */
 @Stateless
-public class UserDao {
+public class UserDAO {
 
     @PersistenceContext(unitName="jbugs-persistence")
     private EntityManager em;
