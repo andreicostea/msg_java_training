@@ -1,6 +1,9 @@
 package msg.attachments;
 
 import edu.msg.ro.persistence.entity.BaseEntity;
+import msg.bugs.BugEntity;
+
+import javax.persistence.*;
 
 /**
  * Document me.
@@ -8,11 +11,24 @@ import edu.msg.ro.persistence.entity.BaseEntity;
  * @author msg systems AG; User Name.
  * @since 19.1.2
  */
+@Entity
+@Table(name="attachments")
 public class AttachmentEntity extends BaseEntity<Long> {
     private String addContent;
 
     public AttachmentEntity(String addContent) {
         this.addContent = addContent;
+    }
+    @ManyToOne
+    @JoinColumn(name="bug_id", nullable=false)
+    private BugEntity bugEntity;
+
+    public BugEntity getBugEntity() {
+        return bugEntity;
+    }
+
+    public void setBugEntity(BugEntity bugEntity) {
+        this.bugEntity = bugEntity;
     }
 
     public String getAddContent() {

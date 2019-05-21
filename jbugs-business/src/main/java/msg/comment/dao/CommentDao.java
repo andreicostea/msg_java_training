@@ -1,6 +1,6 @@
-package edu.msg.ro.persistence.dao;
+package msg.comment.dao;
 
-import edu.msg.ro.persistence.entity.Comment;
+import msg.comment.Comment;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

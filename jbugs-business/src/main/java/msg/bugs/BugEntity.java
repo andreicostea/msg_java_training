@@ -1,10 +1,15 @@
 package msg.bugs;
 
 import edu.msg.ro.persistence.entity.BaseEntity;
+import msg.attachments.AttachmentEntity;
+import msg.comment.Comment;
+import msg.history.HistoryEntity;
+import msg.user.entity.UserEntity;
 
-import javax.persistence.Column;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Document me.
@@ -12,6 +17,8 @@ import java.util.Objects;
  * @author msg systems AG; User Name.
  * @since 19.1.2
  */
+@Entity
+@Table(name="bugs")
 public class BugEntity extends BaseEntity<Long> {
     @Column(name="title",nullable = false)
     private String title;
@@ -27,6 +34,58 @@ public class BugEntity extends BaseEntity<Long> {
     private Date fixedVersion;
     public BugEntity() {
     }
+    @OneToMany
+    private  Set<Comment> comments;
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
+    }
+    @ManyToOne
+    private UserEntity assiged;
+
+    public UserEntity getAssiged() {
+        return assiged;
+    }
+
+    public void setAssiged(UserEntity assiged) {
+        this.assiged = assiged;
+    }
+    @ManyToOne
+    private UserEntity created;
+
+    public UserEntity getCreated() {
+        return created;
+    }
+
+    public void setCreated(UserEntity created) {
+        this.created = created;
+    }
+
+    @OneToMany
+    private Set<AttachmentEntity> attachmentEntities;
+    @OneToMany
+    private Set<HistoryEntity> historyEntities;
+
+    public Set<HistoryEntity> getHistoryEntities() {
+        return historyEntities;
+    }
+
+    public void setHistoryEntities(Set<HistoryEntity> historyEntities) {
+        this.historyEntities = historyEntities;
+    }
+
+    public Set<AttachmentEntity> getAttachmentEntities() {
+        return attachmentEntities;
+    }
+
+    public void setAttachmentEntities(Set<AttachmentEntity> attachmentEntities) {
+        this.attachmentEntities = attachmentEntities;
+    }
+
 
     public String getTitle() {
         return title;

@@ -2,8 +2,7 @@
 
 create table users
 (
-	ID bigint auto_increment
-		primary key,
+	ID bigint auto_increment primary key,
 	counter int null,
 	email varchar(255) not null,
 	first_name varchar(255) not null,
@@ -97,6 +96,29 @@ INSERT INTO jbugs.permissions_roles (role_id, permission_id) VALUES (1, 2);
 INSERT INTO jbugs.permissions_roles (role_id, permission_id) VALUES (2, 2);
 INSERT INTO jbugs.permissions_roles (role_id, permission_id) VALUES (2, 3);
 <1-- ADDED NOW -->
+
+
+create table bugs
+(
+	ID bigint auto_increment
+		primary key,
+	title varchar(255) not null,
+	description varchar(255) not null,
+	version datetime null,
+	targetDate datetime null,
+	 status varchar(255) not null,
+	fixedVersion datetime null,
+	severity varchar(255) not null,
+	user_id bigint not null,
+ createdBy bigint not null,
+ assignedBy bigint not null,
+	constraint FK_bugs_createdBy
+		foreign key (createdBy) references users (ID),
+	constraint FK_bugs_assignedBy
+		foreign key (assignedBy) references users (ID)
+)
+;
+
 create table comments
 (
 	user_id bigint not null,
@@ -110,22 +132,31 @@ create table comments
 	date datetime null
 )
 
-;
-create table bugs
+
+create table attachments
 (
 	ID bigint auto_increment
 		primary key,
-	title varchar(255) not null,
-	description varchar(255) not null,
-	version datetime null,
-	targetDate datetime null,
-	 status varchar(255) not null,
-	fixedVersion datetime null,
-	severity varchar(255) not null,
-	user_id bigint not null,
-	primary key (user_id),
-	constraint FK_bugs_user_id
-		foreign key (user_id) references users (ID),
+	attContent varchar(255) null,
+      id_bug bigint not null,
+		constraint FK_attachments_id_bug
+		foreign key (id_bug)
+		references bugs (ID)
+
 )
 ;
-;
+create table historys
+(
+	ID bigint auto_increment
+		primary key,
+        id_bug  bigint not null,
+		constraint FK_historys_id_bug
+		foreign key (id_bug)
+		references bugs (ID),
+		modifiedDate  datetime null,
+		afterStatus varchar(255) not null,
+		beforeStatus varchar(255) not null,
+		modifiedBy varchar(255) not null
+);
+
+
