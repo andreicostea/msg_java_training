@@ -6,6 +6,7 @@ package msg.user.boundary;
 import msg.permission.entity.PermissionType;
 import msg.user.control.UserControl;
 import msg.user.entity.dto.UserInputDTO;
+import msg.user.entity.dto.UserLoginDTO;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
@@ -28,8 +29,13 @@ public class UserFacade {
      *
      * @param user the input User DTO. mandatory
      */
-    @RolesAllowed(PermissionType.USER_MANAGEMENT)
+    //@RolesAllowed(PermissionType.USER_MANAGEMENT)
     public void createUser(UserInputDTO user){
          this.userControl.createUser(user);
+    }
+
+
+    public void loginUser(UserLoginDTO userLoginDTO) {
+        this.userControl.loginUser(userLoginDTO);
     }
 }

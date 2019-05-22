@@ -12,6 +12,8 @@ import msg.user.entity.dao.UserDAO;
 import msg.user.entity.dto.UserInputDTO;
 import msg.user.entity.UserEntity;
 import msg.user.entity.dto.UserConverter;
+import msg.user.entity.UserDao;
+import msg.user.entity.dto.UserLoginDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -77,5 +79,14 @@ public class UserControl {
             builder.append(ALPHA_NUMERIC_STRING.charAt(character));
         }
         return builder.toString();
+    }
+
+    public void loginUser(UserLoginDTO userLoginDTO) {
+        if (!userDao.loginUser(userLoginDTO)){
+            throw new BusinessException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD);
+        }else{
+            System.out.println("ESTE USER");
+        }
+
     }
 }

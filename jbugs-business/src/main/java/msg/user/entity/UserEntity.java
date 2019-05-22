@@ -9,7 +9,15 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
  * The User entity.
@@ -18,30 +26,35 @@ import java.util.Set;
  * @since 19.1.2
  */
 @Entity
-@Table(name = "users")
-@NamedQueries({@NamedQuery(name = UserEntity.USER_FIND_BY_EMAIL, query = "SELECT count(u) from UserEntity u where u.email = :" + UserEntity.EMAIL)})
+@Table(name="users")
+@NamedQueries({
+        @NamedQuery(name= UserEntity.USER_FIND_BY_EMAIL,query= "SELECT count(u) from UserEntity u where u.email = :" + UserEntity.EMAIL),
+        @NamedQuery(name= UserEntity.USER_FIND_BY_USERNAME_AND_PASSWORD, query = "SELECT count(u) from UserEntity u where u.username = :" + UserEntity.USERNAME + " and u.password = :" + UserEntity.PASSWORD)})
 public class UserEntity extends BaseEntity<Long> {
     public static final String USER_FIND_BY_EMAIL = "UserEntity.findByEmail";
     public static final String EMAIL = "email";
+    public static final String USERNAME = "username";
+    public static final String PASSWORD = "password";
+    public static final String USER_FIND_BY_USERNAME_AND_PASSWORD = "UserEntity.findByUserNameAndPassword";
 
-    @Column(name = "first_name", nullable = false)
+    @Column(name="first_name",nullable = false)
     private String firstName;
-    @Column(name = "last_name", nullable = false)
+    @Column(name="last_name",nullable = false)
     private String lastName;
-    @Column(name = "email", nullable = false)//todo: @Pattern
+    @Column(name="email",nullable = false)//todo: @Pattern
     private String email;
-    @Column(name = "mobile_number", nullable = false)
+    @Column(name="mobile_number",nullable = false)
     private String mobileNumber;
-    @Column(name = "username", nullable = false)
+    @Column(name="username",nullable = false)
     private String username;
-    @Column(name = "password", nullable = false)
+    @Column(name="password",nullable = false)
     private String password;
-    @Column(name = "counter")
+    @Column(name="counter")
     private int counter;
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
+    @ManyToMany(cascade= CascadeType.PERSIST)
+    @JoinTable(name="users_roles",
+            joinColumns = @JoinColumn(name="user_id", referencedColumnName = "id",nullable = false),
+            inverseJoinColumns = @JoinColumn(name="role_id",referencedColumnName = "id",nullable = false)
     )
     private List<RoleEntity> roles = new ArrayList<>();
 
@@ -56,6 +69,7 @@ public class UserEntity extends BaseEntity<Long> {
         this.comments = comments;
     }
 
+    public String getFirstName() {
     @OneToMany
     Set<CommentEntity> comments;
     @OneToMany
@@ -78,8 +92,6 @@ public class UserEntity extends BaseEntity<Long> {
     public void setAssigned(Set<BugEntity> assigned) {
         this.assigned = assigned;
     }
-
-    public String getFirstName() {
         return firstName;
     }
 

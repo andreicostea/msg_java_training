@@ -2,6 +2,8 @@ package msg.user.entity.dao;
 
 import msg.user.entity.UserEntity;
 
+import msg.user.entity.dto.UserLoginDTO;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -40,5 +42,13 @@ public class UserDAO {
     public UserEntity createUser(UserEntity user) {
         em.persist(user);
         return user;
+    }
+
+    public boolean loginUser(UserLoginDTO userLoginDTO) {
+        long count = em.createNamedQuery(UserEntity.USER_FIND_BY_USERNAME_AND_PASSWORD, Long.class)
+                .setParameter(UserEntity.USERNAME, userLoginDTO.getUsername())
+                .setParameter(UserEntity.PASSWORD, userLoginDTO.getPassword())
+                .getSingleResult();
+        return (count > 0);
     }
 }
