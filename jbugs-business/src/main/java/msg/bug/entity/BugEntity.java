@@ -19,19 +19,24 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "bugs")
+@NamedQueries({
+        @NamedQuery(name = BugEntity.BUG_GET_ALL,
+                query = "select b.title, b.description, b.version, b.status, b.fixedVersion from BugEntity b")})
 public class BugEntity extends BaseEntity<Long> {
+    public static final String BUG_GET_ALL = "BugEntity.getAllBugEntitys";
+
     @Column(name = "title", nullable = false)
     private String title;
     @Column(name = "description", nullable = false)
     private String description;
     @Column(name = "version", nullable = false)//todo: @Pattern
-    private Date version;
+    private String version;
     @Column(name = "targetDate")
     private Date targetDate;
     @Column(name = "status")
     private String status;
     @Column(name = "fixedVersion", nullable = false)
-    private Date fixedVersion;
+    private String fixedVersion;
 
     public BugEntity() {
     }
@@ -125,11 +130,11 @@ public class BugEntity extends BaseEntity<Long> {
         this.description = description;
     }
 
-    public Date getVersion() {
+    public String getVersion() {
         return version;
     }
 
-    public void setVersion(Date version) {
+    public void setVersion(String version) {
         this.version = version;
     }
 
@@ -149,11 +154,11 @@ public class BugEntity extends BaseEntity<Long> {
         this.status = status;
     }
 
-    public Date getFixedVersion() {
+    public String getFixedVersion() {
         return fixedVersion;
     }
 
-    public void setFixedVersion(Date fixedVersion) {
+    public void setFixedVersion(String fixedVersion) {
         this.fixedVersion = fixedVersion;
     }
 
