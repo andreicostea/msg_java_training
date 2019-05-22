@@ -14,6 +14,7 @@
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
           <factory-entry name="jbugs-persistence" value="95f2993e-a24d-4d06-a823-e312be6c3eff" />
+          <factory-entry name="persistenceUnit" />
         </datasource-mapping>
         <naming-strategy-map />
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
