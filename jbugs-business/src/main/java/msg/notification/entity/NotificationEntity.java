@@ -2,15 +2,9 @@ package msg.notification.entity;
 
 import msg.base.BaseEntity;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  * The Notification Entity.
@@ -19,18 +13,25 @@ import javax.persistence.TemporalType;
  * @since 19.1.2
  */
 @Entity
-@Table(name = "notification")
+@Table(name = "notifications")
+@NamedQueries({@NamedQuery(name = NotificationEntity.NOTIFICATION_FIND_USER_ID, query = "SELECT n from NotificationEntity n where n.userID =:id"),
+        @NamedQuery(name = NotificationEntity.NOTIFICATION_FIND_BY_NOTIFICATION_TYPE, query = "SELECT n from NotificationEntity n  where n.userID =:id and n.notificationType =:notificationType")
+})
 public class NotificationEntity extends BaseEntity<Long> {
+
+    public static final String NOTIFICATION_FIND_USER_ID = "NotificationEntity.findById";
+    public static final String NOTIFICATION_FIND_BY_NOTIFICATION_TYPE = "NotificationEntity.findByNotificationType";
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
-
     private NotificationType notificationType;
+
     @Column(name ="url")
     private String url;
 
     @Column(name ="message")
     private String message;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column( name = "date")
     private Date date;
@@ -66,6 +67,7 @@ public class NotificationEntity extends BaseEntity<Long> {
     }
 
     public String getUrl() {
+
         return url;
     }
 
