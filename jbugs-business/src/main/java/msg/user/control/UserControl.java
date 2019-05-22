@@ -12,7 +12,6 @@ import msg.user.entity.dao.UserDAO;
 import msg.user.entity.dto.UserInputDTO;
 import msg.user.entity.UserEntity;
 import msg.user.entity.dto.UserConverter;
-import msg.user.entity.UserDao;
 import msg.user.entity.dto.UserLoginDTO;
 
 import javax.ejb.EJB;

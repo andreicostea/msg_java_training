@@ -1,8 +1,6 @@
 package msg.application;
 
-import msg.exeptions.BusinessException;
-import msg.exeptions.BusinessExceptionMapper;
-import msg.exeptions.RuntimeExceptionMapper;
+import msg.exceptions.BusinessExceptionMapper;
 import msg.user.boundary.UserResource;
 
 import javax.ws.rs.ApplicationPath;
