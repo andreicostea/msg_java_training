@@ -1,11 +1,15 @@
 package msg.bug.entity;
 
+import msg.attachment.entity.AttachmentEntity;
 import msg.base.BaseEntity;
+import msg.comment.entity.CommentEntity;
+import msg.history.HistoryEntity;
+import msg.user.entity.UserEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * Document me.
@@ -15,26 +19,82 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "bugs")
+@NamedQueries({
+        @NamedQuery(name = BugEntity.BUG_GET_ALL,
+                query = "select b.title, b.description, b.version, b.status, b.fixedVersion from BugEntity b")})
 public class BugEntity extends BaseEntity<Long> {
+    public static final String BUG_GET_ALL = "BugEntity.getAllBugEntitys";
 
-    @Column(name = "title")
+    @Column(name = "title", nullable = false)
     private String title;
-    @Column(name = "description")
+    @Column(name = "description", nullable = false)
     private String description;
-    @Column(name ="version")
+    @Column(name = "version", nullable = false)//todo: @Pattern
     private String version;
-    @Column(name ="targetDate")
-    private Date date;
-    @Column(name = "Status")
-    private String Status;
-    @Column(name = "fixed_version")
+    @Column(name = "targetDate")
+    private Date targetDate;
+    @Column(name = "status")
+    private String status;
+    @Column(name = "fixedVersion", nullable = false)
     private String fixedVersion;
-    @Column (name ="severity")
-    private String severity;
-    /* todo: createByUser assigned to */
 
     public BugEntity() {
     }
+
+    @OneToMany
+    private Set<CommentEntity> comments;
+
+    public Set<CommentEntity> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<CommentEntity> comments) {
+        this.comments = comments;
+    }
+
+    @ManyToOne
+    private UserEntity assiged;
+
+    public UserEntity getAssiged() {
+        return assiged;
+    }
+
+    public void setAssiged(UserEntity assiged) {
+        this.assiged = assiged;
+    }
+
+    @ManyToOne
+    private UserEntity created;
+
+    public UserEntity getCreated() {
+        return created;
+    }
+
+    public void setCreated(UserEntity created) {
+        this.created = created;
+    }
+
+    @OneToMany
+    private Set<AttachmentEntity> attachmentEntities;
+    @OneToMany
+    private Set<HistoryEntity> historyEntities;
+
+    public Set<HistoryEntity> getHistoryEntities() {
+        return historyEntities;
+    }
+
+    public void setHistoryEntities(Set<HistoryEntity> historyEntities) {
+        this.historyEntities = historyEntities;
+    }
+
+    public Set<AttachmentEntity> getAttachmentEntities() {
+        return attachmentEntities;
+    }
+
+    public void setAttachmentEntities(Set<AttachmentEntity> attachmentEntities) {
+        this.attachmentEntities = attachmentEntities;
+    }
+
 
     public String getTitle() {
         return title;
@@ -42,6 +102,24 @@ public class BugEntity extends BaseEntity<Long> {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BugEntity bugEntity = (BugEntity) o;
+        return Objects.equals(title, bugEntity.title) &&
+                Objects.equals(description, bugEntity.description) &&
+                Objects.equals(version, bugEntity.version) &&
+                Objects.equals(targetDate, bugEntity.targetDate) &&
+                Objects.equals(status, bugEntity.status) &&
+                Objects.equals(fixedVersion, bugEntity.fixedVersion);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, description, version, targetDate, status, fixedVersion);
     }
 
     public String getDescription() {
@@ -60,20 +138,20 @@ public class BugEntity extends BaseEntity<Long> {
         this.version = version;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getTargetDate() {
+        return targetDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setTargetDate(Date targetDate) {
+        this.targetDate = targetDate;
     }
 
     public String getStatus() {
-        return Status;
+        return status;
     }
 
     public void setStatus(String status) {
-        Status = status;
+        this.status = status;
     }
 
     public String getFixedVersion() {
@@ -84,11 +162,4 @@ public class BugEntity extends BaseEntity<Long> {
         this.fixedVersion = fixedVersion;
     }
 
-    public String getSeverity() {
-        return severity;
-    }
-
-    public void setSeverity(String severity) {
-        this.severity = severity;
-    }
 }

@@ -3,6 +3,9 @@
 // =================================================================================================
 package msg.exceptions;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * The Message structure for the {@link BusinessException}.
  *
@@ -16,6 +19,10 @@ public class ExceptionMessage {
 
     /** A text message that describes the problems. */
     private String message;
+
+
+    public ExceptionMessage() {
+    }
 
     public ExceptionMessage(final String messageCode, final String message) {
         this.messageCode = messageCode;
@@ -38,5 +45,13 @@ public class ExceptionMessage {
      */
     public String getMessage() {
         return this.message;
+    }
+
+    public void setMessageCode(String messageCode) {
+        this.messageCode = messageCode;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

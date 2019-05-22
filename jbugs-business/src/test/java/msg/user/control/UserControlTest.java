@@ -6,7 +6,7 @@ package msg.user.control;
 import msg.exceptions.BusinessException;
 import msg.notification.boundary.NotificationFacade;
 import msg.notification.entity.NotificationType;
-import msg.user.entity.UserDAO;
+import msg.user.entity.dao.UserDAO;
 import msg.user.entity.dto.UserConverter;
 import msg.user.entity.dto.UserInputDTO;
 import org.junit.Assert;

@@ -35,10 +35,10 @@ public class SomeEjb {
 //		user2.setUsername("abc");
 //		user2.setPassword("1234");
 //
-//		Permission p1=new Permission("aa","desc1");
-//		Permission p2=new Permission("bb","desc2");
-//		Permission p3=new Permission("dd","desc3");
-//		Permission p4=new Permission("cc","desc4");
+//		PermissionType p1=new PermissionType("aa","desc1");
+//		PermissionType p2=new PermissionType("bb","desc2");
+//		PermissionType p3=new PermissionType("dd","desc3");
+//		PermissionType p4=new PermissionType("cc","desc4");
 //
 //
 //		RoleEntity r1=new RoleEntity("ADM",Arrays.asList(p1,p2));
@@ -52,7 +52,7 @@ public class SomeEjb {
 //		user=userDao.createUser(user);
 //		user2=userDao.createUser(user2);
 //
-//		List<Permission> permissions=permDao.getPermissionByRole(r1);
+//		List<PermissionType> permissions=permDao.getPermissionByRole(r1);
 //
 ////		String type1 = permissions.get(0).getType();
 ////		String type2 = permissions.get(1).getType();

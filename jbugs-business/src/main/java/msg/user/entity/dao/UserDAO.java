@@ -1,4 +1,8 @@
-package msg.user.entity;
+package msg.user.entity.dao;
+
+import msg.user.entity.UserEntity;
+
+import msg.user.entity.dto.UserLoginDTO;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -13,7 +17,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class UserDAO {
 
-    @PersistenceContext(unitName="jbugs-persistence")
+    @PersistenceContext(unitName = "persistenceUnit")
     private EntityManager em;
 
     /**
@@ -22,9 +26,9 @@ public class UserDAO {
      * @param email the email to check for. mandatory
      * @return <code>true</code> if the input email is associated with a user.
      */
-    public boolean existsEmail(String email){
+    public boolean existsEmail(String email) {
         long count = em.createNamedQuery(UserEntity.USER_FIND_BY_EMAIL, Long.class)
-                .setParameter(UserEntity.EMAIL,email)
+                .setParameter(UserEntity.EMAIL, email)
                 .getSingleResult();
         return (count > 0);
     }
@@ -35,8 +39,16 @@ public class UserDAO {
      * @param user the input entity to be saved.
      * @return the persisted entity.
      */
-    public UserEntity createUser(UserEntity user){
+    public UserEntity createUser(UserEntity user) {
         em.persist(user);
         return user;
+    }
+
+    public boolean loginUser(UserLoginDTO userLoginDTO) {
+        long count = em.createNamedQuery(UserEntity.USER_FIND_BY_USERNAME_AND_PASSWORD, Long.class)
+                .setParameter(UserEntity.USERNAME, userLoginDTO.getUsername())
+                .setParameter(UserEntity.PASSWORD, userLoginDTO.getPassword())
+                .getSingleResult();
+        return (count > 0);
     }
 }

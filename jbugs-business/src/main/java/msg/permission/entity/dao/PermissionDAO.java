@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- * The DAO for the Permission Entities.
+ * The DAO for the PermissionType Entities.
  *
  * @author msg systems AG;
  * @since 19.1.2
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class PermissionDAO {
 
-    @PersistenceContext(unitName="jbugs-persistence")
+    @PersistenceContext(unitName="persistenceUnit")
     private EntityManager em;
 
     /**

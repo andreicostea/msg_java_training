@@ -5,7 +5,7 @@ package msg.user.control;
 
 import msg.exceptions.BusinessException;
 import msg.notification.boundary.NotificationFacade;
-import msg.user.entity.UserDAO;
+import msg.user.entity.dao.UserDAO;
 import msg.user.entity.dto.UserConverter;
 import msg.user.entity.dto.UserInputDTO;
 import org.junit.Before;
@@ -73,7 +73,7 @@ public class UserControlTestV2 {
 
 //    @Test
 //    public void testCreateUserNotificationSent(){
-//        UserInputDTO user = createTestInputDTO();
+//        NotificationInputDTO user = createTestInputDTO();
 //
 //        ArgumentCaptor<NotificationType> sentNotificationType = ArgumentCaptor.forClass(NotificationType.class);
 //        Mockito.when(userConverter.convertInputDTOtoEntity(Mockito.any())).thenCallRealMethod();
