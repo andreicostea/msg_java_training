@@ -1,12 +1,10 @@
 // =================================================================================================
 // Copyright (c) 2017-2020 BMW Group. All rights reserved.
 // =================================================================================================
-package msg.notifications.entity.dto;
+package msg.notification.entity.dto;
 
-import msg.notifications.entity.NotificationEntity;
+import msg.notification.entity.NotificationEntity;
 import msg.role.control.RoleControl;
-import msg.user.entity.UserEntity;
-import msg.user.entity.dto.UserInputDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -23,12 +21,12 @@ public class NotificationConverter {
     @EJB
     private RoleControl roleControl;
 
-    /**
-     * Converts a {@link UserInputDTO} to {@link UserEntity}.
-     *
-     * @param userInputDTO the input dto.
-     * @return the output un-managed Entity.
-     */
+//    /**
+//     * Converts a {@link UserInputDTO} to {@link UserEntity}.
+//     *
+//     * @param userInputDTO the input dto.
+//     * @return the output un-managed Entity.
+//     */
 //    public NotificationEntity convertInputDTOtoEntity(NotificationInputDTO notificationInputDTO){
 //        final NotificationEntity notificationEntity = new NotificationEntity();
 //        notificationEntity.setUserID(notificationInputDTO.getUserId());
@@ -43,8 +41,8 @@ public class NotificationConverter {
 //        }
 //        return u;
 //    }
-    public NotificationDTO convertEntityToDTO(NotificationEntity notificationEntity) {
-        final NotificationDTO notificationDTO = new NotificationDTO();
+    public NotificationOutputDTO convertEntityToDTO(NotificationEntity notificationEntity) {
+        final NotificationOutputDTO notificationDTO = new NotificationOutputDTO();
         notificationDTO.setDate(notificationEntity.getDate());
         notificationDTO.setMessage(notificationEntity.getMessage());
         System.out.println("message" + notificationEntity.getMessage());

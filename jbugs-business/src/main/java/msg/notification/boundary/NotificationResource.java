@@ -1,6 +1,4 @@
-package msg.notifications.boundary.resource;
-
-import msg.notifications.boundary.NotificationFacade;
+package msg.notification.boundary;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

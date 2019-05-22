@@ -1,7 +1,7 @@
 package msg.application;
 
 
-import msg.notifications.boundary.resource.NotificationResource;
+import msg.notification.boundary.NotificationResource;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 
 import javax.ws.rs.ApplicationPath;

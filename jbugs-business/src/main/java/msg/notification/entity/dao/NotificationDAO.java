@@ -1,6 +1,7 @@
 package msg.notification.entity.dao;
 
 import msg.notification.entity.NotificationEntity;
+import msg.notification.entity.NotificationType;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

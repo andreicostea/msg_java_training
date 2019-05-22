@@ -5,11 +5,11 @@ import msg.notification.MessageCatalog;
 import msg.notification.boundary.notificationParams.NotificationParams;
 import msg.notification.boundary.notificationParams.NotificationParamsUserChanges;
 import msg.notification.boundary.notificationParams.NotificationParamsWelcomeUser;
-import msg.notification.entity.NotificationDao;
 import msg.notification.entity.NotificationEntity;
 import msg.notification.entity.NotificationType;
+import msg.notification.entity.dao.NotificationDAO;
 import msg.notification.entity.dto.NotificationConverter;
-import msg.notification.entity.dto.NotificationDTO;
+import msg.notification.entity.dto.NotificationOutputDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -33,13 +33,7 @@ public class NotificationControl {
 
     private static final String SERVER_ADDRESS = "http://" + System.getProperty("myServerAddress");
 
-    /**
-     * Creates a notification based on the input {@link NotificationType} and {@link NotificationParams}.
-     *
-     * @param notificationType the type of the notification.
-     * @param params the parameters for the notification type.
-     */
-    public List<NotificationDTO> getNotificationsById(long id) {
+    public List<NotificationOutputDTO> getNotificationsById(long id) {
 
         return notificationDao
                 .getAllById(id)
@@ -49,14 +43,19 @@ public class NotificationControl {
                 .collect(Collectors.toList());
     }
 
-    public NotificationDTO getWelcomeNotificationById(long id) {
+    public NotificationOutputDTO getWelcomeNotificationById(long id) {
 
         return notificationConverter.convertEntityToDTO(notificationDao.
                 getWelcomeNotificationById(id));
 
     }
 
-
+    /**
+     * Creates a notification based on the input {@link NotificationType} and {@link NotificationParams}.
+     *
+     * @param notificationType the type of the notification.
+     * @param params the parameters for the notification type.
+     */
     public void createNotification(final NotificationType notificationType, final NotificationParams params) {
         switch (notificationType) {
             case WELCOME_NEW_USER:

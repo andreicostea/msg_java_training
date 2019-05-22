@@ -1,6 +1,6 @@
-package msg.notifications.entity.dto;
+package msg.notification.entity.dto;
 
-import msg.notifications.entity.NotificationType;
+import msg.notification.entity.NotificationType;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
@@ -12,7 +12,7 @@ import java.util.Date;
  * @since 19.1.2
  */
 @XmlRootElement
-public class NotificationDTO  //e de output
+public class NotificationOutputDTO  //e de output
 {
     private Long id;
     private String urlBug;
@@ -20,7 +20,7 @@ public class NotificationDTO  //e de output
     private Date date;
     private NotificationType notificationType;
 
-    public NotificationDTO() {
+    public NotificationOutputDTO() {
     }
 
     public Long getId() {

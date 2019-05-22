@@ -1,9 +1,9 @@
 // =================================================================================================
 // Copyright (c) 2017-2020 BMW Group. All rights reserved.
 // =================================================================================================
-package msg.notifications.entity.dto;
+package msg.notification.entity.dto;
 
-import msg.notifications.entity.NotificationType;
+import msg.notification.entity.NotificationType;
 
 import java.util.Date;
 
