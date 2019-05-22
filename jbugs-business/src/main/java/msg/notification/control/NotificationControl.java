@@ -56,13 +56,13 @@ public class NotificationControl {
      * @param notificationType the type of the notification.
      * @param params the parameters for the notification type.
      */
-    public void createNotification(final NotificationType notificationType, final NotificationParams params) {
+    public void createNotification(final NotificationType notificationType, final NotificationParams params, final long userID) {
         switch (notificationType) {
             case WELCOME_NEW_USER:
-                this.createWelcomeUserNotification(params);
+                this.createWelcomeUserNotification(params, userID);
                 break;
             case USER_UPDATED:
-                this.createUserUpdateNotification(params);
+                this.createUserUpdateNotification(params, userID);
                 break;
         }
     }
@@ -72,7 +72,7 @@ public class NotificationControl {
      *
      * @param params the input params.
      */
-    private void createWelcomeUserNotification(final NotificationParams params) {
+    private void createWelcomeUserNotification(final NotificationParams params, final long userID) {
         if (!(params instanceof NotificationParamsWelcomeUser)) {
             throw new BusinessException(MessageCatalog.MESSAGE_PARAMS_AND_TYPE_ARE_INCOMPATIBLE);
         }
@@ -87,6 +87,7 @@ public class NotificationControl {
         //todo update with correct link when routing is available
         notificationEntity.setUrl(SERVER_ADDRESS + "someOtherInfo");
         notificationEntity.setDate(new Date());
+        notificationEntity.setUserID(userID);
         this.notificationDao.createNotification(notificationEntity);
     }
 
@@ -95,17 +96,17 @@ public class NotificationControl {
      *
      * @param params the input params.
      */
-    private void createUserUpdateNotification(final NotificationParams params) {
+    private void createUserUpdateNotification(final NotificationParams params, final long userID) {
         if (!(params instanceof NotificationParamsUserChanges)) {
             throw new BusinessException(MessageCatalog.MESSAGE_PARAMS_AND_TYPE_ARE_INCOMPATIBLE);
         }
 
         final NotificationParamsUserChanges messageParams = (NotificationParamsUserChanges) params;
-        this.createWelcomeUpdateTarget(messageParams);
+        this.createWelcomeUpdateTarget(messageParams, userID);
         this.createWelcomeUpdateSource(messageParams);
     }
 
-    private void createWelcomeUpdateTarget(final NotificationParamsUserChanges messageParams) {
+    private void createWelcomeUpdateTarget(final NotificationParamsUserChanges messageParams, final long userID) {
         final NotificationEntity notificationEntity = new NotificationEntity();
         notificationEntity.setMessage(NotificationMessageCatalog
                 .getFullMessageForUserUpdatedTarget(messageParams.getUsernameSource(),
@@ -114,6 +115,7 @@ public class NotificationControl {
         //todo update with correct link when routing is available
         notificationEntity.setUrl(SERVER_ADDRESS + "someOtherInfo");
         notificationEntity.setDate(new Date());
+        notificationEntity.setUserID(userID);
         this.notificationDao.createNotification(notificationEntity);
 
     }

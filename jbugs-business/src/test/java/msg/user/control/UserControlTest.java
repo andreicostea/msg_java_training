@@ -50,7 +50,7 @@ public class UserControlTest {
 
         Mockito.when(userConverter.convertInputDTOtoEntity(Mockito.any())).thenCallRealMethod();
         Mockito.when(userDao.existsEmail(user.getEmail())).thenReturn(false);
-        Mockito.doNothing().when(notificationFacade).createNotification(Mockito.any(), Mockito.any());
+        Mockito.doNothing().when(notificationFacade).createNotification(Mockito.any(), Mockito.any(), 0);
 
         this.userControl.createUser(user);
     }
@@ -71,7 +71,7 @@ public class UserControlTest {
         ArgumentCaptor<NotificationType> sentNotificationType = ArgumentCaptor.forClass(NotificationType.class);
         Mockito.when(userConverter.convertInputDTOtoEntity(Mockito.any())).thenCallRealMethod();
         Mockito.when(userDao.existsEmail(user.getEmail())).thenReturn(false);
-        Mockito.doNothing().when(notificationFacade).createNotification(sentNotificationType.capture(), Mockito.any());
+        Mockito.doNothing().when(notificationFacade).createNotification(sentNotificationType.capture(), Mockito.any(), 0);
 
         this.userControl.createUser(user);
         Assert.assertEquals(sentNotificationType.getValue(), NotificationType.WELCOME_NEW_USER);
