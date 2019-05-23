@@ -38,6 +38,10 @@ public class NotificationFacade {
     }
 
     public Object getUpdateNotificationById(long id) {
-        return this.notificationControl.getNotificationsById(id);
+        return this.notificationControl.getUpdateNotificationById(id);
+    }
+
+    public Object getDeleteNotificationById(long id) {
+        return this.notificationControl.getDeleteNotificationById(id);
     }
 }

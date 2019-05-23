@@ -53,7 +53,6 @@ public class UserControl {
         newUserEntity.setPassword("DEFAULT_PASSWORD");
         userDao.createUser(newUserEntity);
         final long id = userDao.getUserByEmail(userDTO.getEmail()).getId();
-        System.out.println("userID" + id);
         final String userFullName = newUserEntity.getFirstName() + " " + newUserEntity.getLastName();
 //        = newUserEntity.getId();
         this.notificationFacade.createNotification(

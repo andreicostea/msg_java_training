@@ -50,6 +50,23 @@ public class NotificationControl {
 
     }
 
+    public List<NotificationOutputDTO> getUpdateNotificationById(long id) {
+
+        return notificationDao.getUpdateNotificationById(id)
+                .stream()
+                .map(notificationConverter::convertEntityToDTO)//pentru fiec elem din lista apeleaza convertEntityToDTO
+                //si apoi ce returneaza colecteaza
+                .collect(Collectors.toList());
+
+    }
+
+    public NotificationOutputDTO getDeleteNotificationById(long id) {
+
+        return notificationConverter.convertEntityToDTO(notificationDao.
+                getDeleteNotificationById(id));
+
+    }
+
     /**
      * Creates a notification based on the input {@link NotificationType} and {@link NotificationParams}.
      *
