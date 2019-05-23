@@ -3,7 +3,9 @@ package msg.notification.boundary;
 import msg.notification.boundary.notificationParams.NotificationParams;
 import msg.notification.control.NotificationControl;
 import msg.notification.entity.NotificationType;
+import msg.permission.entity.PermissionType;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -29,10 +31,12 @@ public class NotificationFacade {
         this.notificationControl.createNotification(notificationType, params);
     }
 
+    @RolesAllowed(PermissionType.USER_MANAGEMENT)
     public Object getAllNotificationById(long id) {
         return this.notificationControl.getNotificationsById(id);
     }
 
+    @RolesAllowed(PermissionType.USER_MANAGEMENT)
     public Object getWelcomeNotificationById(long id) {
         return this.notificationControl.getWelcomeNotificationById(id);
     }
