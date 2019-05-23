@@ -3,19 +3,26 @@
 // =================================================================================================
 package msg.user.control;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import msg.exceptions.BusinessException;
+import msg.exceptions.BusinessWebAppException;
 import msg.notification.boundary.NotificationFacade;
 import msg.notification.boundary.notificationParams.NotificationParamsWelcomeUser;
 import msg.notification.entity.NotificationType;
+import msg.role.entity.RoleEntity;
 import msg.user.MessageCatalog;
 import msg.user.entity.UserEntity;
 import msg.user.entity.dao.UserDAO;
 import msg.user.entity.dto.UserConverter;
+import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserInputDTO;
 import msg.user.entity.dto.UserLoginDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Control operations for all the User related operations.
@@ -42,6 +49,36 @@ public class UserControl {
      * @param userDTO the input User DTO. mandatory
      * @return the username of the newly created user.
      */
+
+    public String authenticateUser(UserInputDTO userInputDTO) {
+
+        try {
+
+            UserEntity user = userDao.getUserByEmail(userInputDTO.getEmail());
+
+//        Stream<String> roles = user.getRoles()
+//                .stream()
+//                .map(Role::getType);
+
+            if (user != null) {
+                Algorithm algorithm = Algorithm.HMAC256("harambe");
+                return JWT.create().withIssuer("auht0")
+                        .withClaim("username", user.getUsername())
+                        .withArrayClaim("roles", user.getRoles()
+                                .stream()
+                                .map(RoleEntity::getType).toArray(String[]::new))
+                        .sign(algorithm);
+
+            } else {
+                throw new BusinessException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD);
+            }
+        } catch (Exception e) {
+            throw new BusinessException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD);
+        }
+    }
+
+
+
     public String createUser(final UserInputDTO userDTO) {
         if (userDao.existsEmail(userDTO.getEmail())) {
             throw new BusinessException(MessageCatalog.USER_WITH_SAME_MAIL_EXISTS);
@@ -81,12 +118,56 @@ public class UserControl {
         return builder.toString();
     }
 
+
     public void loginUser(UserLoginDTO userLoginDTO) {
-        if (!userDao.loginUser(userLoginDTO)){
+        UserEntity userEntity;
+        try {
+            userEntity = userDao.getUserByUsername(userLoginDTO.getUsername());
+        } catch (Exception e) {
             throw new BusinessException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD);
-        }else{
-            System.out.println("ESTE USER");
         }
+        //verify password
+        if (!userEntity.getPassword().equals(userLoginDTO.getPassword())) {
+            // subtract the counter and throw message
+            if (userEntity.getCounter() > 1) {
+
+                int counter = userEntity.getCounter() - 1;
+                userEntity.setCounter(counter);
+                userDao.createUser(userEntity);
+
+                throw new BusinessWebAppException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD, 400);
+                // username inactive
+            } else {
+                userEntity.setStatus(false);
+                userEntity.setCounter(0);
+                userDao.createUser(userEntity);
+                throw new BusinessWebAppException(MessageCatalog.USER_INACTIVE, 403);
+
+            }
+            //success and reset the counter if necessary
+        } else {
+            if (userEntity.getCounter() != 5) {
+                userEntity.setCounter(5);
+                userDao.createUser(userEntity);
+            }
+        }
+
+    }
+
+    public List<UserDTO> getAll() {
+        return userDao.getAll().stream()
+                .map(userConverter::convertEntityDTO)
+                .collect(Collectors.toList());
+    }
+
+    public UserDTO getUserById(long id) {
+        UserEntity user;
+        try {
+            user = userDao.getUserById(id);
+        } catch (Exception e) {
+            throw new BusinessException(MessageCatalog.USER_WITH_THAT_ID_DOES_NOT_EXISTS);
+        }
+        return userConverter.convertEntityDTO(user);
 
     }
 }

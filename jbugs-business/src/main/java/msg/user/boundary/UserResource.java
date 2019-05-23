@@ -36,6 +36,14 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     @GET
     public Response getAll(){
-        return Response.ok().build();
+        return Response.ok(userFacade.getAll()).build();
+    }
+
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("{id}")
+    @GET
+    public Response getUserById(@PathParam("id") long id) {
+        return Response.ok(userFacade.getUserById(id)).build();
     }
 }
