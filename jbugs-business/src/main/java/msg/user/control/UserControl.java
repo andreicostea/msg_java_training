@@ -94,30 +94,38 @@ public class UserControl {
             throw new BusinessException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD);
         }
         //verify password
-        if (!userEntity.getPassword().equals(userLoginDTO.getPassword())){
-            // subtract the counter and throw message
-            if(userEntity.getCounter() > 1){
+        if(userEntity.isStatus()){
 
-                int counter = userEntity.getCounter() - 1;
-                userEntity.setCounter(counter);
-               userDao.createUser(userEntity);
+            if (!userEntity.getPassword().equals(userLoginDTO.getPassword())){
+                // subtract the counter and throw message
+                if(userEntity.getCounter() > 1){
 
-               throw new BusinessWebAppException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD, 400);
-            // username inactive
+                    int counter = userEntity.getCounter() - 1;
+                    userEntity.setCounter(counter);
+                    userDao.createUser(userEntity);
+
+                    throw new BusinessWebAppException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD, 400);
+                    // username inactive
+                }else{
+                    userEntity.setStatus(false);
+                    userEntity.setCounter(0);
+                    userDao.createUser(userEntity);
+                    throw new BusinessWebAppException(MessageCatalog.USER_INACTIVE, 403);
+
+                }
+                //success and reset the counter if necessary
             }else{
-                userEntity.setStatus(false);
-                userEntity.setCounter(0);
-                userDao.createUser(userEntity);
-                throw new BusinessWebAppException(MessageCatalog.USER_INACTIVE, 403);
+                if(userEntity.getCounter() != 5){
+                    userEntity.setCounter(5);
+                    userDao.createUser(userEntity);
+                }
+            }
 
-            }
-        //success and reset the counter if necessary
+
         }else{
-            if(userEntity.getCounter() != 5){
-                userEntity.setCounter(5);
-                userDao.createUser(userEntity);
-            }
+            throw new BusinessWebAppException(MessageCatalog.USER_INACTIVE, 403);
         }
+
 
     }
 
