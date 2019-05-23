@@ -9,11 +9,15 @@ import msg.notification.boundary.NotificationFacade;
 import msg.notification.boundary.notificationParams.NotificationParamsWelcomeUser;
 import msg.notification.entity.NotificationType;
 import msg.user.MessageCatalog;
-import msg.user.entity.dao.UserDAO;
+
 import msg.user.entity.dto.UserDTO;
-import msg.user.entity.dto.UserInputDTO;
+
+
+
 import msg.user.entity.UserEntity;
+import msg.user.entity.dao.UserDAO;
 import msg.user.entity.dto.UserConverter;
+import msg.user.entity.dto.UserInputDTO;
 import msg.user.entity.dto.UserLoginDTO;
 
 import javax.ejb.EJB;
@@ -56,11 +60,12 @@ public class UserControl {
         newUserEntity.setUsername(this.createUserName(userDTO.getFirstName(), userDTO.getLastName()));
         newUserEntity.setPassword("DEFAULT_PASSWORD");
         userDao.createUser(newUserEntity);
-
+        final long id = userDao.getUserByEmail(userDTO.getEmail()).getId();
         final String userFullName = newUserEntity.getFirstName() + " " + newUserEntity.getLastName();
+//        = newUserEntity.getId();
         this.notificationFacade.createNotification(
                 NotificationType.WELCOME_NEW_USER,
-                new NotificationParamsWelcomeUser(userFullName, newUserEntity.getUsername()));
+                new NotificationParamsWelcomeUser(userFullName, newUserEntity.getUsername()), id);
 
         return newUserEntity.getUsername();
     }

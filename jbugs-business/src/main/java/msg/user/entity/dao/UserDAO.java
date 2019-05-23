@@ -1,7 +1,6 @@
 package msg.user.entity.dao;
 
 import msg.user.entity.UserEntity;
-
 import msg.user.entity.dto.UserLoginDTO;
 
 import javax.ejb.Stateless;
@@ -52,6 +51,13 @@ public class UserDAO {
     }
 
 
+
+
+    public UserEntity getUserByEmail(String email) {
+        return em.createNamedQuery(UserEntity.USER_GET_BY_EMAIL, UserEntity.class)
+                .setParameter(UserEntity.EMAIL, email)
+                .getSingleResult();
+    }
 
     public boolean loginUser(UserLoginDTO userLoginDTO) {
         long count = em.createNamedQuery(UserEntity.USER_FIND_BY_USERNAME_AND_PASSWORD, Long.class)
