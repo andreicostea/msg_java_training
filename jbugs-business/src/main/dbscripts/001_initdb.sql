@@ -160,5 +160,6 @@ create table historys
 
 ALTER TABLE msg_training.users
 ADD status BOOLEAN NOT NULL DEFAULT 1;
-
+ALTER TABLE msg_training.permission
+ADD status BOOLEAN NOT NULL DEFAULT 1;
 

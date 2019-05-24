@@ -1,6 +1,6 @@
 package msg.permission.control;
 
-import msg.exceptions.BusinessException;
+import msg.exceptions.BusinessWebAppException;
 import msg.permission.PermissionEntity;
 import msg.permission.entity.dao.PermissionDAO;
 import msg.permission.entity.dto.PermissionConverter;
@@ -35,8 +35,9 @@ public class PermissionControl {
 
     public String removePermission(long id) {
         if (!permissionDAO.existsId(id)) {
-            throw new BusinessException(MessageCatalog.THIS_ID_DOES_NOT_EXIST);
+            throw new BusinessWebAppException(MessageCatalog.THIS_ID_DOES_NOT_EXIST, 409);
         }
+
         permissionDAO.removePermission(id);
         String x = "Permission deleted";
         return x;

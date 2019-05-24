@@ -4,6 +4,7 @@ import msg.permission.PermissionEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -49,10 +50,14 @@ public class PermissionDAO {
 //
 //    }
     public boolean existsId(Long id) {
-        PermissionEntity count = em.createNamedQuery(PermissionEntity.PERMISSION_FIND_BY_ID, PermissionEntity.class)
+        try {
+            return em.createNamedQuery(PermissionEntity.PERMISSION_FIND_BY_ID, PermissionEntity.class)
                 .setParameter(PermissionEntity.INPUT_ID, id)
-                .getSingleResult();
-        return (count != null);
+                    .getSingleResult() != null;
+
+        } catch (NoResultException N) {
+            return false;
+        }
     }
 
     public PermissionEntity findById(long id) {

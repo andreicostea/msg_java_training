@@ -31,7 +31,6 @@ public class PermissionEntity extends BaseEntity<Long> {
     @Column(name="type", nullable = false)
     private String type;
 
-
     public PermissionEntity() {
     }
 
