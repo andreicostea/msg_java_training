@@ -4,11 +4,13 @@
 package msg.user.entity.dto;
 
 import msg.role.control.RoleControl;
+import msg.role.entity.RoleEntity;
 import msg.user.entity.UserEntity;
 
-import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * Converts different DOs to UserEntity and vice-versa.
@@ -43,4 +45,12 @@ public class UserConverter {
         return u;
     }
 
+    public UserInputDTO convertToDTO(UserEntity entity) {
+        final UserInputDTO u = new UserInputDTO();
+        u.setFirstName(entity.getFirstName());
+        u.setLastName(entity.getLastName());
+        u.setEmail(entity.getEmail());
+        u.setRoles(entity.getRoles().stream().map(RoleEntity::getType).collect(Collectors.toList()));
+        return u;
+    }
 }

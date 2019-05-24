@@ -38,4 +38,8 @@ public class UserFacade {
     public void loginUser(UserLoginDTO userLoginDTO) {
         this.userControl.loginUser(userLoginDTO);
     }
+
+    public UserInputDTO getUserById(String username) {
+        return this.userControl.getUserById(username);
+    }
 }

@@ -86,6 +86,9 @@ public class UserControl {
         }else{
             System.out.println("ESTE USER");
         }
+    }
 
+    public UserInputDTO getUserById(String username) {
+        return userConverter.convertToDTO(userDao.getUserById(username));
     }
 }

@@ -38,4 +38,12 @@ public class UserResource {
     public Response getAll(){
         return Response.ok().build();
     }
+
+    @GET
+    @Path("/{username}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAll(@PathParam("username") String username) {
+        UserInputDTO result = this.userFacade.getUserById(username);
+        return Response.ok(result).build();
+    }
 }

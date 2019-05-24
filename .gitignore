@@ -5,3 +5,7 @@
 **.factorypath
 **/.idea/
 /**/target
+
+jbugs-angular/node_modules
+jbugs-angular/package-lock.json
+**/*.iml

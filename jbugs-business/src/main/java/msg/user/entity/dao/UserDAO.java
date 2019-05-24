@@ -51,4 +51,10 @@ public class UserDAO {
                 .getSingleResult();
         return (count > 0);
     }
+
+    public UserEntity getUserById(String username) {
+        return em.createNamedQuery(UserEntity.USER_FIND_BY_USERNAME, UserEntity.class)
+                .setParameter(UserEntity.USERNAME, username)
+                .getSingleResult();
+    }
 }
