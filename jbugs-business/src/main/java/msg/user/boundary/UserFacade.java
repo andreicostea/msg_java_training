@@ -3,13 +3,11 @@
 // =================================================================================================
 package msg.user.boundary;
 
-import msg.permission.entity.PermissionType;
 import msg.user.control.UserControl;
 import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserInputDTO;
 import msg.user.entity.dto.UserLoginDTO;
 
-import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.List;
@@ -38,6 +36,7 @@ public class UserFacade {
 
 
     public void loginUser(UserLoginDTO userLoginDTO) {
+
         this.userControl.loginUser(userLoginDTO);
     }
 

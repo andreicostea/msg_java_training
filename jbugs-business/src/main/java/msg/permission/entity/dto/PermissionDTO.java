@@ -3,9 +3,8 @@ package msg.permission.entity.dto;
 public class PermissionDTO {
 
     // todo: type should be an enum
-    private String type;
     private String description;
-
+    private String type;
     public PermissionDTO() {
     }
 

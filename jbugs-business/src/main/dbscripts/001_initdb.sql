@@ -99,22 +99,22 @@ INSERT INTO jbugs.permissions_roles (role_id, permission_id) VALUES (2, 3);
 
 create table bugs
 (
-    ID bigint auto_increment
-        primary key,
-    title varchar(255) not null,
-    description varchar(255) not null,
-    version varchar(255) null,
-    targetDate datetime null,
-     status varchar(255) not null,
-    fixedVersion varchar(255) null,
-    severity varchar(255) not null,
-    user_id bigint not null,
-createdBy bigint not null,
-assignedBy bigint not null,
-    constraint FK_bugs_createdBy
-        foreign key (createdBy) references users (ID),
-    constraint FK_bugs_assignedBy
-        foreign key (assignedBy) references users (ID)
+	ID bigint auto_increment
+		primary key,
+	title varchar(255) not null,
+	description varchar(255) not null,
+	version varchar(255) null,
+	targetDate datetime null,
+	 status varchar(255) not null,
+	fixedVersion varchar(255) null,
+	severity varchar(255) not null,
+	user_id bigint not null,
+ createdBy bigint not null,
+ assignedBy bigint not null,
+	constraint FK_bugs_createdBy
+		foreign key (createdBy) references users (ID),
+	constraint FK_bugs_assignedBy
+		foreign key (assignedBy) references users (ID)
 )
 ;
 
@@ -130,7 +130,6 @@ ID bigint auto_increment primary key,
         foreign key (bugs_id) references bugs (ID),
   text varchar(1000) null,
     date datetime null
-
 )
 ;
 create table attachments
@@ -142,7 +141,6 @@ create table attachments
         constraint FK_attachments_id_bug
         foreign key (id_bug)
         references bugs (ID)
-
 )
 ;
 create table historys

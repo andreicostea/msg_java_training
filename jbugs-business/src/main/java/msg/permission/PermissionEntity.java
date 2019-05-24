@@ -1,11 +1,9 @@
-package msg.permission.entity;
+package msg.permission;
 
 import msg.base.BaseEntity;
 
+import javax.persistence.*;
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 
 /**
  * The permission entity.
@@ -15,12 +13,23 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name= "permissions")
+@NamedQueries({
+        @NamedQuery(name = PermissionEntity.QUERY_GET_PERMISSION_BY_TYPE_LIST,
+                query = "select p from PermissionEntity p "
+                        + "where p.type in :" + PermissionEntity.INPUT_TYPE_LIST),
+        @NamedQuery(name = PermissionEntity.PERMISSION_FIND_BY_ID,
+                query = "select p from PermissionEntity p where p.id= :" + PermissionEntity.INPUT_ID)
+})
 public class PermissionEntity extends BaseEntity<Long> {
+    public static final String INPUT_ID = "id";
+    public static final String PERMISSION_FIND_BY_ID = "PermissionEntity.findById";
+    public static final String QUERY_GET_PERMISSION_BY_TYPE_LIST = "getPermissionByTypeList";
+    public static final String INPUT_TYPE_LIST = "type";
+    @Column(name = "description", nullable = false)
+    private String description;
 
     @Column(name="type", nullable = false)
     private String type;
-    @Column(name="description",nullable = false)
-    private String description;
 
 
     public PermissionEntity() {

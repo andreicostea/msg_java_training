@@ -40,10 +40,9 @@ public class NotificationResource {
         return Response.status(200)
                 .entity(notificationFacade.getWelcomeNotificationById(id))
                 .build();
-
     }
 
-    @GET
+  @GET
     @Path("/update/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUpdateNotificationById(@PathParam("id") long id) {
