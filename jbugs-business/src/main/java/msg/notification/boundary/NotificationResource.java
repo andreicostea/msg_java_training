@@ -36,10 +36,28 @@ public class NotificationResource {
     @GET
     @Path("/welcome/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getWelcomeNotification(@PathParam("id") long id) {
-
+    public Response getWelcomeNotificationById(@PathParam("id") long id) {
         return Response.status(200)
                 .entity(notificationFacade.getWelcomeNotificationById(id))
+                .build();
+    }
+
+  @GET
+    @Path("/update/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUpdateNotificationById(@PathParam("id") long id) {
+        return Response.status(200)
+                .entity(notificationFacade.getUpdateNotificationById(id))
+                .build();
+
+    }
+
+    @GET
+    @Path("/delete/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getDeleteNotificationById(@PathParam("id") long id) {
+        return Response.status(200)
+                .entity(notificationFacade.getDeleteNotificationById(id))
                 .build();
 
     }

@@ -4,11 +4,13 @@
 package msg.user.boundary;
 
 import msg.user.control.UserControl;
+import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserInputDTO;
 import msg.user.entity.dto.UserLoginDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.List;
 
 /**
  * Facade for all operations on Users.
@@ -36,5 +38,13 @@ public class UserFacade {
     public void loginUser(UserLoginDTO userLoginDTO) {
 
         this.userControl.loginUser(userLoginDTO);
+    }
+
+    public List<UserDTO> getAll(){
+        return this.userControl.getAll();
+    }
+
+    public UserDTO getUserById(long id) {
+        return this.userControl.getUserById(id);
     }
 }

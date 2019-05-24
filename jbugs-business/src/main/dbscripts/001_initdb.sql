@@ -97,7 +97,6 @@ INSERT INTO jbugs.permissions_roles (role_id, permission_id) VALUES (2, 2);
 INSERT INTO jbugs.permissions_roles (role_id, permission_id) VALUES (2, 3);
 <1-- ADDED NOW -->
 
-
 create table bugs
 (
 	ID bigint auto_increment
@@ -123,41 +122,43 @@ create table bugs
 create table comments
 (
 ID bigint auto_increment primary key,
-	user_id bigint not null,
-	bugs_id bigint not null,
-	constraint FK_comments_user_id
-		foreign key (user_id) references users (ID),
-	constraint FK_comments_bugs_id
-		foreign key (bugs_id) references bugs (ID),
-   text varchar(1000) null,
-	date datetime null
-
+    user_id bigint not null,
+    bugs_id bigint not null,
+    constraint FK_comments_user_id
+        foreign key (user_id) references users (ID),
+    constraint FK_comments_bugs_id
+        foreign key (bugs_id) references bugs (ID),
+  text varchar(1000) null,
+    date datetime null
 )
 ;
 create table attachments
 (
-	ID bigint auto_increment
-		primary key,
-	attContent varchar(255) not null,
-      id_bug bigint not null,
-		constraint FK_attachments_id_bug
-		foreign key (id_bug)
-		references bugs (ID)
-
+    ID bigint auto_increment
+        primary key,
+    attContent varchar(255) not null,
+     id_bug bigint not null,
+        constraint FK_attachments_id_bug
+        foreign key (id_bug)
+        references bugs (ID)
 )
 ;
 create table historys
 (
-	ID bigint auto_increment
-		primary key,
-        id_bug  bigint not null,
-		constraint FK_historys_id_bug
-		foreign key (id_bug)
-		references bugs (ID),
-		modifiedDate  datetime null,
-		afterStatus varchar(255) not null,
-		beforeStatus varchar(255) not null,
-		modifiedBy varchar(255) not null
+    ID bigint auto_increment
+        primary key,
+       id_bug  bigint not null,
+        constraint FK_historys_id_bug
+        foreign key (id_bug)
+        references bugs (ID),
+        modifiedDate  datetime null,
+        afterStatus varchar(255) not null,
+        beforeStatus varchar(255) not null,
+        modifiedBy varchar(255) not null
 );
+<-- ADD STATUS TO USER -->
+
+ALTER TABLE msg_training.users
+ADD status BOOLEAN NOT NULL DEFAULT 1;
 
 

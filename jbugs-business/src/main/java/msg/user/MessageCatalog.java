@@ -20,6 +20,13 @@ public class MessageCatalog {
     /** A message for the case when user credentials for login are incorrect*/
     public static final ExceptionMessage USER_INVALID_USERNAME_OR_PASSWORD
             = new ExceptionMessage("USER-02", "Invalid username or password");
+
+    /** A message for the case when you specified an user id that doesn't exists in the database*/
+    public static final ExceptionMessage USER_WITH_THAT_ID_DOES_NOT_EXISTS
+            = new ExceptionMessage("USER-03", "User with that specified id doesn't exists");
+
+    public static final ExceptionMessage USER_INACTIVE
+            = new ExceptionMessage("USER-04", "Your account is inactive");
     public static final ExceptionMessage THIS_ID_DOES_NOT_EXIST
             = new ExceptionMessage("PERMISSION-01", "The id you try to delete doesn't exist in database");
 }
