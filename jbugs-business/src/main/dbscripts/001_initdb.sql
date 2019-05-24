@@ -1,5 +1,14 @@
--- create tables
+drop table historys
+drop table attachments
+drop table comments
+drop table bugs
+drop table notifications
+drop table permissions_roles
+drop table users_roles
+drop table roles
+drop table users
 
+-- create tables
 create table users
 (
 	ID bigint auto_increment primary key,
@@ -118,7 +127,6 @@ create table bugs
 )
 ;
 
-
 create table comments
 (
 ID bigint auto_increment primary key,
@@ -155,6 +163,7 @@ create table historys
         beforeStatus varchar(255) not null,
         modifiedBy varchar(255) not null
 );
+
 <-- ADD STATUS TO USER -->
 
 ALTER TABLE msg_training.users

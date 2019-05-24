@@ -23,4 +23,7 @@ public class BugFacade {
         return this.bugControl.getAll();
     }
 
+    public void updateBug(BugDTO input) {
+        this.bugControl.updateBug(input);
+    }
 }

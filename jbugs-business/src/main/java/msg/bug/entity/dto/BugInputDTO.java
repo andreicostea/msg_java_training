@@ -1,5 +1,7 @@
 package msg.bug.entity.dto;
 
+import msg.user.entity.UserEntity;
+
 import java.util.Date;
 
 public class BugInputDTO {
@@ -18,6 +20,7 @@ public class BugInputDTO {
         this.title = title;
         this.description = description;
         this.version = version;
+        this.fixedVersion = fixedVersion;
         this.date = date;
         this.fixedVersion = fixedVersion;
         this.severity = severity;
