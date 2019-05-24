@@ -6,6 +6,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
+import javax.ejb.Stateless;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.SecurityContext;
@@ -19,10 +20,11 @@ import java.util.List;
  * @author msg systems AG; User Name.
  * @since 19.1.2
  */
+@Stateless
 public class AuthorizationFilter implements ContainerRequestFilter {
+
     private class Authorization implements SecurityContext {
         private List<String> roles;
-
         String userName;
 
         public Authorization(List<String> roles, String userName) {
@@ -62,6 +64,7 @@ public class AuthorizationFilter implements ContainerRequestFilter {
         if (authorizationValue.startsWith("Bearer")) {
             Algorithm algorithm = Algorithm.HMAC256("harambe");
             JWTVerifier verifier = JWT.require(algorithm).withIssuer("auth0").build();
+            System.out.println(authorizationValue);
             DecodedJWT decodedJWT = verifier.verify(authorizationValue.split(" ")[1]);
             if (isTokenValid(decodedJWT)) {
                 List<String> roles = decodedJWT.getClaim("roles").asList(String.class);

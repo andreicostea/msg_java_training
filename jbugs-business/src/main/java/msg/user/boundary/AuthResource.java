@@ -4,6 +4,7 @@ import msg.user.entity.dto.UserInputDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
@@ -26,5 +27,11 @@ public class AuthResource {
         System.out.println(userInputDTO.getEmail());
         return Response.ok(userFacade.authenticateUser(userInputDTO)).build();
     }
+
+    @GET
+    public Response whatever1() {
+        return Response.ok().build();
+    }
+
 
 }

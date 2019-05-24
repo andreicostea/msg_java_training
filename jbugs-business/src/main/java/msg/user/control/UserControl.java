@@ -62,7 +62,7 @@ public class UserControl {
 
             if (user != null) {
                 Algorithm algorithm = Algorithm.HMAC256("harambe");
-                return JWT.create().withIssuer("auht0")
+                return JWT.create().withIssuer("auth0")
                         .withClaim("username", user.getUsername())
                         .withArrayClaim("roles", user.getRoles()
                                 .stream()
