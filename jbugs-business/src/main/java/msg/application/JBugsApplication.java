@@ -1,6 +1,7 @@
 package msg.application;
 
-
+import msg.exceptions.BusinessWebAppExceptionMapper;
+import msg.permission.boundary.PermissionResource;
 import msg.bug.boundary.BugResource;
 import msg.exceptions.BusinessExceptionMapper;
 import msg.notification.boundary.NotificationResource;
@@ -26,6 +27,8 @@ public class JBugsApplication extends Application {
         classes.add(NotificationResource.class);
         classes.add(UserResource.class);
         classes.add(BusinessExceptionMapper.class);
+        classes.add(BusinessWebAppExceptionMapper.class);
+        classes.add(PermissionResource.class);
         classes.add(BugResource.class);
 //         classes.add(RuntimeExceptionMapper.class);
 //        classes.add(BusinessExceptionMapper.class);

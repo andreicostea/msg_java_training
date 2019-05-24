@@ -98,7 +98,6 @@ INSERT INTO msg_training.permissions_roles (role_id, permission_id) VALUES (2, 2
 INSERT INTO msg_training.permissions_roles (role_id, permission_id) VALUES (2, 3);
 -- ADDED NOW -->
 
-
 create table bugs
 (
 	ID bigint auto_increment
@@ -119,6 +118,7 @@ create table bugs
 )
 ;
 
+
 create table comments
 (
 ID bigint auto_increment primary key,
@@ -131,33 +131,34 @@ ID bigint auto_increment primary key,
    text varchar(1000) null,
 	date datetime null
 );
-
-
 create table attachments
 (
-	ID bigint auto_increment
-		primary key,
-	attContent varchar(255) null,
-      id_bug bigint not null,
-		constraint FK_attachments_id_bug
-		foreign key (id_bug)
-		references bugs (ID)
-
+    ID bigint auto_increment
+        primary key,
+    attContent varchar(255) not null,
+     id_bug bigint not null,
+        constraint FK_attachments_id_bug
+        foreign key (id_bug)
+        references bugs (ID)
 )
 ;
 create table historys
 (
-	ID bigint auto_increment
-		primary key,
-        id_bug  bigint not null,
-		constraint FK_historys_id_bug
-		foreign key (id_bug)
-		references bugs (ID),
-		modifiedDate  datetime null,
-		afterStatus varchar(255) not null,
-		beforeStatus varchar(255) not null,
-		modifiedBy varchar(255) not null
+    ID bigint auto_increment
+        primary key,
+       id_bug  bigint not null,
+        constraint FK_historys_id_bug
+        foreign key (id_bug)
+        references bugs (ID),
+        modifiedDate  datetime null,
+        afterStatus varchar(255) not null,
+        beforeStatus varchar(255) not null,
+        modifiedBy varchar(255) not null
 );
+<-- ADD STATUS TO USER -->
+
+ALTER TABLE msg_training.users
+ADD status BOOLEAN NOT NULL DEFAULT 1;
 
 
 INSERT INTO msg_training.bugs VALUES(1, 'bug1', 'description1', 'v1.0', '2019-05-22', 'New', 'v1.5', 'Low', 1, 1)

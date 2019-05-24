@@ -9,17 +9,6 @@
         </ejbRoots>
       </configuration>
     </facet>
-    <facet type="jpa" name="JPA">
-      <configuration>
-        <setting name="validation-enabled" value="true" />
-        <datasource-mapping>
-          <factory-entry name="jbugs-persistence" value="95f2993e-a24d-4d06-a823-e312be6c3eff" />
-          <factory-entry name="persistenceUnit" />
-        </datasource-mapping>
-        <naming-strategy-map />
-        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
-      </configuration>
-    </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/target/classes" />
@@ -61,6 +50,19 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.9.8" level="project" />
     <orderEntry type="library" name="Maven: javax.json:javax.json-api:1.1.4" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.ws.rs:javax.ws.rs-api:2.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: javax.ws.rs:javax.ws.rs-api:2.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish.jersey.media:jersey-media-json-jackson:2.28" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish.jersey.core:jersey-common:2.28" level="project" />
+    <orderEntry type="library" name="Maven: jakarta.ws.rs:jakarta.ws.rs-api:2.1.5" level="project" />
+    <orderEntry type="library" name="Maven: jakarta.annotation:jakarta.annotation-api:1.3.4" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish.hk2.external:jakarta.inject:2.5.0" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish.hk2:osgi-resource-locator:1.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish.jersey.ext:jersey-entity-filtering:2.28" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.8" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.8" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.8" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.module:jackson-module-jaxb-annotations:2.9.8" level="project" />
+    <orderEntry type="library" name="Maven: javax.json:javax.json-api:1.1.4" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-core:2.7.22" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: net.bytebuddy:byte-buddy:1.6.11" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: net.bytebuddy:byte-buddy-agent:1.6.11" level="project" />

@@ -21,13 +21,24 @@ import java.util.Set;
 @Table(name = "users")
 @NamedQueries({
         @NamedQuery(name = UserEntity.USER_FIND_BY_EMAIL, query = "SELECT count(u) from UserEntity u where u.email = :" + UserEntity.EMAIL),
-        @NamedQuery(name = UserEntity.USER_FIND_BY_USERNAME_AND_PASSWORD, query = "SELECT count(u) from UserEntity u where u.username = :" + UserEntity.USERNAME + " and u.password = :" + UserEntity.PASSWORD)})
+        @NamedQuery(name = UserEntity.USER_FIND_BY_USERNAME_AND_PASSWORD, query = "SELECT count(u) from UserEntity u where u.username = :" + UserEntity.USERNAME + " and u.password = :" + UserEntity.PASSWORD),
+
+        @NamedQuery(name = UserEntity.USER_FIND_ALL, query = "SELECT u from UserEntity u"),
+        @NamedQuery(name = UserEntity.USER_FIND_BY_ID, query = "SELECT u from UserEntity u where u.id = :id"),
+        @NamedQuery(name = UserEntity.USER_FIND_BY_USERNAME, query = "SELECT u from UserEntity u where u.username = :username"),
+        @NamedQuery(name = UserEntity.USER_GET_BY_EMAIL, query = "SELECT u from UserEntity u where u.email = :" + UserEntity.EMAIL)})
+        
 public class UserEntity extends BaseEntity<Long> {
     public static final String USER_FIND_BY_EMAIL = "UserEntity.findByEmail";
+    public static final String USER_GET_BY_EMAIL = "UserEntity.getByEmail";
     public static final String EMAIL = "email";
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
     public static final String USER_FIND_BY_USERNAME_AND_PASSWORD = "UserEntity.findByUserNameAndPassword";
+    public static final String USER_FIND_ALL = "UserEntity.findAll";
+    public static final String USER_FIND_BY_ID = "UserEntity.findById";
+    public static final String USER_FIND_BY_USERNAME = "UserEntity.findByUsername";
+
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -43,6 +54,8 @@ public class UserEntity extends BaseEntity<Long> {
     private String password;
     @Column(name = "counter")
     private int counter;
+    @Column(name = "status")
+    private boolean status;
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false),
@@ -140,6 +153,14 @@ public class UserEntity extends BaseEntity<Long> {
         this.counter = counter;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
     public List<RoleEntity> getRoles() {
         return roles;
     }
@@ -159,11 +180,13 @@ public class UserEntity extends BaseEntity<Long> {
                 Objects.equals(email, userEntity.email) &&
                 Objects.equals(mobileNumber, userEntity.mobileNumber) &&
                 Objects.equals(username, userEntity.username) &&
-                Objects.equals(password, userEntity.password);
+                Objects.equals(password, userEntity.password) &&
+                Objects.equals(status, userEntity.status);
     }
+
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, email, mobileNumber, username, password, counter);
+        return Objects.hash(firstName, lastName, email, mobileNumber, username, password, counter, status);
     }
 }
