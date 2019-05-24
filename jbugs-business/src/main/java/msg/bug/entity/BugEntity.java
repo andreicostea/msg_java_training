@@ -21,18 +21,20 @@ import java.util.Set;
 @Table(name = "bugs")
 @NamedQueries({
         @NamedQuery(name = BugEntity.BUG_GET_ALL,
-                query = "select b.title, b.description, b.version, b.status, b.fixedVersion from BugEntity b")})
+                query = "select b from BugEntity b")})
 public class BugEntity extends BaseEntity<Long> {
-    public static final String BUG_GET_ALL = "BugEntity.getAllBugEntitys";
+    public static final String BUG_GET_ALL = "BugEntity.getAllBugEntities";
 
     @Column(name = "title", nullable = false)
     private String title;
     @Column(name = "description", nullable = false)
     private String description;
-    @Column(name = "version", nullable = false)//todo: @Pattern
+    @Column(name = "version", nullable = false)
     private String version;
     @Column(name = "targetDate")
     private Date targetDate;
+    @Column(name = "severity")
+    private String severity;
     @Column(name = "status")
     private String status;
     @Column(name = "fixedVersion", nullable = false)
@@ -41,7 +43,7 @@ public class BugEntity extends BaseEntity<Long> {
     public BugEntity() {
     }
 
-    @OneToMany
+    @OneToMany(mappedBy = "bugEntity")
     private Set<CommentEntity> comments;
 
     public Set<CommentEntity> getComments() {
@@ -53,30 +55,32 @@ public class BugEntity extends BaseEntity<Long> {
     }
 
     @ManyToOne
-    private UserEntity assiged;
+    @JoinColumn(name = "ASSIGNED_ID")
+    private UserEntity assignedTo;
 
-    public UserEntity getAssiged() {
-        return assiged;
+    public UserEntity getAssigned() {
+        return assignedTo;
     }
 
-    public void setAssiged(UserEntity assiged) {
-        this.assiged = assiged;
+    public void setAssigned(UserEntity assignedTo) {
+        this.assignedTo = assignedTo;
     }
 
     @ManyToOne
-    private UserEntity created;
+    @JoinColumn(name = "CREATED_ID", insertable = false, updatable = false)
+    private UserEntity createdBy;
 
     public UserEntity getCreated() {
-        return created;
+        return createdBy;
     }
 
-    public void setCreated(UserEntity created) {
-        this.created = created;
+    public void setCreated(UserEntity createdBy) {
+        this.createdBy = createdBy;
     }
 
-    @OneToMany
-    private Set<AttachmentEntity> attachmentEntities;
-    @OneToMany
+    @OneToMany(mappedBy = "bugEntity")
+    private Set<AttachmentEntity> attachments;
+    @OneToMany(mappedBy = "bugEntity")
     private Set<HistoryEntity> historyEntities;
 
     public Set<HistoryEntity> getHistoryEntities() {
@@ -88,11 +92,11 @@ public class BugEntity extends BaseEntity<Long> {
     }
 
     public Set<AttachmentEntity> getAttachmentEntities() {
-        return attachmentEntities;
+        return attachments;
     }
 
     public void setAttachmentEntities(Set<AttachmentEntity> attachmentEntities) {
-        this.attachmentEntities = attachmentEntities;
+        this.attachments = attachmentEntities;
     }
 
 
@@ -162,4 +166,11 @@ public class BugEntity extends BaseEntity<Long> {
         this.fixedVersion = fixedVersion;
     }
 
+    public String getSeverity() {
+        return severity;
+    }
+
+    public void setSeverity(String severity) {
+        this.severity = severity;
+    }
 }
