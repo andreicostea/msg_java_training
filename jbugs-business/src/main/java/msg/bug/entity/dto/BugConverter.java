@@ -33,6 +33,9 @@ public class BugConverter {
         b.setDescription(bug.getDescription());
         b.setVersion(bug.getVersion());
         b.setFixedVersion(bug.getFixedVersion());
+        b.setTargetDate(bug.getTargetDate());
+        b.setSeverity(bug.getSeverity());
+
         return b;
     }
 }
