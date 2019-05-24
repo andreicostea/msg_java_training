@@ -59,10 +59,9 @@ public class UserDAO {
                 .getSingleResult();
     }
 
-    public boolean loginUser(UserLoginDTO userLoginDTO) {
-        long count = em.createNamedQuery(UserEntity.USER_FIND_BY_USERNAME_AND_PASSWORD, Long.class)
-                .setParameter(UserEntity.USERNAME, userLoginDTO.getUsername())
-                .setParameter(UserEntity.PASSWORD, userLoginDTO.getPassword())
+    public boolean exitsUsername(String username) {
+        long count = em.createNamedQuery(UserEntity.USER_COUNT_BY_USERNAME, Long.class)
+                .setParameter("username", username)
                 .getSingleResult();
         return (count > 0);
     }

@@ -58,6 +58,7 @@ public class UserControl {
         final UserEntity newUserEntity = userConverter.convertInputDTOtoEntity(userDTO);
 
         newUserEntity.setUsername(this.createUserName(userDTO.getFirstName(), userDTO.getLastName()));
+        newUserEntity.setStatus(true);
         newUserEntity.setPassword("DEFAULT_PASSWORD");
         userDao.createUser(newUserEntity);
         final long id = userDao.getUserByEmail(userDTO.getEmail()).getId();
@@ -79,15 +80,85 @@ public class UserControl {
      */
     //TODO Replace with logic based on the specification
     private String createUserName(final String firstName, final String lastName) {
-        String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        int count = 8;
-        StringBuilder builder = new StringBuilder();
-        while (count-- != 0) {
-            int character = (int) (Math.random() * ALPHA_NUMERIC_STRING.length());
-            builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+//        String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+//        int count = 8;
+//        StringBuilder builder = new StringBuilder();
+//        while (count-- != 0) {
+//            int character = (int) (Math.random() * ALPHA_NUMERIC_STRING.length());
+//            builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+//        }
+//        return builder.toString();
+
+        //try --lastname 5
+        int counterLastName = 6;
+        int counterFirstName = 0;
+        String username ="";
+        //cand lastname e suficient
+        if(lastName.length() > 4){
+            do{
+                username = lastName.substring(0,--counterLastName)
+                        + firstName.substring(0,++counterFirstName);
+            }while(userDao.exitsUsername(username));
+
+
+        }else {
+
+            if (firstName.length() + lastName.length() > 6) {
+
+                username = lastName + firstName.substring(0, 6 - lastName.length());
+                int lastNameLength = lastName.length();
+                while (userDao.exitsUsername(username) && lastNameLength > 0) {
+                    username = lastName.substring(0, lastName.length() - 1)
+                            + firstName.substring(0, 6 - lastName.length() - 1);
+                }
+
+            }
         }
-        return builder.toString();
+        return username.toLowerCase();
+
+
+
+//        int counterLastName = 6;
+//        int counterFirstName = 0;
+//        String username = "";
+//        //cand lastname e suficient
+//        if(lastName.length() > 4){
+//            do{
+//                username = lastName.substring(0,counterLastName-1)
+//                        + firstName.substring(0,counterFirstName+1);
+//            }while(!userDao.exitsUsername(username));
+//
+//        //cand lastname e mai mic dar firstname e suficient
+//        }else {
+//            if(firstName.length() + lastName.length() > 6){
+//
+//                username = lastName + firstName.substring(0, 6-lastName.length());
+//                int lastNameLength = lastName.length();
+//                while(userDao.exitsUsername(username) || lastNameLength > 0) {
+//                    username = lastName.substring(0, lastName.length() - 1)
+//                            + firstName.substring(0, 6 - lastName.length() - 1);
+//                }
+//            } else{
+//                    username = lastName + firstName;
+//                    while(username.length() <= 6){
+//                        username = username +"0";
+//                    }
+//                    while(userDao.exitsUsername(username)){
+//                        int i = Integer.valueOf(username.charAt(5)) + 1;
+//                        username = username.substring(0, 4) + "i";
+//
+//
+//                    }
+//            }
+//
+//
+//
+//        }
+//
+//
+//        return username.toLowerCase();
     }
+
 
 
 
