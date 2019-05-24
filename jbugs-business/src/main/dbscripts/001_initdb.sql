@@ -1,15 +1,29 @@
+-- drop tables
+
+drop table roles_permissions;
+drop table users_roles;
+drop table attachments;
+drop table comments;
+drop table notifications;
+drop table bugs;
+drop table users;
+drop table roles;
+drop table permissions;
+
+
 -- create tables
 
 create table users
 (
 	ID bigint auto_increment primary key,
-	counter int null,
+	counter int,
 	email varchar(255) not null,
 	first_name varchar(255) not null,
 	last_name varchar(255) not null,
 	mobile_number varchar(255) not null,
 	password varchar(255) not null,
-	username varchar(255) not null
+	username varchar(255) not null,
+	status boolean not null default true
 );
 
 
@@ -34,21 +48,20 @@ create table users_roles
 
 create table permissions
 (
-	ID bigint auto_increment
-		primary key,
+	ID bigint auto_increment primary key,
 	description varchar(255) not null,
 	type varchar(255) not null
 )
 ;
 
-create table permissions_roles
+create table roles_permissions
 (
 	role_id bigint not null,
 	permission_id bigint not null,
 	primary key (role_id, permission_id),
-	constraint FK_permissions_roles_permission_id
+	constraint FK_roles_permissions_permission_id
 		foreign key (permission_id) references permissions (ID),
-	constraint FK_permissions_roles_role_id
+	constraint FK_roles_permissions_role_id
 		foreign key (role_id) references roles (ID)
 );
 
@@ -56,11 +69,11 @@ create table permissions_roles
 create table notifications
 (
 	ID bigint auto_increment primary key,
-	date datetime null,
-	message varchar(255) null,
-	type varchar(255) null,
-	url varchar(255) null,
-	user_id bigint null
+	date datetime not null,
+	message varchar(255) not null,
+	type varchar(255) not null,
+	url varchar(255) not null,
+	user_id bigint not null
 );
 
 
@@ -69,10 +82,10 @@ create table bugs
     ID bigint auto_increment primary key,
     title varchar(255) not null,
     description varchar(255) not null,
-    version datetime null,
-    targetDate datetime null,
+    version varchar(255),
+    targetDate datetime,
     status varchar(255) not null,
-    fixedVersion datetime null,
+    fixedVersion varchar(255),
     severity varchar(255) not null,
     user_id bigint not null,
     createdBy bigint not null,
@@ -81,8 +94,8 @@ create table bugs
         foreign key (createdBy) references users (ID),
     constraint FK_bugs_assignedBy
         foreign key (assignedBy) references users (ID)
-)
-;
+);
+
 
 create table comments
 (
@@ -93,38 +106,24 @@ create table comments
         foreign key (user_id) references users (ID),
     constraint FK_comments_bugs_id
         foreign key (bugs_id) references bugs (ID),
-    text varchar(1000) null,
-    date datetime null
+    text varchar(1000) not null,
+    date datetime not null
 );
 
 
 create table attachments
 (
-    ID bigint auto_increment
-        primary key,
-    attContent varchar(255) null,
+    ID bigint auto_increment primary key,
+    attContent varchar(255) not null,
     id_bug bigint not null,
     constraint FK_attachments_id_bug
-        foreign key (id_bug)
-            references bugs (ID)
+        foreign key (id_bug) references bugs (ID)
 
-);
-
-
-create table histories
-(
-    ID bigint auto_increment primary key,
-    id_bug  bigint not null,
-    constraint FK_histories_id_bug
-        foreign key (id_bug) references bugs (ID),
-    modifiedDate  datetime null,
-    afterStatus varchar(255) not null,
-    beforeStatus varchar(255) not null,
-    modifiedBy varchar(255) not null
 );
 
 
 -- insert data
+
 INSERT INTO users (ID, counter, email, first_name, last_name, mobile_number, password, username) VALUES (1, 0, 'admin@admin.com', 'Viorica', 'Administrator', '0700000000', 'admin', 'admin');
 INSERT INTO users (ID, counter, email, first_name, last_name, mobile_number, password, username) VALUES (5, 0, 'pm@pm.com', 'Serban', 'Manager', '0700000000', 'pm', 'pm');
 INSERT INTO users (ID, counter, email, first_name, last_name, mobile_number, password, username) VALUES (6, 0, 'tm@tm.com', 'Mihai', 'TestManager', '0700000000', 'tm', 'tm');
@@ -147,7 +146,7 @@ INSERT INTO permissions (ID, description, type) VALUES (1, 'Can modify role assi
 INSERT INTO permissions (ID, description, type) VALUES (2, 'Can modify users.', 'USER_MANAGEMENT');
 INSERT INTO permissions (ID, description, type) VALUES (3, 'Can modify bugs.', 'BUG_MANAGEMENT');
 
-INSERT INTO permissions_roles (role_id, permission_id) VALUES (1, 1);
-INSERT INTO permissions_roles (role_id, permission_id) VALUES (1, 2);
-INSERT INTO permissions_roles (role_id, permission_id) VALUES (2, 2);
-INSERT INTO permissions_roles (role_id, permission_id) VALUES (2, 3);
+INSERT INTO roles_permissions (role_id, permission_id) VALUES (1, 1);
+INSERT INTO roles_permissions (role_id, permission_id) VALUES (1, 2);
+INSERT INTO roles_permissions (role_id, permission_id) VALUES (2, 2);
+INSERT INTO roles_permissions (role_id, permission_id) VALUES (2, 3);
