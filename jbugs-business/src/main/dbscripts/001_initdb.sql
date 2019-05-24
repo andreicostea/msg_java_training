@@ -104,10 +104,10 @@ create table bugs
 		primary key,
 	title varchar(255) not null,
 	description varchar(255) not null,
-	version datetime null,
+	version varchar(255) null,
 	targetDate datetime null,
 	 status varchar(255) not null,
-	fixedVersion datetime null,
+	fixedVersion varchar(255) null,
 	severity varchar(255) not null,
 	user_id bigint not null,
  createdBy bigint not null,
@@ -119,25 +119,26 @@ create table bugs
 )
 ;
 
+
 create table comments
 (
+ID bigint auto_increment primary key,
 	user_id bigint not null,
 	bugs_id bigint not null,
-	primary key (user_id, bugs_id),
 	constraint FK_comments_user_id
 		foreign key (user_id) references users (ID),
 	constraint FK_comments_bugs_id
 		foreign key (bugs_id) references bugs (ID),
    text varchar(1000) null,
 	date datetime null
+
 )
-
-
+;
 create table attachments
 (
 	ID bigint auto_increment
 		primary key,
-	attContent varchar(255) null,
+	attContent varchar(255) not null,
       id_bug bigint not null,
 		constraint FK_attachments_id_bug
 		foreign key (id_bug)

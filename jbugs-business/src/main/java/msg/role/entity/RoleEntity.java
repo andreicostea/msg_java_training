@@ -1,7 +1,7 @@
 package msg.role.entity;
 
 import msg.base.BaseEntity;
-import msg.permission.entity.PermissionEntity;
+import msg.permission.PermissionEntity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "roles")
 @NamedQueries({
-        @NamedQuery(name = "getPermissions",
+        @NamedQuery(name = RoleEntity.GET_PERMISSIONS,
                 query = "select r.permissions from RoleEntity r where r.type=:type "),
         @NamedQuery(name = RoleEntity.QUERY_GET_ROLES_BY_TYPE_LIST,
                 query = "select r from RoleEntity r "
@@ -26,6 +26,7 @@ public class RoleEntity extends BaseEntity<Long> {
 
     public static final String QUERY_GET_ROLES_BY_TYPE_LIST = "getRolesByTypeList";
     public static final String INPUT_TYPE_LIST = "type";
+    public static final String GET_PERMISSIONS = "getPermissions";
     @Column(name = "type", nullable = false)
     private String type;
 

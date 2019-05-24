@@ -1,0 +1,50 @@
+package msg.permission.control;
+
+import msg.exceptions.BusinessException;
+import msg.permission.PermissionEntity;
+import msg.permission.entity.dao.PermissionDAO;
+import msg.permission.entity.dto.PermissionConverter;
+import msg.permission.entity.dto.PermissionDTO;
+import msg.user.MessageCatalog;
+
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import java.util.List;
+
+/**
+ * Document me.
+ *
+ * @author msg systems AG; User Name.
+ * @since 19.1.2
+ */
+@Stateless
+public class PermissionControl {
+    @EJB
+    private PermissionDAO permissionDAO;
+    @EJB
+    private PermissionConverter permissionConverter;
+
+    public PermissionDTO createPermission(final PermissionDTO permissionDTO) {
+        final PermissionEntity newPermissionEntity = permissionConverter.convertInputDTOtoEntity(permissionDTO);
+        newPermissionEntity.setDescription(permissionDTO.getDescription());
+        newPermissionEntity.setType(permissionDTO.getType());
+        permissionDAO.createPermission(newPermissionEntity);
+        final PermissionDTO permissionDTO1 = permissionConverter.convertEntityToInputDTO(newPermissionEntity);
+        return permissionDTO1;
+    }
+
+    public String removePermission(long id) {
+        if (!permissionDAO.existsId(id)) {
+            throw new BusinessException(MessageCatalog.THIS_ID_DOES_NOT_EXIST);
+        }
+        permissionDAO.removePermission(id);
+        String x = "Permission deleted";
+        return x;
+
+    }
+
+    public List<PermissionEntity> getPermissionByTypeList(List<String> typeList) {
+        return permissionDAO.getPermissionByTypeList(typeList);
+    }
+
+}

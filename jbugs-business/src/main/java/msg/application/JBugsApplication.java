@@ -1,7 +1,10 @@
 package msg.application;
 
 
+import msg.exceptions.BusinessExceptionMapper;
 import msg.notification.boundary.NotificationResource;
+import msg.permission.boundary.PermissionResource;
+import msg.user.boundary.UserResource;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 
 import javax.ws.rs.ApplicationPath;
@@ -21,6 +24,9 @@ public class JBugsApplication extends Application {
     public Set<Class<?>> getClasses() {
         Set<Class<?>> classes = new HashSet<>();
         classes.add(NotificationResource.class);
+        classes.add(UserResource.class);
+        classes.add(BusinessExceptionMapper.class);
+        classes.add(PermissionResource.class);
 //         classes.add(RuntimeExceptionMapper.class);
 //        classes.add(BusinessExceptionMapper.class);
 //        classes.add(RuntimeExceptionMapper.class);

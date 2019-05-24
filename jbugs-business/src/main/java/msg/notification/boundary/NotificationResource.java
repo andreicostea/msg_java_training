@@ -37,7 +37,7 @@ public class NotificationResource {
     @Path("/welcome/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getWelcomeNotification(@PathParam("id") long id) {
-        System.out.println("here");
+
         return Response.status(200)
                 .entity(notificationFacade.getWelcomeNotificationById(id))
                 .build();
