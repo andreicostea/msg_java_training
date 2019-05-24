@@ -39,8 +39,8 @@ public class BugControl {
         {
             //description exceeds maximum allowed characters
         }
-        //todo: check if below code works [fingers crossed]
-        Pattern pattern = Pattern.compile("[A-Za-z0-9.]*");
+
+        Pattern pattern = Pattern.compile("[A-Za-z0-9.]*"); //alphanumeric characters & dot 0-many times
         Matcher matcher = pattern.matcher(bug.getVersion());
         if (!matcher.matches())
         {

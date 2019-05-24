@@ -74,11 +74,11 @@ public class UserEntity extends BaseEntity<Long> {
         this.comments = comments;
     }
 
-    @OneToMany
+    @OneToMany(mappedBy = "userEntity")
     Set<CommentEntity> comments;
-    @OneToMany
+    @OneToMany(mappedBy = "assignedTo")
     Set<BugEntity> assigned;
-    @OneToMany
+    @OneToMany(mappedBy = "createdBy")
     Set<BugEntity> created;
 
     public Set<BugEntity> getCreated() {
