@@ -6,6 +6,7 @@ package msg.user.control;
 import msg.exceptions.BusinessException;
 import msg.notification.boundary.NotificationFacade;
 import msg.notification.entity.NotificationType;
+import msg.permission.boundary.PermissionFacade;
 import msg.user.entity.dao.UserDAO;
 import msg.user.entity.dto.UserConverter;
 import msg.user.entity.dto.UserInputDTO;
@@ -39,6 +40,8 @@ public class UserControlTest {
 
     @Mock
     NotificationFacade notificationFacade;
+    @Mock
+    PermissionFacade permissionFacade;
 
     @Before
     public void setUp() {
@@ -50,8 +53,7 @@ public class UserControlTest {
 
         Mockito.when(userConverter.convertInputDTOtoEntity(Mockito.any())).thenCallRealMethod();
         Mockito.when(userDao.existsEmail(user.getEmail())).thenReturn(false);
-        Mockito.doNothing().when(notificationFacade).createNotification(Mockito.any(), Mockito.any(), 0);
-
+        Mockito.doNothing().when(notificationFacade).createNotification(Mockito.any(), Mockito.any());
         this.userControl.createUser(user);
     }
 
@@ -71,8 +73,7 @@ public class UserControlTest {
         ArgumentCaptor<NotificationType> sentNotificationType = ArgumentCaptor.forClass(NotificationType.class);
         Mockito.when(userConverter.convertInputDTOtoEntity(Mockito.any())).thenCallRealMethod();
         Mockito.when(userDao.existsEmail(user.getEmail())).thenReturn(false);
-        Mockito.doNothing().when(notificationFacade).createNotification(sentNotificationType.capture(), Mockito.any(), 0);
-
+        Mockito.doNothing().when(notificationFacade).createNotification(sentNotificationType.capture(), Mockito.any());
         this.userControl.createUser(user);
         Assert.assertEquals(sentNotificationType.getValue(), NotificationType.WELCOME_NEW_USER);
     }
