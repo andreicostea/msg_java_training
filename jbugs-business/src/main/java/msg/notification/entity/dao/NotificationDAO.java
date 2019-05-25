@@ -38,10 +38,28 @@ public class NotificationDAO {
     public NotificationEntity getWelcomeNotificationById(long id) {
         return em.createNamedQuery(NotificationEntity.NOTIFICATION_FIND_BY_NOTIFICATION_TYPE, NotificationEntity.class)
                 .setParameter("id", id)
-                .setParameter("notificationType", NotificationType.USER_UPDATED)
+                .setParameter("notificationType", NotificationType.WELCOME_NEW_USER)
                 .getSingleResult();
 
     }
+
+    public List<NotificationEntity> getUpdateNotificationById(long id) {
+        return em.createNamedQuery(NotificationEntity.NOTIFICATION_FIND_BY_NOTIFICATION_TYPE, NotificationEntity.class)
+                .setParameter("id", id)
+                .setParameter("notificationType", NotificationType.USER_UPDATED)
+                .getResultList();
+
+    }
+
+    public NotificationEntity getDeleteNotificationById(long id) {
+        return em.createNamedQuery(NotificationEntity.NOTIFICATION_FIND_BY_NOTIFICATION_TYPE, NotificationEntity.class)
+                .setParameter("id", id)
+                .setParameter("notificationType", NotificationType.USER_DELETED)
+                .getSingleResult();
+
+    }
+
+
 }
 
 

@@ -36,6 +36,7 @@ public class BugResource {
     public Response getAll()
     {
         return Response.status(200).entity(facade.getAll()).build();
+        //return Response.ok().build();
     }
 
 }

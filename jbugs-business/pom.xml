@@ -6,7 +6,11 @@
 		<artifactId>jbugs</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
-	
+
+	<properties>
+		<version.jsonwebtoken>0.9.1</version.jsonwebtoken>
+	</properties>
+
 	<artifactId>jbugs-business</artifactId>
 	<name>JBugs Business</name>
 	<description>Business layer</description>
@@ -29,6 +33,11 @@
             <artifactId>javax.json-api</artifactId>
             <version>1.1.4</version>
         </dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>${version.jsonwebtoken}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>

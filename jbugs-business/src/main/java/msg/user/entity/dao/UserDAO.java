@@ -1,12 +1,12 @@
 package msg.user.entity.dao;
 
 import msg.user.entity.UserEntity;
-
 import msg.user.entity.dto.UserLoginDTO;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  * The DAO for the User Entities.
@@ -44,6 +44,21 @@ public class UserDAO {
         return user;
     }
 
+    public UserEntity updateUser(UserEntity user) {
+        em.merge(user);
+        return user;
+
+    }
+
+
+
+
+    public UserEntity getUserByEmail(String email) {
+        return em.createNamedQuery(UserEntity.USER_GET_BY_EMAIL, UserEntity.class)
+                .setParameter(UserEntity.EMAIL, email)
+                .getSingleResult();
+    }
+
     public boolean loginUser(UserLoginDTO userLoginDTO) {
         long count = em.createNamedQuery(UserEntity.USER_FIND_BY_USERNAME_AND_PASSWORD, Long.class)
                 .setParameter(UserEntity.USERNAME, userLoginDTO.getUsername())
@@ -51,4 +66,23 @@ public class UserDAO {
                 .getSingleResult();
         return (count > 0);
     }
+
+    public UserEntity getUserByUsername(String username) throws Exception {
+        return em.createNamedQuery(UserEntity.USER_FIND_BY_USERNAME, UserEntity.class)
+                .setParameter("username", username)
+                .getSingleResult();
+    }
+
+    public List<UserEntity> getAll() {
+        return em.createNamedQuery(UserEntity.USER_FIND_ALL, UserEntity.class)
+                .getResultList();
+    }
+
+    public UserEntity getUserById(long id) throws Exception{
+        return em.createNamedQuery(UserEntity.USER_FIND_BY_ID, UserEntity.class)
+                .setParameter("id", id)
+                .getSingleResult();
+    }
+
+
 }

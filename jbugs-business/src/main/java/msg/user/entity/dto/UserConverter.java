@@ -43,4 +43,13 @@ public class UserConverter {
         return u;
     }
 
+    public UserDTO convertEntityDTO(UserEntity userEntity){
+        final UserDTO u = new UserDTO();
+        u.setFirstName(userEntity.getFirstName());
+        u.setLastName(userEntity.getLastName());
+        u.setEmail(userEntity.getEmail());
+        u.setMobileNumber(userEntity.getMobileNumber());
+        return u;
+    }
+
 }

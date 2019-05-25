@@ -120,7 +120,12 @@ create table attachments
         foreign key (id_bug) references bugs (ID)
 
 );
+<-- ADD STATUS TO USER -->
 
+ALTER TABLE msg_training.users
+ADD status BOOLEAN NOT NULL DEFAULT 1;
+ALTER TABLE msg_training.permission
+ADD status BOOLEAN NOT NULL DEFAULT 1;
 
 -- insert data
 

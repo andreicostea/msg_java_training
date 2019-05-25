@@ -18,7 +18,7 @@ public class BugFacade {
 
     public Object getAll()
     {
-        return bugControl.getAll();
+        return this.bugControl.getAll();
     }
 
 }
