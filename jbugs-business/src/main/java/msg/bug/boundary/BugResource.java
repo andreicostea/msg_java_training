@@ -1,5 +1,5 @@
 package msg.bug.boundary;
-
+//todo: fix bug insertion and update [specifically, the part with users]
 import msg.bug.entity.dto.BugDTO;
 import msg.bug.entity.dto.BugInputDTO;
 
@@ -27,7 +27,7 @@ public class BugResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateBug(BugDTO input)
     {
-        //facade.updateBug(input);
+        facade.updateBug(input);
         return Response.ok().build();
     }
 

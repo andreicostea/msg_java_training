@@ -23,6 +23,10 @@ public class BugConverter {
         b.setDescription(input.getDescription());
         b.setVersion(input.getVersion());
         b.setFixedVersion(input.getFixedVersion());
+        b.setTargetDate(input.getDate());
+        b.setSeverity(input.getSeverity());
+        //b.setAssigned(input.);
+        //b.setAttachmentEntities(input.);
         return b;
     }
 

@@ -12,7 +12,6 @@ drop table permissions;
 
 
 -- create tables
-
 create table users
 (
 	ID bigint auto_increment primary key,
@@ -96,7 +95,6 @@ create table bugs
         foreign key (assignedBy) references users (ID)
 );
 
-
 create table comments
 (
     user_id bigint not null,
@@ -120,6 +118,7 @@ create table attachments
         foreign key (id_bug) references bugs (ID)
 
 );
+
 <-- ADD STATUS TO USER -->
 
 ALTER TABLE msg_training.users
