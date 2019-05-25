@@ -3,20 +3,19 @@
 // =================================================================================================
 package msg.user.control;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import msg.exceptions.BusinessException;
 import msg.exceptions.BusinessWebAppException;
 import msg.notification.boundary.NotificationFacade;
 import msg.notification.boundary.notificationParams.NotificationParamsWelcomeUser;
 import msg.notification.entity.NotificationType;
+import msg.role.entity.RoleEntity;
 import msg.user.MessageCatalog;
-
-import msg.user.entity.dto.UserDTO;
-
-
-
 import msg.user.entity.UserEntity;
 import msg.user.entity.dao.UserDAO;
 import msg.user.entity.dto.UserConverter;
+import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserInputDTO;
 import msg.user.entity.dto.UserLoginDTO;
 
@@ -50,6 +49,36 @@ public class UserControl {
      * @param userDTO the input User DTO. mandatory
      * @return the username of the newly created user.
      */
+
+    public String authenticateUser(UserInputDTO userInputDTO) {
+
+        try {
+
+            UserEntity user = userDao.getUserByEmail(userInputDTO.getEmail());
+
+//        Stream<String> roles = user.getRoles()
+//                .stream()
+//                .map(Role::getType);
+
+            if (user != null) {
+                Algorithm algorithm = Algorithm.HMAC256("harambe");
+                return JWT.create().withIssuer("auth0")
+                        .withClaim("username", user.getUsername())
+                        .withArrayClaim("roles", user.getRoles()
+                                .stream()
+                                .map(RoleEntity::getType).toArray(String[]::new))
+                        .sign(algorithm);
+
+            } else {
+                throw new BusinessException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD);
+            }
+        } catch (Exception e) {
+            throw new BusinessException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD);
+        }
+    }
+
+
+
     public String createUser(final UserInputDTO userDTO) {
         if (userDao.existsEmail(userDTO.getEmail())) {
             throw new BusinessException(MessageCatalog.USER_WITH_SAME_MAIL_EXISTS);
@@ -164,9 +193,9 @@ public class UserControl {
 
     public void loginUser(UserLoginDTO userLoginDTO) {
         UserEntity userEntity;
-        try{
-            userEntity  = userDao.getUserByUsername(userLoginDTO.getUsername());
-        }catch (Exception e){
+        try {
+            userEntity = userDao.getUserByUsername(userLoginDTO.getUsername());
+        } catch (Exception e) {
             throw new BusinessException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD);
         }
         //verify password
@@ -205,7 +234,7 @@ public class UserControl {
 
     }
 
-    public List<UserDTO> getAll(){
+    public List<UserDTO> getAll() {
         return userDao.getAll().stream()
                 .map(userConverter::convertEntityDTO)
                 .collect(Collectors.toList());
@@ -213,9 +242,9 @@ public class UserControl {
 
     public UserDTO getUserById(long id) {
         UserEntity user;
-        try{
-          user = userDao.getUserById(id);
-        }catch (Exception e){
+        try {
+            user = userDao.getUserById(id);
+        } catch (Exception e) {
             throw new BusinessException(MessageCatalog.USER_WITH_THAT_ID_DOES_NOT_EXISTS);
         }
         return userConverter.convertEntityDTO(user);

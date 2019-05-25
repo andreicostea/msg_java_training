@@ -14,7 +14,8 @@ public class UserDTO {
         this.mobileNumber = mobileNumber;
     }
 
-    public UserDTO(){}
+    public UserDTO() {
+    }
 
     public String getFirstName() {
         return firstName;

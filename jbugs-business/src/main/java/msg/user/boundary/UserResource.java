@@ -51,7 +51,7 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
     @GET
-    public Response getUserById(@PathParam("id") long id){
+    public Response getUserById(@PathParam("id") long id) {
         return Response.ok(userFacade.getUserById(id)).build();
     }
 

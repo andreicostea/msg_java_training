@@ -77,7 +77,7 @@ public class UserDAO {
                 .getResultList();
     }
 
-    public UserEntity getUserById(long id) throws Exception{
+    public UserEntity getUserById(long id) throws Exception {
         return em.createNamedQuery(UserEntity.USER_FIND_BY_ID, UserEntity.class)
                 .setParameter("id", id)
                 .getSingleResult();
