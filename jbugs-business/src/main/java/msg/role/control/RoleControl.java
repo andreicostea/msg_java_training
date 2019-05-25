@@ -6,9 +6,9 @@ package msg.role.control;
 import msg.role.entity.RoleEntity;
 import msg.role.entity.dao.RoleDAO;
 
-import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.List;
 
 /**
  * Control operations for all the RoleEntity related operations.
@@ -28,7 +28,7 @@ public class RoleControl {
      * @param typeList a list of role types.
      * @return a list of role entities.
      */
-    public List<RoleEntity> getRolesByTypeList(List<String> typeList){
+    public List<RoleEntity> getRolesByTypeList(List<String> typeList) {
         return roleDao.getRolesByTypeList(typeList);
     }
 }

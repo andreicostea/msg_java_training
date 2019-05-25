@@ -12,7 +12,7 @@ import java.util.Objects;
  * @since 19.1.2
  */
 @Entity
-@Table(name= "permissions")
+@Table(name = "permissions")
 @NamedQueries({
         @NamedQuery(name = PermissionEntity.QUERY_GET_PERMISSION_BY_TYPE_LIST,
                 query = "select p from PermissionEntity p "
@@ -28,7 +28,7 @@ public class PermissionEntity extends BaseEntity<Long> {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name="type", nullable = false)
+    @Column(name = "type", nullable = false)
     private String type;
 
     public PermissionEntity() {

@@ -33,8 +33,9 @@ public class UserFacade {
     public Object authenticateUser(UserInputDTO userInputDto) {
         return userControl.authenticateUser(userInputDto);
     }
-    public void createUser(UserInputDTO user){
-         this.userControl.createUser(user);
+
+    public void createUser(UserInputDTO user) {
+        this.userControl.createUser(user);
     }
 
 

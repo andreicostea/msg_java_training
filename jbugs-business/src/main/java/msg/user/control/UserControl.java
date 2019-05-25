@@ -78,7 +78,6 @@ public class UserControl {
     }
 
 
-
     public String createUser(final UserInputDTO userDTO) {
         if (userDao.existsEmail(userDTO.getEmail())) {
             throw new BusinessException(MessageCatalog.USER_WITH_SAME_MAIL_EXISTS);
@@ -121,16 +120,16 @@ public class UserControl {
         //try --lastname 5
         int counterLastName = 6;
         int counterFirstName = 0;
-        String username ="";
+        String username = "";
         //cand lastname e suficient
-        if(lastName.length() > 4){
-            do{
-                username = lastName.substring(0,--counterLastName)
-                        + firstName.substring(0,++counterFirstName);
-            }while(userDao.exitsUsername(username));
+        if (lastName.length() > 4) {
+            do {
+                username = lastName.substring(0, --counterLastName)
+                        + firstName.substring(0, ++counterFirstName);
+            } while (userDao.exitsUsername(username));
 
 
-        }else {
+        } else {
 
             if (firstName.length() + lastName.length() > 6) {
 
@@ -144,7 +143,6 @@ public class UserControl {
             }
         }
         return username.toLowerCase();
-
 
 
 //        int counterLastName = 6;
@@ -189,8 +187,6 @@ public class UserControl {
     }
 
 
-
-
     public void loginUser(UserLoginDTO userLoginDTO) {
         UserEntity userEntity;
         try {
@@ -199,11 +195,11 @@ public class UserControl {
             throw new BusinessException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD);
         }
         //verify password
-        if(userEntity.isStatus()){
+        if (userEntity.isStatus()) {
 
-            if (!userEntity.getPassword().equals(userLoginDTO.getPassword())){
+            if (!userEntity.getPassword().equals(userLoginDTO.getPassword())) {
                 // subtract the counter and throw message
-                if(userEntity.getCounter() > 1){
+                if (userEntity.getCounter() > 1) {
 
                     int counter = userEntity.getCounter() - 1;
                     userEntity.setCounter(counter);
@@ -211,7 +207,7 @@ public class UserControl {
 
                     throw new BusinessWebAppException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD, 400);
                     // username inactive
-                }else{
+                } else {
                     userEntity.setStatus(false);
                     userEntity.setCounter(0);
                     userDao.createUser(userEntity);
@@ -219,15 +215,15 @@ public class UserControl {
 
                 }
                 //success and reset the counter if necessary
-            }else{
-                if(userEntity.getCounter() != 5){
+            } else {
+                if (userEntity.getCounter() != 5) {
                     userEntity.setCounter(5);
                     userDao.createUser(userEntity);
                 }
             }
 
 
-        }else{
+        } else {
             throw new BusinessWebAppException(MessageCatalog.USER_INACTIVE, 403);
         }
 

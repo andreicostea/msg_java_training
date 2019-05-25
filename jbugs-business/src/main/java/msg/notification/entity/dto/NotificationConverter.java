@@ -21,7 +21,7 @@ public class NotificationConverter {
     @EJB
     private RoleControl roleControl;
 
-//    /**
+    //    /**
 //     * Converts a {@link UserInputDTO} to {@link UserEntity}.
 //     *
 //     * @param userInputDTO the input dto.

@@ -52,12 +52,21 @@ public class BugEntity extends BaseEntity<Long> {
     private String status;
     @Column(name = "fixedVersion", nullable = false)
     private String fixedVersion;
+    @OneToMany(mappedBy = "bugEntity")
+    private Set<CommentEntity> comments;
+    @ManyToOne
+    @JoinColumn(name = "ASSIGNED_ID", nullable = true)
+    private UserEntity assignedTo;
+    @ManyToOne
+    @JoinColumn(name = "CREATED_ID", insertable = false, updatable = false)
+    private UserEntity createdBy;
+    @OneToMany(mappedBy = "bugEntity")
+    private Set<AttachmentEntity> attachments;
+    @OneToMany(mappedBy = "bugEntity")
+    private Set<HistoryEntity> historyEntities;
 
     public BugEntity() {
     }
-
-    @OneToMany(mappedBy = "bugEntity")
-    private Set<CommentEntity> comments;
 
     public Set<CommentEntity> getComments() {
         return comments;
@@ -67,10 +76,6 @@ public class BugEntity extends BaseEntity<Long> {
         this.comments = comments;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "ASSIGNED_ID", nullable = true)
-    private UserEntity assignedTo;
-
     public UserEntity getAssigned() {
         return assignedTo;
     }
@@ -79,10 +84,6 @@ public class BugEntity extends BaseEntity<Long> {
         this.assignedTo = assignedTo;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "CREATED_ID", insertable = false, updatable = false)
-    private UserEntity createdBy;
-
     public UserEntity getCreated() {
         return createdBy;
     }
@@ -90,11 +91,6 @@ public class BugEntity extends BaseEntity<Long> {
     public void setCreated(UserEntity createdBy) {
         this.createdBy = createdBy;
     }
-
-    @OneToMany(mappedBy = "bugEntity")
-    private Set<AttachmentEntity> attachments;
-    @OneToMany(mappedBy = "bugEntity")
-    private Set<HistoryEntity> historyEntities;
 
     public Set<HistoryEntity> getHistoryEntities() {
         return historyEntities;

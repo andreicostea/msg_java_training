@@ -37,8 +37,7 @@ public class BugControl {
         if (bug.getTitle() == null || bug.getDescription() == null || bug.getVersion() == null || bug.getSeverity() == null) {
             throw new BusinessException(NULL_FIELD);
         }
-        if (bug.getTitle().length() == 0 || bug.getDescription().length() == 0 || bug.getVersion().length() == 0 || bug.getSeverity().length() == 0)
-        {
+        if (bug.getTitle().length() == 0 || bug.getDescription().length() == 0 || bug.getVersion().length() == 0 || bug.getSeverity().length() == 0) {
             throw new BusinessException(NULL_FIELD);
         }
         if (bug.getDescription().length() > 250) {

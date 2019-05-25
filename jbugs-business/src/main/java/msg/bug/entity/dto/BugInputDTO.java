@@ -1,7 +1,5 @@
 package msg.bug.entity.dto;
 
-import msg.user.entity.UserEntity;
-
 import java.util.Date;
 
 public class BugInputDTO {

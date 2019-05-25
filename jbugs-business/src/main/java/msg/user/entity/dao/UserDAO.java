@@ -1,7 +1,6 @@
 package msg.user.entity.dao;
 
 import msg.user.entity.UserEntity;
-import msg.user.entity.dto.UserLoginDTO;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -49,8 +48,6 @@ public class UserDAO {
         return user;
 
     }
-
-
 
 
     public UserEntity getUserByEmail(String email) {

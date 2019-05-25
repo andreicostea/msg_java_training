@@ -19,7 +19,6 @@ import javax.ws.rs.core.SecurityContext;
 @Path("/auth")
 public class TestAuth {
 
-
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/test")
     @GET

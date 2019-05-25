@@ -42,7 +42,7 @@ public class NotificationResource {
                 .build();
     }
 
-  @GET
+    @GET
     @Path("/update/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUpdateNotificationById(@PathParam("id") long id) {

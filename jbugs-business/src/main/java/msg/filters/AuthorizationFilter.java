@@ -23,9 +23,32 @@ import java.util.List;
 @Stateless
 public class AuthorizationFilter implements ContainerRequestFilter {
 
+    @Override
+    public void filter(ContainerRequestContext containerRequestContext) throws IOException {
+        String authorizationValue = containerRequestContext.getHeaderString("Authorization");
+        if (authorizationValue.startsWith("Bearer")) {
+            Algorithm algorithm = Algorithm.HMAC256("harambe");
+            JWTVerifier verifier = JWT.require(algorithm).withIssuer("auth0").build();
+            System.out.println(authorizationValue);
+            DecodedJWT decodedJWT = verifier.verify(authorizationValue.split(" ")[1]);
+            if (isTokenValid(decodedJWT)) {
+                List<String> roles = decodedJWT.getClaim("roles").asList(String.class);
+                String username = decodedJWT.getClaim("username").asString();
+                containerRequestContext.setSecurityContext(new Authorization(roles, username) {
+                });
+            }
+        }
+    }
+
+    private boolean isTokenValid(DecodedJWT token) {
+        return true;
+
+
+    }
+
     private class Authorization implements SecurityContext {
-        private List<String> roles;
         String userName;
+        private List<String> roles;
 
         public Authorization(List<String> roles, String userName) {
             this.roles = roles;
@@ -56,29 +79,6 @@ public class AuthorizationFilter implements ContainerRequestFilter {
         public String getAuthenticationScheme() {
             return null;
         }
-    }
-
-    @Override
-    public void filter(ContainerRequestContext containerRequestContext) throws IOException {
-        String authorizationValue = containerRequestContext.getHeaderString("Authorization");
-        if (authorizationValue.startsWith("Bearer")) {
-            Algorithm algorithm = Algorithm.HMAC256("harambe");
-            JWTVerifier verifier = JWT.require(algorithm).withIssuer("auth0").build();
-            System.out.println(authorizationValue);
-            DecodedJWT decodedJWT = verifier.verify(authorizationValue.split(" ")[1]);
-            if (isTokenValid(decodedJWT)) {
-                List<String> roles = decodedJWT.getClaim("roles").asList(String.class);
-                String username = decodedJWT.getClaim("username").asString();
-                containerRequestContext.setSecurityContext(new Authorization(roles, username) {
-                });
-            }
-        }
-    }
-
-    private boolean isTokenValid(DecodedJWT token) {
-        return true;
-
-
     }
 }
 

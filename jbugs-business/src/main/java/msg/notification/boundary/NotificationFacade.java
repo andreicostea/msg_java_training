@@ -23,7 +23,7 @@ public class NotificationFacade {
      * Creates a notification based on the input {@link NotificationType} and {@link NotificationParams}.
      *
      * @param notificationType the type of the notification.
-     * @param params the parameters for the notification type.
+     * @param params           the parameters for the notification type.
      */
     public void createNotification(final NotificationType notificationType, final NotificationParams params, final long userId) {
         this.notificationControl.createNotification(notificationType, params, userId);

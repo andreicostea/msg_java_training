@@ -1,5 +1,6 @@
 package msg.bug.boundary;
 //todo: fix bug insertion and update [specifically, the part with users]
+
 import msg.bug.entity.dto.BugDTO;
 import msg.bug.entity.dto.BugInputDTO;
 
@@ -17,24 +18,21 @@ public class BugResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createBug(BugInputDTO input)
-    {
+    public Response createBug(BugInputDTO input) {
         facade.createBug(input);
         return Response.ok().build();
     }
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateBug(BugDTO input)
-    {
+    public Response updateBug(BugDTO input) {
         facade.updateBug(input);
         return Response.ok().build();
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAll()
-    {
+    public Response getAll() {
         return Response.status(200).entity(facade.getAll()).build();
         //return Response.ok().build();
     }

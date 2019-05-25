@@ -43,7 +43,7 @@ public class UserResource {
 
     @Produces(MediaType.APPLICATION_JSON)
     @GET
-    public Response getAll(){
+    public Response getAll() {
         return Response.ok(userFacade.getAll()).build();
     }
 

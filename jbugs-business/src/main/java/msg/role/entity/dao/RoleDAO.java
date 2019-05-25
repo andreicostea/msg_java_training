@@ -5,10 +5,10 @@ package msg.role.entity.dao;
 
 import msg.role.entity.RoleEntity;
 
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  * The DAO for the RoleEntity Entities.
@@ -19,7 +19,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class RoleDAO {
 
-    @PersistenceContext(unitName="persistenceUnit")
+    @PersistenceContext(unitName = "persistenceUnit")
     private EntityManager em;
 
     /**
@@ -28,7 +28,7 @@ public class RoleDAO {
      * @param typeList a list of role types.
      * @return a list of role entities.
      */
-    public List<RoleEntity> getRolesByTypeList(final List<String> typeList){
+    public List<RoleEntity> getRolesByTypeList(final List<String> typeList) {
         return em.createNamedQuery(RoleEntity.QUERY_GET_ROLES_BY_TYPE_LIST, RoleEntity.class)
                 .setParameter(RoleEntity.INPUT_TYPE_LIST, typeList)
                 .getResultList();

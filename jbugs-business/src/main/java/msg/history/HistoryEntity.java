@@ -13,7 +13,7 @@ import java.util.Date;
  * @since 19.1.2
  */
 @Entity
-@Table(name="history")
+@Table(name = "history")
 public class HistoryEntity extends BaseEntity<Long> {
     @Column(name = "modifiedDate")
     private Date modifiedDate;
@@ -23,9 +23,10 @@ public class HistoryEntity extends BaseEntity<Long> {
     private String beforeStatus;
     @Column(name = "modifiedBy")
     private String modifiedBy;
-@ManyToOne
-@JoinColumn(name = "id_bug", nullable = false)
-private BugEntity bugEntity;
+    @ManyToOne
+    @JoinColumn(name = "id_bug", nullable = false)
+    private BugEntity bugEntity;
+
     public HistoryEntity() {
     }
 

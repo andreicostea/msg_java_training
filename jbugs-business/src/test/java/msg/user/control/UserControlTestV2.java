@@ -41,7 +41,7 @@ public class UserControlTestV2 {
     @Before
     public void setUp() {
 
-        try{
+        try {
             FieldSetter.setField(this.userControl,
                     UserControl.class.getDeclaredField("notificationFacade"),
                     this.notificationFacade);
@@ -51,7 +51,7 @@ public class UserControlTestV2 {
     }
 
     @Test
-    public void testCreateUserWithSuccess(){
+    public void testCreateUserWithSuccess() {
         UserInputDTO user = createTestInputDTO();
 
         Mockito.when(userConverter.convertInputDTOtoEntity(Mockito.any())).thenCallRealMethod();
@@ -62,7 +62,7 @@ public class UserControlTestV2 {
     }
 
     @Test(expected = BusinessException.class)
-    public void testCreateUserWhenEmailAddressAlreadyExists(){
+    public void testCreateUserWhenEmailAddressAlreadyExists() {
         UserInputDTO user = createTestInputDTO();
 
         Mockito.when(userDao.existsEmail(user.getEmail())).thenReturn(true);
