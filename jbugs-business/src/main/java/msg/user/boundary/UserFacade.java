@@ -30,8 +30,12 @@ public class UserFacade {
      * @param user the input User DTO. mandatory
      */
     //@RolesAllowed(PermissionType.USER_MANAGEMENT)
-    public void createUser(UserInputDTO user){
-         this.userControl.createUser(user);
+    public Object authenticateUser(UserInputDTO userInputDto) {
+        return userControl.authenticateUser(userInputDto);
+    }
+
+    public void createUser(UserInputDTO user) {
+        this.userControl.createUser(user);
     }
 
 
@@ -40,7 +44,7 @@ public class UserFacade {
         this.userControl.loginUser(userLoginDTO);
     }
 
-    public List<UserDTO> getAll(){
+    public List<UserDTO> getAll() {
         return this.userControl.getAll();
     }
 

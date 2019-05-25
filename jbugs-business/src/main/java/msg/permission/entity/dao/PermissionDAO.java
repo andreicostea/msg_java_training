@@ -17,7 +17,7 @@ import java.util.List;
 @Stateless
 public class PermissionDAO {
 
-    @PersistenceContext(unitName="persistenceUnit")
+    @PersistenceContext(unitName = "persistenceUnit")
     private EntityManager em;
 
     /**
@@ -26,7 +26,7 @@ public class PermissionDAO {
      * @param p the input entity to be saved.
      * @return the persisted entity.
      */
-    public PermissionEntity createPermission(PermissionEntity p){
+    public PermissionEntity createPermission(PermissionEntity p) {
         em.persist(p);
         return p;
     }
@@ -52,7 +52,7 @@ public class PermissionDAO {
     public boolean existsId(Long id) {
         try {
             return em.createNamedQuery(PermissionEntity.PERMISSION_FIND_BY_ID, PermissionEntity.class)
-                .setParameter(PermissionEntity.INPUT_ID, id)
+                    .setParameter(PermissionEntity.INPUT_ID, id)
                     .getSingleResult() != null;
 
         } catch (NoResultException N) {

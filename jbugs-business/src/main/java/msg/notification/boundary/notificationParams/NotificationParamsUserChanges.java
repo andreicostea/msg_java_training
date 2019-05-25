@@ -5,7 +5,8 @@ package msg.notification.boundary.notificationParams;
 
 /**
  * The message parameters of the message type {@link msg.notification.entity.NotificationType#USER_UPDATED}.
- *  *
+ * *
+ *
  * @author msg-system ag;  Daniel Donea
  * @since 1.0
  */

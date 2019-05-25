@@ -48,7 +48,7 @@ public class UserControlTest {
     }
 
     @Test
-    public void testCreateUserWithSuccess(){
+    public void testCreateUserWithSuccess() {
         UserInputDTO user = createTestInputDTO();
 
         Mockito.when(userConverter.convertInputDTOtoEntity(Mockito.any())).thenCallRealMethod();
@@ -58,7 +58,7 @@ public class UserControlTest {
     }
 
     @Test(expected = BusinessException.class)
-    public void testCreateUserWhenEmailAddressAlreadyExists(){
+    public void testCreateUserWhenEmailAddressAlreadyExists() {
         UserInputDTO user = createTestInputDTO();
 
         Mockito.when(userDao.existsEmail(user.getEmail())).thenReturn(true);
@@ -67,7 +67,7 @@ public class UserControlTest {
     }
 
     @Test
-    public void testCreateUserNotificationSent(){
+    public void testCreateUserNotificationSent() {
         UserInputDTO user = createTestInputDTO();
 
         ArgumentCaptor<NotificationType> sentNotificationType = ArgumentCaptor.forClass(NotificationType.class);

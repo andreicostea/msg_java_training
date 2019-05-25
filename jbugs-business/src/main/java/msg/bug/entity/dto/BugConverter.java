@@ -16,18 +16,21 @@ public class BugConverter {
         b.setStatus(bugDTO.getStatus());
         return b;
     }
-    public BugEntity convertInputDTOToEntity(BugInputDTO input)
-    {
+
+    public BugEntity convertInputDTOToEntity(BugInputDTO input) {
         final BugEntity b = new BugEntity();
         b.setTitle(input.getTitle());
         b.setDescription(input.getDescription());
         b.setVersion(input.getVersion());
         b.setFixedVersion(input.getFixedVersion());
+        b.setTargetDate(input.getDate());
+        b.setSeverity(input.getSeverity());
+        //b.setAssigned(input.);
+        //b.setAttachmentEntities(input.);
         return b;
     }
 
-    public BugDTO convertEntityDTOtoEntity(BugEntity bug)
-    {
+    public BugDTO convertEntityDTOtoEntity(BugEntity bug) {
         final BugDTO b = new BugDTO();
         b.setTitle(bug.getTitle());
         b.setDescription(bug.getDescription());

@@ -5,6 +5,7 @@ public class PermissionDTO {
     // todo: type should be an enum
     private String description;
     private String type;
+
     public PermissionDTO() {
     }
 

@@ -1,7 +1,6 @@
 package msg.user.entity.dao;
 
 import msg.user.entity.UserEntity;
-import msg.user.entity.dto.UserLoginDTO;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -51,18 +50,15 @@ public class UserDAO {
     }
 
 
-
-
     public UserEntity getUserByEmail(String email) {
         return em.createNamedQuery(UserEntity.USER_GET_BY_EMAIL, UserEntity.class)
                 .setParameter(UserEntity.EMAIL, email)
                 .getSingleResult();
     }
 
-    public boolean loginUser(UserLoginDTO userLoginDTO) {
-        long count = em.createNamedQuery(UserEntity.USER_FIND_BY_USERNAME_AND_PASSWORD, Long.class)
-                .setParameter(UserEntity.USERNAME, userLoginDTO.getUsername())
-                .setParameter(UserEntity.PASSWORD, userLoginDTO.getPassword())
+    public boolean exitsUsername(String username) {
+        long count = em.createNamedQuery(UserEntity.USER_COUNT_BY_USERNAME, Long.class)
+                .setParameter("username", username)
                 .getSingleResult();
         return (count > 0);
     }
@@ -78,7 +74,7 @@ public class UserDAO {
                 .getResultList();
     }
 
-    public UserEntity getUserById(long id) throws Exception{
+    public UserEntity getUserById(long id) throws Exception {
         return em.createNamedQuery(UserEntity.USER_FIND_BY_ID, UserEntity.class)
                 .setParameter("id", id)
                 .getSingleResult();

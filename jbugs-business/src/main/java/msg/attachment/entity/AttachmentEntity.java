@@ -16,14 +16,16 @@ import javax.persistence.*;
 public class AttachmentEntity extends BaseEntity<Long> {
     @Column(name = "attContent")
     private String addContent;
+    @ManyToOne
+    @JoinColumn(name = "id_bug")
+    private BugEntity bugEntity;
 
     public AttachmentEntity(String addContent) {
         this.addContent = addContent;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "id_bug")
-    private BugEntity bugEntity;
+    public AttachmentEntity() {
+    }
 
     public BugEntity getBugEntity() {
         return bugEntity;
@@ -39,8 +41,5 @@ public class AttachmentEntity extends BaseEntity<Long> {
 
     public void setAddContent(String addContent) {
         this.addContent = addContent;
-    }
-
-    public AttachmentEntity() {
     }
 }

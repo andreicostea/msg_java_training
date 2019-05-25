@@ -26,18 +26,21 @@ public class NotificationEntity extends BaseEntity<Long> {
     @Column(name = "type")
     private NotificationType notificationType;
 
-    @Column(name ="url")
+    @Column(name = "url")
     private String url;
 
-    @Column(name ="message")
+    @Column(name = "message")
     private String message;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column( name = "date")
+    @Column(name = "date")
     private Date date;
 
     @Column(name = "user_id")
     private long userID;
+
+    public NotificationEntity() {
+    }
 
     public Date getDate() {
         return date;
@@ -53,9 +56,6 @@ public class NotificationEntity extends BaseEntity<Long> {
 
     public void setUserID(long userID) {
         this.userID = userID;
-    }
-
-    public NotificationEntity() {
     }
 
     public NotificationType getNotificationType() {

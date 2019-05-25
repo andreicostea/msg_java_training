@@ -31,7 +31,7 @@ public class RoleEntity extends BaseEntity<Long> {
     private String type;
 
     @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "permissions_roles",
+    @JoinTable(name = "roles_permissions",
             joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "permission_id", referencedColumnName = "id", nullable = false)
     )

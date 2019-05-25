@@ -8,13 +8,13 @@ import javax.ejb.Stateless;
 
 @Stateless
 public class SomeEjb {
-	@EJB
-	private UserFacade userFacade;
+    @EJB
+    private UserFacade userFacade;
 
-	public SomeEjb() {
-	}
+    public SomeEjb() {
+    }
 
-	public String hello() {
+    public String hello() {
 //		UserEntity user=new UserEntity();
 //		UserEntity user2=new UserEntity();
 //
@@ -63,18 +63,18 @@ public class SomeEjb {
 //		permDao.createPermission(p4);
 //
 //		permDao.removePermission(p3);
-		return "Hello JPA World!";
-	}
+        return "Hello JPA World!";
+    }
 
-	public String testCreateUser(){
-		UserInputDTO user = new UserInputDTO();
-		user.setLastName("Pop");
-		user.setFirstName("Andrei");
-		user.setEmail("axasde@yahoo.com");
-		user.setMobileNumber("07893722");
-		user.setCounter(0);
+    public String testCreateUser() {
+        UserInputDTO user = new UserInputDTO();
+        user.setLastName("Pop");
+        user.setFirstName("Andrei");
+        user.setEmail("axasde@yahoo.com");
+        user.setMobileNumber("07893722");
+        user.setCounter(0);
 
-		this.userFacade.createUser(user);
-		return "USER CREATED";
-	}
+        this.userFacade.createUser(user);
+        return "USER CREATED";
+    }
 }

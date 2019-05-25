@@ -24,7 +24,7 @@ public class NotificationDAO {
      *
      * @param notificationEntity the input entity.
      */
-    public void createNotification(NotificationEntity notificationEntity){
+    public void createNotification(NotificationEntity notificationEntity) {
         this.em.persist(notificationEntity);
     }
 
