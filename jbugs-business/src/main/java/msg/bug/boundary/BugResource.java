@@ -30,6 +30,7 @@ public class BugResource {
         return Response.ok().build();
     }
 
+    // test pr
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll() {
