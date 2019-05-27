@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { DashboardComponent } from "./features/dashboard/dashboard.component";
+import { PermissionsComponent } from './features/permissions/containers/permissions.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
+    PermissionsComponent,
   ],
   imports: [
     BrowserModule,

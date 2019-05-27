@@ -25,10 +25,10 @@ public class PermissionEntity extends BaseEntity<Long> {
     public static final String PERMISSION_FIND_BY_ID = "PermissionEntity.findById";
     public static final String QUERY_GET_PERMISSION_BY_TYPE_LIST = "getPermissionByTypeList";
     public static final String INPUT_TYPE_LIST = "type";
-    @Column(name = "description", nullable = false)
+    @Column(name = "description")
     private String description;
 
-    @Column(name = "type", nullable = false)
+    @Column(name = "type")
     private String type;
 
     public PermissionEntity() {
