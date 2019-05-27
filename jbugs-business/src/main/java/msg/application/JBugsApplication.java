@@ -40,6 +40,7 @@ public class JBugsApplication extends Application {
 //        classes.add(RuntimeExceptionMapper.class);
 //        classes.add(AuthResource.class);
 //        classes.add(AuthorizationFilter.class);
+//        some random change to test git
         return classes;
     }
 
