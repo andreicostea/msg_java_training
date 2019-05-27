@@ -25,13 +25,11 @@ import java.util.stream.Collectors;
  */
 @Stateless
 public class NotificationControl {
+    private static final String SERVER_ADDRESS = "http://" + System.getProperty("myServerAddress");
     @EJB
     private NotificationDAO notificationDao;
-
     @EJB
     private NotificationConverter notificationConverter;
-
-    private static final String SERVER_ADDRESS = "http://" + System.getProperty("myServerAddress");
 
     public List<NotificationOutputDTO> getNotificationsById(long id) {
 
@@ -71,7 +69,7 @@ public class NotificationControl {
      * Creates a notification based on the input {@link NotificationType} and {@link NotificationParams}.
      *
      * @param notificationType the type of the notification.
-     * @param params the parameters for the notification type.
+     * @param params           the parameters for the notification type.
      */
     public void createNotification(final NotificationType notificationType, final NotificationParams params, final long userID) {
         switch (notificationType) {

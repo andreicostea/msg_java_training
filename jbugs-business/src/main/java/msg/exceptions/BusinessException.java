@@ -8,10 +8,12 @@ import javax.ejb.ApplicationException;
  * @author msg systems AG;
  * @since 19.1.2
  */
-@ApplicationException(rollback =true)
+@ApplicationException(rollback = true)
 public class BusinessException extends RuntimeException {
 
-    /** The message inside the exception. */
+    /**
+     * The message inside the exception.
+     */
     private ExceptionMessage exceptionMessage;
 
     public BusinessException(final ExceptionMessage exceptionMessage) {

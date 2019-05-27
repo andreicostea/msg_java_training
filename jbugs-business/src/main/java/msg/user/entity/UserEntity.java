@@ -28,7 +28,7 @@ import java.util.Set;
         @NamedQuery(name = UserEntity.USER_FIND_BY_USERNAME, query = "SELECT u from UserEntity u where u.username = :username"),
         @NamedQuery(name = UserEntity.USER_GET_BY_EMAIL, query = "SELECT u from UserEntity u where u.email = :" + UserEntity.EMAIL)
 })
-        
+
 public class UserEntity extends BaseEntity<Long> {
     public static final String USER_FIND_BY_EMAIL = "UserEntity.findByEmail";
     public static final String USER_GET_BY_EMAIL = "UserEntity.getByEmail";
@@ -38,8 +38,12 @@ public class UserEntity extends BaseEntity<Long> {
     public static final String USER_FIND_ALL = "UserEntity.findAll";
     public static final String USER_FIND_BY_ID = "UserEntity.findById";
     public static final String USER_FIND_BY_USERNAME = "UserEntity.findByUsername";
-
-
+    @OneToMany(mappedBy = "userEntity")
+    Set<CommentEntity> comments;
+    @OneToMany(mappedBy = "assignedTo")
+    Set<BugEntity> assigned;
+    @OneToMany(mappedBy = "createdBy")
+    Set<BugEntity> created;
     @Column(name = "first_name", nullable = false)
     private String firstName;
     @Column(name = "last_name", nullable = false)
@@ -73,13 +77,6 @@ public class UserEntity extends BaseEntity<Long> {
     public void setComments(Set<CommentEntity> comments) {
         this.comments = comments;
     }
-
-    @OneToMany
-    Set<CommentEntity> comments;
-    @OneToMany
-    Set<BugEntity> assigned;
-    @OneToMany
-    Set<BugEntity> created;
 
     public Set<BugEntity> getCreated() {
         return created;

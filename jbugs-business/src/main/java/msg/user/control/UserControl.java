@@ -3,11 +3,14 @@
 // =================================================================================================
 package msg.user.control;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import msg.exceptions.BusinessException;
 import msg.exceptions.BusinessWebAppException;
 import msg.notification.boundary.NotificationFacade;
 import msg.notification.boundary.notificationParams.NotificationParamsWelcomeUser;
 import msg.notification.entity.NotificationType;
+import msg.role.entity.RoleEntity;
 import msg.user.MessageCatalog;
 
 import msg.user.entity.dto.UserDTO;
@@ -44,12 +47,41 @@ public class UserControl {
     private NotificationFacade notificationFacade;
 
 
+
+    public String authenticateUser(UserInputDTO userInputDTO) {
+
+        try {
+
+            UserEntity user = userDao.getUserByEmail(userInputDTO.getEmail());
+
+//        Stream<String> roles = user.getRoles()
+//                .stream()
+//                .map(Role::getType);
+
+            if (user != null) {
+                Algorithm algorithm = Algorithm.HMAC256("harambe");
+                return JWT.create().withIssuer("auth0")
+                        .withClaim("username", user.getUsername())
+                        .withArrayClaim("roles", user.getRoles()
+                                .stream()
+                                .map(RoleEntity::getType).toArray(String[]::new))
+                        .sign(algorithm);
+
+            } else {
+                throw new BusinessException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD);
+            }
+        } catch (Exception e) {
+            throw new BusinessException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD);
+        }
+    }
+
     /**
      * Creates a userDTO based on the {@link UserInputDTO}.
      *
      * @param userDTO the input User DTO. mandatory
      * @return the username of the newly created user.
      */
+
     public String createUser(final UserInputDTO userDTO) {
         if (userDao.existsEmail(userDTO.getEmail())) {
             throw new BusinessException(MessageCatalog.USER_WITH_SAME_MAIL_EXISTS);

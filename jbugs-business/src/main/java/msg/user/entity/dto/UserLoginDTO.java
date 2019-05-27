@@ -9,9 +9,9 @@ public class UserLoginDTO {
         this.username = username;
         this.password = password;
     }
-    
-    public UserLoginDTO(){
-        
+
+    public UserLoginDTO() {
+
     }
 
     public String getUsername() {

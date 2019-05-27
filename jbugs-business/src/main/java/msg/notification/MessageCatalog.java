@@ -13,8 +13,10 @@ import msg.exceptions.ExceptionMessage;
  */
 public class MessageCatalog {
 
-    /** A message for the case when a user already exists with the same email. */
+    /**
+     * A message for the case when a user already exists with the same email.
+     */
     public static final ExceptionMessage MESSAGE_PARAMS_AND_TYPE_ARE_INCOMPATIBLE
             = new ExceptionMessage("NOTIF-01", "The input message parameters do not correspond to "
-                + " the sent message type.");
+            + " the sent message type.");
 }

@@ -13,13 +13,20 @@ import java.util.Date;
  * @since 19.1.2
  */
 @Entity
-@Table(name="history")
+@Table(name = "history")
 public class HistoryEntity extends BaseEntity<Long> {
+    @Column(name = "modifiedDate")
     private Date modifiedDate;
-    private String afterDate;
-@ManyToOne
-@JoinColumn(name="bug_id", nullable=false)
-private BugEntity bugEntity;
+    @Column(name = "afterStatus")
+    private String afterStatus;
+    @Column(name = "beforeStatus")
+    private String beforeStatus;
+    @Column(name = "modifiedBy")
+    private String modifiedBy;
+    @ManyToOne
+    @JoinColumn(name = "id_bug", nullable = false)
+    private BugEntity bugEntity;
+
     public HistoryEntity() {
     }
 
@@ -39,11 +46,27 @@ private BugEntity bugEntity;
         this.modifiedDate = modifiedDate;
     }
 
-    public String getAfterDate() {
-        return afterDate;
+    public String getAfterStatus() {
+        return afterStatus;
     }
 
-    public void setAfterDate(String afterDate) {
-        this.afterDate = afterDate;
+    public void setAfterStatus(String afterStatus) {
+        this.afterStatus = afterStatus;
+    }
+
+    public String getBeforeStatus() {
+        return beforeStatus;
+    }
+
+    public void setBeforeStatus(String beforeStatus) {
+        this.beforeStatus = beforeStatus;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
     }
 }

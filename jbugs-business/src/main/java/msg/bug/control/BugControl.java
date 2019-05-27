@@ -1,10 +1,12 @@
 package msg.bug.control;
 
 import msg.bug.entity.BugEntity;
+import msg.bug.entity.StatusType;
 import msg.bug.entity.dao.BugDAO;
 import msg.bug.entity.dto.BugConverter;
 import msg.bug.entity.dto.BugDTO;
 import msg.bug.entity.dto.BugInputDTO;
+import msg.exceptions.BusinessException;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -12,6 +14,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import static msg.bug.MessageCatalog.*;
 
 @Stateless
 public class BugControl {
@@ -22,8 +26,7 @@ public class BugControl {
     @EJB
     private BugConverter bugConverter;
 
-    public List<BugDTO> getAll()
-    {
+    public List<BugDTO> getAll() {
         return bugDao.getAll()
                 .stream()
                 .map(bugConverter::convertEntityDTOtoEntity)
@@ -31,24 +34,32 @@ public class BugControl {
     }
 
     public BugEntity createBug(BugInputDTO bug) {
-        if (bug.getTitle() == null || bug.getDescription() == null || bug.getVersion() == null || bug.getSeverity() == null)
-        {
-            //field shouldn't be empty, not sure if it should be here
+        if (bug.getTitle() == null || bug.getDescription() == null || bug.getVersion() == null || bug.getSeverity() == null) {
+            throw new BusinessException(NULL_FIELD);
         }
-        if (bug.getDescription().length() > 250)
-        {
-            //description exceeds maximum allowed characters
+        if (bug.getTitle().length() == 0 || bug.getDescription().length() == 0 || bug.getVersion().length() == 0 || bug.getSeverity().length() == 0) {
+            throw new BusinessException(NULL_FIELD);
         }
-        //todo: check if below code works [fingers crossed]
-        Pattern pattern = Pattern.compile("[A-Za-z0-9.]*");
-        Matcher matcher = pattern.matcher(bug.getVersion());
-        if (!matcher.matches())
-        {
-            //version incorrectly formatted
+        if (bug.getDescription().length() > 250) {
+            throw new BusinessException(LIMIT_EXCEEDED);
         }
 
+        Pattern pattern = Pattern.compile("[A-Za-z0-9.]*"); //alphanumeric characters & dot 0-many times
+        Matcher matcher1 = pattern.matcher(bug.getVersion());
+        Matcher matcher2 = pattern.matcher(bug.getFixedVersion());
+        if (!matcher1.matches() || !matcher2.matches()) {
+            throw new BusinessException(REGEX_VIOLATION);
+        }
         final BugEntity newBug = bugConverter.convertInputDTOToEntity(bug);
-        newBug.setStatus("New");
+        newBug.setStatus(String.valueOf(StatusType.NEW));
+        bugDao.createBug(newBug);
         return newBug;
+    }
+
+    public BugEntity updateBug(BugDTO input) {
+        final BugEntity newBug = bugConverter.convertDTOToEntity(input);
+        bugDao.updateBug(newBug);
+        return newBug;
+
     }
 }

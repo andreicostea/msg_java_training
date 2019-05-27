@@ -4,6 +4,7 @@ import msg.permission.PermissionEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
 @Stateless
 public class PermissionDAO {
 
-    @PersistenceContext(unitName="persistenceUnit")
+    @PersistenceContext(unitName = "persistenceUnit")
     private EntityManager em;
 
     /**
@@ -25,7 +26,7 @@ public class PermissionDAO {
      * @param p the input entity to be saved.
      * @return the persisted entity.
      */
-    public PermissionEntity createPermission(PermissionEntity p){
+    public PermissionEntity createPermission(PermissionEntity p) {
         em.persist(p);
         return p;
     }
@@ -49,10 +50,14 @@ public class PermissionDAO {
 //
 //    }
     public boolean existsId(Long id) {
-        PermissionEntity count = em.createNamedQuery(PermissionEntity.PERMISSION_FIND_BY_ID, PermissionEntity.class)
-                .setParameter(PermissionEntity.INPUT_ID, id)
-                .getSingleResult();
-        return (count != null);
+        try {
+            return em.createNamedQuery(PermissionEntity.PERMISSION_FIND_BY_ID, PermissionEntity.class)
+                    .setParameter(PermissionEntity.INPUT_ID, id)
+                    .getSingleResult() != null;
+
+        } catch (NoResultException N) {
+            return false;
+        }
     }
 
     public PermissionEntity findById(long id) {

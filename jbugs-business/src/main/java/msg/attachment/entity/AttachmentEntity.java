@@ -12,16 +12,20 @@ import javax.persistence.*;
  * @since 19.1.2
  */
 @Entity
-@Table(name="attachments")
+@Table(name = "attachments")
 public class AttachmentEntity extends BaseEntity<Long> {
+    @Column(name = "attContent")
     private String addContent;
+    @ManyToOne
+    @JoinColumn(name = "id_bug")
+    private BugEntity bugEntity;
 
     public AttachmentEntity(String addContent) {
         this.addContent = addContent;
     }
-    @ManyToOne
-    @JoinColumn(name="bug_id", nullable=false)
-    private BugEntity bugEntity;
+
+    public AttachmentEntity() {
+    }
 
     public BugEntity getBugEntity() {
         return bugEntity;
@@ -37,8 +41,5 @@ public class AttachmentEntity extends BaseEntity<Long> {
 
     public void setAddContent(String addContent) {
         this.addContent = addContent;
-    }
-
-    public AttachmentEntity() {
     }
 }

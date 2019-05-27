@@ -6,9 +6,9 @@ package msg.user.entity.dto;
 import msg.role.control.RoleControl;
 import msg.user.entity.UserEntity;
 
-import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.ArrayList;
 
 /**
  * Converts different DOs to UserEntity and vice-versa.
@@ -28,7 +28,7 @@ public class UserConverter {
      * @param userInputDTO the input dto.
      * @return the output un-managed Entity.
      */
-    public UserEntity convertInputDTOtoEntity(UserInputDTO userInputDTO){
+    public UserEntity convertInputDTOtoEntity(UserInputDTO userInputDTO) {
         final UserEntity u = new UserEntity();
         u.setFirstName(userInputDTO.getFirstName());
         u.setLastName(userInputDTO.getLastName());
@@ -36,14 +36,14 @@ public class UserConverter {
         u.setMobileNumber(userInputDTO.getMobileNumber());
         u.setRoles(new ArrayList<>());
 
-        if (userInputDTO.getRoles() != null && !userInputDTO.getRoles().isEmpty()){
+        if (userInputDTO.getRoles() != null && !userInputDTO.getRoles().isEmpty()) {
             u.getRoles().addAll(
                     roleControl.getRolesByTypeList(userInputDTO.getRoles()));
         }
         return u;
     }
 
-    public UserDTO convertEntityDTO(UserEntity userEntity){
+    public UserDTO convertEntityDTO(UserEntity userEntity) {
         final UserDTO u = new UserDTO();
         u.setFirstName(userEntity.getFirstName());
         u.setLastName(userEntity.getLastName());

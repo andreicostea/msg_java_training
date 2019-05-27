@@ -21,28 +21,52 @@ import java.util.Set;
 @Table(name = "bugs")
 @NamedQueries({
         @NamedQuery(name = BugEntity.BUG_GET_ALL,
-                query = "select b.title, b.description, b.version, b.status, b.fixedVersion from BugEntity b")})
+                query = "select b from BugEntity b"),
+        @NamedQuery(name = BugEntity.BUG_FIND_BY_ID,
+                query = "select b from BugEntity b where b.id = :" + BugEntity.ID)})
+
 public class BugEntity extends BaseEntity<Long> {
-    public static final String BUG_GET_ALL = "BugEntity.getAllBugEntitys";
+    public static final String BUG_GET_ALL = "BugEntity.getAllBugEntities";
+    public static final String BUG_GET_BY_TITLE = "BugEntity.getBugByTitle";
+    public static final String UPDATE_BUG = "BugEntity.updateBug";
+    public static final String BUG_FIND_BY_ID = "BugEntity.findById";
+    public static final String ID = "id";
+    public static final String TITLE = "title";
+    public static final String DESCRIPTION = "description";
+    public static final String VERSION = "version";
+    public static final String FIXEDVERSION = "fixedVersion";
+    public static final String SEVERITY = "severity";
+    public static final String STATUS = "status";
 
     @Column(name = "title", nullable = false)
     private String title;
     @Column(name = "description", nullable = false)
     private String description;
-    @Column(name = "version", nullable = false)//todo: @Pattern
+    @Column(name = "version", nullable = false)
     private String version;
     @Column(name = "targetDate")
     private Date targetDate;
+    @Column(name = "severity")
+    private String severity;
     @Column(name = "status")
     private String status;
     @Column(name = "fixedVersion", nullable = false)
     private String fixedVersion;
+    @OneToMany(mappedBy = "bugEntity")
+    private Set<CommentEntity> comments;
+    @ManyToOne
+    @JoinColumn(name = "ASSIGNED_ID", nullable = true)
+    private UserEntity assignedTo;
+    @ManyToOne
+    @JoinColumn(name = "CREATED_ID", insertable = false, updatable = false)
+    private UserEntity createdBy;
+    @OneToMany(mappedBy = "bugEntity")
+    private Set<AttachmentEntity> attachments;
+    @OneToMany(mappedBy = "bugEntity")
+    private Set<HistoryEntity> historyEntities;
 
     public BugEntity() {
     }
-
-    @OneToMany
-    private Set<CommentEntity> comments;
 
     public Set<CommentEntity> getComments() {
         return comments;
@@ -52,32 +76,21 @@ public class BugEntity extends BaseEntity<Long> {
         this.comments = comments;
     }
 
-    @ManyToOne
-    private UserEntity assiged;
-
-    public UserEntity getAssiged() {
-        return assiged;
+    public UserEntity getAssigned() {
+        return assignedTo;
     }
 
-    public void setAssiged(UserEntity assiged) {
-        this.assiged = assiged;
+    public void setAssigned(UserEntity assignedTo) {
+        this.assignedTo = assignedTo;
     }
-
-    @ManyToOne
-    private UserEntity created;
 
     public UserEntity getCreated() {
-        return created;
+        return createdBy;
     }
 
-    public void setCreated(UserEntity created) {
-        this.created = created;
+    public void setCreated(UserEntity createdBy) {
+        this.createdBy = createdBy;
     }
-
-    @OneToMany
-    private Set<AttachmentEntity> attachmentEntities;
-    @OneToMany
-    private Set<HistoryEntity> historyEntities;
 
     public Set<HistoryEntity> getHistoryEntities() {
         return historyEntities;
@@ -88,11 +101,11 @@ public class BugEntity extends BaseEntity<Long> {
     }
 
     public Set<AttachmentEntity> getAttachmentEntities() {
-        return attachmentEntities;
+        return attachments;
     }
 
     public void setAttachmentEntities(Set<AttachmentEntity> attachmentEntities) {
-        this.attachmentEntities = attachmentEntities;
+        this.attachments = attachmentEntities;
     }
 
 
@@ -162,4 +175,11 @@ public class BugEntity extends BaseEntity<Long> {
         this.fixedVersion = fixedVersion;
     }
 
+    public String getSeverity() {
+        return severity;
+    }
+
+    public void setSeverity(String severity) {
+        this.severity = severity;
+    }
 }

@@ -11,12 +11,12 @@ public class BugDTO {
     private String fixedVersion;
     private String severity;
     private String status;
-    private String assignedTo;
-    private String attachment;
+//    private UserEntity assignedTo;
+//    private Set<AttachmentEntity> attachment;
     /* todo: severity and status should be enums
-    *   status should be set to New when first created
-    *   what data type is the attachment? how do we limit it to 25mb?
-    */
+     *   status should be set to New when first created
+     *   what data type is the attachment? how do we limit it to 25mb?
+     */
 
 
     public BugDTO() {
@@ -76,21 +76,5 @@ public class BugDTO {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getAssignedTo() {
-        return assignedTo;
-    }
-
-    public void setAssignedTo(String assignedTo) {
-        this.assignedTo = assignedTo;
-    }
-
-    public String getAttachment() {
-        return attachment;
-    }
-
-    public void setAttachment(String attachment) {
-        this.attachment = attachment;
     }
 }

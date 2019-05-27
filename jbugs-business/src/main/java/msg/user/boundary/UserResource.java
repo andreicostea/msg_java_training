@@ -19,7 +19,15 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/insert")
     @POST
-    public Response createUser(UserInputDTO input){
+    public Response createUser(UserInputDTO input, @HeaderParam("authorization") String connectedUserToken) {
+//        /* todo: implement hasPermission
+//        * should decode the token and check if the user has the neccesary permission(s)
+//        */
+
+//        if (hasPermission(connectedUserToken, PermissionType.USER_MANAGEMENT)) {
+//            userFacade.createUser(input);
+//            return Response.ok().build();
+//        }
         userFacade.createUser(input);
         return Response.ok().build();
     }
@@ -28,14 +36,14 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/login")
     @POST
-    public Response userLogin(UserLoginDTO input){
+    public Response userLogin(UserLoginDTO input) {
         userFacade.loginUser(input);
         return Response.ok().build();
     }
 
     @Produces(MediaType.APPLICATION_JSON)
     @GET
-    public Response getAll(){
+    public Response getAll() {
         return Response.ok(userFacade.getAll()).build();
     }
 
@@ -43,7 +51,9 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
     @GET
-    public Response getUserById(@PathParam("id") long id){
+    public Response getUserById(@PathParam("id") long id) {
         return Response.ok(userFacade.getUserById(id)).build();
     }
+
+
 }
