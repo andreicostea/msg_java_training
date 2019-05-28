@@ -6,17 +6,24 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { DashboardComponent } from "./features/dashboard/dashboard.component";
+import {LoginComponent} from "./features/login/containers/login/login.component";
+import {LoginModule} from "./features/login/login.module";
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
+   LoginComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    LoginModule
   ],
   bootstrap: [AppComponent]
 })
