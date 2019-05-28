@@ -54,6 +54,4 @@ public class UserResource {
     public Response getUserById(@PathParam("id") long id) {
         return Response.ok(userFacade.getUserById(id)).build();
     }
-
-
 }

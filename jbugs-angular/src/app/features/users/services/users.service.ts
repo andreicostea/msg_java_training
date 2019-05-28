@@ -15,9 +15,20 @@ export class UsersService {
 
   constructor(private backendService: BackendService) { }
 
-  loadUserByUsername(username: string): Observable<User> {
+  loadAllUsers(): Observable<User[]> {
     return this.backendService
-      .get(`${environment.baseUrl}/${this.usersEndpoint}/${username}`)
+      .get(`${environment.baseUrl}/${this.usersEndpoint}`);
+  }
+
+  loadUserById(id: number): Observable<User> {
+    return this.backendService
+      .get(`${environment.baseUrl}/${this.usersEndpoint}/${id}`)
       .pipe(map((result: UserJSON) => User.fromJSON(result)));
   }
+
+  // loadUserByUsername(username: string): Observable<User> {
+  //   return this.backendService
+  //     .get(`${environment.baseUrl}/${this.usersEndpoint}/${username}`)
+  //     .pipe(map((result: UserJSON) => User.fromJSON(result)));
+  // }
 }

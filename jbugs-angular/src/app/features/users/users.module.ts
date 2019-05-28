@@ -2,16 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsersComponent } from "./containers/users.component";
 import { UsersRoutingModule } from "./users-routing.module";
-import { UsersLocallyUsedTestComponentComponent } from './components/users-locally-used-test-component/users-locally-used-test-component.component';
+import { UsersTableComponent } from './components/users-table/users-table.component';
+import {MatButtonModule, MatRadioModule, MatTableModule} from "@angular/material";
 
 @NgModule({
   declarations: [
     UsersComponent,
-    UsersLocallyUsedTestComponentComponent,
+    UsersTableComponent
   ],
   imports: [
     CommonModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+    MatTableModule,
+    MatRadioModule,
+    MatButtonModule
   ]
 })
 export class UsersModule { }

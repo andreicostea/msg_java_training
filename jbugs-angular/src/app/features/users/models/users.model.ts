@@ -2,22 +2,22 @@ export interface UserJSON {
   firstName: string;
   lastName: string;
   email: string;
-  roles: string[];
+  mobileNumber: string;
 }
 
 export class User {
   firstName: string;
   lastName: string;
   email: string;
-  roles: string[];
+  mobileNumber: string;
 
   static fromJSON(json: UserJSON): User {
-    const termin = new User();
-    termin.firstName = json.firstName;
-    termin.lastName = json.lastName;
-    termin.email = json.email;
-    termin.roles = json.roles;
-    return termin;
+    const user = new User();
+    user.firstName = json.firstName;
+    user.lastName = json.lastName;
+    user.email = json.email;
+    user.mobileNumber = json.mobileNumber;
+    return user;
   }
 
   static toJSON(user: User): UserJSON {
@@ -25,7 +25,7 @@ export class User {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
-      roles: user.roles
+      mobileNumber: user.mobileNumber
     };
   }
 
