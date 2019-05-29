@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginInput} from "../../models/loginInput.model";
 import {LoginService} from "../../services/login.service";
+import {Alert} from "selenium-webdriver";
 
 @Component({
   selector: 'app-login-form',
@@ -23,8 +24,9 @@ export class LoginFormComponent implements OnInit {
       .subscribe(function (jwt) {
           console.log(jwt)
           this.jwt = jwt;
+
         },
-        error => console.log(error)
+        error => alert(error.error.message)
       );
   }
 

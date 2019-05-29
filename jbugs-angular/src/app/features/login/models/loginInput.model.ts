@@ -1,29 +1,28 @@
 export interface loginInputJSON {
-  email: string;
+  username: string;
   password: string;
-  jwt:string;
+
 
 }
 
 export class LoginInput {
-  email: string;
+  username: string;
   password: string;
-  jwt:string;
+
 
 
   static fromJSON(json: loginInputJSON): LoginInput {
     const termin = new LoginInput();
-    termin.email = json.email;
+    termin.username = json.username;
     termin.password = json.password;
-    termin.jwt = json.jwt;
     return termin;
   }
 
   static toJSON(loginInput: LoginInput): loginInputJSON {
     return <loginInputJSON>{
-      email: loginInput.email,
+      username: loginInput.username,
       password: loginInput.password,
-      jwt: loginInput.jwt
+
 
     };
   }

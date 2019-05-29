@@ -23,6 +23,7 @@ public class TestAuth {
     @Path("/test")
     @GET
     public Response createUser(@Context SecurityContext securityContext) {
-        return Response.ok(securityContext.isUserInRole("PROJECT MANAGER")).build();
+        System.out.println(securityContext.getUserPrincipal().getName());
+        return Response.ok(securityContext.isUserInRole("BUG_MANAGEMENT")).build();
     }
 }

@@ -3,7 +3,7 @@
     <div class="form-group">
       <label for="userName">UserName</label>
       <input class="form-control"
-             [(ngModel)] = "loginInput.email"
+             [(ngModel)] = "loginInput.username"
              type="text"
              id="userName"
              name="userName"
@@ -31,4 +31,5 @@
   </div>
   <button
     class="btn-primary" (click)="sendCredentials()">Submit</button>
+  <button mat-button>Button</button>
 </form>

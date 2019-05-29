@@ -4,6 +4,7 @@ import { LoginComponent } from './containers/login/login.component';
 
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import {FormsModule} from "@angular/forms";
+import {MatButtonModule} from "@angular/material";
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {FormsModule} from "@angular/forms";
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    MatButtonModule
   ]
 })
 export class LoginModule { }

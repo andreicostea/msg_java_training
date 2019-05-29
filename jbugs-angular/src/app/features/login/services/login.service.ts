@@ -22,7 +22,7 @@ export class LoginService {
       responseType: 'text'
     }
     return this.backendService
-      .post(`${environment.baseUrl}/${this.loginEndpoint}/`,loginInput,"",requestOptions)
+      .post(`${environment.baseUrl}/${this.loginEndpoint}/`,loginInput)
       .pipe(map((result: string)  => result));
   }
 }

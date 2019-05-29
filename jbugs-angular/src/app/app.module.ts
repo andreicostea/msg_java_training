@@ -8,6 +8,7 @@ import {FormsModule} from '@angular/forms';
 import { DashboardComponent } from "./features/dashboard/dashboard.component";
 import {LoginComponent} from "./features/login/containers/login/login.component";
 import {LoginModule} from "./features/login/login.module";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -23,7 +24,8 @@ import {LoginModule} from "./features/login/login.module";
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    LoginModule
+    LoginModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [AppComponent]
 })
