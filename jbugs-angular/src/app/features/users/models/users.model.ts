@@ -2,13 +2,20 @@ export interface UserJSON {
   firstName: string;
   lastName: string;
   email: string;
+  mobileNumber: string;
   roles: string[];
+}
+
+export class Role {
+  id : number;
+  type : string;
 }
 
 export class User {
   firstName: string;
   lastName: string;
   email: string;
+  mobileNumber: string;
   roles: string[];
 
   static fromJSON(json: UserJSON): User {
@@ -16,6 +23,7 @@ export class User {
     termin.firstName = json.firstName;
     termin.lastName = json.lastName;
     termin.email = json.email;
+    termin.mobileNumber = json.mobileNumber;
     termin.roles = json.roles;
     return termin;
   }
@@ -25,6 +33,7 @@ export class User {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
+      mobileNumber: user.mobileNumber,
       roles: user.roles
     };
   }

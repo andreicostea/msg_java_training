@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import {DashboardComponent} from "./features/dashboard/dashboard.component";
+import {UsersInsertComponent} from "./features/users/containers/users-insert/users-insert.component";
+import {UsersComponent} from "./features/users/containers/users/users.component";
 /*
 const routes: Routes = [
   {
@@ -60,10 +62,11 @@ const routes: Routes = [
         path: '',
         redirectTo: 'users',
         pathMatch: 'full'
+
       },
       {
         path: 'users',
-        loadChildren: 'src/app/features/users/users.module#UsersModule'
+        loadChildren: 'src/app/features/users/users.module#UsersModule',
       },
       {
         path: 'notifications',
