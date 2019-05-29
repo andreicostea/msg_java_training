@@ -6,6 +6,7 @@ import { UsersLocallyUsedTestComponentComponent } from './components/users-local
 import { UsersInsertButtonComponent } from './components/users-insert-button/users-insert-button.component';
 import { UsersInsertComponent } from './containers/users-insert/users-insert.component';
 import {FormsModule} from "@angular/forms";
+import {MatFormFieldModule, MatOptionModule} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import {FormsModule} from "@angular/forms";
   imports: [
     CommonModule,
     UsersRoutingModule,
-    FormsModule
+    FormsModule,
+    MatOptionModule,
+    MatFormFieldModule
   ]
 })
 export class UsersModule { }
