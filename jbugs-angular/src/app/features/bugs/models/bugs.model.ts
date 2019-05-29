@@ -2,7 +2,7 @@ export interface BugJSON {
   title: string
   description: string
   version: string
-  targetDate
+  targetDate: any
   status: string
   fixedVersion: string
   severity: string
@@ -12,7 +12,7 @@ export class Bug {
   title: string
   description: string
   version: string
-  targetDate
+  targetDate: any
   status: string
   fixedVersion: string
   severity: string
