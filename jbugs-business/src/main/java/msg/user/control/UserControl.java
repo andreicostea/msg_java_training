@@ -43,12 +43,25 @@ public class UserControl {
     private NotificationFacade notificationFacade;
 
 
-    /**
-     * Creates a userDTO based on the {@link UserInputDTO}.
-     *
-     * @param userDTO the input User DTO. mandatory
-     * @return the username of the newly created user.
-     */
+//    public void addRoles(UserEntity userEntity, RoleEntity role, List<PermissionEntity> permissionEntityList) {
+//        List<RoleEntity> roleEntities = userEntity.getRoles();
+//        int j = -1;
+//        for (int i = 0; i < roleEntities.size(); i++) {
+//            for (PermissionEntity permissionEntity : roleEntities.get(i).getPermissions()) {
+//                if (permissionEntity.getType().equals(PermissionType.PERMISSION_MANAGEMENT)
+//                        && roleEntities.get(i).getType().equals(role.getType())) {
+//
+//                    break;
+//                }
+//            }
+//        }
+//        List<PermissionEntity> permissionEntities = roleEntities.get(j).getPermissions();
+//        for(PermissionEntity permissionEntity : permissionEntityList){
+//            permissionEntities.add(permissionEntity);
+//        }
+//        roleEntities.get(j).setPermissions(permissionEntities);
+//        userDao.updateUser(userEntity);
+//    }
 
     public String authenticateUser(UserInputDTO userInputDTO) {
 
@@ -82,9 +95,7 @@ public class UserControl {
         if (userDao.existsEmail(userDTO.getEmail())) {
             throw new BusinessException(MessageCatalog.USER_WITH_SAME_MAIL_EXISTS);
         }
-
         final UserEntity newUserEntity = userConverter.convertInputDTOtoEntity(userDTO);
-
         newUserEntity.setUsername(this.createUserName(userDTO.getFirstName(), userDTO.getLastName()));
         newUserEntity.setStatus(true);
         newUserEntity.setPassword("DEFAULT_PASSWORD");
@@ -95,7 +106,6 @@ public class UserControl {
         this.notificationFacade.createNotification(
                 NotificationType.WELCOME_NEW_USER,
                 new NotificationParamsWelcomeUser(userFullName, newUserEntity.getUsername()), id);
-
         return newUserEntity.getUsername();
     }
 

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
 import {DashboardComponent} from "./features/dashboard/dashboard.component";
 /*
@@ -69,6 +69,10 @@ const routes: Routes = [
         path: 'notifications',
         loadChildren: 'src/app/features/notifications/notifications.module#NotificationsModule'
       },
+      {
+        path: 'permissions',
+        loadChildren: 'src/app/features/permission-manager/permission-manager.module#PermissionManagerModule'
+      },
     ]
   }
 ];
@@ -77,4 +81,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

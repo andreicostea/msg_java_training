@@ -3,6 +3,11 @@
 // =================================================================================================
 package msg.role.control;
 
+import msg.permission.PermissionEntity;
+import msg.permission.boundary.PermissionFacade;
+import msg.permission.entity.dao.PermissionDAO;
+import msg.permission.entity.dto.PermissionConverter;
+import msg.permission.entity.dto.PermissionDTO;
 import msg.role.entity.RoleEntity;
 import msg.role.entity.dao.RoleDAO;
 
@@ -18,10 +23,14 @@ import java.util.List;
  */
 @Stateless
 public class RoleControl {
-
     @EJB
     private RoleDAO roleDao;
-
+    @EJB
+    private PermissionFacade permissionFacade;
+    @EJB
+    private PermissionConverter permissionConverter;
+    @EJB
+    private PermissionDAO permissionDAO;
     /**
      * Given a input list of {@link RoleEntity#getType()}s, returns the corresponding list of RoleEntity Entities.
      *
@@ -31,4 +40,23 @@ public class RoleControl {
     public List<RoleEntity> getRolesByTypeList(List<String> typeList) {
         return roleDao.getRolesByTypeList(typeList);
     }
+
+    public RoleEntity addPermission(long id, PermissionDTO permissionDTO) {
+        final PermissionEntity permissionEntity = permissionConverter.convertInputDTOtoEntity(permissionDTO);
+        permissionEntity.setDescription(permissionDTO.getDescription());
+        permissionEntity.setType(permissionDTO.getType());
+        PermissionEntity newPermission = permissionDAO.createPermission(permissionEntity);
+        RoleEntity roleEntity = roleDao.getRoleById(id);
+        return roleDao.addPermission(roleEntity, newPermission);
+    }
+
+    public RoleEntity getRoleById(long id) {
+        RoleEntity roleEntity = roleDao.getRoleById(id);
+        //roleEntity.addPermission();
+        return roleEntity;
+    }
+
+//    public List<PermissionEntity> getPermission(List<String> permissionEntityList){
+//        return roleDao.getPermission(permissionEntityList);
+//    }
 }

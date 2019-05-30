@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { UsersService } from "../services/users.service";
-import { User } from "../models/users.model";
+import {Component, OnInit} from '@angular/core';
+import {UsersService} from "../services/users.service";
+import {User} from "../models/users.model";
 
 @Component({
   selector: 'app-users',
@@ -11,7 +11,8 @@ export class UsersComponent implements OnInit {
 
   user: User;
 
-  constructor(private userService: UsersService) { }
+  constructor(private userService: UsersService) {
+  }
 
   ngOnInit() {
     //TODO integrate with login
@@ -19,7 +20,7 @@ export class UsersComponent implements OnInit {
       .subscribe(
         user => this.user = user,
         error => console.log(error)
-        );
+      );
   }
 
   get currentUser(): string {

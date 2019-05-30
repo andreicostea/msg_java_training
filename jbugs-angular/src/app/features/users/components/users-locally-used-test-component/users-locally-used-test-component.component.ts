@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-users-locally-used-test-component',
@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersLocallyUsedTestComponentComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

@@ -71,4 +71,9 @@ public class PermissionDAO {
                 .setParameter(PermissionEntity.INPUT_TYPE_LIST, typeList)
                 .getResultList();
     }
+
+    public List<PermissionEntity> getAll() {
+        return em.createNamedQuery(PermissionEntity.PERMISSION_FIND_ALL, PermissionEntity.class)
+                .getResultList();
+    }
 }

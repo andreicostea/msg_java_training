@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { UsersLocallyUsedTestComponentComponent } from './users-locally-used-test-component.component';
+import {UsersLocallyUsedTestComponentComponent} from './users-locally-used-test-component.component';
 
 describe('UsersLocallyUsedTestComponentComponent', () => {
   let component: UsersLocallyUsedTestComponentComponent;
@@ -8,9 +8,9 @@ describe('UsersLocallyUsedTestComponentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UsersLocallyUsedTestComponentComponent ]
+      declarations: [UsersLocallyUsedTestComponentComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

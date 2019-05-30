@@ -5,8 +5,10 @@ import msg.permission.entity.dto.PermissionDTO;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 
 /**
  * Document me.
@@ -33,6 +35,21 @@ public class PermissionResource {
         System.out.println("deleted permission with id:" + id);
         permissionFacade.removePermission(id);
         return Response.ok().build();
+    }
+
+    //Asta cu token ce o zis catalin
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/test")
+    @GET
+    public Response createUser(@Context SecurityContext securityContext) {
+        return Response.ok(securityContext.isUserInRole("PERMISSION MANAGER")).build();
+    }
+
+    //get for permissions
+    @Produces(MediaType.APPLICATION_JSON)
+    @GET
+    public Response getAll() {
+        return Response.ok(permissionFacade.getAll()).build();
     }
 
 }
