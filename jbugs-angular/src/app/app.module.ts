@@ -1,13 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
-import { DashboardComponent } from "./features/dashboard/dashboard.component";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule} from "@angular/material";
+import {DashboardComponent} from "./features/dashboard/dashboard.component";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule, MatTableModule} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -20,8 +20,10 @@ import {MatButtonModule, MatCheckboxModule} from "@angular/material";
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule
+    MatButtonModule, MatCheckboxModule,
+    MatTableModule
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

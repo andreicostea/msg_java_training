@@ -1,33 +1,33 @@
 The bugs
-<table mat-table class="mat-elevation-z8">
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container matColumnDef="title">
-    <th mat-header-cell> Title </th>
-    <!--th mat-header-cell *matHeaderCellDef> Title </th-->
-    <!--td mat-cell *matCellDef="let element"> {{element.position}} </td-->
+    <th mat-header-cell *matHeaderCellDef>Title</th>
+    <td mat-cell *matCellDef="let el"> {{el.title}}</td>
   </ng-container>
   <ng-container matColumnDef="description">
-    <th mat-header-cell> Description</th>
-    <!--td mat-cell *matCellDef="let element"> {{element.position}} </td-->
+    <th mat-header-cell *matHeaderCellDef> Description</th>
+    <td mat-cell *matCellDef="let el"> {{el.description}}</td>
   </ng-container>
   <ng-container matColumnDef="version">
-    <th mat-header-cell> Version</th>
-    <!--td mat-cell *matCellDef="let element"> {{element.position}} </td-->
+    <th mat-header-cell *matHeaderCellDef> Version</th>
+    <td mat-cell *matCellDef="let el"> {{el.version}}</td>
   </ng-container>
   <ng-container matColumnDef="targetDate">
-    <th mat-header-cell> Target Date</th>
-    <!--td mat-cell *matCellDef="let element"> {{element.position}} </td-->
+    <th mat-header-cell *matHeaderCellDef> Target Date</th>
+    <td mat-cell *matCellDef="let el"> {{el.targetDate}}</td>
   </ng-container>
   <ng-container matColumnDef="status">
-    <th mat-header-cell> Status</th>
-    <!--td mat-cell *matCellDef="let element"> {{element.position}} </td-->
+    <th mat-header-cell *matHeaderCellDef> Status</th>
+    <td mat-cell *matCellDef="let el"> {{el.status}}</td>
   </ng-container>
   <ng-container matColumnDef="fixedVersion">
-    <th mat-header-cell> Fixed Version</th>
-    <!--td mat-cell *matCellDef="let element"> {{element.position}} </td-->
+    <th mat-header-cell *matHeaderCellDef> Fixed Version</th>
+    <td mat-cell *matCellDef="let el"> {{el.fixedVersion}}</td>
   </ng-container>
   <ng-container matColumnDef="severity">
-    <th mat-header-cell> Severity</th>
-    <td></td>
+    <th mat-header-cell *matHeaderCellDef> Severity</th>
+    <td mat-cell *matCellDef="let el"> {{el.severity}}</td>
   </ng-container>
-</table>
-<!--mat-paginator [pageSizeOptions]="[25]" showFirstLastButtons></mat-paginator-->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</mat-table>
