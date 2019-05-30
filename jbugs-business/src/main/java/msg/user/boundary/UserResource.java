@@ -20,7 +20,7 @@ public class UserResource {
     @Path("/insert")
     @POST
     public Response createUser(UserInputDTO input, @HeaderParam("authorization") String connectedUserToken) {
-//        /* todo: implement hasPermission
+//        /*
 //        * should decode the token and check if the user has the neccesary permission(s)
 //        */
 
@@ -32,6 +32,12 @@ public class UserResource {
         return Response.ok().build();
     }
 
+    @Consumes(MediaType.APPLICATION_JSON)
+    @PATCH
+    public Response updateUser(UserInputDTO userInputDTO) {
+        userFacade.updateUser(userInputDTO);
+        return Response.ok().build();
+    }
 
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/login")

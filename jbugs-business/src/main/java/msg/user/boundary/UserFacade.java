@@ -27,7 +27,7 @@ public class UserFacade {
     /**
      * Creates a user based on the {@link UserInputDTO}.
      *
-     * @param user the input User DTO. mandatory
+     * @param userInputDto the input User DTO. mandatory
      */
     //@RolesAllowed(PermissionType.USER_MANAGEMENT)
     public Object authenticateUser(UserInputDTO userInputDto) {
@@ -38,6 +38,8 @@ public class UserFacade {
         this.userControl.createUser(user);
     }
 
+    public void updateUser(UserInputDTO userInputDTO) {
+    }
 
     public void loginUser(UserLoginDTO userLoginDTO) {
 

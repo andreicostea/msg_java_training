@@ -6,26 +6,58 @@ export interface UserJSON {
 }
 
 export class User {
-  firstName: string;
-  lastName: string;
-  email: string;
-  mobileNumber: string;
+  private _firstName: string;
+  private _lastName: string;
+  private _email: string;
+  private _mobileNumber: string;
+
+  get firstName(): string {
+    return this._firstName;
+  }
+
+  set firstName(value: string) {
+    this._firstName = value;
+  }
+
+  get lastName(): string {
+    return this._lastName;
+  }
+
+  set lastName(value: string) {
+    this._lastName = value;
+  }
+
+  get email(): string {
+    return this._email;
+  }
+
+  set email(value: string) {
+    this._email = value;
+  }
+
+  get mobileNumber(): string {
+    return this._mobileNumber;
+  }
+
+  set mobileNumber(value: string) {
+    this._mobileNumber = value;
+  }
 
   static fromJSON(json: UserJSON): User {
     const user = new User();
-    user.firstName = json.firstName;
-    user.lastName = json.lastName;
-    user.email = json.email;
-    user.mobileNumber = json.mobileNumber;
+    user._firstName = json.firstName;
+    user._lastName = json.lastName;
+    user._email = json.email;
+    user._mobileNumber = json.mobileNumber;
     return user;
   }
 
   static toJSON(user: User): UserJSON {
     return <UserJSON>{
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      mobileNumber: user.mobileNumber
+      firstName: user._firstName,
+      lastName: user._lastName,
+      email: user._email,
+      mobileNumber: user._mobileNumber
     };
   }
 

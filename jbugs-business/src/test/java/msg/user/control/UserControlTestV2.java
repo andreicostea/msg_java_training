@@ -90,7 +90,6 @@ public class UserControlTestV2 {
         user.setFirstName("Andrei");
         user.setEmail("axasde@yahoo.com");
         user.setMobileNumber("0700000000");
-        user.setCounter(0);
         return user;
     }
 

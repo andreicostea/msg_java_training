@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import {Injectable} from '@angular/core';
+import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
 
-import { environment } from "../../../../environments/environment";
-import { BackendService } from "../../../core/backend/backend.service";
-import { User, UserJSON } from "../models/users.model";
+import {environment} from "../../../../environments/environment";
+import {BackendService} from "../../../core/backend/backend.service";
+import {User, UserJSON} from "../models/users.model";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,8 @@ export class UsersService {
 
   private usersEndpoint = 'users';
 
-  constructor(private backendService: BackendService) { }
+  constructor(private backendService: BackendService) {
+  }
 
   loadAllUsers(): Observable<User[]> {
     return this.backendService
@@ -31,4 +32,7 @@ export class UsersService {
   //     .get(`${environment.baseUrl}/${this.usersEndpoint}/${username}`)
   //     .pipe(map((result: UserJSON) => User.fromJSON(result)));
   // }
+  updateUser(user: User) {
+    this.backendService.patch(`${environment.baseUrl}/${this.usersEndpoint}`, user);
+  }
 }
