@@ -1,0 +1,50 @@
+<!--<form class="example-form">-->
+<!--  <mat-form-field class="example-full-width">-->
+<!--    <input matInput placeholder="Favorite food" value="Sushi">-->
+<!--  </mat-form-field>-->
+
+<!--  <mat-form-field class="example-full-width">-->
+<!--    <textarea matInput placeholder="Leave a comment"></textarea>-->
+<!--  </mat-form-field>-->
+<!--</form>-->
+<form  #f="ngForm" >
+  <div class="example-form" ngModelGroup="user" #user="ngModelGroup">
+
+    <div >
+      <mat-form-field class="example-full-width">
+        <label>UserName</label>
+        <input matInput  class="form-control"
+             [(ngModel)] = "loginInput.username"
+             type="text"
+             id="userName"
+             name="userName"
+             ngModel
+             required
+             #userName ="ngModel" >
+      </mat-form-field>
+      <div class = "alert alert-danger" *ngIf="userName.touched && userName.invalid">
+        <div *ngIf="userName.errors?.required">The field is required</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+      <label>Password</label>
+      <input matInput class="form-control"
+             [(ngModel)] = "loginInput.password"
+             type="password"
+             id="password"
+             name="password"
+             ngModel
+             required
+             #password ="ngModel" >
+      </mat-form-field>
+      <div class = "alert alert-danger" *ngIf="password.touched && password.invalid">
+        <div *ngIf="password.errors?.required">The field is required</div>
+      </div>
+    </div>
+    <button
+      class="btn-primary" (click)="sendCredentials()">Login</button>
+  </div>
+
+
+</form>
