@@ -1,19 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
 
-import { environment } from "../../../../environments/environment";
 import { BackendService } from "../../../core/backend/backend.service";
-import { Bug, BugJSON } from "../models/bugs.model";
+import {Bug} from "../models/bugs.model";
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class BugsService {
 
-  private bugsEndpoint = 'bugs';
 
   constructor(private backendService: BackendService) { }
+
+  insertBug(bug : Bug) : Observable<any> {
+    return  this.backendService
+      .post(`jbugs/jbugs-api/bugs`, bug)
+
+  }
 
 
 }
