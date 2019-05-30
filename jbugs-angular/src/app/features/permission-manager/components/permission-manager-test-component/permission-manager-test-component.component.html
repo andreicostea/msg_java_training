@@ -1,22 +1,20 @@
 <div class="form-group">
-  <label mat-form-filed for="roles">Roles Dropdown multiple</label>
-  <select matNativeControl class="form-control"
-          id="roles"
-          name="rollles"
-          name="rolee"
-          ngModel>
-    <option *ngFor="let rol of roles" [value]="rol.id">{{rol.name}}</option>
-  </select>
+  <mat-form-field>
+    <mat-label>Roles Dropdown multiple</mat-label>
+    <mat-select [(ngModel)]="selection">
+      <mat-option *ngFor="let rol of roles" [value]="rol">{{rol.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>
 <div class="form-group">
   <label mat-form-filed for="permissions">Permission Dropdown multiple</label>
   <select matNativeControl class="form-control"
           id="permissions"
           name="permission"
-          name="perm"
           multiple
           ngModel>
-    <option *ngFor="let permission of permissionList" [value]="permission.type">{{permission.description}}</option>
+    <option *ngFor="let permission of selected.permissionList"
+            [value]="permission.type">{{permission.description}}</option>
   </select>
 </div>
 

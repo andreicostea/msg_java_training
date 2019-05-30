@@ -10,6 +10,9 @@ import {Permission} from "../../model/permission-manager.model";
 export class PermissionManagerInsertButtonComponent implements OnInit {
   public permissionList: Permission[];
 
+  // TODO add role type instead of 'any'
+  selection = {};
+
   constructor(private permissionservice: PermissionService) {
   }
 
@@ -21,9 +24,43 @@ export class PermissionManagerInsertButtonComponent implements OnInit {
   }
 
   roles = [
-    {id: 1, name: 'ADMINISTRATOR'},
-    {id: 2, name: 'PROJECT MANAGER'},
-    {id: 3, name: 'TEST MANAGER'},
-    {id: 4, name: 'DEVELOPER'},
-    {id: 5, name: 'TESTER'}];
+    {
+      id: 1,
+      name: 'ADMINISTRATOR',
+      permissionList: [{type: 'PERMISSION_MANAGER', description: 'blabla'}, {
+        type: 'BUG_MANAGER',
+        description: 'blabla2'
+      }]
+    },
+    {id: 2, name: 'PROJECT MANAGER', permissionList: [{type: 'BUG_MANAGER', description: 'blabla2'}]},
+    {
+      id: 3,
+      name: 'TEST MANAGER',
+      permissionList: [{type: 'PERMISSION_MANAGER', description: 'blabla'}, {
+        type: 'BUG_MANAGER',
+        description: 'blabla2'
+      }]
+    },
+    {
+      id: 4,
+      name: 'DEVELOPER',
+      permissionList: [{type: 'PERMISSION_MANAGER', description: 'blabla'}, {
+        type: 'BUG_MANAGER',
+        description: 'blabla2'
+      }]
+    },
+    {
+      id: 5,
+      name: 'TESTER',
+      permissionList: [{type: 'PERMISSION_MANAGER', description: 'blabla'}, {
+        type: 'BUG_MANAGER',
+        description: 'blabla2'
+      }]
+    }
+  ];
+
+  get selected() {
+    console.log(this.selection);
+    return this.selection;
+  }
 }
