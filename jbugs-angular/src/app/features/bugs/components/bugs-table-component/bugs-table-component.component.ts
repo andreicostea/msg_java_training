@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Bug, BugJSON} from "../../models/bugs.model";
 import {BugsService} from "../../services/bugs.service";
 import {Observable} from "rxjs";
+import {MatPaginator, MatTableDataSource} from "@angular/material";
 
 @Component({
   selector: 'app-bugs-table-component',
@@ -20,17 +21,20 @@ export class BugsTableComponentComponent implements OnInit {
   //     severity: "sev"}
   //   ];
 
-  dataSource: Observable<Bug[]> = this.loadAllBugs();
+  data: Observable<Bug[]> = this.loadAllBugs();
+  dataSource = new MatTableDataSource();
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   private loadAllBugs(){
     return this.bugService.loadAllBugs();
   }
   constructor(private bugService: BugsService) { }
 
   ngOnInit() {
-
+    this.dataSource.paginator = this.paginator;
   }
 
 }
+
 
 
