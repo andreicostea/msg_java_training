@@ -3,6 +3,7 @@ export interface UserJSON {
   lastName: string;
   email: string;
   roles: string[];
+  token: string;
 }
 
 export class User {
@@ -10,6 +11,7 @@ export class User {
   lastName: string;
   email: string;
   roles: string[];
+  token: string;
 
   static fromJSON(json: UserJSON): User {
     const termin = new User();
@@ -17,6 +19,7 @@ export class User {
     termin.lastName = json.lastName;
     termin.email = json.email;
     termin.roles = json.roles;
+    termin.token = json.token;
     return termin;
   }
 
@@ -25,7 +28,8 @@ export class User {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
-      roles: user.roles
+      roles: user.roles,
+      token: user.token
     };
   }
 

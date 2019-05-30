@@ -9,6 +9,7 @@ import { DashboardComponent } from "./features/dashboard/dashboard.component";
 import {LoginComponent} from "./features/login/containers/login/login.component";
 import {LoginModule} from "./features/login/login.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {CookieService} from "ngx-cookie-service";
 
 
 
@@ -27,6 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginModule,
     BrowserAnimationsModule
   ],
+  providers: [ CookieService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

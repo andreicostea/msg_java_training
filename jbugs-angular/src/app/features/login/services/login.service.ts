@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import {BackendService} from "../../../core/backend/backend.service";
 import {Observable} from "rxjs";
-import {User, UserJSON} from "../../users/models/users.model";
+
 import {environment} from "../../../../environments/environment";
 import {map} from "rxjs/operators";
 import {LoginInput} from "../models/loginInput.model";
 import {HttpHeaders} from "@angular/common/http";
+import {User} from "../../users/models/users.model";
+
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,13 +20,13 @@ export class LoginService {
 
   constructor(private backendService: BackendService) { }
 
-  loginUser(loginInput: LoginInput):Observable<String> {
+  loginUser(loginInput: LoginInput):Observable<User> {
     const requestOptions: Object = {
       /* other options here */
       responseType: 'text'
     }
     return this.backendService
       .post(`${environment.baseUrl}/${this.loginEndpoint}/`,loginInput)
-      .pipe(map((result: string)  => result));
+      .pipe(map((result: User)  => User.fromJSON(result)));
   }
 }

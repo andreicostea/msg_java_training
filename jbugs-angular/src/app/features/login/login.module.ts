@@ -4,7 +4,11 @@ import { LoginComponent } from './containers/login/login.component';
 
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import {FormsModule} from "@angular/forms";
-import {MatButtonModule} from "@angular/material";
+import {MatButtonModule, MatFormFieldModule, MatInputModule, MatLineModule, MatTabsModule} from "@angular/material";
+import {MatLabel} from "@angular/material/typings/form-field";
+import {MatCardModule} from "@angular/material/typings/esm5/card";
+
+
 
 
 @NgModule({
@@ -15,7 +19,11 @@ import {MatButtonModule} from "@angular/material";
   imports: [
     CommonModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTabsModule,
+    MatLineModule,
+    MatFormFieldModule,
+    MatInputModule,
   ]
 })
 export class LoginModule { }
