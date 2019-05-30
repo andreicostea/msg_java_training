@@ -10,22 +10,22 @@ import {Observable} from "rxjs";
 })
 export class BugsTableComponentComponent implements OnInit {
   displayedColumns: string[] = ["title", "description", "version", "targetDate", "status", "fixedVersion", "severity"];
-  dataSource: Bug[] = [
-    {title: "bug1",
-      description: "description1",
-      version: "v1.1",
-      targetDate: "30-05-2019",
-      status: "status",
-      fixedVersion: "v7.2",
-      severity: "sev"}
-    ];
+  // dataSource: Bug[] = [
+  //   {title: "bug1",
+  //     description: "description1",
+  //     version: "v1.1",
+  //     targetDate: "30-05-2019",
+  //     status: "status",
+  //     fixedVersion: "v7.2",
+  //     severity: "sev"}
+  //   ];
 
-  /*dataSource: Observable<Bug[]> = this.loadAllBugs();
+  dataSource: Observable<Bug[]> = this.loadAllBugs();
 
   private loadAllBugs(){
     return this.bugService.loadAllBugs();
-  }*/
-  constructor() { }
+  }
+  constructor(private bugService: BugsService) { }
 
   ngOnInit() {
 
