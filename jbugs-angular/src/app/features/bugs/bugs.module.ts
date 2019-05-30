@@ -5,7 +5,7 @@ import { BugsComponent } from "./containers/bugs/bugs.component";
 import { BugsRoutingModule } from "./bugs-routing.module";
 import { BugsTableComponentComponent } from './components/bugs-table-component/bugs-table-component.component';
 import { BugAddComponent } from './containers/bug-add/bug-add.component';
-import {MatCardModule, MatListModule} from "@angular/material";
+import {MatCardModule, MatDatepickerModule, MatInputModule, MatListModule} from "@angular/material";
 import {FormsModule} from "@angular/forms";
 
 @NgModule({
@@ -20,7 +20,9 @@ import {FormsModule} from "@angular/forms";
     BugsRoutingModule,
     MatCardModule,
     MatListModule,
-    FormsModule
+    FormsModule,
+    MatInputModule,
+    MatDatepickerModule
   ]
 })
 export class BugsModule { }

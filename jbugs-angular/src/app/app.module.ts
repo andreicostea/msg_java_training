@@ -7,12 +7,20 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { DashboardComponent } from "./features/dashboard/dashboard.component";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule} from "@angular/material";
+import {MatButtonModule, MatCheckboxModule, MatNativeDateModule} from "@angular/material";
+import {LoginComponent} from "./features/login/containers/login/login.component";
+import {LoginModule} from "./features/login/login.module";
+import {CookieService} from "ngx-cookie-service";
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoginComponent
+
   ],
   imports: [
     BrowserModule,
@@ -20,8 +28,12 @@ import {MatButtonModule, MatCheckboxModule} from "@angular/material";
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule
+    MatButtonModule, MatCheckboxModule,
+    LoginModule,
+    BrowserAnimationsModule,
+    MatNativeDateModule
   ],
+  providers: [ CookieService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

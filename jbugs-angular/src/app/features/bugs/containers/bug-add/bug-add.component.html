@@ -1,3 +1,4 @@
+<form #f = 'ngForm' >
 
 <mat-card class="example-card">
   <mat-card-header>
@@ -64,35 +65,38 @@
       </div>
     </div>
 
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker"
+                       [(ngModel)] = "bug.targetDate"
+                      name = "date"
+                       ngModel
+                      placeholder="Choose a date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+
     <div class ="form-group">
-      <label > Email</label>
+      <label > severity</label>
       <input class = "form-control"
              type ="text"
-             id = "email"
-             name = "email"
+             id = "severity"
+             name = "severity"
              ngModel
-             [(ngModel)] = "user.email"
+             [(ngModel)] = "bug.severity"
              required
 
-             #email ="ngModel">
+             #severity ="ngModel">
 
       <div class ="alert alert-danger"
-           *ngIf="email.touched && email.invalid">
-        <div *ngIf="email.errors.required">The field is required</div>
-        <div *ngIf="email.errors.pattern">The pattern is invalid</div>
+           *ngIf="severity.touched && severity.invalid">
+        <div *ngIf="severity.errors.required">The field is required</div>
+        <div *ngIf="severity.errors.pattern">The pattern is invalid</div>
 
       </div>
     </div>
 
 
-    <mat-form-field  class="col-lg-12">
-      <mat-label>Rol</mat-label>
-      <mat-select [(ngModel)] = "user.roles"
-                  name="roles"
-                  ngModel multiple>
-        <mat-option *ngFor="let rol of roles" [value]="rol">{{rol}}</mat-option>
-      </mat-select>
-    </mat-form-field>
 
 
   </mat-card-content>

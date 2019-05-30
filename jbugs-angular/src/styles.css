@@ -2,8 +2,8 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 body {
 padding: 20px;
-  /*max-width: 400px;*/
+
 }
 
-/*html, body { height: 100%; }*/
+html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
