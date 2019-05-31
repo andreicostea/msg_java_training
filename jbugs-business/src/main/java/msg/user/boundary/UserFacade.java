@@ -39,6 +39,7 @@ public class UserFacade {
     }
 
     public void updateUser(UserInputDTO userInputDTO) {
+        this.userControl.updateUser(userInputDTO);
     }
 
     public void loginUser(UserLoginDTO userLoginDTO) {

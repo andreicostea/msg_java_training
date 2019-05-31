@@ -12,16 +12,9 @@ import msg.notification.boundary.notificationParams.NotificationParamsWelcomeUse
 import msg.notification.entity.NotificationType;
 import msg.role.entity.RoleEntity;
 import msg.user.MessageCatalog;
-
-import msg.user.entity.dto.UserDTO;
-
-
-
 import msg.user.entity.UserEntity;
 import msg.user.entity.dao.UserDAO;
-import msg.user.entity.dto.UserConverter;
-import msg.user.entity.dto.UserInputDTO;
-import msg.user.entity.dto.UserLoginDTO;
+import msg.user.entity.dto.*;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -45,7 +38,6 @@ public class UserControl {
 
     @EJB
     private NotificationFacade notificationFacade;
-
 
 
     public String authenticateUser(UserInputDTO userInputDTO) {
@@ -114,18 +106,18 @@ public class UserControl {
     private String createUserName(final String firstName, final String lastName) {
         String username = "";
 
-            String lastNameBuild = lastName;
-            String firstNameBuild = firstName;
-            while(lastNameBuild.length() < 5) lastNameBuild += "-";
-            while(firstNameBuild.length() < 5) firstNameBuild += "-";
+        String lastNameBuild = lastName;
+        String firstNameBuild = firstName;
+        while (lastNameBuild.length() < 5) lastNameBuild += "-";
+        while (firstNameBuild.length() < 5) firstNameBuild += "-";
 
-            username = generateUsernameNormal(firstNameBuild, lastNameBuild);
+        username = generateUsernameNormal(firstNameBuild, lastNameBuild);
 
-            if(username.equals("")){
-                username = generateUsernameWithNumber(firstNameBuild, lastNameBuild);
+        if (username.equals("")) {
+            username = generateUsernameWithNumber(firstNameBuild, lastNameBuild);
 
-                if(username.equals("")){
-                    username = generateUserNameRandom();
+            if (username.equals("")) {
+                username = generateUserNameRandom();
             }
         }
 
@@ -135,13 +127,13 @@ public class UserControl {
 
     private String generateUsernameWithNumber(String firstName, String lastName) {
         String username = lastName.substring(0, 5);
-        for(int i = 0; i <= 99999; i++){
+        for (int i = 0; i <= 99999; i++) {
             int count = 4;
             String username1 = username + i;
-            while(username1.length() > 6) username1 = username.substring( 0, --count) + i;
+            while (username1.length() > 6) username1 = username.substring(0, --count) + i;
 
-            if(!userDao.exitsUsername(username1.toLowerCase())){
-               return username1.toLowerCase();
+            if (!userDao.exitsUsername(username1.toLowerCase())) {
+                return username1.toLowerCase();
             }
 
 
@@ -149,31 +141,33 @@ public class UserControl {
         return "";
     }
 
-    public String generateUsernameNormal(String firstName, String lastName){
+    public String generateUsernameNormal(String firstName, String lastName) {
 
         int counterLastName = 6;
         int counterFirstName = 0;
-        String username ="";
+        String username = "";
         //cand lastname e suficient
-        if(lastName.length() > 4){
-            do{
-                if(counterLastName == 1) {
-                    username = ""; break;
+        if (lastName.length() > 4) {
+            do {
+                if (counterLastName == 1) {
+                    username = "";
+                    break;
                 }
-                username = lastName.substring(0,--counterLastName)
-                        + firstName.substring(0,++counterFirstName);
-            }while(userDao.exitsUsername(username.toLowerCase()));
+                username = lastName.substring(0, --counterLastName)
+                        + firstName.substring(0, ++counterFirstName);
+            } while (userDao.exitsUsername(username.toLowerCase()));
 
 
-        }else {
+        } else {
 
             if (firstName.length() + lastName.length() >= 6) {
 
                 username = lastName + firstName.substring(0, 6 - lastName.length());
                 int lastNameLength = lastName.length();
                 while (userDao.exitsUsername(username.toLowerCase())) {
-                    if(lastNameLength == 1){
-                        username = ""; break;
+                    if (lastNameLength == 1) {
+                        username = "";
+                        break;
                     }
 
                     username = lastName.substring(0, --lastNameLength)
@@ -198,21 +192,19 @@ public class UserControl {
     }
 
 
-
-
     public void loginUser(UserLoginDTO userLoginDTO) {
         UserEntity userEntity;
-        try{
-            userEntity  = userDao.getUserByUsername(userLoginDTO.getUsername());
-        }catch (Exception e){
+        try {
+            userEntity = userDao.getUserByUsername(userLoginDTO.getUsername());
+        } catch (Exception e) {
             throw new BusinessException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD);
         }
         //verify password
-        if(userEntity.isStatus()){
+        if (userEntity.isStatus()) {
 
-            if (!userEntity.getPassword().equals(userLoginDTO.getPassword())){
+            if (!userEntity.getPassword().equals(userLoginDTO.getPassword())) {
                 // subtract the counter and throw message
-                if(userEntity.getCounter() > 1){
+                if (userEntity.getCounter() > 1) {
 
                     int counter = userEntity.getCounter() - 1;
                     userEntity.setCounter(counter);
@@ -220,7 +212,7 @@ public class UserControl {
 
                     throw new BusinessWebAppException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD, 400);
                     // username inactive
-                }else{
+                } else {
                     userEntity.setStatus(false);
                     userEntity.setCounter(0);
                     userDao.createUser(userEntity);
@@ -228,22 +220,22 @@ public class UserControl {
 
                 }
                 //success and reset the counter if necessary
-            }else{
-                if(userEntity.getCounter() != 5){
+            } else {
+                if (userEntity.getCounter() != 5) {
                     userEntity.setCounter(5);
                     userDao.createUser(userEntity);
                 }
             }
 
 
-        }else{
+        } else {
             throw new BusinessWebAppException(MessageCatalog.USER_INACTIVE, 403);
         }
 
 
     }
 
-    public List<UserDTO> getAll(){
+    public List<UserDTO> getAll() {
         return userDao.getAll().stream()
                 .map(userConverter::convertEntityDTO)
                 .collect(Collectors.toList());
@@ -251,12 +243,18 @@ public class UserControl {
 
     public UserDTO getUserById(long id) {
         UserEntity user;
-        try{
-          user = userDao.getUserById(id);
-        }catch (Exception e){
+        try {
+            user = userDao.getUserById(id);
+        } catch (Exception e) {
             throw new BusinessException(MessageCatalog.USER_WITH_THAT_ID_DOES_NOT_EXISTS);
         }
         return userConverter.convertEntityDTO(user);
 
+    }
+
+    public void updateUser(UserUpdateDTO userUpdateDTO) {
+        UserEntity user = userConverter.convertInputDTOtoEntity(userUpdateDTO);
+        userDao.getUserByEmail(userUpdateDTO.getEmailBeforeUpdate());
+        userDao.updateUser(user);
     }
 }

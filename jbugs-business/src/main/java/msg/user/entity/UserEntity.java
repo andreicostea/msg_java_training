@@ -48,7 +48,7 @@ public class UserEntity extends BaseEntity<Long> {
     private String firstName;
     @Column(name = "last_name", nullable = false)
     private String lastName;
-    @Column(name = "email", nullable = false)//todo: @Pattern
+    @Column(name = "email", nullable = false) //todo: @Pattern
     private String email;
     @Column(name = "mobile_number", nullable = false)
     private String mobileNumber;

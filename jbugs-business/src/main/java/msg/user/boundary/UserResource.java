@@ -35,6 +35,7 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @PATCH
     public Response updateUser(UserInputDTO userInputDTO) {
+        System.out.println(userInputDTO.getFirstName());
         userFacade.updateUser(userInputDTO);
         return Response.ok().build();
     }
