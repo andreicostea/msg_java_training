@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {MatButtonModule, MatCheckboxModule, MatTableModule} from "@angular/material";
 import { DashboardComponent } from "./features/dashboard/dashboard.component";
@@ -11,12 +11,14 @@ import {LoginComponent} from "./features/login/containers/login/login.component"
 import {LoginModule} from "./features/login/login.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {CookieService} from "ngx-cookie-service";
+import {AddHeaderInterceptor} from "./core/backend/request.interceptor";
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-   LoginComponent
+   LoginComponent,
+
 
   ],
   imports: [
@@ -30,7 +32,11 @@ import {CookieService} from "ngx-cookie-service";
     LoginModule,
     BrowserAnimationsModule
   ],
-  providers: [ CookieService ],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AddHeaderInterceptor,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
