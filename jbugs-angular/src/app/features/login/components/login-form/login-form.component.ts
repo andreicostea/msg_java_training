@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginInput} from "../../models/loginInput.model";
 import {LoginService} from "../../services/login.service";
-
-import {Alert} from "selenium-webdriver";
 import {CookieService} from "ngx-cookie-service";
 
 @Component({
@@ -12,10 +10,9 @@ import {CookieService} from "ngx-cookie-service";
 })
 export class LoginFormComponent implements OnInit {
 
-  private jwt: string;
   public loginInput: LoginInput = new LoginInput();
 
-  constructor(private loginService: LoginService,private cookieService: CookieService) {
+  constructor(private loginService: LoginService, private cookieService: CookieService) {
   }
 
   ngOnInit() {
@@ -26,9 +23,7 @@ export class LoginFormComponent implements OnInit {
     this.loginService.loginUser(this.loginInput)
       .subscribe(
         function (result) {
-
-          that.cookieService.set( 'Test', result.token)
-
+          that.cookieService.set('Test', result.token)
         },
         error => alert(error.error.message)
       );
