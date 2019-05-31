@@ -23,4 +23,7 @@ export class PermissionsService {
    return(this.decode(token).permissions)
   }
 
+public getToken(){
+  return this.cookieService.get('Test');
+}
 }

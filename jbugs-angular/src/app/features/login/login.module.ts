@@ -7,6 +7,8 @@ import {FormsModule} from "@angular/forms";
 import {MatButtonModule, MatFormFieldModule, MatInputModule, MatLineModule, MatTabsModule} from "@angular/material";
 import {MatLabel} from "@angular/material/typings/form-field";
 import {MatCardModule} from "@angular/material/typings/esm5/card";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {CookieService} from "ngx-cookie-service";
 
 
 
@@ -24,6 +26,8 @@ import {MatCardModule} from "@angular/material/typings/esm5/card";
     MatLineModule,
     MatFormFieldModule,
     MatInputModule,
-  ]
+
+  ],
+  providers: [CookieService],
 })
 export class LoginModule { }
