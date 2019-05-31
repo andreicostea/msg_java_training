@@ -6,9 +6,11 @@ import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { DashboardComponent } from "./features/dashboard/dashboard.component";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule, MatNativeDateModule} from "@angular/material";
 import {LoginComponent} from "./features/login/containers/login/login.component";
 import {LoginModule} from "./features/login/login.module";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import {CookieService} from "ngx-cookie-service";
 import {AddHeaderInterceptor} from "./core/backend/request.interceptor";
 import {
@@ -26,8 +28,7 @@ import {
   declarations: [
     AppComponent,
     DashboardComponent,
-   LoginComponent,
-
+   LoginComponent
 
   ],
   imports: [
@@ -35,8 +36,11 @@ import {
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule, MatCheckboxModule,
     LoginModule,
     BrowserAnimationsModule,
+    MatNativeDateModule
     MatButtonModule,
     MatTabsModule,
     MatLineModule,
@@ -46,6 +50,7 @@ import {
     MatMenuModule,
     MatIconModule,
     MatToolbarModule
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

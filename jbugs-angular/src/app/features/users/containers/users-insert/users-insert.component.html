@@ -1,0 +1,122 @@
+<form #f = 'ngForm' >
+
+
+
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Insert User</mat-card-title>
+    </mat-card-header>
+
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <br>
+      <div class ="form-group">
+        <label > First Name</label>
+        <input class = "form-control"
+               [(ngModel)] = "user.firstName"
+               type ="text"
+               id = "firstName"
+               name = "firstName"
+               #firstName ="ngModel"
+               ngModel
+               required
+        >
+
+        <div class ="alert alert-danger"
+             *ngIf="firstName.touched && firstName.invalid">
+          <div *ngIf="firstName.errors.required">The field is required</div>
+
+        </div>
+      </div>
+
+      <div class ="form-group">
+        <label > Last Name</label>
+        <input class = "form-control"
+               type ="text"
+               id = "lastName"
+               name = "lastName"
+               ngModel
+               [(ngModel)] = "user.lastName"
+               required
+               #lastName ="ngModel">
+
+        <div class ="alert alert-danger"
+             *ngIf="lastName.touched && lastName.invalid">
+          <div *ngIf="lastName.errors.required">The field is required</div>
+
+        </div>
+      </div>
+
+      <div class ="form-group">
+        <label > Mobile number</label>
+        <input class = "form-control"
+               type ="text"
+               id = "mobileNumber"
+               name = "mobileNumber"
+               ngModel
+               [(ngModel)] = "user.mobileNumber"
+               required
+
+               #mobileNumber ="ngModel">
+
+        <div class ="alert alert-danger"
+             *ngIf="mobileNumber.touched && mobileNumber.invalid">
+          <div *ngIf="mobileNumber.errors.required">The field is required</div>
+          <div *ngIf="mobileNumber.errors.pattern">The pattern is invalid</div>
+
+        </div>
+      </div>
+
+      <div class ="form-group">
+        <label > Email</label>
+        <input class = "form-control"
+               type ="text"
+               id = "email"
+               name = "email"
+               ngModel
+               [(ngModel)] = "user.email"
+               required
+
+               #email ="ngModel">
+
+        <div class ="alert alert-danger"
+             *ngIf="email.touched && email.invalid">
+          <div *ngIf="email.errors.required">The field is required</div>
+          <div *ngIf="email.errors.pattern">The pattern is invalid</div>
+
+        </div>
+      </div>
+
+
+      <mat-form-field  class="col-lg-12">
+        <mat-label>Rol</mat-label>
+        <mat-select [(ngModel)] = "user.roles"
+                    name="roles"
+                    ngModel multiple>
+          <mat-option *ngFor="let rol of roles" [value]="rol">{{rol}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button
+              (click)="insert()"
+              [disabled]="f.invalid">
+
+
+        Submit</button>
+
+    </mat-card-actions>
+  </mat-card>
+
+
+
+  <p>
+    {{f.value | json}}
+  </p>
+
+
+
+</form>
+

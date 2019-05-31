@@ -1,27 +1,31 @@
 package msg.bug.entity.dto;
 
-import java.util.Date;
 
 public class BugInputDTO {
 
     private String title;
     private String description;
     private String version;
-    private Date date;
+    private String targetDate;
     private String fixedVersion;
     private String severity;
+    private Long CREATED_ID;
+    private Long ASSIGNED_ID;
+
 
     public BugInputDTO() {
     }
 
-    public BugInputDTO(String title, String description, String version, Date date, String fixedVersion, String severity) {
+    public BugInputDTO(String title, String description, String version, String targetDate,
+                       String fixedVersion, String severity, Long CREATED_ID, Long ASSIGNED_ID) {
         this.title = title;
         this.description = description;
         this.version = version;
-        this.fixedVersion = fixedVersion;
-        this.date = date;
+        this.targetDate = targetDate;
         this.fixedVersion = fixedVersion;
         this.severity = severity;
+        this.CREATED_ID = CREATED_ID;
+        this.ASSIGNED_ID = ASSIGNED_ID;
     }
 
     public String getTitle() {
@@ -48,12 +52,12 @@ public class BugInputDTO {
         this.version = version;
     }
 
-    public Date getDate() {
-        return date;
+    public String getTargetDate() {
+        return targetDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setTargetDate(String targetDate) {
+        this.targetDate = targetDate;
     }
 
     public String getFixedVersion() {
@@ -70,5 +74,21 @@ public class BugInputDTO {
 
     public void setSeverity(String severity) {
         this.severity = severity;
+    }
+
+    public Long getCREATED_ID() {
+        return CREATED_ID;
+    }
+
+    public void setCREATED_ID(Long CREATED_ID) {
+        this.CREATED_ID = CREATED_ID;
+    }
+
+    public Long getASSIGNED_ID() {
+        return ASSIGNED_ID;
+    }
+
+    public void setASSIGNED_ID(Long ASSIGNED_ID) {
+        this.ASSIGNED_ID = ASSIGNED_ID;
     }
 }

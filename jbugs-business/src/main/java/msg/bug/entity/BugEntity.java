@@ -58,7 +58,7 @@ public class BugEntity extends BaseEntity<Long> {
     @JoinColumn(name = "ASSIGNED_ID", nullable = true)
     private UserEntity assignedTo;
     @ManyToOne
-    @JoinColumn(name = "CREATED_ID", insertable = false, updatable = false)
+    @JoinColumn(name = "CREATED_ID", nullable = false)
     private UserEntity createdBy;
     @OneToMany(mappedBy = "bugEntity")
     private Set<AttachmentEntity> attachments;

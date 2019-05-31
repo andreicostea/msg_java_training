@@ -88,8 +88,8 @@ create table bugs
     fixedVersion varchar(255),
     severity     varchar(255) not null,
     user_id      bigint       not null,
-    createdBy    bigint       not null,
-    assignedBy   bigint       not null,
+    CREATED_ID    bigint       not null,
+    ASSIGNED_ID   bigint       not null,
     constraint FK_bugs_createdBy
         foreign key (createdBy) references users (ID),
     constraint FK_bugs_assignedBy

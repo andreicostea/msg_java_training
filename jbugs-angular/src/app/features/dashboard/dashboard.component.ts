@@ -18,10 +18,12 @@ export class DashboardComponent implements OnInit {
   }
   test(){
     console.log(this.permissionService.getUserName())
-
+    console.log(this.permissionService.getPermissions());
   }
+  
   logout(){
     localStorage.removeItem("api-token");
     this.router.navigate(['login']);
+
   }
 }

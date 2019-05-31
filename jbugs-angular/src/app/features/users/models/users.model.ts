@@ -2,14 +2,21 @@ export interface UserJSON {
   firstName: string;
   lastName: string;
   email: string;
+  mobileNumber: string;
   roles: string[];
   token: string;
+}
+
+export class Role {
+  id : number;
+  type : string;
 }
 
 export class User {
   firstName: string;
   lastName: string;
   email: string;
+  mobileNumber: string;
   roles: string[];
   token: string;
 
@@ -18,6 +25,7 @@ export class User {
     termin.firstName = json.firstName;
     termin.lastName = json.lastName;
     termin.email = json.email;
+    termin.mobileNumber = json.mobileNumber;
     termin.roles = json.roles;
     termin.token = json.token;
     return termin;
@@ -29,7 +37,8 @@ export class User {
       lastName: user.lastName,
       email: user.email,
       roles: user.roles,
-      token: user.token
+      token: user.token,
+      mobileNumber: user.mobileNumber,
     };
   }
 
