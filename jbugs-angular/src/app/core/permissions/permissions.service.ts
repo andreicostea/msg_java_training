@@ -19,7 +19,7 @@ export class PermissionsService {
 
   public getPermissions() {
 
-    let token = localStorage.getItem('api-token')
+    let token = localStorage.getItem('api-token');
     return (this.decode(token).permissions)
   }
 
@@ -28,9 +28,10 @@ export class PermissionsService {
   public getUserId(){
    let token = localStorage.getItem('api-token');
     return(this.decode(token).id)
+  }
 
     public getUserName() {
-    let token = localStorage.getItem('api-token')
+    let token = localStorage.getItem('api-token');
     return (this.decode(token).username)
   }
 
