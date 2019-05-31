@@ -1,7 +1,16 @@
-<h1 translate>Dashboard</h1>
-<nav>
-  <a routerLinkActive="active current" routerLink="users">Users</a>
-  <a routerLinkActive="active current" routerLink="notifications">Notifications</a>
-</nav>
+<mat-toolbar class="test">
+  <span>Jbugs Application</span>
+  <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
+
+  <a class="userManagement" routerLinkActive="active current" routerLink="users">User Management</a>
+  <a class="permissionManagement" routerLinkActive="active current" routerLink="users">Permission Management</a>
+  <a class="bugManagement"  routerLinkActive="active current" routerLink="notifications">Bug management</a>
+  <button  class="menu" mat-button [matMenuTriggerFor]="menu">Menu</button>
+  <mat-menu  #menu="matMenu">
+    <button mat-menu-item>View Notifications</button>
+    <button mat-menu-item (click)="logout()">Logout</button>
+  </mat-menu>
+</mat-toolbar>
 <button (click)= "test()">Test</button>
 <router-outlet></router-outlet>

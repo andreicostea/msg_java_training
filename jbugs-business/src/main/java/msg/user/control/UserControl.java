@@ -71,6 +71,7 @@ public class UserControl {
                 }
                 Algorithm algorithm = Algorithm.HMAC256("harambe");
                 String jwt =  JWT.create().withIssuer("auth0")
+                        .withClaim("id",userEntity.getId())
                         .withClaim("username", userEntity.getUsername())
                         .withArrayClaim("permissions", permissions
                                 .stream()

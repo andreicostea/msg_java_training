@@ -1,5 +1,4 @@
-import { Injectable } from '@angular/core';
-import {CookieService} from "ngx-cookie-service";
+import {Injectable} from '@angular/core';
 import * as jwt_decode from "jwt-decode";
 
 @Injectable({
@@ -7,23 +6,31 @@ import * as jwt_decode from "jwt-decode";
 })
 export class PermissionsService {
 
-  constructor(private cookieService: CookieService) {
+  constructor() {
   }
 
-  private decode(token:string){
-    try{
+  private decode(token: string) {
+    try {
       return jwt_decode(token);
-    }
-    catch(Error){
+    } catch (Error) {
       return null;
     }
   }
-  public getPermissions(){
-    let token = this.cookieService.get('Test');
-   return(this.decode(token).permissions)
+
+  public getPermissions() {
+
+    let token = localStorage.getItem('api-token')
+    return (this.decode(token).permissions)
   }
 
-public getToken(){
-  return this.cookieService.get('Test');
-}
+  public getUserName() {
+
+    let token = localStorage.getItem('api-token')
+    return (this.decode(token).username)
+  }
+
+
+  public getToken() {
+    return localStorage.getItem('api-token');
+  }
 }

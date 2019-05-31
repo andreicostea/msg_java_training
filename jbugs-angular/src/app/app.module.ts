@@ -11,6 +11,14 @@ import {LoginModule} from "./features/login/login.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {CookieService} from "ngx-cookie-service";
 import {AddHeaderInterceptor} from "./core/backend/request.interceptor";
+import {
+  MatButtonModule,
+  MatDialogModule,
+  MatFormFieldModule, MatIconModule,
+  MatInputModule,
+  MatLineModule, MatMenuModule,
+  MatTabsModule, MatToolbarModule
+} from "@angular/material";
 
 
 
@@ -28,7 +36,16 @@ import {AddHeaderInterceptor} from "./core/backend/request.interceptor";
     HttpClientModule,
     FormsModule,
     LoginModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatTabsModule,
+    MatLineModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    MatMenuModule,
+    MatIconModule,
+    MatToolbarModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
