@@ -3,6 +3,7 @@ import { UsersService } from "../users/services/users.service";
 
 import {CookieService} from "ngx-cookie-service";
 import {PermissionsService} from "../../core/permissions/permissions.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -11,15 +12,18 @@ import {PermissionsService} from "../../core/permissions/permissions.service";
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private cookieService: CookieService,private permissionService: PermissionsService) { }
+  constructor(private cookieService: CookieService,private permissionService: PermissionsService,private router: Router) { }
 
   ngOnInit() {
   }
   test(){
-
+    console.log(this.permissionService.getUserName())
     console.log(this.permissionService.getPermissions());
-
-
+  }
+  
+  logout(){
+    localStorage.removeItem("api-token");
+    this.router.navigate(['login']);
 
   }
 }
