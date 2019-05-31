@@ -17,7 +17,9 @@ export class DashboardComponent implements OnInit {
   }
   test(){
 
-    console.log(this.permissionService.getPermissions())
+    console.log(this.permissionService.getPermissions());
+
+
 
   }
 }

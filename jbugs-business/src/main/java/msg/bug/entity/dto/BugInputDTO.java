@@ -9,18 +9,23 @@ public class BugInputDTO {
     private String targetDate;
     private String fixedVersion;
     private String severity;
+    private Long CREATED_ID;
+    private Long ASSIGNED_ID;
 
 
     public BugInputDTO() {
     }
 
-    public BugInputDTO(String title, String description, String version, String targetDate, String fixedVersion, String severity) {
+    public BugInputDTO(String title, String description, String version, String targetDate,
+                       String fixedVersion, String severity, Long CREATED_ID, Long ASSIGNED_ID) {
         this.title = title;
         this.description = description;
         this.version = version;
         this.targetDate = targetDate;
         this.fixedVersion = fixedVersion;
         this.severity = severity;
+        this.CREATED_ID = CREATED_ID;
+        this.ASSIGNED_ID = ASSIGNED_ID;
     }
 
     public String getTitle() {
@@ -69,5 +74,21 @@ public class BugInputDTO {
 
     public void setSeverity(String severity) {
         this.severity = severity;
+    }
+
+    public Long getCREATED_ID() {
+        return CREATED_ID;
+    }
+
+    public void setCREATED_ID(Long CREATED_ID) {
+        this.CREATED_ID = CREATED_ID;
+    }
+
+    public Long getASSIGNED_ID() {
+        return ASSIGNED_ID;
+    }
+
+    public void setASSIGNED_ID(Long ASSIGNED_ID) {
+        this.ASSIGNED_ID = ASSIGNED_ID;
     }
 }

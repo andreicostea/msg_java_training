@@ -2,16 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Bug} from "../../models/bugs.model";
 import {BugsService} from "../../services/bugs.service";
 import {Router} from "@angular/router";
-import {FormControl, FormGroupDirective, NgForm, Validators} from "@angular/forms";
-import {ErrorStateMatcher} from "@angular/material";
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
-
+import {PermissionsService} from "../../../../core/permissions/permissions.service";
 
 
 @Component({
@@ -21,23 +12,17 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class BugAddComponent implements OnInit {
 
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    // Validators.email,
-  ]);
-
-  matcher = new MyErrorStateMatcher();
-
 
 
  public bug : Bug = new Bug();
 
-  constructor(private bugService : BugsService, private router : Router) { }
+  constructor(private bugService : BugsService, private router : Router,  private permissionService: PermissionsService) { }
 
   ngOnInit() {
   }
 
   insert(){
+    this.bug.CREATED_ID = this.permissionService.getUserId();
     console.log(this.bug);
     this.bugService.insertBug(this.bug).subscribe((
         value => {console.log(value)}),

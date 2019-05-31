@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
+import {PermissionsService} from "../../../../core/permissions/permissions.service";
 
 @Component({
   selector: 'app-bugs',
@@ -8,7 +9,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class BugsComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute, private permissionService: PermissionsService) { }
 
   ngOnInit() {
   }
@@ -16,6 +17,8 @@ export class BugsComponent implements OnInit {
   add(){
     this.router.navigate(['./insert'], {relativeTo: this.route});
   }
+
+
 
 
 }

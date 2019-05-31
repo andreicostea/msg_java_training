@@ -1,7 +1,10 @@
 package msg.bug.entity.dto;
 
 import msg.bug.entity.BugEntity;
+import msg.user.entity.UserEntity;
+import msg.user.entity.dao.UserDAO;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,6 +12,9 @@ import java.util.Date;
 
 @Stateless
 public class BugConverter {
+
+    @EJB
+    private UserDAO userDao;
 
     public BugEntity convertDTOToEntity(BugDTO bugDTO) {
         final BugEntity b = new BugEntity();
@@ -28,6 +34,25 @@ public class BugConverter {
         b.setFixedVersion(input.getFixedVersion());
         b.setTargetDate(parseStringToDate(input.getTargetDate()));
         b.setSeverity(input.getSeverity());
+        if(input.getCREATED_ID() != 0){
+            try {
+               UserEntity userEntity = userDao.getUserById(input.getCREATED_ID());
+               b.setCreated(userEntity);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if(input.getASSIGNED_ID() != null){
+            try {
+                UserEntity userEntity =  userDao.getUserById(input.getASSIGNED_ID());
+                b.setAssigned(userEntity);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+
+
         //b.setAssigned(input.);
         //b.setAttachmentEntities(input.);
         return b;

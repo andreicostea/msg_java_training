@@ -26,4 +26,9 @@ export class PermissionsService {
 public getToken(){
   return this.cookieService.get('Test');
 }
+
+  public getUserId(){
+    let token = this.cookieService.get('Test');
+    return(this.decode(token).id)
+  }
 }
