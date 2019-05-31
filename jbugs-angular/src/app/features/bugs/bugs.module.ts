@@ -5,14 +5,16 @@ import { BugsComponent } from "./containers/bugs/bugs.component";
 import { BugsRoutingModule } from "./bugs-routing.module";
 import { BugsTableComponentComponent } from './components/bugs-table-component/bugs-table-component.component';
 import { BugAddComponent } from './containers/bug-add/bug-add.component';
-import {MatCardModule, MatDatepickerModule, MatInputModule, MatListModule} from "@angular/material";
-import {FormsModule} from "@angular/forms";
+import {MatButtonModule, MatCardModule, MatDatepickerModule, MatInputModule, MatListModule} from "@angular/material";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     BugsComponent,
     BugsTableComponentComponent,
-    BugAddComponent,
+    BugAddComponent
+
+
   ],
   imports: [
     HttpClientModule,
@@ -22,7 +24,9 @@ import {FormsModule} from "@angular/forms";
     MatListModule,
     FormsModule,
     MatInputModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatButtonModule,
+    ReactiveFormsModule
   ]
 })
 export class BugsModule { }

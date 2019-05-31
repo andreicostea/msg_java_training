@@ -8,28 +8,28 @@
   <mat-divider></mat-divider>
   <mat-card-content>
     <br>
-    <div class ="form-group">
-      <label > Title</label>
-      <input class = "form-control"
-             [(ngModel)] = "bug.title"
+<div>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Title"
+             class = "form-control"
              type ="text"
              id = "title"
              name = "title"
-             #title ="ngModel"
              ngModel
+             [(ngModel)] = "bug.title"
              required
-      >
+             #title ="ngModel">
+      <mat-error *ngIf="title.touched && title.invalid">
+        <mat-error *ngIf="title.errors.required">The field is required</mat-error>
+      </mat-error>
 
-      <div class ="alert alert-danger"
-           *ngIf="title.touched && title.invalid">
-        <div *ngIf="title.errors.required">The field is required</div>
 
-      </div>
-    </div>
+    </mat-form-field>
+</div>
 
-    <div class ="form-group">
-      <label > Description</label>
-      <input class = "form-control"
+    <mat-form-field class ="form-group">
+      <input matInput placeholder="Description"
+             class = "form-control"
              type ="text"
              id = "description"
              name = "description"
@@ -38,12 +38,12 @@
              required
              #description ="ngModel">
 
-      <div class ="alert alert-danger"
+      <mat-error
            *ngIf="description.touched && description.invalid">
-        <div *ngIf="description.errors.required">The field is required</div>
+        <mat-error *ngIf="description.errors.required">The field is required</mat-error>
 
-      </div>
-    </div>
+      </mat-error>
+    </mat-form-field>
 
     <div class ="form-group">
       <label > Version</label>
@@ -75,28 +75,30 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
-
     <div class ="form-group">
-      <label > severity</label>
+      <label > Fixed Version</label>
       <input class = "form-control"
              type ="text"
-             id = "severity"
-             name = "severity"
+             id = "fixedVersion"
+             name = "fixedVersion"
              ngModel
-             [(ngModel)] = "bug.severity"
-             required
+             [(ngModel)] = "bug.fixedVersion">
 
-             #severity ="ngModel">
-
-      <div class ="alert alert-danger"
-           *ngIf="severity.touched && severity.invalid">
-        <div *ngIf="severity.errors.required">The field is required</div>
-        <div *ngIf="severity.errors.pattern">The pattern is invalid</div>
-
-      </div>
     </div>
 
+    <mat-form-field>
+    <mat-label>Severity</mat-label>
 
+    <select matNativeControl
+            [(ngModel)] = "bug.severity"
+            name="severity"
+            ngModel required>
+      <option value="Low">Low</option>
+      <option value="Medium">Medium</option>
+      <option value="High">High</option>
+      <option value="Critical">Critical</option>
+    </select>
+    </mat-form-field>
 
 
   </mat-card-content>
