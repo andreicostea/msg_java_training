@@ -11,7 +11,6 @@ import msg.notification.boundary.NotificationFacade;
 import msg.notification.boundary.notificationParams.NotificationParamsWelcomeUser;
 import msg.notification.entity.NotificationType;
 import msg.permission.PermissionEntity;
-import msg.role.control.RoleControl;
 import msg.role.entity.RoleEntity;
 import msg.user.MessageCatalog;
 import msg.user.entity.UserEntity;
@@ -20,7 +19,6 @@ import msg.user.entity.dto.*;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -49,45 +47,39 @@ public class UserControl {
 //    private RoleControl roleControl;
 
 
-
-
-            UserEntity user = userDAO.getUserByEmail(userInputDTO.getEmail());
-
     public UserOutputDto authenticateUser(UserLoginDTO userLoginDTO) {
 
+        UserDTO user = loginUser(userLoginDTO);
 
+        UserEntity userEntity = userDAO.getUserByEmail(user.getEmail());
 
-            UserDTO user = loginUser(userLoginDTO);
+        if (userEntity != null) {
 
-            UserEntity userEntity = userDao.getUserByEmail(user.getEmail());
-
-            if (userEntity != null) {
-
-                ArrayList<String> permissionsAsList = new ArrayList<>();
-                Set<PermissionEntity> permissions = new HashSet<>();
-                for (RoleEntity roleEntity : userEntity.getRoles()) {
-                    for (PermissionEntity permissionEntity : roleEntity.getPermissions()) {
-                        permissions.add(permissionEntity);
-                    }
+            ArrayList<String> permissionsAsList = new ArrayList<>();
+            Set<PermissionEntity> permissions = new HashSet<>();
+            for (RoleEntity roleEntity : userEntity.getRoles()) {
+                for (PermissionEntity permissionEntity : roleEntity.getPermissions()) {
+                    permissions.add(permissionEntity);
                 }
-                Algorithm algorithm = Algorithm.HMAC256("harambe");
-                String jwt =  JWT.create().withIssuer("auth0")
-                        .withClaim("username", userEntity.getUsername())
-                        .withArrayClaim("permissions", permissions
-                                .stream()
-                                .map(PermissionEntity::getType).toArray(String[]::new))
-                        .sign(algorithm);
-                for (PermissionEntity perm:permissions){
-                    permissionsAsList.add(perm.getType());
-                }
-                UserOutputDto userOutputDto = new UserOutputDto(userEntity.getEmail(),userEntity.getUsername(),permissionsAsList,jwt);
-
-
-                return userOutputDto;
-
-            } else {
-                throw new BusinessException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD);
             }
+            Algorithm algorithm = Algorithm.HMAC256("harambe");
+            String jwt = JWT.create().withIssuer("auth0")
+                    .withClaim("username", userEntity.getUsername())
+                    .withArrayClaim("permissions", permissions
+                            .stream()
+                            .map(PermissionEntity::getType).toArray(String[]::new))
+                    .sign(algorithm);
+            for (PermissionEntity perm : permissions) {
+                permissionsAsList.add(perm.getType());
+            }
+            UserOutputDto userOutputDto = new UserOutputDto(userEntity.getEmail(), userEntity.getUsername(), permissionsAsList, jwt);
+
+
+            return userOutputDto;
+
+        } else {
+            throw new BusinessException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD);
+        }
 
 
     }
@@ -216,7 +208,7 @@ public class UserControl {
 
     }
 
-    public void loginUser(UserLoginDTO userLoginDTO) {
+    public UserDTO loginUser(UserLoginDTO userLoginDTO) {
         UserEntity userEntity;
         try {
             userEntity = userDAO.getUserByUsername(userLoginDTO.getUsername());
