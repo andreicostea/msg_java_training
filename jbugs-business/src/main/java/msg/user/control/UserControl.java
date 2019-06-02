@@ -10,6 +10,7 @@ import msg.exceptions.BusinessWebAppException;
 import msg.notification.boundary.NotificationFacade;
 import msg.notification.boundary.notificationParams.NotificationParamsWelcomeUser;
 import msg.notification.entity.NotificationType;
+import msg.permission.PermissionEntity;
 import msg.role.control.RoleControl;
 import msg.role.entity.RoleEntity;
 import msg.user.MessageCatalog;
@@ -19,7 +20,11 @@ import msg.user.entity.dto.*;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -44,31 +49,47 @@ public class UserControl {
 //    private RoleControl roleControl;
 
 
-    public String authenticateUser(UserInputDTO userInputDTO) {
 
-        try {
 
             UserEntity user = userDAO.getUserByEmail(userInputDTO.getEmail());
 
-//        Stream<String> roles = user.getRoles()
-//                .stream()
-//                .map(Role::getType);
+    public UserOutputDto authenticateUser(UserLoginDTO userLoginDTO) {
 
-            if (user != null) {
+
+
+            UserDTO user = loginUser(userLoginDTO);
+
+            UserEntity userEntity = userDao.getUserByEmail(user.getEmail());
+
+            if (userEntity != null) {
+
+                ArrayList<String> permissionsAsList = new ArrayList<>();
+                Set<PermissionEntity> permissions = new HashSet<>();
+                for (RoleEntity roleEntity : userEntity.getRoles()) {
+                    for (PermissionEntity permissionEntity : roleEntity.getPermissions()) {
+                        permissions.add(permissionEntity);
+                    }
+                }
                 Algorithm algorithm = Algorithm.HMAC256("harambe");
-                return JWT.create().withIssuer("auth0")
-                        .withClaim("username", user.getUsername())
-                        .withArrayClaim("roles", user.getRoles()
+                String jwt =  JWT.create().withIssuer("auth0")
+                        .withClaim("username", userEntity.getUsername())
+                        .withArrayClaim("permissions", permissions
                                 .stream()
-                                .map(RoleEntity::getType).toArray(String[]::new))
+                                .map(PermissionEntity::getType).toArray(String[]::new))
                         .sign(algorithm);
+                for (PermissionEntity perm:permissions){
+                    permissionsAsList.add(perm.getType());
+                }
+                UserOutputDto userOutputDto = new UserOutputDto(userEntity.getEmail(),userEntity.getUsername(),permissionsAsList,jwt);
+
+
+                return userOutputDto;
 
             } else {
                 throw new BusinessException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD);
             }
-        } catch (Exception e) {
-            throw new BusinessException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD);
-        }
+
+
     }
 
     /**
@@ -234,8 +255,7 @@ public class UserControl {
         } else {
             throw new BusinessWebAppException(MessageCatalog.USER_INACTIVE, 403);
         }
-
-
+        return userConverter.convertEntityDTO(userEntity);
     }
 
     public List<UserDTO> getAll() {

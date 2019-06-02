@@ -44,9 +44,8 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/login")
     @POST
-    public Response userLogin(UserLoginDTO input) {
-        userFacade.loginUser(input);
-        return Response.ok().build();
+    public Response userLogin(@HeaderParam("Authorization") String header,  UserLoginDTO userLoginDTO) {
+        return Response.ok(userFacade.authenticateUser(userLoginDTO)).build();
     }
 
     @Produces(MediaType.APPLICATION_JSON)
