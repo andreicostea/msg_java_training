@@ -52,4 +52,18 @@ public class UserConverter {
         return u;
     }
 
+//    public UserEntity convertUpdateDTOToEntity(UserUpdateDTO userUpdateDTO) {
+//        final UserEntity userEntity = new UserEntity();
+//        userEntity.setFirstName(userUpdateDTO.getFirstName());
+//        userEntity.setLastName(userUpdateDTO.getLastName());
+//        userEntity.setEmail(userUpdateDTO.getEmail());
+//        userEntity.setMobileNumber(userUpdateDTO.getMobileNumber());
+//        userEntity.setRoles(new ArrayList<>());
+//
+//        if (userUpdateDTO.getRoles() != null && !userUpdateDTO.getRoles().isEmpty()) {
+//            userEntity.getRoles().addAll(
+//                    roleControl.getRolesByTypeList(userUpdateDTO.getRoles()));
+//        }
+//        return userEntity;
+//    }
 }

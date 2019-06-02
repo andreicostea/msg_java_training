@@ -10,6 +10,7 @@ import msg.exceptions.BusinessWebAppException;
 import msg.notification.boundary.NotificationFacade;
 import msg.notification.boundary.notificationParams.NotificationParamsWelcomeUser;
 import msg.notification.entity.NotificationType;
+import msg.role.control.RoleControl;
 import msg.role.entity.RoleEntity;
 import msg.user.MessageCatalog;
 import msg.user.entity.UserEntity;
@@ -31,7 +32,7 @@ import java.util.stream.Collectors;
 public class UserControl {
 
     @EJB
-    private UserDAO userDao;
+    private UserDAO userDAO;
 
     @EJB
     private UserConverter userConverter;
@@ -39,12 +40,15 @@ public class UserControl {
     @EJB
     private NotificationFacade notificationFacade;
 
+//    @EJB
+//    private RoleControl roleControl;
+
 
     public String authenticateUser(UserInputDTO userInputDTO) {
 
         try {
 
-            UserEntity user = userDao.getUserByEmail(userInputDTO.getEmail());
+            UserEntity user = userDAO.getUserByEmail(userInputDTO.getEmail());
 
 //        Stream<String> roles = user.getRoles()
 //                .stream()
@@ -75,7 +79,7 @@ public class UserControl {
      */
 
     public String createUser(final UserInputDTO userDTO) {
-        if (userDao.existsEmail(userDTO.getEmail())) {
+        if (userDAO.existsEmail(userDTO.getEmail())) {
             throw new BusinessException(MessageCatalog.USER_WITH_SAME_MAIL_EXISTS);
         }
 
@@ -84,8 +88,8 @@ public class UserControl {
         newUserEntity.setUsername(this.createUserName(userDTO.getFirstName(), userDTO.getLastName()));
         newUserEntity.setStatus(true);
         newUserEntity.setPassword("DEFAULT_PASSWORD");
-        userDao.createUser(newUserEntity);
-        final long id = userDao.getUserByEmail(userDTO.getEmail()).getId();
+        userDAO.createUser(newUserEntity);
+        final long id = userDAO.getUserByEmail(userDTO.getEmail()).getId();
         final String userFullName = newUserEntity.getFirstName() + " " + newUserEntity.getLastName();
 //        = newUserEntity.getId();
         this.notificationFacade.createNotification(
@@ -132,7 +136,7 @@ public class UserControl {
             String username1 = username + i;
             while (username1.length() > 6) username1 = username.substring(0, --count) + i;
 
-            if (!userDao.exitsUsername(username1.toLowerCase())) {
+            if (!userDAO.exitsUsername(username1.toLowerCase())) {
                 return username1.toLowerCase();
             }
 
@@ -155,7 +159,7 @@ public class UserControl {
                 }
                 username = lastName.substring(0, --counterLastName)
                         + firstName.substring(0, ++counterFirstName);
-            } while (userDao.exitsUsername(username.toLowerCase()));
+            } while (userDAO.exitsUsername(username.toLowerCase()));
 
 
         } else {
@@ -164,7 +168,7 @@ public class UserControl {
 
                 username = lastName + firstName.substring(0, 6 - lastName.length());
                 int lastNameLength = lastName.length();
-                while (userDao.exitsUsername(username.toLowerCase())) {
+                while (userDAO.exitsUsername(username.toLowerCase())) {
                     if (lastNameLength == 1) {
                         username = "";
                         break;
@@ -191,11 +195,10 @@ public class UserControl {
 
     }
 
-
     public void loginUser(UserLoginDTO userLoginDTO) {
         UserEntity userEntity;
         try {
-            userEntity = userDao.getUserByUsername(userLoginDTO.getUsername());
+            userEntity = userDAO.getUserByUsername(userLoginDTO.getUsername());
         } catch (Exception e) {
             throw new BusinessException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD);
         }
@@ -208,14 +211,14 @@ public class UserControl {
 
                     int counter = userEntity.getCounter() - 1;
                     userEntity.setCounter(counter);
-                    userDao.createUser(userEntity);
+                    userDAO.createUser(userEntity);
 
                     throw new BusinessWebAppException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD, 400);
                     // username inactive
                 } else {
                     userEntity.setStatus(false);
                     userEntity.setCounter(0);
-                    userDao.createUser(userEntity);
+                    userDAO.createUser(userEntity);
                     throw new BusinessWebAppException(MessageCatalog.USER_INACTIVE, 403);
 
                 }
@@ -223,7 +226,7 @@ public class UserControl {
             } else {
                 if (userEntity.getCounter() != 5) {
                     userEntity.setCounter(5);
-                    userDao.createUser(userEntity);
+                    userDAO.createUser(userEntity);
                 }
             }
 
@@ -236,7 +239,7 @@ public class UserControl {
     }
 
     public List<UserDTO> getAll() {
-        return userDao.getAll().stream()
+        return userDAO.getAll().stream()
                 .map(userConverter::convertEntityDTO)
                 .collect(Collectors.toList());
     }
@@ -244,7 +247,7 @@ public class UserControl {
     public UserDTO getUserById(long id) {
         UserEntity user;
         try {
-            user = userDao.getUserById(id);
+            user = userDAO.getUserById(id);
         } catch (Exception e) {
             throw new BusinessException(MessageCatalog.USER_WITH_THAT_ID_DOES_NOT_EXISTS);
         }
@@ -252,9 +255,14 @@ public class UserControl {
 
     }
 
+    // todo: notification
     public void updateUser(UserUpdateDTO userUpdateDTO) {
-        UserEntity user = userConverter.convertInputDTOtoEntity(userUpdateDTO);
-        userDao.getUserByEmail(userUpdateDTO.getEmailBeforeUpdate());
-        userDao.updateUser(user);
+        UserEntity userToUpdate = userDAO.getUserByEmail(userUpdateDTO.getEmailBeforeUpdate());
+        userToUpdate.setFirstName(userUpdateDTO.getFirstName());
+        userToUpdate.setLastName(userUpdateDTO.getLastName());
+        userToUpdate.setEmail(userUpdateDTO.getEmail());
+        userToUpdate.setMobileNumber(userUpdateDTO.getMobileNumber());
+//        userToUpdate.setRoles(roleControl.getRolesByTypeList(userUpdateDTO.getRoles()));
+        userDAO.updateUser(userToUpdate);
     }
 }
