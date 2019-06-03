@@ -35,6 +35,7 @@ public class PermissionDAO {
 //        PermissionEntity permissionEntity=em.find(PermissionEntity.class,id);
 //        em.remove(permissionEntity);
         em.remove(findById(id));
+        em.flush();
         return "Deleted successfully!";
     }
 

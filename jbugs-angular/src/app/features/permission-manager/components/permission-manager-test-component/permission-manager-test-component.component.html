@@ -1,20 +1,31 @@
 <div class="form-group">
   <mat-form-field>
     <mat-label>Roles Dropdown multiple</mat-label>
-    <mat-select [(ngModel)]="selection">
-      <mat-option *ngFor="let rol of roles" [value]="rol">{{rol.name}}</mat-option>
+    <mat-select [(ngModel)]="selectedRole">
+      <mat-option *ngFor="let rol of roles"
+                  [value]="rol">{{rol.type}}
+        <!--      <td>{{rol.id}}</td>  -->
+      </mat-option>
     </mat-select>
   </mat-form-field>
 </div>
 <div class="form-group">
-  <label mat-form-filed for="permissions">Permission Dropdown multiple</label>
-  <select matNativeControl class="form-control"
-          id="permissions"
-          name="permission"
-          multiple
-          ngModel>
-    <option *ngFor="let permission of selected.permissionList"
-            [value]="permission.type">{{permission.description}}</option>
-  </select>
+  <mat-form-field>
+    <mat-label>Permission Dropdown multiple</mat-label>
+    <mat-select [(ngModel)]="selectedPermission">
+      <mat-option *ngFor="let permission of selectedRole.permissions"
+                  [value]="permission">{{permission.type}}
+        <!--<td>{{permission.id}}</td>-->
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>
 
+<div *ngIf="response">
+  <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle value="bold" (click)="addPermission()">AddPermissions</mat-button-toggle>
+  </mat-button-toggle-group>
+  <mat-button-toggle-group ng-click name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle value="permission.id" (click)="deletePermission()">RemovePermissions</mat-button-toggle>
+  </mat-button-toggle-group>
+</div>

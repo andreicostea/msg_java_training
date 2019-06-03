@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {PermissionService} from "../../services/permission-manager.services";
-import {Permission} from "../../model/permission-manager.model";
+import {PermissionManagerServices} from "../../services/permission-manager.services";
+import {Permission, Role} from "../../model/permission-manager.model";
+import {PermissionsService} from "../../../../core/permissions/permissions.service";
+import {Subscription} from "rxjs";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-permission-manager-test-component',
@@ -9,58 +12,69 @@ import {Permission} from "../../model/permission-manager.model";
 })
 export class PermissionManagerInsertButtonComponent implements OnInit {
   public permissionList: Permission[];
-
+  public userPermission: string[];
+  private response: boolean;
+  public roleandpermission: Subscription;
   // TODO add role type instead of 'any'
-  selection = {};
+  selectedRole: Role = <Role>{};
+  selectedPermission: Permission = <Permission>{};
 
-  constructor(private permissionservice: PermissionService) {
+  constructor(private permissionService: PermissionsService,
+              private permissionManagerService: PermissionManagerServices,
+              private activateRouter: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit() {
-    this.permissionservice.getAllPermissions()
-      .subscribe((permissionList) => {
-        this.permissionList = permissionList;
-      });
+    console.log(
+      this.permissionManagerService.getAllRolesAndPermissions()
+        .subscribe((permissionList) => {
+            this.permissions = permissionList;
+          }
+        ));
+    this.getPermissions();
+    this.selected();
   }
 
-  roles = [
-    {
-      id: 1,
-      name: 'ADMINISTRATOR',
-      permissionList: [{type: 'PERMISSION_MANAGER', description: 'blabla'}, {
-        type: 'BUG_MANAGER',
-        description: 'blabla2'
-      }]
-    },
-    {id: 2, name: 'PROJECT MANAGER', permissionList: [{type: 'BUG_MANAGER', description: 'blabla2'}]},
-    {
-      id: 3,
-      name: 'TEST MANAGER',
-      permissionList: [{type: 'PERMISSION_MANAGER', description: 'blabla'}, {
-        type: 'BUG_MANAGER',
-        description: 'blabla2'
-      }]
-    },
-    {
-      id: 4,
-      name: 'DEVELOPER',
-      permissionList: [{type: 'PERMISSION_MANAGER', description: 'blabla'}, {
-        type: 'BUG_MANAGER',
-        description: 'blabla2'
-      }]
-    },
-    {
-      id: 5,
-      name: 'TESTER',
-      permissionList: [{type: 'PERMISSION_MANAGER', description: 'blabla'}, {
-        type: 'BUG_MANAGER',
-        description: 'blabla2'
-      }]
-    }
-  ];
+  roles = [];
+  permissions = [];
 
-  get selected() {
-    console.log(this.selection);
-    return this.selection;
+  private selected() {
+    this.roleandpermission = this.permissionManagerService.getAllRolesAndPermissions()
+      .subscribe(result => this.roles = result);
+    console.log(this.roles);
+    console.log(this.roleandpermission);
+    return this.selectedRole;
+  }
+
+  private getPermissions() {
+    this.userPermission = this.permissionService.getPermissions();
+    console.log(this.userPermission);
+    this.response = this.userPermission.includes('PERMISSION_MANAGEMENT');
+    console.log(this.response);
+  }
+
+  addPermission(): void {
+    // this.permissionManagerService.insertPermission();
+    // this.router.navigate(['./insertorremovepermission'], {relativeTo: this.activateRouter});
+
+    this.permissionManagerService.insertPermission(this.selectedRole.id, this.selectedPermission)
+      .subscribe(value => {
+          console.log(value)
+        },
+        error => {
+          console.log(error.error.message)
+        },
+        () => {
+          // this.router.navigate(['/dashboard'])
+        });
+  }
+
+  deletePermission() {
+    this.permissionManagerService.deletePermission(this.selectedPermission.id)
+      .subscribe(
+        value => alert("deleted"),
+        error1 => alert("error")
+      );
   }
 }

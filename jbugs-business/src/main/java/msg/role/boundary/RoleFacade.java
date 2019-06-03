@@ -6,6 +6,7 @@ import msg.role.entity.RoleEntity;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.List;
 
 /**
  * Document me.
@@ -22,7 +23,11 @@ public class RoleFacade {
         return this.roleControl.getRoleById(id);
     }
 
+    public List<RoleEntity> getAllRolesAndPermissions() {
+        return this.roleControl.getRolesAndPermissions();
+    }
     public RoleEntity addPermission(long id, PermissionDTO permissionDTO) {
         return this.roleControl.addPermission(id, permissionDTO);
     }
+
 }

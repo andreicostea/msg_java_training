@@ -1,40 +1,50 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
-import {map} from "rxjs/operators";
 
 import {environment} from "../../../../environments/environment";
 import {BackendService} from "../../../core/backend/backend.service";
-import {Permission, PermissionJSON, Role} from "../model/permission-manager.model";
+import {Permission, PermissionJSON, Role, RoleJSON} from "../model/permission-manager.model";
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
-export class PermissionService {
+export class PermissionManagerServices {
 
-  private usersEndpoint = 'permission';
+  private rolesEndpoint = 'roles';
+  private permissionsEndpoint = 'permissions';
 
   constructor(private backendService: BackendService) {
   }
 
   loadPermissionById(id: number): Observable<Permission> {
-    console.log(`${environment.baseUrl}/${this.usersEndpoint}/${id}`);
+    console.log(`${environment.baseUrl}/${this.rolesEndpoint}/${id}`);
     return this.backendService
-      .get(`${environment.baseUrl}/${this.usersEndpoint}/${id}`)
+      .get(`${environment.baseUrl}/${this.rolesEndpoint}/${id}`)
       .pipe(map((result: PermissionJSON) => Permission.fromJSON(result)));
-
   }
 
-  insertPermission(permission: Permission): Observable<any> {
+  insertPermission(id: number, permission: Permission): Observable<Role> {
     return this.backendService
-      .post(`jbugs/jbugs-api/users/insert`, permission)
-
+      .post(`jbugs/jbugs-api/roles/${id}`, permission);
   }
 
-  getRoles(roles: Role[]): Observable<any> {
-    return this.backendService.get(`${environment.baseUrl}/roles/types`);
+  deletePermission(id: number): Observable<Permission> {
+    return this.backendService.delete(`${environment.baseUrl}/${this.permissionsEndpoint}/${id}`);
   }
 
-  public getAllPermissions(): Observable<Permission[]> {
-    return this.backendService.get('http://localhost:8080/jbugs/jbugs-api/permissions');
+  // getRoles(roles: Role[]): Observable<any> {
+  //   return this.backendService.get(`${environment.baseUrl}/roles/types/id`);
+  // }
+
+  public getAllRolesAndPermissions(): Observable<RoleJSON[]> {
+    return this.backendService
+      .get(`${environment.baseUrl}/${this.rolesEndpoint}`);
   }
+
+  public getAllPermissions(): Observable<PermissionJSON[]> {
+    return this.backendService
+      .get(`${environment.baseUrl}/${this.permissionsEndpoint}`);
+  }
+
 }

@@ -24,7 +24,14 @@ public class RoleResource {
     @Path("{id}")
     @GET
     public Response getRoleById(@PathParam("id") long id) {
+
         return Response.ok(roleFacade.getRoleById(id)).build();
+    }
+
+    @GET
+    public Response getAllRolesAndPermissions() {
+
+        return Response.ok(roleFacade.getAllRolesAndPermissions()).build();
     }
 
     @Produces(MediaType.APPLICATION_JSON)

@@ -4,6 +4,7 @@ import msg.permission.control.PermissionControl;
 import msg.role.entity.RoleEntity;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import java.util.ArrayList;
 
 /**
@@ -12,6 +13,7 @@ import java.util.ArrayList;
  * @author msg systems AG; User Name.
  * @since 19.1.2
  */
+@Stateless
 public class RoleConverter {
     @EJB
     PermissionControl permissionControl;

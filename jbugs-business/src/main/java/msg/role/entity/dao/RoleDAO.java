@@ -41,11 +41,16 @@ public class RoleDAO {
                 .getSingleResult();
     }
 
+    public List<RoleEntity> getAllRolesAndPermissions() {
+        return em.createNamedQuery(RoleEntity.GET_PERMISSIONSANDROLES, RoleEntity.class)
+                .getResultList();
+    }
     public RoleEntity addPermission(RoleEntity roleEntity, PermissionEntity permissionEntity) {
         roleEntity.getPermissions().add(permissionEntity);
         //ca sa faca update
         return em.merge(roleEntity);
     }
+
 //    public List<PermissionEntity> getPermission(final List<String> permissionEntityList){
 //        return em.createNamedQuery(RoleEntity.GET_PERMISSIONS,PermissionEntity.class)
 //                .setParameter(RoleEntity.INPUT_TYPE_LIST,permissionEntityList)

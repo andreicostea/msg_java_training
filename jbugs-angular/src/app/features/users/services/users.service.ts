@@ -4,7 +4,7 @@ import {map} from "rxjs/operators";
 
 import {environment} from "../../../../environments/environment";
 import {BackendService} from "../../../core/backend/backend.service";
-import {User, UserWithTokenJSON} from "../models/users.model";
+import {User} from "../models/users.model";
 import {AuthenticationService} from "../../../core/services/authentication.service";
 
 @Injectable({
@@ -21,8 +21,8 @@ export class UsersService {
   loadUserByUsername(username: string): Observable<User> {
     return this.backendService
       .get(`${environment.baseUrl}/${this.usersEndpoint}/${username}`)
-      .pipe(map((result: UserWithTokenJSON) => {
-        const currentUser = User.fromJSON(result.user);
+      .pipe(map((result: User) => {
+        const currentUser = User.fromJSON(result);
         this.authenticationService.currentUser = currentUser;
         this.authenticationService.token = result.token;
         return currentUser;

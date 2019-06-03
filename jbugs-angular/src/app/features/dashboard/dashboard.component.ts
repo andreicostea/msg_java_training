@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
+import {CookieService} from "ngx-cookie-service";
+import {PermissionsService} from "../../core/permissions/permissions.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -8,9 +10,15 @@ import {Component, OnInit} from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() {
+  constructor(private cookieService: CookieService, private permissionService: PermissionsService) {
   }
 
   ngOnInit() {
+  }
+
+  test() {
+
+    console.log(this.permissionService.getPermissions())
+
   }
 }

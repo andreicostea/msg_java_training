@@ -1,9 +1,23 @@
-<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Permission type" value="Sushi">
+<div class="form-group">
+  <mat-form-field>
+    <mat-label>Permission Dropdown multiple</mat-label>
+    <mat-select [(ngModel)]="selection">
+      <mat-option *ngFor="let permission of roles"
+                  [value]="permission">{{permission.type}}</mat-option>
+    </mat-select>
   </mat-form-field>
-
-  <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="Description of permission"></textarea>
+</div>
+<div class="form-group">
+  <mat-form-field>
+    <mat-label>Descrrption Dropdown multiple</mat-label>
+    <mat-select [(ngModel)]="selection">
+      <mat-option *ngFor="let permission of roles"
+                  [value]="permission">{{permission.description}}</mat-option>
+    </mat-select>
   </mat-form-field>
-</form>
+</div>
+<div>
+  <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="selection">
+    <mat-button-toggle value="bold" (click)="inserted(selection.id, roles)">Add</mat-button-toggle>
+  </mat-button-toggle-group>
+</div>

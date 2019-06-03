@@ -17,6 +17,8 @@ import java.util.Objects;
 @Entity
 @Table(name = "roles")
 @NamedQueries({
+        @NamedQuery(name = RoleEntity.GET_PERMISSIONSANDROLES,
+                query = "select r from RoleEntity r"),
         @NamedQuery(name = RoleEntity.GET_PERMISSIONS,
                 query = "select r.permissions from RoleEntity r where r.id in :" + RoleEntity.ID_PERM),
         @NamedQuery(name = RoleEntity.QUERY_GET_ROLES_BY_TYPE_LIST,
@@ -33,15 +35,17 @@ public class RoleEntity extends BaseEntity<Long> {
     public static final String INPUT_ID = "id";
     public static final String ID_PERM = "id";
     public static final String GET_PERMISSIONS = "getPermissions";
+    public static final String GET_PERMISSIONSANDROLES = "getAllRolesAndPermissions";
     @Column(name = "type", nullable = false)
     private String type;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "permissions_roles",
             joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "permission_id", referencedColumnName = "id", nullable = false)
     )
     private List<PermissionEntity> permissions = new ArrayList<>();
+
     public RoleEntity() {
     }
 

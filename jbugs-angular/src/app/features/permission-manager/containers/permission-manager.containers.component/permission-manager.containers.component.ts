@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {PermissionService} from "../../services/permission-manager.services";
-import {Permission} from "../../model/permission-manager.model";
+import {PermissionManagerServices} from "../../services/permission-manager.services";
+import {PermissionsService} from "../../../../core/permissions/permissions.service";
 
 @Component({
   selector: 'app-permission-manager',
@@ -9,17 +9,11 @@ import {Permission} from "../../model/permission-manager.model";
   styleUrls: ['./permission-manager.containers.component.css']
 })
 export class PermissionManagerInsertComponent implements OnInit {
-  public permission: Permission = new Permission();
-
-  constructor(private servicePermission: PermissionService,
+  constructor(private permissionService: PermissionsService,
+              private servicePermission: PermissionManagerServices,
               private activateRouter: ActivatedRoute,
               private router: Router) {
   }
-
   ngOnInit() {
-  }
-
-  insertingPermission(): void {
-    this.router.navigate(['insertorremovepermission']);
   }
 }

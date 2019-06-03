@@ -2,6 +2,8 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {DashboardComponent} from "./features/dashboard/dashboard.component";
+import {LoginComponent} from "./features/login/containers/login/login.component";
+
 /*
 const routes: Routes = [
   {
@@ -53,6 +55,14 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'login',
+    component: LoginComponent,
+  },
+  // {
+  //   path: 'insertorremovepermission',
+  //   loadChildren: 'src/app/features/permission-manager/permission-manager.module#PermissionManagerModule'
+  // },
+  {
     path: 'dashboard',
     component: DashboardComponent,
     children: [
@@ -75,7 +85,9 @@ const routes: Routes = [
       },
     ]
   }
-];
+]
+
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

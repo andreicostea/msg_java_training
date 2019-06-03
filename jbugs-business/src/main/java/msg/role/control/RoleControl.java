@@ -10,6 +10,7 @@ import msg.permission.entity.dto.PermissionConverter;
 import msg.permission.entity.dto.PermissionDTO;
 import msg.role.entity.RoleEntity;
 import msg.role.entity.dao.RoleDAO;
+import msg.role.entity.dto.RoleConverter;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -31,6 +32,9 @@ public class RoleControl {
     private PermissionConverter permissionConverter;
     @EJB
     private PermissionDAO permissionDAO;
+    @EJB
+    private RoleConverter roleConverter;
+
     /**
      * Given a input list of {@link RoleEntity#getType()}s, returns the corresponding list of RoleEntity Entities.
      *
@@ -56,7 +60,25 @@ public class RoleControl {
         return roleEntity;
     }
 
+    public List<RoleEntity> getRolesAndPermissions() {
+        List<RoleEntity> roleEntity2 = roleDao.getAllRolesAndPermissions();
+        return roleEntity2;
+    }
+}
+//    public List<String> getAllRolesAndPermissions(RoleDTO roleDTO, PermissionDTO permissionDTO){
+//    }
+
+//    public List<String> getRolesAndPermissions() {
+//        int n = 4;
+//        List<String> rolesandpermissions = null;
+//        for (int i = 0; i < n; i++) {
+//            rolesandpermissions = (List<String>) this.getRoleById(i);
+//            return null;
+//        }
+//        return rolesandpermissions;
+//    }
+
+
 //    public List<PermissionEntity> getPermission(List<String> permissionEntityList){
 //        return roleDao.getPermission(permissionEntityList);
 //    }
-}
