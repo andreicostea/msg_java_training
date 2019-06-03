@@ -31,7 +31,7 @@ import {UsersTableComponent} from "./components/users-table/users-table.componen
     UsersUpdateDialogComponent
   ],
   entryComponents: [
-    UsersInsertComponent
+    UsersInsertComponent, UsersUpdateDialogComponent
   ],
   imports: [
     CommonModule,
@@ -50,6 +50,7 @@ import {UsersTableComponent} from "./components/users-table/users-table.componen
     ReactiveFormsModule,
     MatCheckboxModule,
     MatDialogModule
-  ]
+  ],
+
 })
 export class UsersModule { }

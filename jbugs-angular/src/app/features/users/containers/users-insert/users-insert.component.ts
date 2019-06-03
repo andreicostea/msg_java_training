@@ -39,7 +39,7 @@ export class UsersInsertComponent implements OnInit{
   insert(){
     console.log(this.user);
     this.userService.insertUser(this.user).subscribe((
-       value => {console.log(value); this.onNoClick();}),
+       value => { this.onNoClick();}),
       (error => {alert(error.error.message)} ),
        () => {this.router.navigate(['/dashboard'])})
     ;

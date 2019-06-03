@@ -24,7 +24,7 @@ export class UsersInsertButtonComponent implements OnInit {
   showButton() : boolean{
    // this.router.navigate(['./insert'], {relativeTo: this.route});
    if(this.permissionService.getPermissions() === null) return false;
-   console.log(this.permissionService.getPermissions());
+   //console.log(this.permissionService.getPermissions());
 
    for(let per of this.permissionService.getPermissions())
      if(per === "USER_MANAGEMENT") return true;

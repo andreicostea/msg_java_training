@@ -23,6 +23,7 @@ import {
 
 import {UsersModule} from "./features/users/users.module";
 import {BugsModule} from "./features/bugs/bugs.module";
+import {UsersUpdateDialogComponent} from "./features/users/components/users-update-dialog/users-update-dialog.component";
 
 
 
@@ -31,6 +32,7 @@ import {BugsModule} from "./features/bugs/bugs.module";
     AppComponent,
     DashboardComponent,
    LoginComponent,
+
 
 
   ],
