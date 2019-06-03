@@ -1,4 +1,27 @@
 The bugs
+
+<input type="text" ng-model="test">
+<table matSort (matSortChange)="sortData($event)">
+  <tr>
+    <th mat-sort-header="title">Title</th>
+    <th mat-sort-header="description"> Description</th>
+    <th mat-sort-header="version"> Version</th>
+    <th mat-sort-header="targetDate"> Target Date</th>
+    <th mat-sort-header="status"> Status</th>
+    <th mat-sort-header="fixedVersion"> Fixed Version</th>
+    <th mat-sort-header="severity">Severity</th>
+  </tr>
+  <tr *ngFor="let bug of sortedData">
+    <td> {{bug.title}}</td>
+    <td> {{bug.description}}</td>
+    <td> {{bug.version}}</td>
+    <td> {{bug.targetDate}}</td>
+    <td> {{bug.status}}</td>
+    <td> {{bug.fixedVersion}}</td>
+    <td> {{bug.severity}}</td>
+  </tr>
+</table>
+
 <table mat-table class="mat-elevation-z8">
   <ng-container matColumnDef="title">
     <th mat-header-cell> Title </th>
@@ -31,3 +54,4 @@ The bugs
   </ng-container>
 </table>
 <!--mat-paginator [pageSizeOptions]="[25]" showFirstLastButtons></mat-paginator-->
+

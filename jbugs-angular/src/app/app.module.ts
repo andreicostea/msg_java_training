@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {FormsModule} from '@angular/forms';
+import {MatButtonModule, MatCheckboxModule, MatTableModule} from "@angular/material";
 import { DashboardComponent } from "./features/dashboard/dashboard.component";
 import {MatButtonModule, MatCheckboxModule, MatNativeDateModule} from "@angular/material";
 import {LoginComponent} from "./features/login/containers/login/login.component";
@@ -25,8 +26,6 @@ import {UsersModule} from "./features/users/users.module";
 import {BugsModule} from "./features/bugs/bugs.module";
 import {UsersUpdateDialogComponent} from "./features/users/components/users-update-dialog/users-update-dialog.component";
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,9 +39,9 @@ import {UsersUpdateDialogComponent} from "./features/users/components/users-upda
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
+    FormsModule, 
+    MatTableModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
     MatCheckboxModule,
     LoginModule,
     BrowserAnimationsModule,

@@ -32,6 +32,8 @@ public class JBugsApplication extends Application {
         classes.add(NotificationResource.class);
         classes.add(UserResource.class);
         classes.add(BusinessExceptionMapper.class);
+
+
         classes.add(BusinessWebAppExceptionMapper.class);
         classes.add(PermissionResource.class);
         classes.add(BugResource.class);
