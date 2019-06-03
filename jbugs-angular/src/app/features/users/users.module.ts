@@ -1,24 +1,26 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { UsersComponent } from "./containers/users/users.component";
-import { UsersRoutingModule } from "./users-routing.module";
-import { UsersTableComponent } from './components/users-table/users-table.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {UsersComponent} from "./containers/users/users.component";
+import {UsersRoutingModule} from "./users-routing.module";
+import {UsersTableComponent} from './components/users-table/users-table.component';
 import {
   MatButtonModule,
+  MatCheckboxModule,
+  MatDialogModule,
   MatDividerModule,
   MatInputModule,
   MatListModule,
   MatRadioModule,
   MatTableModule
 } from "@angular/material";
-import { UserEditComponent } from './containers/user-edit/user-edit.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {UsersUpdateDialogComponent} from './components/users-update-dialog/users-update-dialog.component';
 
 @NgModule({
   declarations: [
     UsersComponent,
     UsersTableComponent,
-    UserEditComponent
+    UsersUpdateDialogComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,12 @@ import {FormsModule} from "@angular/forms";
     MatInputModule,
     MatDividerModule,
     MatListModule,
-    FormsModule
-  ]
+    FormsModule,
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    MatDialogModule
+  ],
+  entryComponents: [UsersUpdateDialogComponent]
 })
-export class UsersModule { }
+export class UsersModule {
+}

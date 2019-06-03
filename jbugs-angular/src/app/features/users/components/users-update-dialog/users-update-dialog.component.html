@@ -1,0 +1,46 @@
+<h2 mat-dialog-title>User update</h2>
+
+<mat-dialog-content [formGroup]="form">
+
+  <div>
+    <mat-form-field>
+      <input matInput
+             placeholder="New first name"
+             formControlName="newFirstName">
+<!--             [value]="selectedUser.firstName">-->
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input matInput
+             placeholder="New last name"
+             formControlName="newLastName">
+<!--             [value]="selectedUser.lastName">-->
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input matInput
+             placeholder="New email"
+             formControlName="newEmail">
+<!--             [value]="selectedUser.email">-->
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input matInput
+             placeholder="New mobile number"
+             formControlName="newMobileNumber">
+<!--             [value]="selectedUser.mobileNumber">-->
+    </mat-form-field>
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="mat-raised-button" (click)="close()">Cancel</button>
+  <button class="mat-raised-button mat-primary" (click)="update()">Update</button>
+</mat-dialog-actions>

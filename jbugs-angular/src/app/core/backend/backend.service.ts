@@ -19,7 +19,7 @@ export class BackendService {
    * @param params optional parameters such as HttpHeaders, HttpParams, reportProgress etc.
    * @param others additional attrs
    */
-  public get(url: string, params?: any, others?: any): Observable<any> {
+  public get(url: string, params?: any, others?: any): any {
     return this.invoke('GET', url, null, params, others);
   }
 

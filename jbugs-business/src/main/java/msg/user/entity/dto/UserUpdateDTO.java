@@ -9,7 +9,7 @@ public class UserUpdateDTO {
     private String emailBeforeUpdate;
     private String email;
     private String mobileNumber;
-    private List<String> roles;
+//    private List<String> roles;
 //    private List<String> roles = new ArrayList<>();
 
     public UserUpdateDTO() {
@@ -55,11 +55,11 @@ public class UserUpdateDTO {
         this.mobileNumber = mobileNumber;
     }
 
-    public List<String> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
-    }
+//    public List<String> getRoles() {
+//        return roles;
+//    }
+//
+//    public void setRoles(List<String> roles) {
+//        this.roles = roles;
+//    }
 }

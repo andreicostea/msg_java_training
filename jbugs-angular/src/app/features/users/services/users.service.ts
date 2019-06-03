@@ -4,7 +4,7 @@ import {map} from "rxjs/operators";
 
 import {environment} from "../../../../environments/environment";
 import {BackendService} from "../../../core/backend/backend.service";
-import {User, UserJSON} from "../models/users.model";
+import {User, UserJSON, UserUpdate} from "../models/users.model";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class UsersService {
   constructor(private backendService: BackendService) {
   }
 
-  loadAllUsers(): Observable<User[]> {
+  loadAllUsers(): User[] {
     return this.backendService
       .get(`${environment.baseUrl}/${this.usersEndpoint}`);
   }
@@ -32,7 +32,7 @@ export class UsersService {
   //     .get(`${environment.baseUrl}/${this.usersEndpoint}/${username}`)
   //     .pipe(map((result: UserJSON) => User.fromJSON(result)));
   // }
-  updateUser(user: User) {
-    this.backendService.patch(`${environment.baseUrl}/${this.usersEndpoint}`, user);
+  updateUser(user: UserUpdate): Observable<any> {
+    return this.backendService.patch(`${environment.baseUrl}/${this.usersEndpoint}`, user);
   }
 }

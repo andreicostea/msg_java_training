@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UsersService} from "../../services/users.service";
-import {User} from "../../models/users.model";
 import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-users',
@@ -9,10 +9,6 @@ import {Router} from "@angular/router";
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-
-  user: User;
-
-  // users: User[];
 
   constructor(private userService: UsersService, private router: Router) {
   }
@@ -32,11 +28,12 @@ export class UsersComponent implements OnInit {
     //   );
   }
 
-  get currentUser(): string {
-    return this.user ? JSON.stringify(this.user) : '';
-  }
+  // get currentUser(): string {
+  //   return this.user ? JSON.stringify(this.user) : '';
+  // }
 
-  editButtonClicked() {
-    this.router.navigateByUrl("dashboard/users/edit");
-  }
+  // editButtonClicked() {
+  //   // console.log(this.usersTable.selection.selected[0]);
+  //   this.router.navigateByUrl("dashboard/users/edit");
+  // }
 }
