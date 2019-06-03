@@ -22,7 +22,6 @@ import msg.user.entity.dao.UserDAO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -47,9 +46,8 @@ public class UserControl {
     @EJB
     private NotificationFacade notificationFacade;
 
-
-
-
+//    @EJB
+//    private RoleControl roleControl;
 
 
     public UserOutputDto authenticateUser(UserLoginDTO userLoginDTO) {
@@ -71,6 +69,7 @@ public class UserControl {
                 }
                 Algorithm algorithm = Algorithm.HMAC256("harambe");
                 String jwt =  JWT.create().withIssuer("auth0")
+                        .withClaim("id",userEntity.getId())
                         .withClaim("username", userEntity.getUsername())
                         .withArrayClaim("permissions", permissions
                                 .stream()
@@ -99,16 +98,26 @@ public class UserControl {
      */
 
     public String createUser(final UserInputDTO userDTO) {
-        if (userDao.existsEmail(userDTO.getEmail())) {
-            throw new BusinessException(MessageCatalog.USER_WITH_SAME_MAIL_EXISTS);
-        }
+        if(userDTO.getFirstName() == null || userDTO.getLastName() == null || userDTO.getEmail() == null ||
+                userDTO.getMobileNumber() == null || userDTO.getRoles().isEmpty())
+                 throw new BusinessWebAppException(MessageCatalog.USER_FIELDS_MISSING, 400);
+
+        if (userDao.existsEmail(userDTO.getEmail()))
+            throw new BusinessWebAppException(MessageCatalog.USER_WITH_SAME_MAIL_EXISTS, 400);
+
 
         final UserEntity newUserEntity = userConverter.convertInputDTOtoEntity(userDTO);
 
         newUserEntity.setUsername(this.createUserName(userDTO.getFirstName(), userDTO.getLastName()));
         newUserEntity.setStatus(true);
         newUserEntity.setPassword("DEFAULT_PASSWORD");
-        userDao.createUser(newUserEntity);
+        newUserEntity.setCounter(5);
+        try{
+            userDao.createUser(newUserEntity);
+        }catch (Exception e){
+            throw new BusinessWebAppException(MessageCatalog.USER_INVALID_PATTERN, 400);
+        }
+
         final long id = userDao.getUserByEmail(userDTO.getEmail()).getId();
         final String userFullName = newUserEntity.getFirstName() + " " + newUserEntity.getLastName();
 //        = newUserEntity.getId();
@@ -274,5 +283,16 @@ public class UserControl {
         }
         return userConverter.convertEntityDTO(user);
 
+    }
+
+    // todo: notification
+    public void updateUser(UserUpdateDTO userUpdateDTO) {
+        UserEntity userToUpdate = userDao.getUserByEmail(userUpdateDTO.getEmailBeforeUpdate());
+        userToUpdate.setFirstName(userUpdateDTO.getFirstName());
+        userToUpdate.setLastName(userUpdateDTO.getLastName());
+        userToUpdate.setEmail(userUpdateDTO.getEmail());
+        userToUpdate.setMobileNumber(userUpdateDTO.getMobileNumber());
+//        userToUpdate.setRoles(roleControl.getRolesByTypeList(userUpdateDTO.getRoles()));
+        userDao.updateUser(userToUpdate);
     }
 }

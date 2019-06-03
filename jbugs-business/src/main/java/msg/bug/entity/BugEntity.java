@@ -7,6 +7,7 @@ import msg.history.HistoryEntity;
 import msg.user.entity.UserEntity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
@@ -58,7 +59,7 @@ public class BugEntity extends BaseEntity<Long> {
     @JoinColumn(name = "ASSIGNED_ID", nullable = true)
     private UserEntity assignedTo;
     @ManyToOne
-    @JoinColumn(name = "CREATED_ID", insertable = false, updatable = false)
+    @JoinColumn(name = "CREATED_ID", nullable = false)
     private UserEntity createdBy;
     @OneToMany(mappedBy = "bugEntity")
     private Set<AttachmentEntity> attachments;

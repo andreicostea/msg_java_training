@@ -1,17 +1,56 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UsersComponent } from "./containers/users.component";
+import { UsersComponent } from "./containers/users/users.component";
 import { UsersRoutingModule } from "./users-routing.module";
-import { UsersLocallyUsedTestComponentComponent } from './components/users-locally-used-test-component/users-locally-used-test-component.component';
+import { UsersInsertButtonComponent } from './components/users-insert-button/users-insert-button.component';
+import { UsersInsertComponent } from './containers/users-insert/users-insert.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {UsersUpdateDialogComponent} from './components/users-update-dialog/users-update-dialog.component';
+
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatFormFieldModule, MatInputModule,
+  MatListModule,
+  MatOptionModule,
+  MatSelectModule,
+  MatCheckboxModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatRadioModule,
+  MatTableModule
+} from "@angular/material";
+import {UsersTableComponent} from "./components/users-table/users-table.component";
 
 @NgModule({
   declarations: [
     UsersComponent,
-    UsersLocallyUsedTestComponentComponent,
+    UsersInsertButtonComponent,
+    UsersInsertComponent,
+    UsersTableComponent,
+    UsersUpdateDialogComponent
+  ],
+  entryComponents: [
+    UsersInsertComponent, UsersUpdateDialogComponent
   ],
   imports: [
     CommonModule,
-    UsersRoutingModule
-  ]
+    UsersRoutingModule,
+    FormsModule,
+    MatOptionModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatCardModule,
+    MatTableModule,
+    MatRadioModule,
+    MatButtonModule,
+    MatInputModule,
+    MatDividerModule,
+    MatListModule,
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    MatDialogModule
+  ],
+
 })
 export class UsersModule { }

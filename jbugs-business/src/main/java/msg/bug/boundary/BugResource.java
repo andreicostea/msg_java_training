@@ -3,12 +3,16 @@ package msg.bug.boundary;
 
 import msg.bug.entity.dto.BugDTO;
 import msg.bug.entity.dto.BugInputDTO;
+import msg.permission.PermissionType;
+import msg.user.MessageCatalog;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 
 @Stateless
 @Path("/bugs")
@@ -18,24 +22,37 @@ public class BugResource {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createBug(BugInputDTO input) {
-        facade.createBug(input);
-        return Response.ok().build();
+    public Response createBug(@Context SecurityContext securityContext, BugInputDTO input) {
+        if (securityContext.isUserInRole(PermissionType.BUG_MANAGEMENT)) {
+            facade.createBug(input);
+            return Response.ok("Bug created").build();
+        } else {
+            return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
+        }
     }
 
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateBug(BugDTO input) {
-        facade.updateBug(input);
-        return Response.ok().build();
+    public Response updateBug(@Context SecurityContext securityContext, BugDTO input) {
+        if (securityContext.isUserInRole(PermissionType.BUG_MANAGEMENT)) {
+            facade.updateBug(input);
+            return Response.ok("Bug updated").build();
+        } else {
+            return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
+        }
     }
 
-    // test pr
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAll() {
-        return Response.status(200).entity(facade.getAll()).build();
-        //return Response.ok().build();
+    public Response getAll(@Context SecurityContext securityContext) {
+        if (securityContext.isUserInRole(PermissionType.BUG_MANAGEMENT)) {
+            return Response.status(200).entity(facade.getAll()).build();
+        } else {
+            return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
+
+        }
     }
 
 }
+
+

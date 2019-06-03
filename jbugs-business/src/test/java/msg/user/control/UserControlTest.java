@@ -48,17 +48,17 @@ public class UserControlTest {
     }
 
     @Test
-    public void testCreateUserWithSuccess() {
+    public void testCreateUserWithSuccess(){
         UserInputDTO user = createTestInputDTO();
 
         Mockito.when(userConverter.convertInputDTOtoEntity(Mockito.any())).thenCallRealMethod();
         Mockito.when(userDao.existsEmail(user.getEmail())).thenReturn(false);
-        Mockito.doNothing().when(notificationFacade).createNotification(Mockito.any(), Mockito.any(), 0);
+       // Mockito.doNothing().when(notificationFacade).createNotification(Mockito.any(), Mockito.any());
         this.userControl.createUser(user);
     }
 
     @Test(expected = BusinessException.class)
-    public void testCreateUserWhenEmailAddressAlreadyExists() {
+    public void testCreateUserWhenEmailAddressAlreadyExists(){
         UserInputDTO user = createTestInputDTO();
 
         Mockito.when(userDao.existsEmail(user.getEmail())).thenReturn(true);
@@ -67,13 +67,13 @@ public class UserControlTest {
     }
 
     @Test
-    public void testCreateUserNotificationSent() {
+    public void testCreateUserNotificationSent(){
         UserInputDTO user = createTestInputDTO();
 
         ArgumentCaptor<NotificationType> sentNotificationType = ArgumentCaptor.forClass(NotificationType.class);
         Mockito.when(userConverter.convertInputDTOtoEntity(Mockito.any())).thenCallRealMethod();
         Mockito.when(userDao.existsEmail(user.getEmail())).thenReturn(false);
-        Mockito.doNothing().when(notificationFacade).createNotification(sentNotificationType.capture(), Mockito.any(), 0);
+        //Mockito.doNothing().when(notificationFacade).createNotification(sentNotificationType.capture(), Mockito.any());
         this.userControl.createUser(user);
         Assert.assertEquals(sentNotificationType.getValue(), NotificationType.WELCOME_NEW_USER);
     }
@@ -84,7 +84,6 @@ public class UserControlTest {
         user.setFirstName("Andrei");
         user.setEmail("axasde@yahoo.com");
         user.setMobileNumber("0700000000");
-        user.setCounter(0);
         return user;
     }
 

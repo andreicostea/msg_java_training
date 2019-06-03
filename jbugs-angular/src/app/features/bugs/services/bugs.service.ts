@@ -22,4 +22,10 @@ export class BugsService {
     return this.backendService
       .get(`${environment.baseUrl}/${this.bugsEndpoint}`);
   }
+    insertBug(bug : Bug) : Observable<any> {
+    return  this.backendService
+      .post(`jbugs/jbugs-api/bugs`, bug)
+
+  }
+
 }

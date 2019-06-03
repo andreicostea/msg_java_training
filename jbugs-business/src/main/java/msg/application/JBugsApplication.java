@@ -3,8 +3,12 @@ package msg.application;
 import msg.bug.boundary.BugResource;
 import msg.exceptions.BusinessExceptionMapper;
 import msg.exceptions.BusinessWebAppExceptionMapper;
+import msg.filters.AuthorizationFilter;
 import msg.notification.boundary.NotificationResource;
 import msg.permission.boundary.PermissionResource;
+import msg.role.boundary.RoleResource;
+
+import msg.user.boundary.AuthResource;
 import msg.user.boundary.UserResource;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 
@@ -24,16 +28,16 @@ public class JBugsApplication extends Application {
     @Override
     public Set<Class<?>> getClasses() {
         Set<Class<?>> classes = new HashSet<>();
+        classes.add(AuthorizationFilter.class);
         classes.add(NotificationResource.class);
         classes.add(UserResource.class);
         classes.add(BusinessExceptionMapper.class);
-        //classes.add(AuthResource.class);
+
 
         classes.add(BusinessWebAppExceptionMapper.class);
         classes.add(PermissionResource.class);
         classes.add(BugResource.class);
-//        classes.add(RuntimeExceptionMapper.class);
-//         classes.add(RuntimeExceptionMapper.class);
+        classes.add(RoleResource.class);
 
 //        classes.add(BusinessExceptionMapper.class);
 //        classes.add(RuntimeExceptionMapper.class);

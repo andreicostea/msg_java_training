@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.config.json",
+    "start": "ng serve --open --proxy-config proxy.config.json",
     "build": "ng build",
-    "test": "ng test",
+    "test": "ng add @angular/material",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -22,7 +22,7 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "bootstrap": "^4.3.1",
-    "core-js": "^2.5.4",
+    "core-js": "^2.6.9",
     "hammerjs": "^2.0.8",
     "jwt-decode": "^2.2.0",
     "ngx-cookie-service": "^2.2.0",

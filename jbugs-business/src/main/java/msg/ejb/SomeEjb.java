@@ -72,7 +72,6 @@ public class SomeEjb {
         user.setFirstName("Andrei");
         user.setEmail("axasde@yahoo.com");
         user.setMobileNumber("07893722");
-        user.setCounter(0);
 
         this.userFacade.createUser(user);
         return "USER CREATED";

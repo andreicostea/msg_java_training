@@ -38,7 +38,7 @@ public class UserDAO {
      * @param user the input entity to be saved.
      * @return the persisted entity.
      */
-    public UserEntity createUser(UserEntity user) {
+    public UserEntity createUser(UserEntity user){
         em.persist(user);
         return user;
     }
@@ -48,7 +48,6 @@ public class UserDAO {
         return user;
 
     }
-
 
     public UserEntity getUserByEmail(String email) {
         return em.createNamedQuery(UserEntity.USER_GET_BY_EMAIL, UserEntity.class)
@@ -79,6 +78,4 @@ public class UserDAO {
                 .setParameter("id", id)
                 .getSingleResult();
     }
-
-
 }

@@ -1,10 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
+
 import {Bug, BugJSON} from "../../models/bugs.model";
 import {BugsService} from "../../services/bugs.service";
 import {Observable} from "rxjs";
-import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {Sort} from '@angular/material/sort';
+import {MatSort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-bugs-table-component',
@@ -82,4 +83,13 @@ export class BugsTableComponentComponent implements OnInit {
 
 function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+
+
+  constructor() { }
+
+  //@ViewChild(MatSort, {static: true}) sort: MatSort;
+
+  ngOnInit() {
+    //this.dataSource.sort = this.sort;
+  }
 }
