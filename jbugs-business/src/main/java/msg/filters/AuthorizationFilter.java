@@ -5,6 +5,8 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import msg.exceptions.BusinessException;
+import msg.user.MessageCatalog;
 
 import javax.ejb.Stateless;
 import javax.ws.rs.container.ContainerRequestContext;
@@ -25,18 +27,22 @@ import java.util.Set;
 public class AuthorizationFilter implements ContainerRequestFilter {
 
     @Override
-    public void filter(ContainerRequestContext containerRequestContext) throws IOException {
+    public void filter(ContainerRequestContext containerRequestContext)  {
         String authorizationValue = containerRequestContext.getHeaderString("Authorization");
-        if (authorizationValue.startsWith("Bearer")) {
-            Algorithm algorithm = Algorithm.HMAC256("harambe");
-            JWTVerifier verifier = JWT.require(algorithm).withIssuer("auth0").build();
-            DecodedJWT decodedJWT = verifier.verify(authorizationValue.split(" ")[1]);
-            if (isTokenValid(decodedJWT)) {
-                List<String> permissions = decodedJWT.getClaim("permissions").asList(String.class);
-                String username = decodedJWT.getClaim("username").asString();
-                containerRequestContext.setSecurityContext(new Authorization(permissions, username) {
-                });
-            }
+       try {
+           if (authorizationValue.startsWith("Bearer")) {
+               Algorithm algorithm = Algorithm.HMAC256("harambe");
+               JWTVerifier verifier = JWT.require(algorithm).withIssuer("auth0").build();
+               DecodedJWT decodedJWT = verifier.verify(authorizationValue.split(" ")[1]);
+               if (isTokenValid(decodedJWT)) {
+                   List<String> permissions = decodedJWT.getClaim("permissions").asList(String.class);
+                   String username = decodedJWT.getClaim("username").asString();
+                   containerRequestContext.setSecurityContext(new Authorization(permissions, username) {
+                   });
+               }
+           }
+       }catch (Exception e){
+            throw new BusinessException(MessageCatalog.INVALID_OR_NON_EXISTENT_TOKEN);
         }
     }
 

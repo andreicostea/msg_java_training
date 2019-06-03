@@ -22,16 +22,17 @@ public class AuthResource {
     @EJB
     UserFacade userFacade;
 
+
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Response whatever(UserLoginDTO userLoginDTO) {
+    public Response loginUser(UserLoginDTO userLoginDTO) {
         return Response.ok(userFacade.authenticateUser(userLoginDTO)).build();
     }
 
-    @GET
-    public Response whatever1() {
-        return Response.ok().build();
-    }
+//    @GET
+//    public Response whatever1() {
+//        return Response.ok().build();
+//    }
 
 
 }

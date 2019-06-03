@@ -14,7 +14,6 @@ import {LoginModule} from "./features/login/login.module";
 import {CookieService} from "ngx-cookie-service";
 import {AddHeaderInterceptor} from "./core/backend/request.interceptor";
 import {
-  MatButtonModule,
   MatDialogModule,
   MatFormFieldModule, MatIconModule,
   MatInputModule,
@@ -37,10 +36,10 @@ import {
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule,
+     MatCheckboxModule,
     LoginModule,
     BrowserAnimationsModule,
-    MatNativeDateModule
+    MatNativeDateModule,
     MatButtonModule,
     MatTabsModule,
     MatLineModule,

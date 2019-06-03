@@ -35,6 +35,12 @@ public class MessageCatalog {
             = new ExceptionMessage("USER-04", "Your account is inactive");
     public static final ExceptionMessage THIS_ID_DOES_NOT_EXIST
             = new ExceptionMessage("PERMISSION-01", "The id you try to delete doesn't exist in database");
+    public static final ExceptionMessage PERMISSION_NOT_FOUND
+            = new ExceptionMessage("PERMISSION-02", "You don't have permission for this operation");
+
+    public static final ExceptionMessage INVALID_OR_NON_EXISTENT_TOKEN
+            = new ExceptionMessage("USER-05", "You're not authorized for this operation.");
+
 }
 
 
