@@ -1,37 +1,35 @@
 <form #f = 'ngForm' >
 
 
+  <div mat-dialog-content>
 
-  <mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title>Insert User</mat-card-title>
-    </mat-card-header>
 
-    <mat-divider></mat-divider>
-    <mat-card-content>
-      <br>
-      <div class ="form-group">
-        <label > First Name</label>
-        <input class = "form-control"
+    <mat-card-title>Insert User</mat-card-title>
+    <mat-divider></mat-divider> <br>
+
+     <div class="format1">
+      <mat-form-field class ="form-group">
+
+        <input matInput placeholder="First Name"
+               class = "form-control"
                [(ngModel)] = "user.firstName"
                type ="text"
                id = "firstName"
                name = "firstName"
                #firstName ="ngModel"
                ngModel
-               required
-        >
-
-        <div class ="alert alert-danger"
+               required>
+        <mat-error class ="alert alert-danger"
              *ngIf="firstName.touched && firstName.invalid">
-          <div *ngIf="firstName.errors.required">The field is required</div>
+          <mat-error *ngIf="firstName.errors.required">The field is required</mat-error>
+        </mat-error>
+      </mat-form-field>
 
-        </div>
-      </div>
 
-      <div class ="form-group">
-        <label > Last Name</label>
-        <input class = "form-control"
+
+      <mat-form-field class ="form-group">
+        <input matInput placeholder="Last Name"
+               class = "form-control"
                type ="text"
                id = "lastName"
                name = "lastName"
@@ -40,53 +38,59 @@
                required
                #lastName ="ngModel">
 
-        <div class ="alert alert-danger"
+        <mat-error class ="alert alert-danger"
              *ngIf="lastName.touched && lastName.invalid">
-          <div *ngIf="lastName.errors.required">The field is required</div>
+          <mat-error *ngIf="lastName.errors.required">The field is required</mat-error>
 
-        </div>
-      </div>
+        </mat-error>
+      </mat-form-field>
+    </div>
 
-      <div class ="form-group">
-        <label > Mobile number</label>
-        <input class = "form-control"
+
+      <mat-form-field class ="form-group1">
+        <input matInput placeholder="Mobile Number"
+               class = "form-control"
                type ="text"
                id = "mobileNumber"
                name = "mobileNumber"
                ngModel
                [(ngModel)] = "user.mobileNumber"
+               pattern="[+]4[0,9]{1}[0-9]{9}"
                required
-
                #mobileNumber ="ngModel">
 
-        <div class ="alert alert-danger"
+        <mat-error class ="alert alert-danger"
              *ngIf="mobileNumber.touched && mobileNumber.invalid">
-          <div *ngIf="mobileNumber.errors.required">The field is required</div>
-          <div *ngIf="mobileNumber.errors.pattern">The pattern is invalid</div>
+          <mat-error *ngIf="mobileNumber.errors.required">The field is required</mat-error>
+          <mat-error *ngIf="mobileNumber.errors.pattern">Number is invalid</mat-error>
 
-        </div>
-      </div>
+        </mat-error>
+      </mat-form-field> <br>
 
-      <div class ="form-group">
-        <label > Email</label>
-        <input class = "form-control"
+
+
+      <mat-form-field class ="form-group1">
+        <input  matInput placeholder="Email"
+               class = "form-control"
                type ="text"
                id = "email"
                name = "email"
                ngModel
                [(ngModel)] = "user.email"
+               pattern="^[a-z0-9._%+-]+@msggroup.com"
                required
 
                #email ="ngModel">
 
-        <div class ="alert alert-danger"
-             *ngIf="email.touched && email.invalid">
-          <div *ngIf="email.errors.required">The field is required</div>
-          <div *ngIf="email.errors.pattern">The pattern is invalid</div>
+        <mat-error class ="alert alert-danger"
+             *ngIf="email.touched && email.invalid ">
+          <mat-error *ngIf="email.errors.required">The field is required</mat-error>
+          <mat-error *ngIf="email.errors.pattern">Requires a msg group email !</mat-error>
 
-        </div>
-      </div>
+        </mat-error>
+      </mat-form-field>
 
+    <br>
 
       <mat-form-field  class="col-lg-12">
         <mat-label>Rol</mat-label>
@@ -95,28 +99,29 @@
                     ngModel multiple>
           <mat-option *ngFor="let rol of roles" [value]="rol">{{rol}}</mat-option>
         </mat-select>
+
+
       </mat-form-field>
 
 
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button
-              (click)="insert()"
-              [disabled]="f.invalid">
-
-
-        Submit</button>
-
-    </mat-card-actions>
-  </mat-card>
+    <mat-divider></mat-divider>
+    <button mat-raised-button
+            (click)="insert()"
+            [disabled]="f.invalid">Submit</button>
+<!--    </mat-card-content>-->
 
 
 
-  <p>
-    {{f.value | json}}
-  </p>
 
 
+
+
+
+<!--  <p>-->
+<!--    {{f.value | json}}-->
+<!--  </p>-->
+
+  </div>
 
 </form>
 

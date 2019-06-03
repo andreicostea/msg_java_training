@@ -6,8 +6,10 @@ import msg.user.entity.dao.UserDAO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
 
 @Stateless
@@ -34,6 +36,8 @@ public class BugConverter {
         b.setFixedVersion(input.getFixedVersion());
         b.setTargetDate(parseStringToDate(input.getTargetDate()));
         b.setSeverity(input.getSeverity());
+
+
         if(input.getCREATED_ID() != 0){
             try {
                UserEntity userEntity = userDao.getUserById(input.getCREATED_ID());
@@ -73,21 +77,19 @@ public class BugConverter {
     public Date parseStringToDate(String input ){
 
 
-        String split1 = input.substring(0,10);
-        String split2 = input.substring(split1.length() + 4, input.length() - 2);
-        input = split1 + " " + split2;
-
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date();
-
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+        Date date = null;
         try {
-            date = format.parse(input);
-
+            date = dateFormat.parse(input);
+            return date;
         } catch (ParseException e) {
             e.printStackTrace();
+            return new Date();
         }
 
-        return date;
+
 
     }
+
+
 }

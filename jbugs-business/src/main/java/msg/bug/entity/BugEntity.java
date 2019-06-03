@@ -7,6 +7,7 @@ import msg.history.HistoryEntity;
 import msg.user.entity.UserEntity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Set;

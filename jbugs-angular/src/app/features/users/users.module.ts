@@ -9,7 +9,7 @@ import {FormsModule} from "@angular/forms";
 import {
   MatButtonModule,
   MatCardModule,
-  MatFormFieldModule,
+  MatFormFieldModule, MatInputModule,
   MatListModule,
   MatOptionModule,
   MatSelectModule
@@ -22,6 +22,9 @@ import {
     UsersInsertButtonComponent,
     UsersInsertComponent,
   ],
+  entryComponents: [
+    UsersInsertComponent
+  ],
   imports: [
     CommonModule,
     UsersRoutingModule,
@@ -31,7 +34,8 @@ import {
     MatSelectModule,
     MatCardModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    MatInputModule
   ]
 })
 export class UsersModule { }

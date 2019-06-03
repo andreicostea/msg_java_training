@@ -1,15 +1,15 @@
 <form #f = 'ngForm' >
 
 <mat-card class="example-card">
-  <mat-card-header>
+
     <mat-card-title>Insert Bug</mat-card-title>
-  </mat-card-header>
+
 
   <mat-divider></mat-divider>
-  <mat-card-content>
+<!--  <mat-card-content>-->
     <br>
-<div>
-    <mat-form-field class="example-full-width">
+
+    <mat-form-field class="form-group">
       <input matInput placeholder="Title"
              class = "form-control"
              type ="text"
@@ -25,7 +25,7 @@
 
 
     </mat-form-field>
-</div>
+
 
     <mat-form-field class ="form-group">
       <input matInput placeholder="Description"
@@ -37,7 +37,6 @@
              [(ngModel)] = "bug.description"
              required
              #description ="ngModel">
-
       <mat-error
            *ngIf="description.touched && description.invalid">
         <mat-error *ngIf="description.errors.required">The field is required</mat-error>
@@ -52,11 +51,10 @@
              id = "version"
              name = "version"
              ngModel
+             pattern="^[a-zA-Z0-9.]*$"
              [(ngModel)] = "bug.version"
              required
-
              #version ="ngModel">
-
       <div class ="alert alert-danger"
            *ngIf="version.touched && version.invalid">
         <div *ngIf="version.errors.required">The field is required</div>
@@ -100,26 +98,36 @@
     </select>
     </mat-form-field>
 
+    <mat-form-field >
+      <mat-label>Assigned to:</mat-label>
+      <mat-select [(ngModel)] = "bug.ASSIGNED_ID"
+                  name="roles"
+                  ngModel>
+        <mat-option *ngFor="let user of usersList" [value]="user.id">{{user.userName}}</mat-option>
+      </mat-select>
 
-  </mat-card-content>
+
+    </mat-form-field>
+
+
+<!--  </mat-card-content>-->
   <mat-card-actions>
-    <button mat-raised-button
-            (click)="insert()"
-            [disabled]="f.invalid">
 
-
-      Submit</button>
 
   </mat-card-actions>
 </mat-card>
 
+  <button mat-raised-button
+          (click)="insert()"
+          [disabled]="f.invalid">
 
 
-<p>
-  {{f.value | json}}
-</p>
+    Submit</button>
 
 
+<!--<p>-->
+<!--  {{f.value | json}}-->
+<!--</p>-->
 
 </form>
 

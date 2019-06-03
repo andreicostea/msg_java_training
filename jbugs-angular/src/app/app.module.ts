@@ -11,7 +11,6 @@ import {MatButtonModule, MatCheckboxModule, MatNativeDateModule} from "@angular/
 import {LoginComponent} from "./features/login/containers/login/login.component";
 import {LoginModule} from "./features/login/login.module";
 
-import {CookieService} from "ngx-cookie-service";
 import {AddHeaderInterceptor} from "./core/backend/request.interceptor";
 import {
 
@@ -22,13 +21,17 @@ import {
   MatTabsModule, MatToolbarModule
 } from "@angular/material";
 
+import {UsersModule} from "./features/users/users.module";
+import {BugsModule} from "./features/bugs/bugs.module";
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-   LoginComponent
+   LoginComponent,
+
 
   ],
   imports: [
@@ -49,13 +52,17 @@ import {
     MatDialogModule,
     MatMenuModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    UsersModule,
+    BugsModule
 
   ],
+
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AddHeaderInterceptor,
     multi: true,
+
   }],
   bootstrap: [AppComponent]
 })

@@ -5,14 +5,24 @@ import { BugsComponent } from "./containers/bugs/bugs.component";
 import { BugsRoutingModule } from "./bugs-routing.module";
 import { BugsTableComponentComponent } from './components/bugs-table-component/bugs-table-component.component';
 import { BugAddComponent } from './containers/bug-add/bug-add.component';
-import {MatButtonModule, MatCardModule, MatDatepickerModule, MatInputModule, MatListModule} from "@angular/material";
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatDatepickerModule,
+  MatInputModule,
+  MatListModule, MatSelectModule,
+  NativeDateModule
+} from "@angular/material";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { BugDialogAddComponent } from './components/bug-dialog-add/bug-dialog-add.component';
 
 @NgModule({
   declarations: [
     BugsComponent,
     BugsTableComponentComponent,
-    BugAddComponent
+    BugAddComponent,
+    BugDialogAddComponent,
+
 
 
   ],
@@ -26,7 +36,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     MatInputModule,
     MatDatepickerModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NativeDateModule,
+    MatSelectModule
   ]
 })
 export class BugsModule { }

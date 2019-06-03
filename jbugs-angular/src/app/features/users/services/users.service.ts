@@ -32,4 +32,8 @@ export class UsersService {
   getRoles(roles: Role[]) : Observable<any> {
     return  this.backendService.get(`${environment.baseUrl}/roles/types`);
   }
+
+  getAllUsers() :Observable<any>{
+    return  this.backendService.get(`${environment.baseUrl}/${this.usersEndpoint}`);
+  }
 }

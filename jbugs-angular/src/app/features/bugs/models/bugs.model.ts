@@ -7,6 +7,7 @@ export interface BugJSON {
   fixedVersion: string;
   severity: string;
   CREATED_ID: number;
+  ASSIGNED_ID: number;
 }
 
 export class Bug {
@@ -18,6 +19,7 @@ export class Bug {
   fixedVersion: string;
   severity: string;
   CREATED_ID: number;
+  ASSIGNED_ID: number;
 
   static fromJSON(json: BugJSON): Bug {
     const termin = new Bug();
@@ -29,6 +31,7 @@ export class Bug {
     termin.fixedVersion = json.fixedVersion;
     termin.severity = json.severity;
     termin.CREATED_ID = json.CREATED_ID;
+    termin.ASSIGNED_ID = json.ASSIGNED_ID;
     return termin;
   }
 
@@ -41,7 +44,8 @@ export class Bug {
       status: bug.status,
       fixedVersion: bug.fixedVersion,
       severity: bug.severity,
-      CREATED_ID: bug.CREATED_ID
+      CREATED_ID: bug.CREATED_ID,
+      ASSIGNED_ID: bug.ASSIGNED_ID
     };
   }
 

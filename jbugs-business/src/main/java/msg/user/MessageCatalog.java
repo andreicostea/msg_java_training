@@ -33,8 +33,15 @@ public class MessageCatalog {
 
     public static final ExceptionMessage USER_INACTIVE
             = new ExceptionMessage("USER-04", "Your account is inactive");
+
     public static final ExceptionMessage THIS_ID_DOES_NOT_EXIST
             = new ExceptionMessage("PERMISSION-01", "The id you try to delete doesn't exist in database");
+
+    public static final ExceptionMessage USER_INVALID_PATTERN
+            = new ExceptionMessage("USER-05", "One or more fields have invalid pattern");
+
+    public static final ExceptionMessage USER_FIELDS_MISSING
+            = new ExceptionMessage("USER-06", "Some fields are missing");
 }
 
 

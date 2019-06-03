@@ -101,16 +101,26 @@ public class UserControl {
      */
 
     public String createUser(final UserInputDTO userDTO) {
-        if (userDao.existsEmail(userDTO.getEmail())) {
-            throw new BusinessException(MessageCatalog.USER_WITH_SAME_MAIL_EXISTS);
-        }
+        if(userDTO.getFirstName() == null || userDTO.getLastName() == null || userDTO.getEmail() == null ||
+                userDTO.getMobileNumber() == null || userDTO.getRoles().isEmpty())
+                 throw new BusinessWebAppException(MessageCatalog.USER_FIELDS_MISSING, 400);
+
+        if (userDao.existsEmail(userDTO.getEmail()))
+            throw new BusinessWebAppException(MessageCatalog.USER_WITH_SAME_MAIL_EXISTS, 400);
+
 
         final UserEntity newUserEntity = userConverter.convertInputDTOtoEntity(userDTO);
 
         newUserEntity.setUsername(this.createUserName(userDTO.getFirstName(), userDTO.getLastName()));
         newUserEntity.setStatus(true);
         newUserEntity.setPassword("DEFAULT_PASSWORD");
-        userDao.createUser(newUserEntity);
+        newUserEntity.setCounter(5);
+        try{
+            userDao.createUser(newUserEntity);
+        }catch (Exception e){
+            throw new BusinessWebAppException(MessageCatalog.USER_INVALID_PATTERN, 400);
+        }
+
         final long id = userDao.getUserByEmail(userDTO.getEmail()).getId();
         final String userFullName = newUserEntity.getFirstName() + " " + newUserEntity.getLastName();
 //        = newUserEntity.getId();
