@@ -24,21 +24,17 @@ import { BugDialogAddComponent } from './components/bug-dialog-add/bug-dialog-ad
 @NgModule({
   declarations: [
     BugsComponent,
-    BugsTableComponentComponent
-  ],
-  imports: [
-    CommonModule,
-    BugsRoutingModule,
-    MatTableModule,
-    MatSortModule,
-    MatFormFieldModule
     BugsTableComponentComponent,
     BugAddComponent,
     BugDialogAddComponent,
- ],
+  ],
+
   imports: [
     HttpClientModule,
+    MatTableModule,
+    MatFormFieldModule,
     CommonModule,
+    MatSortModule,
     BugsRoutingModule,
     MatCardModule,
     MatListModule,

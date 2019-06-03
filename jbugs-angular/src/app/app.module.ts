@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {FormsModule} from '@angular/forms';
-import {MatButtonModule, MatCheckboxModule, MatTableModule} from "@angular/material";
+import {MatTableModule} from "@angular/material";
 import { DashboardComponent } from "./features/dashboard/dashboard.component";
 import {MatButtonModule, MatCheckboxModule, MatNativeDateModule} from "@angular/material";
 import {LoginComponent} from "./features/login/containers/login/login.component";

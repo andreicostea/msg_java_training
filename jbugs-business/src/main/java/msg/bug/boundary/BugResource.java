@@ -25,7 +25,7 @@ public class BugResource {
     public Response createBug(@Context SecurityContext securityContext, BugInputDTO input) {
         if (securityContext.isUserInRole(PermissionType.BUG_MANAGEMENT)) {
             facade.createBug(input);
-            return Response.ok("Bug created").build();
+            return Response.ok().build();
         } else {
             return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
         }
@@ -36,7 +36,7 @@ public class BugResource {
     public Response updateBug(@Context SecurityContext securityContext, BugDTO input) {
         if (securityContext.isUserInRole(PermissionType.BUG_MANAGEMENT)) {
             facade.updateBug(input);
-            return Response.ok("Bug updated").build();
+            return Response.ok().build();
         } else {
             return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
         }

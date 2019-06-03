@@ -85,11 +85,11 @@ function compare(a: number | string, b: number | string, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 
 
-  constructor() { }
+
 
   //@ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  ngOnInit() {
+
     //this.dataSource.sort = this.sort;
-  }
+
 }

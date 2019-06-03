@@ -32,9 +32,9 @@ export class BugAddComponent implements OnInit {
 
   insert(){
     this.bug.CREATED_ID = this.permissionService.getUserId();
-    console.log(this.bug);
+
     this.bugService.insertBug(this.bug).subscribe((
-        value => {console.log(value); this.onNoClick();}),
+        value => {this.onNoClick();}),
       (error => {alert(error.error.message)} ),
       () => {this.router.navigate(['/dashboard/bugs'])})
     ;

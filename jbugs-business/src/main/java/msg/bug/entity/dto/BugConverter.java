@@ -65,6 +65,7 @@ public class BugConverter {
     public BugDTO convertEntityDTOtoEntity(BugEntity bug) {
         final BugDTO b = new BugDTO();
         b.setTitle(bug.getTitle());
+        b.setStatus(bug.getStatus());
         b.setDescription(bug.getDescription());
         b.setVersion(bug.getVersion());
         b.setFixedVersion(bug.getFixedVersion());

@@ -1,33 +1,16 @@
 export interface BugJSON {
 
-  title: string
-  description: string
-  version: string
-  targetDate: string
-  status: string
-  fixedVersion: string
-  severity: string
-}
-
-export class Bug {
-  title: string
-  description: string
-  version: string
-  targetDate: string
-  status: string
-  fixedVersion: string
-  severity: string
-=======
   title: string;
   description: string;
   version: string;
-  targetDate: any;
+  targetDate: string;
   status: string;
   fixedVersion: string;
   severity: string;
   CREATED_ID: number;
   ASSIGNED_ID: number;
 }
+
 
 export class Bug {
   title: string;
@@ -62,7 +45,6 @@ export class Bug {
       targetDate: bug.targetDate,
       status: bug.status,
       fixedVersion: bug.fixedVersion,
-      severity: bug.severity
       severity: bug.severity,
       CREATED_ID: bug.CREATED_ID,
       ASSIGNED_ID: bug.ASSIGNED_ID
