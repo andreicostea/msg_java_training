@@ -14,12 +14,7 @@ export class UsersComponent implements OnInit {
   constructor(private userService: UsersService) { }
 
   ngOnInit() {
-    //TODO integrate with login
-    this.userService.loadUserByUsername(1)
-      .subscribe(
-        user => this.user = user,
-        error => console.log(error)
-        );
+
   }
 
   get currentUser(): string {

@@ -1,8 +1,7 @@
 
 
-
 <mat-toolbar class="test">
-  <span>Jbugs Application</span>
+  <span>{{userName}}</span>
   <!-- This fills the remaining space of the current row -->
   <span class="example-fill-remaining-space"></span>
 
@@ -15,7 +14,4 @@
     <button mat-menu-item (click)="logout()">Logout</button>
   </mat-menu>
 </mat-toolbar>
-
-
-<button (click)= "test()">Test</button>
 <router-outlet></router-outlet>

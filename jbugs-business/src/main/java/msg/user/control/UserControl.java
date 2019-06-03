@@ -73,7 +73,6 @@ public class UserControl {
                 String jwt =  JWT.create().withIssuer("auth0")
                         .withClaim("id",userEntity.getId())
                         .withClaim("username", userEntity.getUsername())
-                        .withClaim("id", userEntity.getId())
                         .withArrayClaim("permissions", permissions
                                 .stream()
                                 .map(PermissionEntity::getType).toArray(String[]::new))
