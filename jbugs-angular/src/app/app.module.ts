@@ -1,24 +1,22 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
-import { DashboardComponent } from "./features/dashboard/dashboard.component";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {DashboardComponent} from "./features/dashboard/dashboard.component";
 import {LoginComponent} from "./features/login/containers/login/login.component";
 import {LoginModule} from "./features/login/login.module";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {CookieService} from "ngx-cookie-service";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AddHeaderInterceptor} from "./core/backend/request.interceptor";
-
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-   LoginComponent,
+    LoginComponent,
 
 
   ],
@@ -27,6 +25,7 @@ import {AddHeaderInterceptor} from "./core/backend/request.interceptor";
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     LoginModule,
     BrowserAnimationsModule
   ],
@@ -37,4 +36,5 @@ import {AddHeaderInterceptor} from "./core/backend/request.interceptor";
   }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

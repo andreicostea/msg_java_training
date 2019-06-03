@@ -2,6 +2,7 @@ package msg.user.boundary;
 
 import msg.user.entity.dto.UserInputDTO;
 import msg.user.entity.dto.UserLoginDTO;
+import msg.user.entity.dto.UserUpdateDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -20,7 +21,7 @@ public class UserResource {
     @Path("/insert")
     @POST
     public Response createUser(UserInputDTO input, @HeaderParam("authorization") String connectedUserToken) {
-//        /* todo: implement hasPermission
+//        /*
 //        * should decode the token and check if the user has the neccesary permission(s)
 //        */
 
@@ -32,6 +33,13 @@ public class UserResource {
         return Response.ok().build();
     }
 
+    @Consumes(MediaType.APPLICATION_JSON)
+    @PATCH
+    public Response updateUser(UserUpdateDTO userUpdateDTO) {
+        System.out.println(userUpdateDTO.getFirstName());
+        userFacade.updateUser(userUpdateDTO);
+        return Response.ok("Successfully updated!").build();
+    }
 
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/login")
@@ -53,6 +61,4 @@ public class UserResource {
     public Response getUserById(@PathParam("id") long id) {
         return Response.ok(userFacade.getUserById(id)).build();
     }
-
-
 }

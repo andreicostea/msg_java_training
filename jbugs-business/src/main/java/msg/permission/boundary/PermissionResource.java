@@ -34,7 +34,6 @@ public class PermissionResource {
         permissionFacade.removePermission(id);
         return Response.ok().build();
     }
-
 }
 
 
