@@ -7,6 +7,7 @@ import msg.user.control.UserControl;
 import msg.user.entity.dto.UserDTO;
 import msg.user.entity.dto.UserInputDTO;
 import msg.user.entity.dto.UserLoginDTO;
+import msg.user.entity.dto.UserUpdateDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -27,7 +28,7 @@ public class UserFacade {
     /**
      * Creates a user based on the {@link UserInputDTO}.
      *
-     * @param user the input User DTO. mandatory
+     * @param userInputDto the input User DTO. mandatory
      */
     //@RolesAllowed(PermissionType.USER_MANAGEMENT)
     public Object authenticateUser(UserLoginDTO userLoginDTO) {
@@ -38,6 +39,9 @@ public class UserFacade {
         this.userControl.createUser(user);
     }
 
+    public void updateUser(UserUpdateDTO userUpdateDTO) {
+        this.userControl.updateUser(userUpdateDTO);
+    }
 
     public void loginUser(UserLoginDTO userLoginDTO) {
 

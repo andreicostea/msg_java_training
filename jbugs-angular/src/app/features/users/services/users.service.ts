@@ -4,7 +4,7 @@ import { map } from "rxjs/operators";
 
 import { environment } from "../../../../environments/environment";
 import { BackendService } from "../../../core/backend/backend.service";
-import {Role, User, UserJSON} from "../models/users.model";
+import { User, UserJSON ,Role, UserUpdate} from "../models/users.model";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,12 @@ export class UsersService {
   loadUserByUsername(username: number): Observable<User> {
     console.log(`${environment.baseUrl}/${this.usersEndpoint}/${username}`);
     return this.backendService
-      .get(`${environment.baseUrl}/${this.usersEndpoint}/${username}`)
+      .get(`${environment.baseUrl}/${this.usersEndpoint}`);
+  }
+
+  loadUserById(id: number): Observable<User> {
+    return this.backendService
+      .get(`${environment.baseUrl}/${this.usersEndpoint}/${id}`)
       .pipe(map((result: UserJSON) => User.fromJSON(result)));
 
   }
@@ -35,5 +40,18 @@ export class UsersService {
 
   getAllUsers() :Observable<any>{
     return  this.backendService.get(`${environment.baseUrl}/${this.usersEndpoint}`);
+  }
+
+  // loadUserByUsername(username: string): Observable<User> {
+  //   return this.backendService
+  //     .get(`${environment.baseUrl}/${this.usersEndpoint}/${username}`)
+  //     .pipe(map((result: UserJSON) => User.fromJSON(result)));
+  // }
+  updateUser(user: UserUpdate): Observable<any> {
+    return this.backendService.patch(`${environment.baseUrl}/${this.usersEndpoint}`, user);
+  }
+
+  loadAllUsers() : User[] {
+    return this.backendService.get(`${environment.baseUrl}/${this.usersEndpoint}`);
   }
 }

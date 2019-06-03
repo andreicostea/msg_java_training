@@ -13,7 +13,6 @@ const routes: Routes = [
     path: 'insert',
     component: UsersInsertComponent
   }
-
 ];
 
 @NgModule({

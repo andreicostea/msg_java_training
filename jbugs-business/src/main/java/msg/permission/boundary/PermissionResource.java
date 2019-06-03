@@ -36,16 +36,7 @@ public class PermissionResource {
         permissionFacade.removePermission(id);
         return Response.ok().build();
     }
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Path("/test")
-//    @GET
-//    public Response createUser(@Context SecurityContext securityContext) {
-//        return Response.ok(securityContext.isUserInRole("PERMISSION MANAGEMENT")).build();
-//    }
-
 
 }
-
-
 
 

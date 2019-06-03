@@ -22,7 +22,6 @@ import msg.user.entity.dao.UserDAO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -47,9 +46,8 @@ public class UserControl {
     @EJB
     private NotificationFacade notificationFacade;
 
-
-
-
+//    @EJB
+//    private RoleControl roleControl;
 
 
     public UserOutputDto authenticateUser(UserLoginDTO userLoginDTO) {
@@ -285,5 +283,16 @@ public class UserControl {
         }
         return userConverter.convertEntityDTO(user);
 
+    }
+
+    // todo: notification
+    public void updateUser(UserUpdateDTO userUpdateDTO) {
+        UserEntity userToUpdate = userDao.getUserByEmail(userUpdateDTO.getEmailBeforeUpdate());
+        userToUpdate.setFirstName(userUpdateDTO.getFirstName());
+        userToUpdate.setLastName(userUpdateDTO.getLastName());
+        userToUpdate.setEmail(userUpdateDTO.getEmail());
+        userToUpdate.setMobileNumber(userUpdateDTO.getMobileNumber());
+//        userToUpdate.setRoles(roleControl.getRolesByTypeList(userUpdateDTO.getRoles()));
+        userDao.updateUser(userToUpdate);
     }
 }

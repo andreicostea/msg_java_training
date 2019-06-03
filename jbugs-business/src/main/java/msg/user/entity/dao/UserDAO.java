@@ -49,7 +49,6 @@ public class UserDAO {
 
     }
 
-
     public UserEntity getUserByEmail(String email) {
         return em.createNamedQuery(UserEntity.USER_GET_BY_EMAIL, UserEntity.class)
                 .setParameter(UserEntity.EMAIL, email)
@@ -79,6 +78,4 @@ public class UserDAO {
                 .setParameter("id", id)
                 .getSingleResult();
     }
-
-
 }
