@@ -6,6 +6,7 @@ import msg.comment.entity.CommentEntity;
 import msg.role.entity.RoleEntity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -22,11 +23,13 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = UserEntity.USER_FIND_BY_EMAIL, query = "SELECT count(u) from UserEntity u where u.email = :" + UserEntity.EMAIL),
         @NamedQuery(name = UserEntity.USER_COUNT_BY_USERNAME, query = "SELECT count(u) from UserEntity u where u.username = :username"),
+
         @NamedQuery(name = UserEntity.USER_FIND_ALL, query = "SELECT u from UserEntity u"),
         @NamedQuery(name = UserEntity.USER_FIND_BY_ID, query = "SELECT u from UserEntity u where u.id = :id"),
         @NamedQuery(name = UserEntity.USER_FIND_BY_USERNAME, query = "SELECT u from UserEntity u where u.username = :username"),
         @NamedQuery(name = UserEntity.USER_GET_BY_EMAIL, query = "SELECT u from UserEntity u where u.email = :" + UserEntity.EMAIL)
 })
+
 public class UserEntity extends BaseEntity<Long> {
     public static final String USER_FIND_BY_EMAIL = "UserEntity.findByEmail";
     public static final String USER_GET_BY_EMAIL = "UserEntity.getByEmail";
@@ -43,12 +46,16 @@ public class UserEntity extends BaseEntity<Long> {
     @OneToMany(mappedBy = "createdBy")
     Set<BugEntity> created;
     @Column(name = "first_name", nullable = false)
+    @Pattern(regexp="^(?=\\s*\\S).*$", message = "{invalid.first_name}") //for empty or spaces without data
     private String firstName;
     @Column(name = "last_name", nullable = false)
+    @Pattern(regexp="^(?=\\s*\\S).*$", message = "{invalid.last_name}")
     private String lastName;
-    @Column(name = "email", nullable = false) //todo: @Pattern
+    @Column(name = "email", nullable = false)
+    @Pattern(regexp="^[a-z0-9._%+-]+@msggroup.com", message = "{invalid.email}")
     private String email;
     @Column(name = "mobile_number", nullable = false)
+    @Pattern(regexp="[+]4[0,9]{1}[0-9]{9}", message = "{invalid.mobileNumber}")
     private String mobileNumber;
     @Column(name = "username", nullable = false)
     private String username;

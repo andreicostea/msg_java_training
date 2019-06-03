@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {UsersService} from "../../services/users.service";
-import {Router} from "@angular/router";
-
+import { Component, OnInit } from '@angular/core';
+import { UsersService } from "../../services/users.service";
+import { User } from "../../models/users.model";
 
 @Component({
   selector: 'app-users',
@@ -10,30 +9,20 @@ import {Router} from "@angular/router";
 })
 export class UsersComponent implements OnInit {
 
-  constructor(private userService: UsersService, private router: Router) {
-  }
+  user: User;
+
+  constructor(private userService: UsersService) { }
 
   ngOnInit() {
-    // //TODO integrate with login
-    // this.userService.loadUserByUsername('admin')
-    //   .subscribe(
-    //     user => this.user = user,
-    //     error => console.log(error)
-    //     );
 
-    // this.userService.loadUserById(1)
-    //   .subscribe(
-    //     user => this.user = user,
-    //     error => console.log(error)
-    //   );
   }
 
-  // get currentUser(): string {
-  //   return this.user ? JSON.stringify(this.user) : '';
-  // }
+  get currentUser(): string {
+    return this.user ? JSON.stringify(this.user) : '';
+  }
 
-  // editButtonClicked() {
-  //   // console.log(this.usersTable.selection.selected[0]);
-  //   this.router.navigateByUrl("dashboard/users/edit");
-  // }
+
+
+
+
 }

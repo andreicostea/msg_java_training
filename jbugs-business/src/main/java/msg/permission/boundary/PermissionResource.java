@@ -5,8 +5,10 @@ import msg.permission.entity.dto.PermissionDTO;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 
 /**
  * Document me.
@@ -34,6 +36,7 @@ public class PermissionResource {
         permissionFacade.removePermission(id);
         return Response.ok().build();
     }
+
 }
 
 

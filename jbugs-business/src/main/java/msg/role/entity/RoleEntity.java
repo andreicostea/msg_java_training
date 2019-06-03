@@ -21,11 +21,18 @@ import java.util.Objects;
                 query = "select r.permissions from RoleEntity r where r.type=:type "),
         @NamedQuery(name = RoleEntity.QUERY_GET_ROLES_BY_TYPE_LIST,
                 query = "select r from RoleEntity r "
-                        + "where r.type in :" + RoleEntity.INPUT_TYPE_LIST)})
+                        + "where r.type in :" + RoleEntity.INPUT_TYPE_LIST),
+       @NamedQuery(name = RoleEntity.GET_ALL_ROLES,
+                 query = "SELECT r from RoleEntity r "),
+        @NamedQuery(name = RoleEntity.GET_ALL_ROLES_TYPE,
+                query = "SELECT r.type from RoleEntity r ")
+})
 public class RoleEntity extends BaseEntity<Long> {
 
     public static final String QUERY_GET_ROLES_BY_TYPE_LIST = "getRolesByTypeList";
     public static final String INPUT_TYPE_LIST = "type";
+    public static final String GET_ALL_ROLES = "getAllRoles";
+    public static final String GET_ALL_ROLES_TYPE = "getAllRolesType";
     public static final String GET_PERMISSIONS = "getPermissions";
     @Column(name = "type", nullable = false)
     private String type;
