@@ -3,6 +3,7 @@ package msg.role.boundary;
 import msg.permission.entity.dto.PermissionDTO;
 import msg.role.control.RoleControl;
 import msg.role.entity.RoleEntity;
+import msg.role.entity.dto.RoleDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -23,7 +24,7 @@ public class RoleFacade {
         return this.roleControl.getRoleById(id);
     }
 
-    public List<RoleEntity> getAllRolesAndPermissions() {
+    public List<RoleDTO> getAllRolesAndPermissions() {
         return this.roleControl.getRolesAndPermissions();
     }
     public RoleEntity addPermission(long id, PermissionDTO permissionDTO) {

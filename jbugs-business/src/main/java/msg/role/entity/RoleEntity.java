@@ -16,6 +16,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "roles")
+@Cacheable(value = false)
 @NamedQueries({
         @NamedQuery(name = RoleEntity.GET_PERMISSIONSANDROLES,
                 query = "select r from RoleEntity r"),
@@ -39,8 +40,8 @@ public class RoleEntity extends BaseEntity<Long> {
     @Column(name = "type", nullable = false)
     private String type;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "permissions_roles",
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JoinTable(name = "roles_permissions",
             joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "permission_id", referencedColumnName = "id", nullable = false)
     )

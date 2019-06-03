@@ -55,8 +55,8 @@ export class PermissionManagerInsertButtonComponent implements OnInit {
   }
 
   addPermission(): void {
-    // this.permissionManagerService.insertPermission();
-    // this.router.navigate(['./insertorremovepermission'], {relativeTo: this.activateRouter});
+
+    this.router.navigate(['./insertorremovepermission'], {relativeTo: this.activateRouter});
 
     this.permissionManagerService.insertPermission(this.selectedRole.id, this.selectedPermission)
       .subscribe(value => {
@@ -70,10 +70,18 @@ export class PermissionManagerInsertButtonComponent implements OnInit {
         });
   }
 
+//not sure if is good
   deletePermission() {
     this.permissionManagerService.deletePermission(this.selectedPermission.id)
       .subscribe(
-        value => alert("deleted"),
+        value => {
+          this.selectedPermission = null;
+          this.permissionManagerService.getAllRolesAndPermissions()
+            .subscribe(result => {
+              this.selectedRole.permissions = result[this.selectedRole.type]
+            });
+          // this.roleandpermission = ;
+        },
         error1 => alert("error")
       );
   }

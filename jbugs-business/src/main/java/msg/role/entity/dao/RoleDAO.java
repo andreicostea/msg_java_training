@@ -9,6 +9,7 @@ import msg.role.entity.RoleEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ import java.util.List;
 @Stateless
 public class RoleDAO {
 
-    @PersistenceContext(unitName = "persistenceUnit")
+    @PersistenceContext(unitName = "persistenceUnit", type = PersistenceContextType.TRANSACTION)
     private EntityManager em;
 
     /**
@@ -42,9 +43,14 @@ public class RoleDAO {
     }
 
     public List<RoleEntity> getAllRolesAndPermissions() {
-        return em.createNamedQuery(RoleEntity.GET_PERMISSIONSANDROLES, RoleEntity.class)
+        List<RoleEntity> roleEntities = em.createNamedQuery(RoleEntity.GET_PERMISSIONSANDROLES, RoleEntity.class)
                 .getResultList();
+//        roleEntities.stream().forEach((roleEntity -> {
+//            this.em.refresh(roleEntity);
+//        }));
+        return roleEntities;
     }
+
     public RoleEntity addPermission(RoleEntity roleEntity, PermissionEntity permissionEntity) {
         roleEntity.getPermissions().add(permissionEntity);
         //ca sa faca update

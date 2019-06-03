@@ -34,7 +34,7 @@ public class PermissionResource {
     public Response removePermission(@PathParam("id") long id) {
         System.out.println("deleted permission with id:" + id);
         permissionFacade.removePermission(id);
-        return Response.ok().header("Cache-Control", "no-cache").build();
+        return Response.ok().build();
     }
 
     //Asta cu token ce o zis catalin

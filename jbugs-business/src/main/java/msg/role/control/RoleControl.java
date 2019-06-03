@@ -11,10 +11,12 @@ import msg.permission.entity.dto.PermissionDTO;
 import msg.role.entity.RoleEntity;
 import msg.role.entity.dao.RoleDAO;
 import msg.role.entity.dto.RoleConverter;
+import msg.role.entity.dto.RoleDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Control operations for all the RoleEntity related operations.
@@ -60,9 +62,10 @@ public class RoleControl {
         return roleEntity;
     }
 
-    public List<RoleEntity> getRolesAndPermissions() {
+    public List<RoleDTO> getRolesAndPermissions() {
         List<RoleEntity> roleEntity2 = roleDao.getAllRolesAndPermissions();
-        return roleEntity2;
+        List<RoleDTO> collect = roleEntity2.stream().map(roleConverter::convertInputEntityToDTO).collect(Collectors.toList());
+        return collect;
     }
 }
 //    public List<String> getAllRolesAndPermissions(RoleDTO roleDTO, PermissionDTO permissionDTO){

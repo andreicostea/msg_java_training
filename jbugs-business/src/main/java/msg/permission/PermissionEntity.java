@@ -1,8 +1,11 @@
 package msg.permission;
 
 import msg.base.BaseEntity;
+import msg.role.entity.RoleEntity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -32,6 +35,14 @@ public class PermissionEntity extends BaseEntity<Long> {
 
     @Column(name = "type")
     private String type;
+
+    @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+    @JoinTable(name = "roles_permissions",
+            joinColumns = @JoinColumn(name = "permission_id", referencedColumnName = "id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
+    )
+    private List<RoleEntity> roles = new ArrayList<>();
+
 
     public PermissionEntity() {
     }
