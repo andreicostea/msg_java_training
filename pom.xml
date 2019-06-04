@@ -157,7 +157,6 @@
 
             <modules>
                 <module>jbugs-business</module>
-                <module>jbugs-client</module>
                 <module>jbugs-ear</module>
             </modules>
 
