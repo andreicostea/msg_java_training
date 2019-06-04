@@ -7,7 +7,7 @@ import msg.exceptions.BusinessException;
 import msg.notification.boundary.NotificationFacade;
 import msg.notification.entity.NotificationType;
 import msg.permission.boundary.PermissionFacade;
-import msg.user.entity.dao.UserDAO;
+import msg.user.entity.dao.userDao;
 import msg.user.entity.dto.UserConverter;
 import msg.user.entity.dto.UserInputDTO;
 import org.junit.Assert;
@@ -33,7 +33,7 @@ public class UserControlTest {
     UserControl userControl;
 
     @Mock
-    UserDAO userDao;
+    userDao userDao;
 
     @Mock
     UserConverter userConverter;

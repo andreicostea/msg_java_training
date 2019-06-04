@@ -1,4 +1,5 @@
 export interface UserJSON {
+  id: number;
   firstName: string;
   lastName: string;
   email: string;
@@ -27,13 +28,14 @@ export class UserUpdate {
 
 
 export class User {
+  id: number;
   firstName: string;
   lastName: string;
   email: string;
   mobileNumber: string;
   roles: string[];
   token: string;
-
+  status: boolean;
 
   static fromJSON(json: UserJSON): User {
     const termin = new User();

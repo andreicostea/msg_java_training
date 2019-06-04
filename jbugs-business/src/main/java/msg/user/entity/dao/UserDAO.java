@@ -14,7 +14,7 @@ import java.util.List;
  * @since 19.1.2
  */
 @Stateless
-public class UserDAO {
+public class userDao {
 
     @PersistenceContext(unitName = "persistenceUnit")
     private EntityManager em;

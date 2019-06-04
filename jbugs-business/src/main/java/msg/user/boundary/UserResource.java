@@ -41,10 +41,17 @@ public class UserResource {
         return Response.ok("Successfully updated!").build();
     }
 
+    @Path("{id}")
+    @DELETE
+    public Response deactivateUser(@PathParam("id") int id) {
+        userFacade.deactivateUser(id);
+        return Response.ok("Successfully deactivated!").build();
+    }
+
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/login")
     @POST
-    public Response userLogin(@HeaderParam("Authorization") String header,  UserLoginDTO userLoginDTO) {
+    public Response userLogin(@HeaderParam("Authorization") String header, UserLoginDTO userLoginDTO) {
         return Response.ok(userFacade.authenticateUser(userLoginDTO)).build();
     }
 
@@ -53,7 +60,6 @@ public class UserResource {
     public Response getAll() {
         return Response.ok(userFacade.getAll()).build();
     }
-
 
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")

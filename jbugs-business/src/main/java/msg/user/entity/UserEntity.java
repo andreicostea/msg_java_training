@@ -148,7 +148,7 @@ public class UserEntity extends BaseEntity<Long> {
         this.counter = counter;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
