@@ -1,10 +1,6 @@
 package msg.user.entity.dto;
 
-import javax.ejb.Stateless;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 
 /**
  * Document me.
@@ -25,7 +21,7 @@ public class UserOutputDto {
     public UserOutputDto(String email, String userName, ArrayList<String> permissions, String token) {
         this.email = email;
         this.userName = userName;
-        this.permissions= permissions;
+        this.permissions = permissions;
         this.token = token;
     }
 
@@ -52,8 +48,6 @@ public class UserOutputDto {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
-
 
 
     public String getToken() {

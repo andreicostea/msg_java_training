@@ -78,10 +78,16 @@ const routes: Routes = [
       {
         path: 'bugs',
         loadChildren: 'src/app/features/bugs/bugs.module#BugsModule'
-      }
+      },
+      {
+        path: 'permissions',
+        loadChildren: 'src/app/features/permission-manager/permission-manager.module#PermissionManagerModule'
+      },
     ]
   }
-];
+]
+
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

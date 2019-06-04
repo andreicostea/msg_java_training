@@ -3,11 +3,13 @@
 // =================================================================================================
 package msg.role.entity.dao;
 
+import msg.permission.PermissionEntity;
 import msg.role.entity.RoleEntity;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import java.util.List;
 
 /**
@@ -19,7 +21,7 @@ import java.util.List;
 @Stateless
 public class RoleDAO {
 
-    @PersistenceContext(unitName = "persistenceUnit")
+    @PersistenceContext(unitName = "persistenceUnit", type = PersistenceContextType.TRANSACTION)
     private EntityManager em;
 
     /**
@@ -33,6 +35,34 @@ public class RoleDAO {
                 .setParameter(RoleEntity.INPUT_TYPE_LIST, typeList)
                 .getResultList();
     }
+
+    public RoleEntity getRoleById(final long id) {
+        return em.createNamedQuery(RoleEntity.QUERY_GET_ROLE_BY_ID, RoleEntity.class)
+                .setParameter(RoleEntity.INPUT_ID, id)
+                .getSingleResult();
+    }
+
+    public List<RoleEntity> getAllRolesAndPermissions() {
+        List<RoleEntity> roleEntities = em.createNamedQuery(RoleEntity.GET_PERMISSIONSANDROLES, RoleEntity.class)
+                .getResultList();
+//        roleEntities.stream().forEach((roleEntity -> {
+//            this.em.refresh(roleEntity);
+//        }));
+        return roleEntities;
+    }
+
+    public RoleEntity addPermission(RoleEntity roleEntity, PermissionEntity permissionEntity) {
+        roleEntity.getPermissions().add(permissionEntity);
+        //ca sa faca update
+        return em.merge(roleEntity);
+    }
+
+//    public List<PermissionEntity> getPermission(final List<String> permissionEntityList){
+//        return em.createNamedQuery(RoleEntity.GET_PERMISSIONS,PermissionEntity.class)
+//                .setParameter(RoleEntity.INPUT_TYPE_LIST,permissionEntityList)
+//                .getResultList();
+//    }
+
 
     public List<RoleEntity> getAll() {
         return em.createNamedQuery(RoleEntity.GET_ALL_ROLES, RoleEntity.class).getResultList();

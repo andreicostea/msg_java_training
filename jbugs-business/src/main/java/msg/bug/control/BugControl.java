@@ -2,6 +2,7 @@ package msg.bug.control;
 
 import msg.bug.entity.BugEntity;
 import msg.bug.entity.StatusType;
+import msg.bug.entity.StatusUpdate;
 import msg.bug.entity.dao.BugDAO;
 import msg.bug.entity.dto.BugConverter;
 import msg.bug.entity.dto.BugDTO;
@@ -10,6 +11,7 @@ import msg.exceptions.BusinessException;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -3,10 +3,17 @@
 // =================================================================================================
 package msg.role.control;
 
+import msg.exceptions.BusinessWebAppException;
+import msg.permission.PermissionEntity;
+import msg.permission.boundary.PermissionFacade;
+import msg.permission.entity.dao.PermissionDAO;
+import msg.permission.entity.dto.PermissionConverter;
+import msg.permission.entity.dto.PermissionDTO;
 import msg.role.entity.RoleEntity;
 import msg.role.entity.dao.RoleDAO;
 import msg.role.entity.dto.RoleConverter;
 import msg.role.entity.dto.RoleDTO;
+import msg.user.MessageCatalog;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -29,6 +36,13 @@ public class RoleControl {
     private RoleConverter roleConverter;
 
 
+    @EJB
+    private PermissionFacade permissionFacade;
+    @EJB
+    private PermissionConverter permissionConverter;
+    @EJB
+    private PermissionDAO permissionDAO;
+
 
     /**
      * Given a input list of {@link RoleEntity#getType()}s, returns the corresponding list of RoleEntity Entities.
@@ -49,4 +63,49 @@ public class RoleControl {
     public List<String> getAllRolesByType() {
         return roleDao.getAllRolesByType();
     }
+
+
+    public RoleEntity addPermission(long id, PermissionDTO permissionDTO) {
+        RoleEntity permissionEntities=  roleDao.getRoleById(id);
+        for (PermissionEntity permission: permissionEntities.getPermissions()) {
+            if (permission.getType().equals(permissionDTO.getType())) {
+                throw new BusinessWebAppException(MessageCatalog.ROLE_WITH_SAME_PERMISSION_EXISTS, 411);
+            }
+        }
+        final PermissionEntity permissionEntity = permissionConverter.convertInputDTOtoEntity(permissionDTO);
+        permissionEntity.setDescription(permissionDTO.getDescription());
+        permissionEntity.setType(permissionDTO.getType());
+        PermissionEntity newPermission = permissionDAO.createPermission(permissionEntity);
+        RoleEntity roleEntity = roleDao.getRoleById(id);
+        return roleDao.addPermission(roleEntity, newPermission);
+    }
+
+    public RoleEntity getRoleById(long id) {
+        RoleEntity roleEntity = roleDao.getRoleById(id);
+        //roleEntity.addPermission();
+        return roleEntity;
+    }
+
+    public List<RoleDTO> getRolesAndPermissions() {
+        List<RoleEntity> roleEntity2 = roleDao.getAllRolesAndPermissions();
+        List<RoleDTO> collect = roleEntity2.stream().map(roleConverter::convertInputEntityToDTO).collect(Collectors.toList());
+        return collect;
+    }
 }
+//    public List<String> getAllRolesAndPermissions(RoleDTO roleDTO, PermissionDTO permissionDTO){
+//    }
+
+//    public List<String> getRolesAndPermissions() {
+//        int n = 4;
+//        List<String> rolesandpermissions = null;
+//        for (int i = 0; i < n; i++) {
+//            rolesandpermissions = (List<String>) this.getRoleById(i);
+//            return null;
+//        }
+//        return rolesandpermissions;
+//    }
+
+
+//    public List<PermissionEntity> getPermission(List<String> permissionEntityList){
+//        return roleDao.getPermission(permissionEntityList);
+//    }

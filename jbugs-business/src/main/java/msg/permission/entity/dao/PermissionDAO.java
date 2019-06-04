@@ -35,6 +35,7 @@ public class PermissionDAO {
 //        PermissionEntity permissionEntity=em.find(PermissionEntity.class,id);
 //        em.remove(permissionEntity);
         em.remove(findById(id));
+        em.flush();
         return "Deleted successfully!";
     }
 
@@ -69,6 +70,11 @@ public class PermissionDAO {
     public List<PermissionEntity> getPermissionByTypeList(final List<String> typeList) {
         return em.createNamedQuery(PermissionEntity.QUERY_GET_PERMISSION_BY_TYPE_LIST, PermissionEntity.class)
                 .setParameter(PermissionEntity.INPUT_TYPE_LIST, typeList)
+                .getResultList();
+    }
+
+    public List<PermissionEntity> getAll() {
+        return em.createNamedQuery(PermissionEntity.PERMISSION_FIND_ALL, PermissionEntity.class)
                 .getResultList();
     }
 }

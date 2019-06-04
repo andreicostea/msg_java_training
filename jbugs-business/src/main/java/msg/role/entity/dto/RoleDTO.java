@@ -2,11 +2,25 @@ package msg.role.entity.dto;
 
 import msg.base.BaseEntity;
 
+import msg.permission.entity.dto.PermissionDTO;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class RoleDTO {
 
     // todo: this should be an enum
     private long id;
     private String type;
+    private List<PermissionDTO> permissions = new ArrayList<>();
+
+    public List<PermissionDTO> getPermissions() {
+        return this.permissions;
+    }
+
+    public void setPermissions(List<PermissionDTO> permissions) {
+        this.permissions = permissions;
+    }
 
     public RoleDTO() {
     }

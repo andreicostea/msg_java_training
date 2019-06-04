@@ -51,6 +51,9 @@ public class MessageCatalog {
     public static final ExceptionMessage INVALID_OR_NON_EXISTENT_TOKEN
             = new ExceptionMessage("USER-07", "You're not authorized for this operation.");
 
+    public static final ExceptionMessage ROLE_WITH_SAME_PERMISSION_EXISTS
+            = new ExceptionMessage("PERMISSION-03", "The permission u want to insert already exist!");
 }
+
 
 

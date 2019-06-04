@@ -33,17 +33,10 @@ public class JBugsApplication extends Application {
         classes.add(UserResource.class);
         classes.add(BusinessExceptionMapper.class);
 
-
         classes.add(BusinessWebAppExceptionMapper.class);
         classes.add(PermissionResource.class);
         classes.add(BugResource.class);
         classes.add(RoleResource.class);
-
-//        classes.add(BusinessExceptionMapper.class);
-//        classes.add(RuntimeExceptionMapper.class);
-//        classes.add(AuthResource.class);
-//        classes.add(AuthorizationFilter.class);
-//        some random change to test git
         return classes;
     }
 
