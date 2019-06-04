@@ -10,7 +10,6 @@ export class LoginInput {
   password: string;
 
 
-
   static fromJSON(json: loginInputJSON): LoginInput {
     const termin = new LoginInput();
     termin.username = json.username;

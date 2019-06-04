@@ -22,6 +22,7 @@ import msg.user.entity.dao.UserDAO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -46,8 +47,9 @@ public class UserControl {
     @EJB
     private NotificationFacade notificationFacade;
 
-//    @EJB
-//    private RoleControl roleControl;
+
+
+
 
 
     public UserOutputDto authenticateUser(UserLoginDTO userLoginDTO) {

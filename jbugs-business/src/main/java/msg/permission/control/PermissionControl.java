@@ -10,6 +10,7 @@ import msg.user.MessageCatalog;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Document me.
@@ -46,6 +47,12 @@ public class PermissionControl {
 
     public List<PermissionEntity> getPermissionByTypeList(List<String> typeList) {
         return permissionDAO.getPermissionByTypeList(typeList);
+    }
+
+    public List<PermissionDTO> getAll() {
+        return permissionDAO.getAll().stream()
+                .map(permissionConverter::convertEntityToInputDTO)
+                .collect(Collectors.toList());
     }
 
 }

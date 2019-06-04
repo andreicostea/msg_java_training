@@ -5,6 +5,7 @@ public class PermissionDTO {
     // todo: type should be an enum
     private String description;
     private String type;
+    private Long id;
 
     public PermissionDTO() {
     }
@@ -23,5 +24,13 @@ public class PermissionDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

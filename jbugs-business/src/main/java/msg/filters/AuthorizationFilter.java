@@ -15,7 +15,6 @@ import javax.ws.rs.core.SecurityContext;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Document me.

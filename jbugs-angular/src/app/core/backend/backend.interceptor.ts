@@ -1,8 +1,8 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {Observable, throwError} from 'rxjs';
+import {catchError} from 'rxjs/operators';
 
-import { JBugsMessage, JBugsMessageSeverity } from "../messaging/jbugs-message";
+import {JBugsMessage, JBugsMessageSeverity} from "../messaging/jbugs-message";
 
 /**
  * Backend requests interceptor for formatting error messages.

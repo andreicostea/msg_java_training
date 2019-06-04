@@ -37,6 +37,21 @@ public class PermissionResource {
         return Response.ok().build();
     }
 
+    //Asta cu token ce o zis catalin
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Path("/test")
+//    @GET
+//    public Response createUser(@Context SecurityContext securityContext) {
+//        return Response.ok(securityContext.isUserInRole("PERMISSION_MANAGER")).build();
+//    }
+
+    //get for permissions
+    @Produces(MediaType.APPLICATION_JSON)
+    @GET
+    public Response getAll() {
+        return Response.ok(permissionFacade.getAll()).build();
+    }
+
 }
 
 

@@ -46,16 +46,16 @@ public class UserEntity extends BaseEntity<Long> {
     @OneToMany(mappedBy = "createdBy")
     Set<BugEntity> created;
     @Column(name = "first_name", nullable = false)
-    @Pattern(regexp="^(?=\\s*\\S).*$", message = "{invalid.first_name}") //for empty or spaces without data
+    //@Pattern(regexp="^(?=\\s*\\S).*$", message = "{invalid.first_name}") //for empty or spaces without data
     private String firstName;
     @Column(name = "last_name", nullable = false)
-    @Pattern(regexp="^(?=\\s*\\S).*$", message = "{invalid.last_name}")
+    //@Pattern(regexp="^(?=\\s*\\S).*$", message = "{invalid.last_name}")
     private String lastName;
     @Column(name = "email", nullable = false)
-    @Pattern(regexp="^[a-z0-9._%+-]+@msggroup.com", message = "{invalid.email}")
+    //@Pattern(regexp="^[a-z0-9._%+-]+@msggroup.com", message = "{invalid.email}")
     private String email;
     @Column(name = "mobile_number", nullable = false)
-    @Pattern(regexp="[+]4[0,9]{1}[0-9]{9}", message = "{invalid.mobileNumber}")
+    //@Pattern(regexp="[+]4[0,9]{1}[0-9]{9}", message = "{invalid.mobileNumber}")
     private String mobileNumber;
     @Column(name = "username", nullable = false)
     private String username;

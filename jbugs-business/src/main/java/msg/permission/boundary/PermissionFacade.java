@@ -5,6 +5,7 @@ import msg.permission.entity.dto.PermissionDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.List;
 
 /**
  * Document me.
@@ -24,4 +25,9 @@ public class PermissionFacade {
     public void removePermission(long id) {
         this.permissionControl.removePermission(id);
     }
+
+    public List<PermissionDTO> getAll() {
+        return this.permissionControl.getAll();
+    }
+
 }

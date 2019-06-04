@@ -30,16 +30,14 @@ import {UsersUpdateDialogComponent} from "./features/users/components/users-upda
   declarations: [
     AppComponent,
     DashboardComponent,
-   LoginComponent,
-
-
+   LoginComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule, 
+    FormsModule,
     MatTableModule,
     ReactiveFormsModule,
     MatCheckboxModule,
