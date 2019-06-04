@@ -74,6 +74,10 @@ const routes: Routes = [
       {
         path: 'notifications',
         loadChildren: 'src/app/features/notifications/notifications.module#NotificationsModule'
+      },
+      {
+        path: 'bugs',
+        loadChildren: 'src/app/features/bugs/bugs.module#BugsModule'
       }
     ]
   }

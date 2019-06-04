@@ -15,7 +15,9 @@ public class UserDTO {
     private ArrayList<RoleEntity> roles;
     private boolean status;
 
-    public UserDTO(String firstName, String lastName, String email, String mobileNumber, String userName, ArrayList<RoleEntity> roles) {
+
+    public UserDTO(Long id, String firstName, String lastName, String email, String mobileNumber,String userName,ArrayList<RoleEntity> roles) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -25,6 +27,14 @@ public class UserDTO {
     }
 
     public UserDTO() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {

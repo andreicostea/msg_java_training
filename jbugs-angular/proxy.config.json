@@ -2,5 +2,10 @@
   "/jbugs/jbugs-api/*": {
     "target": "http://localhost:8080/",
     "secure": false
+  },
+
+  "/jbugs/login/*": {
+    "target": "http://localhost:8080/",
+    "secure": false
   }
 }

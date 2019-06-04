@@ -1,22 +1,37 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {DashboardComponent} from "./features/dashboard/dashboard.component";
+import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
+import {MatTableModule} from "@angular/material";
+import { DashboardComponent } from "./features/dashboard/dashboard.component";
+import {MatButtonModule, MatCheckboxModule, MatNativeDateModule} from "@angular/material";
 import {LoginComponent} from "./features/login/containers/login/login.component";
 import {LoginModule} from "./features/login/login.module";
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AddHeaderInterceptor} from "./core/backend/request.interceptor";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import {AddHeaderInterceptor} from "./core/backend/request.interceptor";
+import {
+  MatDialogModule,
+  MatFormFieldModule, MatIconModule,
+  MatInputModule,
+  MatLineModule, MatMenuModule,
+  MatTabsModule, MatToolbarModule
+} from "@angular/material";
+
+import {UsersModule} from "./features/users/users.module";
+import {BugsModule} from "./features/bugs/bugs.module";
+import {UsersUpdateDialogComponent} from "./features/users/components/users-update-dialog/users-update-dialog.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    LoginComponent,
+   LoginComponent,
+
 
 
   ],
@@ -24,10 +39,25 @@ import {AddHeaderInterceptor} from "./core/backend/request.interceptor";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
+    FormsModule, 
+    MatTableModule,
     ReactiveFormsModule,
+    MatCheckboxModule,
     LoginModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatNativeDateModule,
+    MatButtonModule,
+    MatTabsModule,
+    MatLineModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    MatMenuModule,
+    MatIconModule,
+    MatToolbarModule,
+    UsersModule,
+    BugsModule
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
@@ -36,5 +66,4 @@ import {AddHeaderInterceptor} from "./core/backend/request.interceptor";
   }],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }

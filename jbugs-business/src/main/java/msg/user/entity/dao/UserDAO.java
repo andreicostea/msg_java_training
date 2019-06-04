@@ -38,7 +38,7 @@ public class userDao {
      * @param user the input entity to be saved.
      * @return the persisted entity.
      */
-    public UserEntity createUser(UserEntity user) {
+    public UserEntity createUser(UserEntity user){
         em.persist(user);
         return user;
     }

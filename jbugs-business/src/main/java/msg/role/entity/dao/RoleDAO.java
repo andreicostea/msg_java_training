@@ -33,4 +33,15 @@ public class RoleDAO {
                 .setParameter(RoleEntity.INPUT_TYPE_LIST, typeList)
                 .getResultList();
     }
+
+    public List<RoleEntity> getAll() {
+        return em.createNamedQuery(RoleEntity.GET_ALL_ROLES, RoleEntity.class).getResultList();
+    }
+
+    public List<String> getAllRolesByType() {
+        return em.createNamedQuery(RoleEntity.GET_ALL_ROLES_TYPE, String.class)
+                .getResultList();
+    }
+
+
 }
