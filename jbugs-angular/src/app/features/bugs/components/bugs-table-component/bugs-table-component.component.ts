@@ -40,6 +40,7 @@ export class BugsTableComponentComponent implements OnInit {
   data = this.loadAllBugs();
   sortedData: Bug[];
   ngOnInit(){
+
   }
   constructor(private bugService: BugsService) {
     this.sortedData = this.bugs;
