@@ -20,13 +20,16 @@ public class NotificationMessageCatalog {
 
     }
 
-    public static String getFullMessageForUserUpdatedTarget(String usernameSource, String usernameTarget, String data) {
-        return MessageFormat.format(USER_UPDATED_TARGET, usernameSource, usernameTarget, data);
-
+//    public static String getFullMessageForUserUpdatedTarget(String usernameSource, String usernameTarget, String data) {
+    public static String getFullMessageForUserUpdatedTarget(String usernameSource, String usernameTarget) {
+//        return MessageFormat.format(USER_UPDATED_TARGET, usernameSource, usernameTarget, data);
+        return MessageFormat.format(USER_UPDATED_TARGET, usernameSource, usernameTarget);
     }
 
-    public static String getFullMessageForUserUpdatedSource(String username, String data) {
-        return MessageFormat.format(USER_UPDATED_SOURCE, username, data);
+//    public static String getFullMessageForUserUpdatedSource(String username, String data) {
+    public static String getFullMessageForUserUpdatedSource(String username) {
+//        return MessageFormat.format(USER_UPDATED_SOURCE, username, data);
+        return MessageFormat.format(USER_UPDATED_SOURCE, username);
     }
 
 

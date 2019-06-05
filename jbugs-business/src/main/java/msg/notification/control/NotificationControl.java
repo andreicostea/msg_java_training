@@ -123,23 +123,20 @@ public class NotificationControl {
 
     private void createWelcomeUpdateTarget(final NotificationParamsUserChanges messageParams, final long userID) {
         final NotificationEntity notificationEntity = new NotificationEntity();
-        notificationEntity.setMessage(NotificationMessageCatalog
-                .getFullMessageForUserUpdatedTarget(messageParams.getUsernameSource(),
-                        messageParams.getUsernameTarget(), messageParams.getData()));
+//        notificationEntity.setMessage(NotificationMessageCatalog.getFullMessageForUserUpdatedTarget(messageParams.getUsernameSource(), messageParams.getUsernameTarget(), messageParams.getData()));
+        notificationEntity.setMessage(NotificationMessageCatalog.getFullMessageForUserUpdatedTarget(messageParams.getUsernameSource(), messageParams.getUsernameTarget()));
         notificationEntity.setNotificationType(NotificationType.USER_UPDATED);
         //todo update with correct link when routing is available
         notificationEntity.setUrl(SERVER_ADDRESS + "someOtherInfo");
         notificationEntity.setDate(new Date());
         notificationEntity.setUserID(userID);
         this.notificationDao.createNotification(notificationEntity);
-
     }
 
     private void createWelcomeUpdateSource(final NotificationParamsUserChanges messageParams) {
         final NotificationEntity notificationEntity = new NotificationEntity();
-        notificationEntity.setMessage(
-                NotificationMessageCatalog.getFullMessageForUserUpdatedSource(
-                        messageParams.getUsernameSource(), messageParams.getData()));
+//        notificationEntity.setMessage(NotificationMessageCatalog.getFullMessageForUserUpdatedSource(messageParams.getUsernameSource(), messageParams.getData()));
+        notificationEntity.setMessage(NotificationMessageCatalog.getFullMessageForUserUpdatedSource(messageParams.getUsernameSource()));
         notificationEntity.setNotificationType(NotificationType.USER_UPDATED);
         //todo update with correct link when routing is available
         notificationEntity.setUrl(SERVER_ADDRESS + "someOtherInfo");

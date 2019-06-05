@@ -7,6 +7,8 @@ public class UserUpdateDTO {
     private String email;
     private String mobileNumber;
     private boolean status;
+    private String whoUpdatedHim;
+
 //    private List<String> roles;
 //    private List<String> roles = new ArrayList<>();
 
@@ -59,6 +61,14 @@ public class UserUpdateDTO {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public String getWhoUpdatedHim() {
+        return whoUpdatedHim;
+    }
+
+    public void setWhoUpdatedHim(String whoUpdatedHim) {
+        this.whoUpdatedHim = whoUpdatedHim;
     }
 
 //    public List<String> getRoles() {

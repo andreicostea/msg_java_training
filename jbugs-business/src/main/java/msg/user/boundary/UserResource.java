@@ -36,7 +36,7 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @PATCH
     public Response updateUser(UserUpdateDTO userUpdateDTO) {
-        System.out.println(userUpdateDTO.getFirstName());
+//        System.out.println(userUpdateDTO.getFirstName());
         userFacade.updateUser(userUpdateDTO);
         return Response.ok("Successfully updated!").build();
     }
@@ -73,6 +73,4 @@ public class UserResource {
         } else
             return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
     }
-
-
 }

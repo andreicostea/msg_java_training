@@ -293,8 +293,7 @@ public class UserControl {
 //        userToUpdate.setRoles(roleControl.getRolesByTypeList(userUpdateDTO.getRoles()));
         userDao.updateUser(userToUpdate);
         // send notification
-        this.notificationFacade.createNotification(NotificationType.USER_UPDATED, new NotificationParamsUserChanges(whoModifiedHim, whoWasModified, data), userToUpdate.getId())
-
+        this.notificationFacade.createNotification(NotificationType.USER_UPDATED, new NotificationParamsUserChanges(userUpdateDTO.getWhoUpdatedHim(), userToUpdate.getUsername()), userToUpdate.getId());
     }
 
     // todo: notification USER_DELETED
