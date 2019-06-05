@@ -12,7 +12,7 @@ import {UsersUpdateDialogComponent} from "../users-update-dialog/users-update-di
   styleUrls: ['./users-table.component.css']
 })
 export class UsersTableComponent implements OnInit {
-  displayedColumns: string[] = ["select", "firstName", "lastName", "email", "mobileNumber"];
+  displayedColumns: string[] = ["select", "id", "firstName", "lastName", "email", "mobileNumber"];
   // dataSource: User[] = [
   //   {firstName: "Adrian", lastName: "Mutu", email: "aaa@yahoo.com", roles: ["role1", "role2"]},
   //   {firstName: "Matei", lastName: "Chivu", email: "bbb@yahoo.com", roles: ["role2", "role4"]},
@@ -72,5 +72,9 @@ export class UsersTableComponent implements OnInit {
 
   editButtonClicked() {
     this.openDialog();
+  }
+
+  deactivateButtonClicked() {
+    this.userService.deactivateUser(this.selection.selected[0].id).subscribe();
   }
 }

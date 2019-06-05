@@ -28,7 +28,7 @@ public class UserFacade {
     /**
      * Creates a user based on the {@link UserInputDTO}.
      *
-     * @param userInputDto the input User DTO. mandatory
+     * @param userLoginDTO the input User DTO. mandatory
      */
     //@RolesAllowed(PermissionType.USER_MANAGEMENT)
     public Object authenticateUser(UserLoginDTO userLoginDTO) {
@@ -54,5 +54,9 @@ public class UserFacade {
 
     public UserDTO getUserById(long id) {
         return this.userControl.getUserById(id);
+    }
+
+    public void deactivateUser(long id) {
+        userControl.deactivateUser(id);
     }
 }

@@ -28,8 +28,8 @@ public class MessageCatalog {
     /**
      * A message for the case when you specified an user id that doesn't exists in the database
      */
-    public static final ExceptionMessage USER_WITH_THAT_ID_DOES_NOT_EXISTS
-            = new ExceptionMessage("USER-03", "User with that specified id doesn't exists");
+    public static final ExceptionMessage USER_WITH_THAT_ID_DOES_NOT_EXIST
+            = new ExceptionMessage("USER-03", "There is no user with that id");
 
     public static final ExceptionMessage USER_INACTIVE
             = new ExceptionMessage("USER-04", "Your account is inactive");

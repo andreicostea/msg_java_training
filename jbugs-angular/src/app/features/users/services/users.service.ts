@@ -51,6 +51,10 @@ export class UsersService {
     return this.backendService.patch(`${environment.baseUrl}/${this.usersEndpoint}`, user);
   }
 
+  deactivateUser(id: number): Observable<any> {
+    return this.backendService.delete(`${environment.baseUrl}/${this.usersEndpoint}/${id}`);
+  }
+
   loadAllUsers() : User[] {
     return this.backendService.get(`${environment.baseUrl}/${this.usersEndpoint}`);
   }

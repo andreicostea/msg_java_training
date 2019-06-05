@@ -1,14 +1,12 @@
 package msg.user.entity.dto;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class UserUpdateDTO {
     private String firstName;
     private String lastName;
     private String emailBeforeUpdate;
     private String email;
     private String mobileNumber;
+    private boolean status;
 //    private List<String> roles;
 //    private List<String> roles = new ArrayList<>();
 
@@ -53,6 +51,14 @@ public class UserUpdateDTO {
 
     public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
 //    public List<String> getRoles() {
