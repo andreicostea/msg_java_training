@@ -45,10 +45,10 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     @GET
     public Response getAll(@Context SecurityContext securityContext) {
-        if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
+       // if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
             return Response.ok(userFacade.getAll()).build();
-        } else
-            return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
+       // } else
+         //   return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
     }
 
 

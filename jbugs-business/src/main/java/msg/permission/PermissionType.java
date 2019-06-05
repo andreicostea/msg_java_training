@@ -18,5 +18,6 @@ public class PermissionType {
     public static final String PERMISSION_MANAGEMENT = "PERMISSION_MANAGEMENT";
     public static final String USER_MANAGEMENT = "USER_MANAGEMENT";
     public static final String BUG_MANAGEMENT = "BUG_MANAGEMENT";
+    public static final String BUG_CLOSED = "BUG_CLOSED";
 
 }

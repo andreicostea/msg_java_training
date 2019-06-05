@@ -18,7 +18,7 @@ export class BugsService {
   constructor(private backendService: BackendService) {
   }
 
-  loadAllBugs(): Observable<Bug[]> {
+  loadAllBugs(): Observable<any> {
     return this.backendService
       .get(`${environment.baseUrl}/${this.bugsEndpoint}`);
   }

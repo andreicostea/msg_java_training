@@ -1,11 +1,13 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 
 import {Bug, BugJSON} from "../../models/bugs.model";
 import {BugsService} from "../../services/bugs.service";
 import {Observable} from "rxjs";
 import {MatTableDataSource} from '@angular/material/table';
-import {Sort} from '@angular/material/sort';
-import {MatSort} from '@angular/material/sort';
+import {MatSort, Sort} from '@angular/material/sort';
+import {MatDialog, MatPaginator} from "@angular/material";
+import {BugEditComponent} from "../../containers/bug-edit/bug-edit.component";
+
 
 @Component({
   selector: 'app-bugs-table-component',
@@ -13,7 +15,7 @@ import {MatSort} from '@angular/material/sort';
   styleUrls: ['./bugs-table-component.component.css']
 })
 export class BugsTableComponentComponent implements OnInit {
-  displayedColumns: string[] = ["title", "description", "version", "targetDate", "status", "fixedVersion", "severity"];
+  displayedColumns: string[] = ["title", "description", "version", "targetDate", "status", "fixedVersion", "severity", "edit"];
 
   //data: Observable<Bug[]> = this.loadAllBugs();
   // bugs: Bug[] = [
@@ -37,14 +39,45 @@ export class BugsTableComponentComponent implements OnInit {
   //   }
   // ];
   bugs: Bug[];
+  bugEdit: Bug = new Bug();
+  bugt: Bug = new Bug();
   data = this.loadAllBugs();
   sortedData: Bug[];
+  //
+  dataSource = new MatTableDataSource(this.bugs);
+
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   ngOnInit(){
+    //
+    this.bugService.loadAllBugs().subscribe(bug => {this.bugs = bug; console.log(this.bugs);
+    this.dataSource = new MatTableDataSource<Bug>(this.bugs);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+      });
+    //this.dataSource.sort = this.sort;
+  }
+
+  constructor(private bugService: BugsService, public dialog: MatDialog) {
+   // this.sortedData = this.bugs;
+  }
+
+  getRecord(bug: Bug){
+    this.bugEdit = bug;
+    //console.log(this.bugEdit.title);
+     this.dialog.open(BugEditComponent, {
+      width: '450px',
+      data: this.bugEdit
+    });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+    //   this.bugt = result;
+    // });
+
 
   }
-  constructor(private bugService: BugsService) {
-    this.sortedData = this.bugs;
-  }
+
   private loadAllBugs()
   {
     //return this.bugService.loadAllBugs();

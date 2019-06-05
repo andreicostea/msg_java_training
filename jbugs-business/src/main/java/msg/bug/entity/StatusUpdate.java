@@ -5,11 +5,12 @@ import java.util.*;
 
 public class StatusUpdate {
 
-    public static final  Map<String, List<String>> statusValue = createMap();
+    public static final  Map<String, List<String>> allStatusValue = createMapComplete();
+    public static final Map<String, List<String>> limitedStatusValue = createMapLimited();
 
 
 
-    public static Map<String, List<String> > createMap(){
+    public static Map<String, List<String> > createMapComplete(){
         Map<String, List<String>> result = new HashMap<>();
 
         result.put(StatusType.NEW.toString(), new ArrayList<String>(){
@@ -44,6 +45,14 @@ public class StatusUpdate {
             }});
 
 
+        return result;
+    }
+
+    public static Map<String, List<String>> createMapLimited(){
+        Map<String, List<String>> result = createMapComplete();
+       
+        result.remove(StatusType.FIXED.toString());
+        result.put(StatusType.FIXED.toString(), new ArrayList<String>(){{add(StatusType.NEW.toString());}});
         return result;
     }
 }

@@ -1,26 +1,26 @@
 The bugs
 
-<input type="text" ng-model="test">
-<table matSort (matSortChange)="sortData($event)">
-  <tr>
-    <th mat-sort-header="title">Title</th>
-    <th mat-sort-header="description"> Description</th>
-    <th mat-sort-header="version"> Version</th>
-    <th mat-sort-header="targetDate"> Target Date</th>
-    <th mat-sort-header="status"> Status</th>
-    <th mat-sort-header="fixedVersion"> Fixed Version</th>
-    <th mat-sort-header="severity">Severity</th>
-  </tr>
-  <tr *ngFor="let bug of sortedData">
-    <td> {{bug.title}}</td>
-    <td> {{bug.description}}</td>
-    <td> {{bug.version}}</td>
-    <td> {{bug.targetDate}}</td>
-    <td> {{bug.status}}</td>
-    <td> {{bug.fixedVersion}}</td>
-    <td> {{bug.severity}}</td>
-  </tr>
-</table>
+<!--<input type="text" ng-model="test">-->
+<!--<table matSort (matSortChange)="sortData($event)">-->
+<!--  <tr>-->
+<!--    <th mat-sort-header="title">Title</th>-->
+<!--    <th mat-sort-header="description"> Description</th>-->
+<!--    <th mat-sort-header="version"> Version</th>-->
+<!--    <th mat-sort-header="targetDate"> Target Date</th>-->
+<!--    <th mat-sort-header="status"> Status</th>-->
+<!--    <th mat-sort-header="fixedVersion"> Fixed Version</th>-->
+<!--    <th mat-sort-header="severity">Severity</th>-->
+<!--  </tr>-->
+<!--  <tr *ngFor="let bug of sortedData">-->
+<!--    <td> {{bug.title}}</td>-->
+<!--    <td> {{bug.description}}</td>-->
+<!--    <td> {{bug.version}}</td>-->
+<!--    <td> {{bug.targetDate}}</td>-->
+<!--    <td> {{bug.status}}</td>-->
+<!--    <td> {{bug.fixedVersion}}</td>-->
+<!--    <td> {{bug.severity}}</td>-->
+<!--  </tr>-->
+<!--</table>-->
 
 <!--<table mat-table class="mat-elevation-z8">-->
 <!--  <ng-container matColumnDef="title">-->
@@ -54,4 +54,57 @@ The bugs
 <!--  </ng-container>-->
 <!--</table>-->
 <!--mat-paginator [pageSizeOptions]="[25]" showFirstLastButtons></mat-paginator-->
+<div class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
+  <!-- Position Column -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> title </th>
+    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> description </th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="version">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> version </th>
+    <td mat-cell *matCellDef="let element"> {{element.version}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="targetDate">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> targetDate </th>
+    <td mat-cell *matCellDef="let element"> {{element.targetDate}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> status </th>
+    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="fixedVersion">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> fixedVersion </th>
+    <td mat-cell *matCellDef="let element"> {{element.fixedVersion}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="severity">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> severity </th>
+    <td mat-cell *matCellDef="let element"> {{element.severity}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-raised-button (click)="getRecord(element)">Edit</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+</div>

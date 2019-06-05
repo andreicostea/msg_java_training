@@ -58,8 +58,9 @@ public class BugResource {
     @GET
     public Response getUserById(@Context SecurityContext securityContext, @PathParam("status") String status) {
         if (securityContext.isUserInRole(PermissionType.BUG_MANAGEMENT)) {
-          //  return Response.ok(facade.getStatus(status)).build();
-            return Response.ok().build();
+            return Response.ok(facade.getStatusBugLimited(status)).build();
+        } else if (securityContext.isUserInRole(PermissionType.BUG_CLOSED)) {
+            return Response.ok(facade.getStatusBugComplete(status)).build();
         } else
             return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
     }

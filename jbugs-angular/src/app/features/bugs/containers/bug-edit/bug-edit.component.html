@@ -1,0 +1,140 @@
+<form #f = 'ngForm' >
+
+  <mat-card class="example-card">
+
+    <mat-card-title>Update Bug</mat-card-title>
+
+
+    <mat-divider></mat-divider>
+    <!--  <mat-card-content>-->
+    <br>
+
+    <mat-form-field class="form-group">
+      <input matInput placeholder="Title"
+             class = "form-control"
+             type ="text"
+             id = "title"
+             name = "title"
+             ngModel
+             [(ngModel)] = "bug.title"
+             required
+             #title ="ngModel">
+      <mat-error *ngIf="title.touched && title.invalid">
+        <mat-error *ngIf="title.errors.required">The field is required</mat-error>
+      </mat-error>
+
+
+    </mat-form-field>
+
+
+    <mat-form-field class ="form-group">
+      <input matInput placeholder="Description"
+             class = "form-control"
+             type ="text"
+             id = "description"
+             name = "description"
+             ngModel
+             [(ngModel)] = "bug.description"
+             required
+             #description ="ngModel">
+      <mat-error
+        *ngIf="description.touched && description.invalid">
+        <mat-error *ngIf="description.errors.required">The field is required</mat-error>
+
+      </mat-error>
+    </mat-form-field>
+
+    <div class ="form-group">
+      <label > Version</label>
+      <input class = "form-control"
+             type ="text"
+             id = "version"
+             name = "version"
+             ngModel
+             pattern="^[a-zA-Z0-9.]*$"
+             [(ngModel)] = "bug.version"
+             required
+             #version ="ngModel">
+      <div class ="alert alert-danger"
+           *ngIf="version.touched && version.invalid">
+        <div *ngIf="version.errors.required">The field is required</div>
+        <div *ngIf="version.errors.pattern">The pattern is invalid</div>
+
+      </div>
+    </div>
+
+
+
+    <div class ="form-group">
+      <label > Fixed Version</label>
+      <input class = "form-control"
+             type ="text"
+             id = "fixedVersion"
+             name = "fixedVersion"
+             ngModel
+             [(ngModel)] = "bug.fixedVersion">
+    </div>
+
+    <mat-form-field>
+      <mat-label>Severity</mat-label>
+
+      <select matNativeControl
+              [(ngModel)] = "bug.severity"
+              name="severity"
+              ngModel required>
+        <option selected="bug.severity">{{bug.severity}}</option>
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+        <option value="Critical">Critical</option>
+      </select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Assigned id:</mat-label>
+
+      <select matNativeControl
+              [(ngModel)] = "bug.ASSIGNED_ID"
+              name="assigned_id"
+              ngModel required>
+
+        <option  *ngFor="let user of usersList" [value]="user.id">{{user.userName}}</option>
+<!--        <option selected="bug.ASSIGNED_ID">{{bug.ASSIGNED_ID}}</option>-->
+
+      </select>
+    </mat-form-field>
+
+<!--    <mat-form-field >-->
+
+<!--      <mat-select [(ngModel)] = "bug.ASSIGNED_ID"-->
+<!--                  name="roles"-->
+<!--                  ngModel>-->
+<!--        <mat-option (selectstart)="bug.ASSIGNED_ID">{{bug.ASSIGNED_ID}}</mat-option>-->
+<!--        <mat-option *ngFor="let user of usersList" [value]="user.id">{{user.userName}}</mat-option>-->
+<!--      </mat-select>-->
+
+
+<!--   </mat-form-field>-->
+
+
+
+    <mat-card-actions>
+
+
+    </mat-card-actions>
+  </mat-card>
+
+  <button mat-raised-button
+          (click)="insert()"
+          [disabled]="f.invalid">
+
+
+    Submit</button>
+
+
+  <p>
+    {{f.value | json}}
+  </p>
+
+</form>
+

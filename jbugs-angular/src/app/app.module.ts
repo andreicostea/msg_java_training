@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {FormsModule} from '@angular/forms';
-import {MatTableModule} from "@angular/material";
+import {MatSortModule, MatTableModule} from "@angular/material";
 import { DashboardComponent } from "./features/dashboard/dashboard.component";
 import {MatButtonModule, MatCheckboxModule, MatNativeDateModule} from "@angular/material";
 import {LoginComponent} from "./features/login/containers/login/login.component";
@@ -25,6 +25,7 @@ import {
 import {UsersModule} from "./features/users/users.module";
 import {BugsModule} from "./features/bugs/bugs.module";
 import {UsersUpdateDialogComponent} from "./features/users/components/users-update-dialog/users-update-dialog.component";
+import {BugsTableComponentComponent} from "./features/bugs/components/bugs-table-component/bugs-table-component.component";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {UsersUpdateDialogComponent} from "./features/users/components/users-upda
    LoginComponent
 
   ],
+  //entryComponents:[BugsTableComponentComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -54,7 +56,8 @@ import {UsersUpdateDialogComponent} from "./features/users/components/users-upda
     MatIconModule,
     MatToolbarModule,
     UsersModule,
-    BugsModule
+    BugsModule,
+    MatSortModule
 
   ],
   providers: [{

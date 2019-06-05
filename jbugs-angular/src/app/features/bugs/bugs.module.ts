@@ -7,7 +7,7 @@ import { BugsComponent } from "./containers/bugs/bugs.component";
 import { BugsRoutingModule } from "./bugs-routing.module";
 import { BugsTableComponentComponent } from './components/bugs-table-component/bugs-table-component.component';
 
-import {MatSort, MatSortModule, MatTableDataSource, MatTableModule} from "@angular/material";
+import {MatPaginatorModule, MatSort, MatSortModule, MatTableDataSource, MatTableModule} from "@angular/material";
 import {MatFormFieldModule} from "@angular/material";
 import { BugAddComponent } from './containers/bug-add/bug-add.component';
 import {
@@ -20,6 +20,8 @@ import {
 } from "@angular/material";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { BugDialogAddComponent } from './components/bug-dialog-add/bug-dialog-add.component';
+import {BrowserModule} from "@angular/platform-browser";
+import { BugEditComponent } from './containers/bug-edit/bug-edit.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,10 @@ import { BugDialogAddComponent } from './components/bug-dialog-add/bug-dialog-ad
     BugsTableComponentComponent,
     BugAddComponent,
     BugDialogAddComponent,
+    BugEditComponent,
   ],
+
+  entryComponents:[BugsTableComponentComponent, BugEditComponent],
 
   imports: [
     HttpClientModule,
@@ -44,7 +49,10 @@ import { BugDialogAddComponent } from './components/bug-dialog-add/bug-dialog-ad
     MatButtonModule,
     ReactiveFormsModule,
     NativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    MatPaginatorModule
+
+
   ]
 })
 export class BugsModule { }
