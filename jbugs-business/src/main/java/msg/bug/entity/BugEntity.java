@@ -51,7 +51,7 @@ public class BugEntity extends BaseEntity<Long> {
     private String severity;
     @Column(name = "status")
     private String status;
-    @Column(name = "fixedVersion", nullable = false)
+    @Column(name = "fixedVersion", nullable = true)
     private String fixedVersion;
     @OneToMany(mappedBy = "bugEntity")
     private Set<CommentEntity> comments;
