@@ -7,7 +7,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatDialog, MatPaginator} from "@angular/material";
 import {BugEditComponent} from "../../containers/bug-edit/bug-edit.component";
-
+import {BugViewComponent} from "../../containers/bug-view/bug-view.component";
 
 @Component({
   selector: 'app-bugs-table-component',
@@ -40,6 +40,7 @@ export class BugsTableComponentComponent implements OnInit {
   // ];
   bugs: Bug[];
   bugEdit: Bug = new Bug();
+  bugView: Bug = new Bug();
   bugt: Bug = new Bug();
   data = this.loadAllBugs();
   sortedData: Bug[];
@@ -77,6 +78,14 @@ export class BugsTableComponentComponent implements OnInit {
 
 
   }
+  viewRecord(bug: Bug){
+    this.bugView = bug;
+    this.dialog.open(BugViewComponent, {
+      width: '450px',
+      data: this.bugView
+    });
+  }
+
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }

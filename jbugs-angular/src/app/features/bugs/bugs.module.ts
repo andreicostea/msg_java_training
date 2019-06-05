@@ -22,7 +22,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { BugDialogAddComponent } from './components/bug-dialog-add/bug-dialog-add.component';
 import {BrowserModule} from "@angular/platform-browser";
 import { BugEditComponent } from './containers/bug-edit/bug-edit.component';
-
+import {BugViewComponent} from "./containers/bug-view/bug-view.component";
 @NgModule({
   declarations: [
     BugsComponent,
@@ -30,9 +30,10 @@ import { BugEditComponent } from './containers/bug-edit/bug-edit.component';
     BugAddComponent,
     BugDialogAddComponent,
     BugEditComponent,
+    BugViewComponent
   ],
 
-  entryComponents:[BugsTableComponentComponent, BugEditComponent],
+  entryComponents:[BugsTableComponentComponent, BugEditComponent, BugViewComponent],
 
   imports: [
     HttpClientModule,
