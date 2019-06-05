@@ -8,6 +8,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import msg.exceptions.BusinessException;
 import msg.exceptions.BusinessWebAppException;
 import msg.notification.boundary.NotificationFacade;
+import msg.notification.boundary.notificationParams.NotificationParamsUserChanges;
 import msg.notification.boundary.notificationParams.NotificationParamsWelcomeUser;
 import msg.notification.entity.NotificationType;
 import msg.permission.PermissionEntity;
@@ -289,6 +290,9 @@ public class UserControl {
         userToUpdate.setStatus(userUpdateDTO.getStatus());
 //        userToUpdate.setRoles(roleControl.getRolesByTypeList(userUpdateDTO.getRoles()));
         userDao.updateUser(userToUpdate);
+        // send notification
+        this.notificationFacade.createNotification(NotificationType.USER_UPDATED, new NotificationParamsUserChanges(whoModifiedHim, whoWasModified, data), userToUpdate.getId())
+
     }
 
     // todo: notification USER_DELETED
