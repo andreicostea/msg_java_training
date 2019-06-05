@@ -69,7 +69,7 @@ public class BugConverter {
         b.setDescription(bug.getDescription());
         b.setVersion(bug.getVersion());
         b.setFixedVersion(bug.getFixedVersion());
-        b.setTargetDate(bug.getTargetDate());
+        b.setTargetDate(parseDateToString(bug.getTargetDate()));
         b.setSeverity(bug.getSeverity());
 
         return b;
@@ -87,10 +87,15 @@ public class BugConverter {
             e.printStackTrace();
             return new Date();
         }
-
-
-
     }
 
-
+    public String parseDateToString(Date date)
+    {
+        String string = date.toString().substring(0, 4)
+                + date.toString().substring(7, 11)
+                + date.toString().substring(4, 7)
+                + date.toString().substring(date.toString().length() - 5, date.toString().length());
+        System.out.println(date.toString());
+        return string;
+    }
 }
