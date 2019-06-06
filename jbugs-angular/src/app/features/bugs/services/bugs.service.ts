@@ -34,11 +34,16 @@ export class BugsService {
       .put(`jbugs/jbugs-api/bugs`, bug);
   }
 
-  // get(id: number): Observable<User> {
-  //   return this.backendService
-  //     .get(`${environment.baseUrl}/${this.usersEndpoint}/${id}`)
-  //     .pipe(map((result: UserJSON) => User.fromJSON(result)));
-  //
-  // }
+  getStatusComplete(status: string): Observable<any> {
+    return this.backendService
+      .get(`${environment.baseUrl}/${this.bugsEndpoint}/status-all/${status}`);
+
+  }
+
+  getStatusLimited(status: string): Observable<any> {
+    return this.backendService
+      .get(`${environment.baseUrl}/${this.bugsEndpoint}/status-limited/${status}`);
+
+  }
 
 }

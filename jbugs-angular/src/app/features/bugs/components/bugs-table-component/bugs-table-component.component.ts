@@ -7,6 +7,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatDialog, MatPaginator} from "@angular/material";
 import {BugEditComponent} from "../../containers/bug-edit/bug-edit.component";
+import {PermissionsService} from "../../../../core/permissions/permissions.service";
 
 
 @Component({
@@ -17,32 +18,12 @@ import {BugEditComponent} from "../../containers/bug-edit/bug-edit.component";
 export class BugsTableComponentComponent implements OnInit {
   displayedColumns: string[] = ["title", "description", "version", "targetDate", "status", "fixedVersion", "severity", "edit"];
 
-  //data: Observable<Bug[]> = this.loadAllBugs();
-  // bugs: Bug[] = [
-  //   {
-  //     title: "bug1",
-  //     description: "description1",
-  //     version: "v1.1",
-  //     targetDate: "30-05-2019",
-  //     status: "status",
-  //     fixedVersion: "v7.2",
-  //     severity: "sev"
-  //   },
-  //   {
-  //     title: "bug2",
-  //     description: "description2",
-  //     version: "v2.1",
-  //     targetDate: "30-06-2019",
-  //     status: "status",
-  //     fixedVersion: "v7.2",
-  //     severity: "sev"
-  //   }
-  // ];
   bugs: Bug[];
   bugEdit: Bug = new Bug();
-  bugt: Bug = new Bug();
+
   data = this.loadAllBugs();
-  sortedData: Bug[];
+
+  status : string[];
   //
   dataSource = new MatTableDataSource(this.bugs);
 
@@ -56,15 +37,24 @@ export class BugsTableComponentComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       });
-    //this.dataSource.sort = this.sort;
+
   }
 
-  constructor(private bugService: BugsService, public dialog: MatDialog) {
+  constructor(private bugService: BugsService, public dialog: MatDialog, public permissionService: PermissionsService) {
    // this.sortedData = this.bugs;
   }
 
   getRecord(bug: Bug){
     this.bugEdit = bug;
+
+    this.bugService.getStatusLimited(this.bugEdit.status).subscribe(value => this.status = value);
+    console.log(this.status);
+    for(let per of this.permissionService.getPermissions()){
+      if(per === "BUG_CLOSED") this.bugService.getStatusComplete(this.bugEdit.status).subscribe(value => this.status = value);
+    }
+    console.log(this.bugEdit.status);
+    console.log(this.status);
+    this.bugEdit.statusList = this.status;
 
     const dialogRef = this.dialog.open(BugEditComponent, {
       width: '450px',
@@ -88,45 +78,6 @@ export class BugsTableComponentComponent implements OnInit {
     return this.bugService.loadAllBugs().forEach(bug => this.bugs = bug);
   }
 
-  sortData(sort: Sort) {
-    const data = this.bugs;
-    if (!sort.active || sort.direction === '') {
-      this.sortedData = data;
-      return;
-    }
-    this.sortedData = data.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      switch (sort.active) {
-        case 'title':
-          return compare(a.title, b.title, isAsc);
-        case 'description':
-          return compare(a.description, b.description, isAsc);
-        case 'version':
-          return compare(a.version, b.version, isAsc);
-        case 'targetDate':
-          return compare(a.targetDate, b.targetDate, isAsc);
-        case 'status':
-          return compare(a.status, b.status, isAsc);
-        case 'fixedVersion':
-          return compare(a.fixedVersion, b.fixedVersion, isAsc);
-        case 'severity':
-          return compare(a.severity, b.severity, isAsc);
-        default:
-          return 0;
-      }
-    });
-  }
-}
-
-function compare(a: number | string, b: number | string, isAsc: boolean) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-
-
-
-
-  //@ViewChild(MatSort, {static: true}) sort: MatSort;
-
-
-    //this.dataSource.sort = this.sort;
 
 }
+

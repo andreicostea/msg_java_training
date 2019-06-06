@@ -71,6 +71,10 @@ public class BugControl {
     }
 
     public BugEntity updateBug(BugDTO input) {
+        if(input.getStatus() != null){
+
+
+        }
         final BugEntity newBug = bugConverter.convertDTOToEntity(input);
         bugDao.updateBug(newBug);
         return newBug;

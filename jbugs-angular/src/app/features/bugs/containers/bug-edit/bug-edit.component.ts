@@ -10,14 +10,15 @@ import {BugsTableComponentComponent} from "../../components/bugs-table-component
 import {User} from "../../../users/models/users.model";
 
 @Component({
-  selector: 'app-bug-edit',
-  templateUrl: './bug-edit.component.html',
-  styleUrls: ['./bug-edit.component.css']
-})
-export class BugEditComponent implements OnInit {
+    selector: 'app-bug-edit',
+    templateUrl: './bug-edit.component.html',
+    styleUrls: ['./bug-edit.component.css']
+  })
+  export class BugEditComponent implements OnInit {
 
   bug: Bug;
   usersList : User[];
+  status : any;
 
 
 
@@ -28,16 +29,17 @@ export class BugEditComponent implements OnInit {
     this.userService.getAllUsers().subscribe(users => this.usersList = users,
       error => console.log(error));
 
+
     this.bug = this.data;
 
   }
 
 
-
-
   editBug(){
 
    console.log(this.usersList);
+
+    console.log(this.bug.status);
 
     this.bugService.editBug(this.bug).subscribe((
         value => {this.onNoClick();}),
