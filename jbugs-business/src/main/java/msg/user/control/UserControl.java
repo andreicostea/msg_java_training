@@ -116,16 +116,17 @@ public class UserControl {
         newUserEntity.setCounter(5);
         try{
             userDao.createUser(newUserEntity);
+
+            final long id = userDao.getUserByEmail(userDTO.getEmail()).getId();
+            final String userFullName = newUserEntity.getFirstName() + " " + newUserEntity.getLastName();
+
+            this.notificationFacade.createNotification(
+                    NotificationType.WELCOME_NEW_USER,
+                    new NotificationParamsWelcomeUser(userFullName, newUserEntity.getUsername()), id);
         }catch (Exception e){
             throw new BusinessWebAppException(MessageCatalog.USER_INVALID_PATTERN, 400);
         }
 
-        final long id = userDao.getUserByEmail(userDTO.getEmail()).getId();
-        final String userFullName = newUserEntity.getFirstName() + " " + newUserEntity.getLastName();
-//        = newUserEntity.getId();
-        this.notificationFacade.createNotification(
-                NotificationType.WELCOME_NEW_USER,
-                new NotificationParamsWelcomeUser(userFullName, newUserEntity.getUsername()), id);
 
         return newUserEntity.getUsername();
     }

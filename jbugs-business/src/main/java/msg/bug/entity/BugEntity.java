@@ -44,6 +44,7 @@ public class BugEntity extends BaseEntity<Long> {
     @Column(name = "description", nullable = false)
     private String description;
     @Column(name = "version", nullable = false)
+    @Pattern(regexp="[a-zA-Z].*[0-9].[0-9]$", message = "{invalid.version}")
     private String version;
     @Column(name = "targetDate")
     private Date targetDate;
@@ -51,7 +52,7 @@ public class BugEntity extends BaseEntity<Long> {
     private String severity;
     @Column(name = "status")
     private String status;
-    @Column(name = "fixedVersion", nullable = false)
+    @Column(name = "fixedVersion", nullable = true)
     private String fixedVersion;
     @OneToMany(mappedBy = "bugEntity")
     private Set<CommentEntity> comments;

@@ -78,8 +78,18 @@ public class NotificationControl {
                 break;
             case USER_UPDATED:
                 this.createUserUpdateNotification(params, userID);
+            case BUG_UPDATED:
+                 this.createBugUpdatedNotification(params, userID);
                 break;
         }
+    }
+
+    private void createBugUpdatedNotification(NotificationParams params, long userID) {
+        if (!(params instanceof NotificationParamsWelcomeUser)) {
+            throw new BusinessException(MessageCatalog.MESSAGE_PARAMS_AND_TYPE_ARE_INCOMPATIBLE);
+        }
+        final NotificationParamsWelcomeUser messageParams = (NotificationParamsWelcomeUser) params;
+
     }
 
     /**

@@ -53,6 +53,9 @@ public class MessageCatalog {
 
     public static final ExceptionMessage ROLE_WITH_SAME_PERMISSION_EXISTS
             = new ExceptionMessage("PERMISSION-03", "The permission u want to insert already exist!");
+
+    public static final ExceptionMessage BUG_INVALID_PATTERN
+            = new ExceptionMessage("BUG-01", "The pattern is invalid!");
 }
 
 

@@ -54,12 +54,21 @@ public class BugResource {
     }
 
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("{status}")
+    @Path("/status-limited/{status}")
     @GET
-    public Response getUserById(@Context SecurityContext securityContext, @PathParam("status") String status) {
+    public Response getStatusLimited(@Context SecurityContext securityContext, @PathParam("status") String status) {
         if (securityContext.isUserInRole(PermissionType.BUG_MANAGEMENT)) {
             return Response.ok(facade.getStatusBugLimited(status)).build();
-        } else if (securityContext.isUserInRole(PermissionType.BUG_CLOSED)) {
+
+        } else
+            return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
+    }
+
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/status-all/{status}")
+    @GET
+    public Response getStatusAll(@Context SecurityContext securityContext, @PathParam("status") String status) {
+        if (securityContext.isUserInRole(PermissionType.BUG_CLOSED)) {
             return Response.ok(facade.getStatusBugComplete(status)).build();
         } else
             return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();

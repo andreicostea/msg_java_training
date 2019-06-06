@@ -20,11 +20,32 @@ public class BugConverter {
 
     public BugEntity convertDTOToEntity(BugDTO bugDTO) {
         final BugEntity b = new BugEntity();
+        b.setId(bugDTO.getId());
         b.setTitle(bugDTO.getTitle());
         b.setDescription(bugDTO.getDescription());
         b.setVersion(bugDTO.getVersion());
-        b.setFixedVersion(bugDTO.getFixedVersion());
+
         b.setStatus(bugDTO.getStatus());
+        b.setSeverity(bugDTO.getSeverity());
+        b.setTargetDate(parseStringToDate(bugDTO.getTargetDate()));
+        if(bugDTO.getFixedVersion() == null){
+            b.setFixedVersion(" ");
+        }else{
+            b.setFixedVersion(bugDTO.getFixedVersion());
+        }
+
+
+            try {
+                if(bugDTO.getUsernameAssignTo() != null) {
+                    UserEntity userEntity = userDao.getUserByUsername(bugDTO.getUsernameAssignTo());
+                    b.setAssigned(userEntity);
+                }
+                UserEntity userEntity = userDao.getUserByUsername(bugDTO.getUsernameCreatedBy());
+                b.setCreated(userEntity);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         return b;
     }
 
@@ -34,7 +55,7 @@ public class BugConverter {
         b.setDescription(input.getDescription());
         b.setVersion(input.getVersion());
         b.setFixedVersion(input.getFixedVersion());
-        b.setTargetDate(parseStringToDate(input.getTargetDate()));
+        b.setTargetDate(parseStringToDateCalendar(input.getTargetDate()));
         b.setSeverity(input.getSeverity());
 
 
@@ -55,27 +76,33 @@ public class BugConverter {
             }
         }
 
-
-
-        //b.setAssigned(input.);
-        //b.setAttachmentEntities(input.);
         return b;
     }
 
     public BugDTO convertEntityDTOtoEntity(BugEntity bug) {
         final BugDTO b = new BugDTO();
+        b.setId(bug.getId());
         b.setTitle(bug.getTitle());
         b.setStatus(bug.getStatus());
         b.setDescription(bug.getDescription());
         b.setVersion(bug.getVersion());
         b.setFixedVersion(bug.getFixedVersion());
-        b.setTargetDate(bug.getTargetDate());
+
+        b.setTargetDate(parseDateToString(bug.getTargetDate()));
         b.setSeverity(bug.getSeverity());
+        try {
+            b.setUsernameCreatedBy(userDao.getUserById(bug.getCreated().getId()).getUsername());
+            if(bug.getAssigned() != null){
+              b.setUsernameAssignTo(userDao.getUserById(bug.getAssigned().getId()).getUsername());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return b;
     }
     // "yyyy-MM-ddT21:00:00.000Z   => "yyyy-MM-dd HH:mm:ss""
-    public Date parseStringToDate(String input ){
+    public Date parseStringToDateCalendar(String input ){
 
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
@@ -88,7 +115,26 @@ public class BugConverter {
             return new Date();
         }
 
+    }
 
+    public String parseDateToString(Date date){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String str = dateFormat.format(date);
+
+        return str;
+
+    }
+
+    public Date parseStringToDate(String str){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = null;
+        try {
+            date = dateFormat.parse(str);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return date;
 
     }
 
