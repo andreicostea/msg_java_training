@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UsersInsertComponent} from "../../containers/users-insert/users-insert.component";
 import {MatDialog} from "@angular/material";
 import {User} from "../../models/users.model";
-import {PermissionsService} from "../../../../core/permissions/permissions.service";
+import {AuthenticationService} from "../../../../core/services/authentication/authentication.service";
 
 @Component({
   selector: 'app-users-insert-button',
@@ -16,7 +16,7 @@ export class UsersInsertButtonComponent implements OnInit {
 
 
   constructor(private router: Router, private route: ActivatedRoute, public dialog: MatDialog,
-              private permissionService: PermissionsService) { }
+              private permissionService: AuthenticationService) { }
 
   ngOnInit() {
   }

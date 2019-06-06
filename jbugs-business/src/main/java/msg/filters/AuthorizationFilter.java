@@ -12,7 +12,6 @@ import javax.ejb.Stateless;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.SecurityContext;
-import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
@@ -26,29 +25,27 @@ import java.util.List;
 public class AuthorizationFilter implements ContainerRequestFilter {
 
     @Override
-    public void filter(ContainerRequestContext containerRequestContext)  {
+    public void filter(ContainerRequestContext containerRequestContext) {
         String authorizationValue = containerRequestContext.getHeaderString("Authorization");
-       try {
-           if (authorizationValue.startsWith("Bearer")) {
-               Algorithm algorithm = Algorithm.HMAC256("harambe");
-               JWTVerifier verifier = JWT.require(algorithm).withIssuer("auth0").build();
-               DecodedJWT decodedJWT = verifier.verify(authorizationValue.split(" ")[1]);
-               if (isTokenValid(decodedJWT)) {
-                   List<String> permissions = decodedJWT.getClaim("permissions").asList(String.class);
-                   String username = decodedJWT.getClaim("username").asString();
-                   containerRequestContext.setSecurityContext(new Authorization(permissions, username) {
-                   });
-               }
-           }
-       }catch (Exception e){
+        try {
+            if (authorizationValue.startsWith("Bearer")) {
+                Algorithm algorithm = Algorithm.HMAC256("harambe");
+                JWTVerifier verifier = JWT.require(algorithm).withIssuer("auth0").build();
+                DecodedJWT decodedJWT = verifier.verify(authorizationValue.split(" ")[1]);
+                if (isTokenValid(decodedJWT)) {
+                    List<String> permissions = decodedJWT.getClaim("permissions").asList(String.class);
+                    String username = decodedJWT.getClaim("username").asString();
+                    containerRequestContext.setSecurityContext(new Authorization(permissions, username) {
+                    });
+                }
+            }
+        } catch (Exception e) {
             throw new BusinessException(MessageCatalog.INVALID_OR_NON_EXISTENT_TOKEN);
         }
     }
 
     private boolean isTokenValid(DecodedJWT token) {
         return true;
-
-
     }
 
     private class Authorization implements SecurityContext {

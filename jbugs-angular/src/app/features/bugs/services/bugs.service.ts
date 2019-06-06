@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
-import {map, tap} from "rxjs/operators";
 
 import {environment} from "../../../../environments/environment";
 import {BackendService} from "../../../core/backend/backend.service";

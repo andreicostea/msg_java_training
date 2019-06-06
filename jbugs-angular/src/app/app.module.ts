@@ -27,11 +27,15 @@ import {BugsModule} from "./features/bugs/bugs.module";
 import {UsersUpdateDialogComponent} from "./features/users/components/users-update-dialog/users-update-dialog.component";
 import {BugsTableComponentComponent} from "./features/bugs/components/bugs-table-component/bugs-table-component.component";
 
+import {NotificationsModule} from "./features/notifications/notifications.module";
+
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-   LoginComponent
+   LoginComponent,
+
+
 
   ],
   //entryComponents:[BugsTableComponentComponent],
@@ -57,6 +61,7 @@ import {BugsTableComponentComponent} from "./features/bugs/components/bugs-table
     MatToolbarModule,
     UsersModule,
     BugsModule,
+    NotificationsModule
     MatSortModule
 
   ],
