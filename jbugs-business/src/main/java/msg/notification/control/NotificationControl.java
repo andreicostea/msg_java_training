@@ -142,7 +142,7 @@ public class NotificationControl {
         //todo update with correct link when routing is available
         notificationEntity.setUrl(SERVER_ADDRESS + "someOtherInfo");
         notificationEntity.setDate(new Date());
-        notificationEntity.setUserID(userIdTarget);
+        notificationEntity.setUserID(userID);
         this.notificationDao.createNotification(notificationEntity);
     }
 

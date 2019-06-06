@@ -3,6 +3,7 @@ package msg.user.boundary;
 import msg.permission.PermissionType;
 import msg.user.MessageCatalog;
 import msg.user.entity.dto.UserInputDTO;
+import msg.user.entity.dto.UserLoginDTO;
 import msg.user.entity.dto.UserUpdateDTO;
 
 import javax.ejb.EJB;
