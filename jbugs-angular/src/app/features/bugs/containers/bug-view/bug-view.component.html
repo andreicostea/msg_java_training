@@ -59,14 +59,14 @@
              [(ngModel)] = "bug.severity">
     </div>
     <div>
-      <mat-label>Created by user with id:</mat-label>
+      <mat-label>Created by user:</mat-label>
       <input class = "form-control"
              type ="text"
              id = "createdId"
              name = "createdId"
              ngModel
              readonly
-             [(ngModel)] = "bug.CREATED_ID">
+             [(ngModel)] = "bug.usernameCreatedBy">
     </div>
     <div>
       <mat-label>Assigned to user with id:</mat-label>
@@ -76,7 +76,7 @@
              name = "assignedId"
              ngModel
              readonly
-             [(ngModel)] = "bug.ASSIGNED_ID">
+             [(ngModel)] = "bug.usernameAssignTo">
     </div>
 
     <!--    <mat-form-field >-->
