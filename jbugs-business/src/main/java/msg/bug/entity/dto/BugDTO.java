@@ -1,9 +1,10 @@
 package msg.bug.entity.dto;
 
+import msg.base.BaseEntity;
+
 import java.util.Date;
 
-public class BugDTO {
-
+public class BugDTO extends BaseEntity<Long>{
     private String title;
     private String description;
     private String version;
@@ -11,6 +12,9 @@ public class BugDTO {
     private String fixedVersion;
     private String severity;
     private String status;
+    private String usernameAssignTo;
+    private String usernameCreatedBy;
+
 //    private UserEntity assignedTo;
 //    private Set<AttachmentEntity> attachment;
     /* todo: severity and status should be enums
@@ -21,6 +25,7 @@ public class BugDTO {
 
     public BugDTO() {
     }
+
 
     public String getTitle() {
         return title;
@@ -76,5 +81,21 @@ public class BugDTO {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getUsernameAssignTo() {
+        return usernameAssignTo;
+    }
+
+    public void setUsernameAssignTo(String usernameAssignTo) {
+        this.usernameAssignTo = usernameAssignTo;
+    }
+
+    public String getUsernameCreatedBy() {
+        return usernameCreatedBy;
+    }
+
+    public void setUsernameCreatedBy(String usernameCreatedBy) {
+        this.usernameCreatedBy = usernameCreatedBy;
     }
 }

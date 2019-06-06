@@ -20,6 +20,7 @@ export class BugEditComponent implements OnInit {
   usersList : User[];
 
 
+
   constructor(private bugService : BugsService, private router : Router,  public dialogRef: MatDialogRef<BugEditComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, public permissionService : PermissionsService, private userService : UsersService) { }
 
@@ -28,18 +29,17 @@ export class BugEditComponent implements OnInit {
       error => console.log(error));
 
     this.bug = this.data;
-    console.log(this.bug.title);
 
   }
 
 
 
 
-  insert(){
+  editBug(){
 
-    this.bug.CREATED_ID = this.permissionService.getUserId();
+   console.log(this.usersList);
 
-    this.bugService.insertBug(this.bug).subscribe((
+    this.bugService.editBug(this.bug).subscribe((
         value => {this.onNoClick();}),
       (error => {alert(error.error.message)} ),
       () => {this.router.navigate(['/dashboard/bugs'])})

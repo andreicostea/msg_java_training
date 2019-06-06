@@ -14,6 +14,10 @@ public class NotificationMessageCatalog {
     private static final String WELCOME_NEW_USER = "Bun venit {0},username-ul tau este {1}!";
     private static final String USER_UPDATED_TARGET = " Datelel tale {0} au fost actualizat de {1} datele :{2} ";
     private static final String USER_UPDATED_SOURCE = "{0} au fost actualizate cu  datele {2}";
+    private static final String BUG_UPDATED_NEW_SOURCE = "{0}, bug-ul {1} a fost creat, si asignat utilizatorului {2}!";
+    private static final String BUG_UPDATED_NEW_DEST = "{0}, ai un nou bug {1} asignat de catre {2}!";
+    private static final String BUG_UPDATED_SOURCE = "{0}, bug-ul {1} a fost creat, si asignat utilizatorului {2}!";
+    private static final String BUG_UPDATED_DEST = "{0}, ai un nou bug {1} asignat de catre {2}!";
 
     public static String getFullMessageForWelcomeNewUser(String name, String username) {
         return MessageFormat.format(WELCOME_NEW_USER, name, username);
@@ -28,6 +32,25 @@ public class NotificationMessageCatalog {
     public static String getFullMessageForUserUpdatedSource(String username, String data) {
         return MessageFormat.format(USER_UPDATED_SOURCE, username, data);
     }
+
+    public static String getFullMessageForBugNewSource(String usernameSource, String usernameTarget, String data) {
+        return MessageFormat.format(BUG_UPDATED_NEW_SOURCE, usernameSource, data, usernameTarget);
+    }
+
+    public static String getFullMessageForBugNewTarget(String usernameSource, String usernameTarget, String data) {
+        return MessageFormat.format(BUG_UPDATED_NEW_DEST, usernameSource, data, usernameTarget);
+    }
+
+    public static String getFullMessageForBugUpdateSource(String usernameSource, String usernameTarget, String data) {
+        return MessageFormat.format(BUG_UPDATED_SOURCE, usernameSource, data, usernameTarget);
+    }
+
+    public static String getFullMessageForBugUpdateTarget(String usernameSource, String usernameTarget, String data) {
+        return MessageFormat.format(BUG_UPDATED_DEST, usernameSource, data, usernameTarget);
+    }
+
+
+
 
 
 }

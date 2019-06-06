@@ -76,7 +76,6 @@ create table bugs
     status       varchar(255) not null,
     fixedVersion varchar(255),
     severity     varchar(255) not null,
-// storyId16-Bug-management
     CREATED_ID    bigint,
     ASSIGNED_ID   bigint,
     constraint FK_bugs_CREATED_ID
@@ -84,14 +83,6 @@ create table bugs
     constraint FK_bugs_ASSIGNED_ID
         foreign key (ASSIGNED_ID ) references users (ID)
 
-    user_id      bigint       not null,
-    CREATED_ID    bigint       not null,
-    ASSIGNED_ID   bigint       not null,
-    constraint FK_bugs_createdBy
-        foreign key (createdBy) references users (ID),
-    constraint FK_bugs_assignedBy
-        foreign key (assignedBy) references users (ID)
-// storyId4-userInsert
 );
 
 

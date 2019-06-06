@@ -8,6 +8,14 @@ import msg.bug.entity.dto.BugConverter;
 import msg.bug.entity.dto.BugDTO;
 import msg.bug.entity.dto.BugInputDTO;
 import msg.exceptions.BusinessException;
+import msg.exceptions.BusinessWebAppException;
+import msg.notification.boundary.NotificationFacade;
+import msg.notification.boundary.notificationParams.NotificationParamsWelcomeUser;
+import msg.notification.entity.NotificationType;
+import msg.user.MessageCatalog;
+import msg.user.control.UserControl;
+import msg.user.entity.UserEntity;
+import msg.user.entity.dao.UserDAO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -27,6 +35,10 @@ public class BugControl {
 
     @EJB
     private BugConverter bugConverter;
+    @EJB
+    private NotificationFacade notificationFacade;
+    @EJB
+    private UserDAO userDao;
 
     public List<BugDTO> getAll() {
         return bugDao.getAll()
@@ -46,15 +58,15 @@ public class BugControl {
             throw new BusinessException(LIMIT_EXCEEDED);
         }
 
-        Pattern pattern = Pattern.compile("[A-Za-z0-9.]*"); //alphanumeric characters & dot 0-many times
-        Matcher matcher1 = pattern.matcher(bug.getVersion());
-        Matcher matcher2 = pattern.matcher(bug.getFixedVersion());
-        if (!matcher1.matches() || !matcher2.matches()) {
-            throw new BusinessException(REGEX_VIOLATION);
-        }
         final BugEntity newBug = bugConverter.convertInputDTOToEntity(bug);
         newBug.setStatus(String.valueOf(StatusType.NEW));
-        bugDao.createBug(newBug);
+        try{
+            bugDao.createBug(newBug);
+        }catch (Exception e){
+            throw new BusinessWebAppException(MessageCatalog.BUG_INVALID_PATTERN, 400);
+        }
+
+
         return newBug;
     }
 

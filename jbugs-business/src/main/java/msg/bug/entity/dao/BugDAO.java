@@ -22,24 +22,8 @@ public class BugDAO {
     }
 
     public void updateBug(BugEntity newBug) {
-        BugEntity oldBug = em.createNamedQuery(BugEntity.BUG_FIND_BY_ID, BugEntity.class).getSingleResult();
-        if (newBug.getTitle().length() != 0) {
-            em.setProperty(BugEntity.TITLE, newBug.getTitle());
-        }
-        if (newBug.getDescription().length() != 0) {
-            em.setProperty(BugEntity.DESCRIPTION, newBug.getDescription());
-        }
-        if (newBug.getVersion().length() != 0) {
-            em.setProperty(BugEntity.VERSION, newBug.getVersion());
-        }
-        if (newBug.getFixedVersion().length() != 0) {
-            em.setProperty(BugEntity.FIXEDVERSION, newBug.getFixedVersion());
-        }
-        if (newBug.getSeverity().length() != 0) {
-            em.setProperty(BugEntity.SEVERITY, newBug.getSeverity());
-        }
-        if (newBug.getStatus().length() != 0) {
-            em.setProperty(BugEntity.STATUS, newBug.getStatus());
-        }
+        em.merge(newBug);
+
+
     }
 }

@@ -66,15 +66,15 @@ export class BugsTableComponentComponent implements OnInit {
 
   getRecord(bug: Bug){
     this.bugEdit = bug;
-    //console.log(this.bugEdit.title);
-     this.dialog.open(BugEditComponent, {
+
+    const dialogRef = this.dialog.open(BugEditComponent, {
       width: '450px',
       data: this.bugEdit
     });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    //   this.bugt = result;
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.ngOnInit();
+    });
 
 
   }

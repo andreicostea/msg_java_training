@@ -90,31 +90,31 @@
       </select>
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Assigned id:</mat-label>
+<!--    <mat-form-field>-->
+<!--      <mat-label>Assigned id:</mat-label>-->
 
-      <select matNativeControl
-              [(ngModel)] = "bug.ASSIGNED_ID"
-              name="assigned_id"
-              ngModel required>
+<!--      <select matNativeControl-->
+<!--              [(ngModel)] = "bug.ASSIGNED_ID"-->
+<!--              name="assigned_id"-->
+<!--              ngModel required>-->
+<!--        <option selected="bug.usernameAssignTo">{{bug.usernameAssignTo}}</option>-->
+<!--        <option  *ngFor="let user of usersList" [value]="user.id">{{user.userName}}</option>-->
+<!--&lt;!&ndash;        <option selected="bug.ASSIGNED_ID">{{bug.ASSIGNED_ID}}</option>&ndash;&gt;-->
 
-        <option  *ngFor="let user of usersList" [value]="user.id">{{user.userName}}</option>
-<!--        <option selected="bug.ASSIGNED_ID">{{bug.ASSIGNED_ID}}</option>-->
+<!--      </select>-->
+<!--    </mat-form-field>-->
 
-      </select>
-    </mat-form-field>
-
-<!--    <mat-form-field >-->
-
-<!--      <mat-select [(ngModel)] = "bug.ASSIGNED_ID"-->
-<!--                  name="roles"-->
-<!--                  ngModel>-->
-<!--        <mat-option (selectstart)="bug.ASSIGNED_ID">{{bug.ASSIGNED_ID}}</mat-option>-->
-<!--        <mat-option *ngFor="let user of usersList" [value]="user.id">{{user.userName}}</mat-option>-->
-<!--      </mat-select>-->
+    <mat-form-field >
+      <mat-label>Assign to:</mat-label>
+      <mat-select [(ngModel)] = "bug.usernameAssignTo"
+                  name="usernameAssignTo"
+                  ngModel>
+        <option selected="bug.usernameAssignTo">{{bug.usernameAssignTo}}</option>
+        <mat-option *ngFor="let user of usersList" [value]="user.userName">{{user.userName}}</mat-option>
+      </mat-select>
 
 
-<!--   </mat-form-field>-->
+   </mat-form-field>
 
 
 
@@ -125,7 +125,7 @@
   </mat-card>
 
   <button mat-raised-button
-          (click)="insert()"
+          (click)="editBug()"
           [disabled]="f.invalid">
 
 
