@@ -26,11 +26,9 @@ public class NotificationResource {
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll(@PathParam("id") long id) {
-        System.out.println("here" + id);
-        return Response.status(200)
+        return Response.ok()
                 .entity(notificationFacade.getAllNotificationById(id))
                 .build();
-
     }
 
     @GET

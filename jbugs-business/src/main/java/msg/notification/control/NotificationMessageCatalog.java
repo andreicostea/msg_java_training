@@ -14,6 +14,7 @@ public class NotificationMessageCatalog {
     private static final String WELCOME_NEW_USER = "Bun venit {0},username-ul tau este {1}!";
     private static final String USER_UPDATED_TARGET = " Datelel tale {0} au fost actualizat de {1} datele :{2} ";
     private static final String USER_UPDATED_SOURCE = "{0} au fost actualizate cu  datele {2}";
+    private static final String USER_DELETED_NOTIFICATIONS = "Userul {0} a fost sters";
 
     public static String getFullMessageForWelcomeNewUser(String name, String username) {
         return MessageFormat.format(WELCOME_NEW_USER, name, username);
@@ -27,6 +28,10 @@ public class NotificationMessageCatalog {
 
     public static String getFullMessageForUserUpdatedSource(String username, String data) {
         return MessageFormat.format(USER_UPDATED_SOURCE, username, data);
+    }
+
+    public static String getFullMessageUserDeleted(String username) {
+        return MessageFormat.format(USER_DELETED_NOTIFICATIONS, username);
     }
 
 

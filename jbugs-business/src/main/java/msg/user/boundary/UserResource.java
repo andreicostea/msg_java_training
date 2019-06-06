@@ -3,7 +3,6 @@ package msg.user.boundary;
 import msg.permission.PermissionType;
 import msg.user.MessageCatalog;
 import msg.user.entity.dto.UserInputDTO;
-import msg.user.entity.dto.UserLoginDTO;
 import msg.user.entity.dto.UserUpdateDTO;
 
 import javax.ejb.EJB;
@@ -13,7 +12,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
-import java.security.Permission;
+
 
 @Stateless
 @Path("/users")
@@ -33,13 +32,15 @@ public class UserResource {
             return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
     }
 
-
     @Consumes(MediaType.APPLICATION_JSON)
     @PATCH
-    public Response updateUser(UserUpdateDTO userUpdateDTO) {
-        System.out.println(userUpdateDTO.getFirstName());
-        userFacade.updateUser(userUpdateDTO);
-        return Response.ok("Successfully updated!").build();
+    public Response updateUser(@Context SecurityContext securityContext, UserUpdateDTO userUpdateDTO) {
+        if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
+            System.out.println(userUpdateDTO.getFirstName());
+            userFacade.updateUser(userUpdateDTO);
+            return Response.ok("Successfully updated!").build();
+        } else
+            return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
     }
 
     @Produces(MediaType.APPLICATION_JSON)

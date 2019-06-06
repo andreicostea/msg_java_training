@@ -47,11 +47,6 @@ public class UserControl {
     @EJB
     private NotificationFacade notificationFacade;
 
-
-
-
-
-
     public UserOutputDto authenticateUser(UserLoginDTO userLoginDTO) {
 
 
@@ -170,7 +165,6 @@ public class UserControl {
             if(!userDao.exitsUsername(username1.toLowerCase())){
                return username1.toLowerCase();
             }
-
 
         }
         return "";

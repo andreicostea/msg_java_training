@@ -10,7 +10,7 @@
   <a class="bugManagement"  routerLinkActive="active current" routerLink="bugs">Bug management</a>
   <button  class="menu" mat-button [matMenuTriggerFor]="menu">Menu</button>
   <mat-menu  #menu="matMenu">
-    <button mat-menu-item>View Notifications</button>
+    <button mat-menu-item routerLinkActive="active current" routerLink="notifications" >View Notifications</button>
     <button mat-menu-item (click)="logout()">Logout</button>
   </mat-menu>
 </mat-toolbar>

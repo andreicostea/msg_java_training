@@ -26,11 +26,15 @@ import {UsersModule} from "./features/users/users.module";
 import {BugsModule} from "./features/bugs/bugs.module";
 import {UsersUpdateDialogComponent} from "./features/users/components/users-update-dialog/users-update-dialog.component";
 
+import {NotificationsModule} from "./features/notifications/notifications.module";
+
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-   LoginComponent
+   LoginComponent,
+
+
 
   ],
   imports: [
@@ -54,7 +58,8 @@ import {UsersUpdateDialogComponent} from "./features/users/components/users-upda
     MatIconModule,
     MatToolbarModule,
     UsersModule,
-    BugsModule
+    BugsModule,
+    NotificationsModule
 
   ],
   providers: [{

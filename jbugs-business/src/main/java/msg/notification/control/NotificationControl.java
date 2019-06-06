@@ -4,6 +4,7 @@ import msg.exceptions.BusinessException;
 import msg.notification.MessageCatalog;
 import msg.notification.boundary.notificationParams.NotificationParams;
 import msg.notification.boundary.notificationParams.NotificationParamsUserChanges;
+import msg.notification.boundary.notificationParams.NotificationParamsUserDeleted;
 import msg.notification.boundary.notificationParams.NotificationParamsWelcomeUser;
 import msg.notification.entity.NotificationEntity;
 import msg.notification.entity.NotificationType;
@@ -79,6 +80,9 @@ public class NotificationControl {
             case USER_UPDATED:
                 this.createUserUpdateNotification(params, userID);
                 break;
+            case USER_DELETED:
+                this.createUserDeleteNotification(params, userID);
+                break;
         }
     }
 
@@ -121,6 +125,15 @@ public class NotificationControl {
         this.createWelcomeUpdateSource(messageParams);
     }
 
+    private void createUserDeleteNotification(final NotificationParams params, final long userID) {
+        if (!(params instanceof NotificationParamsUserDeleted)) {
+            throw new BusinessException(MessageCatalog.MESSAGE_PARAMS_AND_TYPE_ARE_INCOMPATIBLE);
+        }
+        final NotificationParamsUserDeleted messageParams = (NotificationParamsUserDeleted) params;
+        this.createDeleteUserNotifications(messageParams,userID);
+    }
+
+
     private void createWelcomeUpdateTarget(final NotificationParamsUserChanges messageParams, final long userID) {
         final NotificationEntity notificationEntity = new NotificationEntity();
         notificationEntity.setMessage(NotificationMessageCatalog
@@ -147,4 +160,16 @@ public class NotificationControl {
         this.notificationDao.createNotification(notificationEntity);
 
     }
+    private void createDeleteUserNotifications(final NotificationParamsUserDeleted messageParams,final long userId){
+            final NotificationEntity notificationEntity = new NotificationEntity();
+            notificationEntity.setMessage(
+                    NotificationMessageCatalog.getFullMessageUserDeleted(messageParams.getUsername()));
+            notificationEntity.setNotificationType(NotificationType.USER_DELETED);
+            //todo update with correct link when routing is available
+            notificationEntity.setUrl(SERVER_ADDRESS + "someOtherInfo");
+            notificationEntity.setDate(new Date());
+            notificationEntity.setUserID(userId);
+            this.notificationDao.createNotification(notificationEntity);
+    }
+
 }

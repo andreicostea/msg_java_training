@@ -1,18 +1,13 @@
-import {
-  HttpEvent,
-  HttpInterceptor,
-  HttpHandler,
-  HttpRequest, HttpHeaders,
-} from '@angular/common/http';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest,} from '@angular/common/http';
 import {Observable} from "rxjs";
-import {PermissionsService} from "../permissions/permissions.service";
+import {AuthenticationService} from "../services/authentication/authentication.service";
 import {Injectable} from "@angular/core";
 import {LoginService} from "../../features/login/services/login.service";
 
 @Injectable()
 export class AddHeaderInterceptor implements HttpInterceptor {
 
-  constructor(private permissionService: PermissionsService) {
+  constructor(private permissionService: AuthenticationService) {
   }
 
   intercept(req: HttpRequest<LoginService>, next: HttpHandler): Observable<HttpEvent<any>> {
