@@ -184,4 +184,17 @@ public class BugEntity extends BaseEntity<Long> {
     public void setSeverity(String severity) {
         this.severity = severity;
     }
+
+    @Override
+    public String toString() {
+        return "BugEntity{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", version='" + version + '\'' +
+                ", targetDate=" + targetDate +
+                ", severity='" + severity + '\'' +
+                ", status='" + status + '\'' +
+                ", fixedVersion='" + fixedVersion + '\'' +
+                '}';
+    }
 }

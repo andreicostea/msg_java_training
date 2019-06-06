@@ -25,8 +25,8 @@ public class NotificationFacade {
      * @param notificationType the type of the notification.
      * @param params           the parameters for the notification type.
      */
-    public void createNotification(final NotificationType notificationType, final NotificationParams params, final long userId) {
-        this.notificationControl.createNotification(notificationType, params, userId);
+    public void createNotification(final NotificationType notificationType, final NotificationParams params, final long... id) {
+        this.notificationControl.createNotification(notificationType, params, id);
     }
 
     public Object getAllNotificationById(long id) {

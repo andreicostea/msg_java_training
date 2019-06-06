@@ -37,6 +37,28 @@
              readonly
              #version ="ngModel">
     </div>
+    <div class ="form-group">
+      <label > Target Date</label>
+      <input class = "form-control"
+             type ="text"
+             id = "targetDate"
+             name = "targetDate"
+             ngModel
+             [(ngModel)] = "bug.targetDate"
+             readonly
+             #version ="ngModel">
+    </div>
+    <div class ="form-group">
+      <label >Status</label>
+      <input class = "form-control"
+             type ="text"
+             id = "status"
+             name = "status"
+             ngModel
+             [(ngModel)] = "bug.status"
+             readonly
+             #version ="ngModel">
+    </div>
 
     <div class ="form-group">
       <label > Fixed Version</label>

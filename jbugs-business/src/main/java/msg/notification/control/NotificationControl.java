@@ -2,9 +2,7 @@ package msg.notification.control;
 
 import msg.exceptions.BusinessException;
 import msg.notification.MessageCatalog;
-import msg.notification.boundary.notificationParams.NotificationParams;
-import msg.notification.boundary.notificationParams.NotificationParamsUserChanges;
-import msg.notification.boundary.notificationParams.NotificationParamsWelcomeUser;
+import msg.notification.boundary.notificationParams.*;
 import msg.notification.entity.NotificationEntity;
 import msg.notification.entity.NotificationType;
 import msg.notification.entity.dao.NotificationDAO;
@@ -71,25 +69,147 @@ public class NotificationControl {
      * @param notificationType the type of the notification.
      * @param params           the parameters for the notification type.
      */
-    public void createNotification(final NotificationType notificationType, final NotificationParams params, final long userID) {
+    public void createNotification(final NotificationType notificationType, final NotificationParams params, final long... id) {
         switch (notificationType) {
             case WELCOME_NEW_USER:
-                this.createWelcomeUserNotification(params, userID);
+                this.createWelcomeUserNotification(params, id[0]);
                 break;
             case USER_UPDATED:
-                this.createUserUpdateNotification(params, userID);
+                this.createUserUpdateNotification(params, id[0], id[1]);
+                break;
             case BUG_UPDATED:
-                 this.createBugUpdatedNotification(params, userID);
+                this.createBugUpdatedNotification(params, id[0], id[1]);
+                break;
+            case BUG_CREATED:
+                this.createBugCreatedNotification(params, id[0], id[1]);
+                break;
+            case BUG_STATUS_UPDATE:
+                this.createBugStatusUpdatedNotification(params, id[0], id[1]);
+                break;
+            case BUG_CLOSED:
+                this.createBugClosedNotification(params, id[0], id[1]);
                 break;
         }
     }
 
-    private void createBugUpdatedNotification(NotificationParams params, long userID) {
-        if (!(params instanceof NotificationParamsWelcomeUser)) {
+    private void createBugUpdatedNotification(NotificationParams params, long userSourceID, long userTargetID) {
+        if (!(params instanceof NotificationParamsBugUpdate)) {
             throw new BusinessException(MessageCatalog.MESSAGE_PARAMS_AND_TYPE_ARE_INCOMPATIBLE);
         }
-        final NotificationParamsWelcomeUser messageParams = (NotificationParamsWelcomeUser) params;
+        final NotificationParamsBugUpdate messageParams = (NotificationParamsBugUpdate) params;
+        final NotificationEntity notificationEntityS = new NotificationEntity();
+        final NotificationEntity notificationEntityT = new NotificationEntity();
+        notificationEntityS.setMessage(
+                NotificationMessageCatalog.getFullMessageForBugCreateSource(
+                        messageParams.getUsernameSource(),
+                        messageParams.getUsernameTarget(),
+                        messageParams.getBug().toString()));
+        notificationEntityT.setMessage(
+                NotificationMessageCatalog.getFullMessageForBugCreateTarget(
+                        messageParams.getUsernameTarget(),
+                        messageParams.getUsernameSource(),
+                        messageParams.getBug().toString()));
+        notificationEntityS.setNotificationType(NotificationType.BUG_UPDATED);
+        notificationEntityT.setNotificationType(NotificationType.BUG_UPDATED);
+        //todo update with correct link when routing is available
+        notificationEntityS.setUrl(SERVER_ADDRESS + "someOtherInfo");
+        notificationEntityS.setDate(new Date());
+        notificationEntityS.setUserID(userSourceID);
+        notificationEntityT.setUrl(SERVER_ADDRESS + "someOtherInfo");
+        notificationEntityT.setDate(new Date());
+        notificationEntityT.setUserID(userTargetID);
+        this.notificationDao.createNotification(notificationEntityS);
+        this.notificationDao.createNotification(notificationEntityT);
+    }
 
+    private void createBugCreatedNotification(NotificationParams params, long userSourceID, long userTargetID) {
+        if (!(params instanceof NotificationParamsBugCreate)) {
+            throw new BusinessException(MessageCatalog.MESSAGE_PARAMS_AND_TYPE_ARE_INCOMPATIBLE);
+        }
+        final NotificationParamsBugCreate messageParams = (NotificationParamsBugCreate) params;
+        final NotificationEntity notificationEntityS = new NotificationEntity();
+        final NotificationEntity notificationEntityT = new NotificationEntity();
+        notificationEntityS.setMessage(
+                NotificationMessageCatalog.getFullMessageForBugUpdateSource(
+                        messageParams.getUsernameSource(),
+                        messageParams.getUsernameTarget(),
+                        messageParams.getBug().toString()));
+        notificationEntityT.setMessage(
+                NotificationMessageCatalog.getFullMessageForBugUpdateTarget(
+                        messageParams.getUsernameTarget(),
+                        messageParams.getUsernameSource(),
+                        messageParams.getBug().toString()));
+        notificationEntityS.setNotificationType(NotificationType.BUG_CREATED);
+        notificationEntityT.setNotificationType(NotificationType.BUG_CREATED);
+        //todo update with correct link when routing is available
+        notificationEntityS.setUrl(SERVER_ADDRESS + "someOtherInfo");
+        notificationEntityS.setDate(new Date());
+        notificationEntityS.setUserID(userSourceID);
+        notificationEntityT.setUrl(SERVER_ADDRESS + "someOtherInfo");
+        notificationEntityT.setDate(new Date());
+        notificationEntityT.setUserID(userTargetID);
+        this.notificationDao.createNotification(notificationEntityS);
+        this.notificationDao.createNotification(notificationEntityT);
+    }
+
+    private void createBugStatusUpdatedNotification(NotificationParams params, long userSourceID, long userTargetID) {
+        if (!(params instanceof NotificationParamsBugStatusUpdate)) {
+            throw new BusinessException(MessageCatalog.MESSAGE_PARAMS_AND_TYPE_ARE_INCOMPATIBLE);
+        }
+        final NotificationParamsBugStatusUpdate messageParams = (NotificationParamsBugStatusUpdate) params;
+        final NotificationEntity notificationEntityS = new NotificationEntity();
+        final NotificationEntity notificationEntityT = new NotificationEntity();
+        notificationEntityS.setMessage(
+                NotificationMessageCatalog.getFullMessageForBugStatusUpdateSource(
+                        messageParams.getUsernameSource(),
+                        messageParams.getOldStatus(),
+                        messageParams.getBug().getStatus(),
+                        messageParams.getBug().toString()));
+        notificationEntityT.setMessage(
+                NotificationMessageCatalog.getFullMessageForBugStatusUpdateTarget(
+                        messageParams.getUsernameTarget(),
+                        messageParams.getOldStatus(),
+                        messageParams.getBug().getStatus(),
+                        messageParams.getBug().toString()));
+        notificationEntityS.setNotificationType(NotificationType.BUG_STATUS_UPDATE);
+        notificationEntityT.setNotificationType(NotificationType.BUG_STATUS_UPDATE);
+        //todo update with correct link when routing is available
+        notificationEntityS.setUrl(SERVER_ADDRESS + "someOtherInfo");
+        notificationEntityS.setDate(new Date());
+        notificationEntityS.setUserID(userSourceID);
+        notificationEntityT.setUrl(SERVER_ADDRESS + "someOtherInfo");
+        notificationEntityT.setDate(new Date());
+        notificationEntityT.setUserID(userTargetID);
+        this.notificationDao.createNotification(notificationEntityS);
+        this.notificationDao.createNotification(notificationEntityT);
+    }
+
+    private void createBugClosedNotification(final NotificationParams params, final long userSourceID, final long userTargetID) {
+        if (!(params instanceof NotificationParamsBugClose)) {
+            throw new BusinessException(MessageCatalog.MESSAGE_PARAMS_AND_TYPE_ARE_INCOMPATIBLE);
+        }
+        final NotificationParamsBugClose messageParams = (NotificationParamsBugClose) params;
+        final NotificationEntity notificationEntityS = new NotificationEntity();
+        final NotificationEntity notificationEntityT = new NotificationEntity();
+        notificationEntityS.setMessage(
+                NotificationMessageCatalog.getFullMessageForBugClose(
+                        messageParams.getUsernameSource(),
+                        messageParams.getBug().toString()));
+        notificationEntityT.setMessage(
+                NotificationMessageCatalog.getFullMessageForBugClose(
+                        messageParams.getUsernameTarget(),
+                        messageParams.getBug().toString()));
+        notificationEntityS.setNotificationType(NotificationType.BUG_CLOSED);
+        notificationEntityT.setNotificationType(NotificationType.BUG_CLOSED);
+        //todo update with correct link when routing is available
+        notificationEntityS.setUrl(SERVER_ADDRESS + "someOtherInfo");
+        notificationEntityS.setDate(new Date());
+        notificationEntityS.setUserID(userSourceID);
+        notificationEntityT.setUrl(SERVER_ADDRESS + "someOtherInfo");
+        notificationEntityT.setDate(new Date());
+        notificationEntityT.setUserID(userTargetID);
+        this.notificationDao.createNotification(notificationEntityS);
+        this.notificationDao.createNotification(notificationEntityT);
     }
 
     /**
@@ -121,13 +241,13 @@ public class NotificationControl {
      *
      * @param params the input params.
      */
-    private void createUserUpdateNotification(final NotificationParams params, final long userID) {
+    private void createUserUpdateNotification(final NotificationParams params, final long userSourceID, final long userTargetID) {
         if (!(params instanceof NotificationParamsUserChanges)) {
             throw new BusinessException(MessageCatalog.MESSAGE_PARAMS_AND_TYPE_ARE_INCOMPATIBLE);
         }
 
         final NotificationParamsUserChanges messageParams = (NotificationParamsUserChanges) params;
-        this.createWelcomeUpdateTarget(messageParams, userID);
+        this.createWelcomeUpdateTarget(messageParams, userSourceID);
         this.createWelcomeUpdateSource(messageParams);
     }
 
