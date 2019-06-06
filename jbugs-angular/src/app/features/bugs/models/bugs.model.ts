@@ -11,6 +11,7 @@ export interface BugJSON {
   ASSIGNED_ID: number;
   usernameAssignTo: string;
   usernameCreatedBy: string;
+  statusList: string[];
 }
 
 
@@ -27,6 +28,8 @@ export class Bug {
   ASSIGNED_ID: number;
   usernameAssignTo: string;
   usernameCreatedBy: string;
+  statusList: string[];
+
   
   static fromJSON(json: BugJSON): Bug {
     const termin = new Bug();
@@ -42,6 +45,7 @@ export class Bug {
     termin.ASSIGNED_ID = json.ASSIGNED_ID;
     termin.usernameAssignTo = json.usernameAssignTo;
     termin.usernameCreatedBy = json.usernameCreatedBy;
+    termin.statusList = json.statusList;
     return termin;
   }
 
@@ -58,7 +62,8 @@ export class Bug {
       CREATED_ID: bug.CREATED_ID,
       ASSIGNED_ID: bug.ASSIGNED_ID,
       usernameAssignTo: bug.usernameAssignTo,
-      usernameCreatedBy: bug.usernameCreatedBy
+      usernameCreatedBy: bug.usernameCreatedBy,
+      statusList: bug.statusList
     };
   }
 

@@ -116,6 +116,18 @@
 
    </mat-form-field>
 
+    <mat-form-field >
+      <mat-label>Status:</mat-label>
+      <mat-select [(ngModel)] = "bug.status"
+                  name="status"
+                  ngModel>
+        <option selected="bug.status">{{bug.status}}</option>
+        <mat-option *ngFor="let st of bug.statusList" [value]="st">{{st}}</mat-option>
+      </mat-select>
+
+
+    </mat-form-field>
+
 
 
     <mat-card-actions>
