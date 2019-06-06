@@ -20,7 +20,6 @@ import msg.user.entity.dto.*;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -44,10 +43,6 @@ public class UserControl {
 
     @EJB
     private NotificationFacade notificationFacade;
-
-
-
-
 
 
     public UserOutputDto authenticateUser(UserLoginDTO userLoginDTO) {
@@ -106,7 +101,7 @@ public class UserControl {
         final UserEntity newUserEntity = userConverter.convertInputDTOtoEntity(userDTO);
 
         newUserEntity.setUsername(this.createUserName(userDTO.getFirstName(), userDTO.getLastName()));
-        newUserEntity.setStatus(true);
+        newUserEntity.setStatus(1);
         newUserEntity.setPassword("DEFAULT_PASSWORD");
         newUserEntity.setCounter(5);
         try {
@@ -231,7 +226,7 @@ public class UserControl {
             throw new BusinessException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD);
         }
         //verify password
-        if (userEntity.getStatus()) {
+        if (userEntity.getStatus() == 1) {
 
             if (!userEntity.getPassword().equals(userLoginDTO.getPassword())) {
                 // subtract the counter and throw message
@@ -244,7 +239,7 @@ public class UserControl {
                     throw new BusinessWebAppException(MessageCatalog.USER_INVALID_USERNAME_OR_PASSWORD, 400);
                     // username inactive
                 } else {
-                    userEntity.setStatus(false);
+                    userEntity.setStatus(0);
                     userEntity.setCounter(0);
                     userDao.updateUser(userEntity);
                     throw new BusinessWebAppException(MessageCatalog.USER_INACTIVE, 403);
@@ -300,7 +295,7 @@ public class UserControl {
     public void deactivateUser(long id) {
         try {
             UserEntity userToDeactivate = userDao.getUserById(id);
-            userToDeactivate.setStatus(false);
+            userToDeactivate.setStatus(0);
             userDao.updateUser(userToDeactivate);
         } catch (Exception e) {
             throw new BusinessException(MessageCatalog.USER_WITH_THAT_ID_DOES_NOT_EXIST);

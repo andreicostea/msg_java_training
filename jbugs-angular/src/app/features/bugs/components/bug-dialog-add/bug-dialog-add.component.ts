@@ -22,7 +22,7 @@ export class BugDialogAddComponent implements OnInit {
   showButton() : boolean{
     // this.router.navigate(['./insert'], {relativeTo: this.route});
     if(this.permissionService.getPermissions() === null) return false;
-    console.log(this.permissionService.getPermissions());
+    // console.log(this.permissionService.getPermissions());
 
     for(let per of this.permissionService.getPermissions())
       if(per === "BUG_MANAGEMENT") return true;
@@ -38,7 +38,7 @@ export class BugDialogAddComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
       this.bug = result;
     });
   }

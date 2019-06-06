@@ -42,7 +42,7 @@ export class User {
   mobileNumber: string;
   roles: string[];
   token: string;
-  status: boolean;
+  status: number;
 
   static fromJSON(json: UserJSON): User {
     const termin = new User();

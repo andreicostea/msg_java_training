@@ -6,7 +6,7 @@ public class UserUpdateDTO {
     private String emailBeforeUpdate;
     private String email;
     private String mobileNumber;
-    private boolean status;
+    private int status;
     private String whoUpdatedHim;
 
 //    private List<String> roles;
@@ -55,11 +55,11 @@ public class UserUpdateDTO {
         this.mobileNumber = mobileNumber;
     }
 
-    public boolean getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

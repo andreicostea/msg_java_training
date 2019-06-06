@@ -13,7 +13,7 @@ public class UserDTO {
     private String mobileNumber;
     private String userName;
     private ArrayList<RoleEntity> roles;
-    private boolean status;
+    private int status;
 
 
     public UserDTO(long id, String firstName, String lastName, String email, String mobileNumber, String userName, ArrayList<RoleEntity> roles) {
@@ -85,11 +85,11 @@ public class UserDTO {
         this.id = id;
     }
 
-    public boolean getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 }

@@ -14,7 +14,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@Stateless
 @Path("/users")
 public class UserResource {
 
@@ -36,16 +35,18 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @PATCH
     public Response updateUser(UserUpdateDTO userUpdateDTO) {
-//        System.out.println(userUpdateDTO.getFirstName());
         userFacade.updateUser(userUpdateDTO);
         return Response.ok("Successfully updated!").build();
     }
 
-    @Path("{id}")
+    @Path("/{id}")
     @DELETE
-    public Response deactivateUser(@PathParam("id") int id) {
-        userFacade.deactivateUser(id);
-        return Response.ok("Successfully deactivated!").build();
+    public Response deactivateUser(@PathParam("id") long id) {
+       // if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
+            userFacade.deactivateUser(id);
+            return Response.ok("Successfully deactivated!").build();
+      //  }
+       // return Response.status(Response.Status.FORBIDDEN).build();
     }
 
     @Consumes(MediaType.APPLICATION_JSON)
@@ -55,14 +56,16 @@ public class UserResource {
         return Response.ok(userFacade.authenticateUser(userLoginDTO)).build();
     }
 
+
     @Produces(MediaType.APPLICATION_JSON)
     @GET
     public Response getAll(@Context SecurityContext securityContext) {
         if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
             return Response.ok(userFacade.getAll()).build();
-        } else
-            return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
+        }
+        return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
     }
+
 
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
@@ -70,7 +73,7 @@ public class UserResource {
     public Response getUserById(@Context SecurityContext securityContext, @PathParam("id") long id) {
         if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
             return Response.ok(userFacade.getUserById(id)).build();
-        } else
-            return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
+        }
+        return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
     }
 }

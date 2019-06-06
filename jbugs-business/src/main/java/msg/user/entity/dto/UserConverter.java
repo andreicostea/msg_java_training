@@ -5,6 +5,7 @@ package msg.user.entity.dto;
 
 import msg.permission.boundary.PermissionFacade;
 import msg.role.control.RoleControl;
+import msg.role.entity.RoleEntity;
 import msg.user.entity.UserEntity;
 
 import javax.ejb.EJB;
@@ -59,6 +60,7 @@ public class UserConverter {
         u.setEmail(userEntity.getEmail());
         u.setMobileNumber(userEntity.getMobileNumber());
         u.setStatus(userEntity.getStatus());
+        u.setRoles((ArrayList<RoleEntity>) userEntity.getRoles());
         return u;
     }
 
