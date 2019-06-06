@@ -71,13 +71,13 @@ public class NotificationControl {
      * @param notificationType the type of the notification.
      * @param params           the parameters for the notification type.
      */
-    public void createNotification(final NotificationType notificationType, final NotificationParams params, final long userID) {
+    public void createNotification(final NotificationType notificationType, final NotificationParams params, final long... id) {
         switch (notificationType) {
             case WELCOME_NEW_USER:
-                this.createWelcomeUserNotification(params, userID);
+                this.createWelcomeUserNotification(params, id[0]);
                 break;
             case USER_UPDATED:
-//                this.createUserUpdateNotification(params, userIdSource, userIdTarget);
+                this.createUserUpdateNotification(params, id[0], id[1]);
                 break;
         }
     }

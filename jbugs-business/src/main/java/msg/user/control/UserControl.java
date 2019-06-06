@@ -277,7 +277,7 @@ public class UserControl {
 
     }
 
-    // todo: notification USER_UPDATED
+    // todo: polish notification
     public void updateUser(UserUpdateDTO userUpdateDTO) {
         UserEntity userToUpdate = userDao.getUserByEmail(userUpdateDTO.getEmailBeforeUpdate());
         userToUpdate.setFirstName(userUpdateDTO.getFirstName());
@@ -288,7 +288,11 @@ public class UserControl {
 //        userToUpdate.setRoles(roleControl.getRolesByTypeList(userUpdateDTO.getRoles()));
         userDao.updateUser(userToUpdate);
         // send notification
-        this.notificationFacade.createNotification(NotificationType.USER_UPDATED, new NotificationParamsUserChanges(userUpdateDTO.getWhoUpdatedHim(), userToUpdate.getUsername()), userToUpdate.getId());
+        try {
+            this.notificationFacade.createNotification(NotificationType.USER_UPDATED, new NotificationParamsUserChanges(userUpdateDTO.getWhoUpdatedHim(), userToUpdate.getUsername()), userDao.getUserByUsername(userUpdateDTO.getWhoUpdatedHim()).getId(), userToUpdate.getId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // todo: notification USER_DELETED
