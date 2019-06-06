@@ -1,0 +1,8 @@
+.mat-form-field-infix {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group > * {
+  width: 480px;
+}

@@ -4,6 +4,7 @@ import {Permission, Role} from "../../model/permission-manager.model";
 import {PermissionsService} from "../../../../core/permissions/permissions.service";
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
+
 @Component({
   selector: 'app-permission-manager-test-component',
   templateUrl: './permission-manager-test-component.component.html',
@@ -62,7 +63,7 @@ export class PermissionManagerInsertButtonComponent implements OnInit {
               }
             });
         },
-        error1 => alert("error")
+        error1 => alert(error1.error.message)
       );
   }
 }
