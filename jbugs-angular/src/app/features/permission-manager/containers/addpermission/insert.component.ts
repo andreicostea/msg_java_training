@@ -15,29 +15,13 @@ export class InsertComponent implements OnInit {
   }
 
   selectedRole: Role = <Role>{};
-  roleandpermission: Subscription;
   roleandpermission2: Subscription;
-  permissions = [];
   roles = [];
-  selectedPermission: Permission = <Permission>{};
+  selection: Permission = <Permission>{};
   ngOnInit() {
     console.log(
-      this.permissionManagerServices.getAllPermissions()
-        .subscribe((permissionList) => {
-            this.permissions = permissionList;
-          }
-        ));
-    this.selected();
-    this.selected2();
+      this.selected2());
   }
-
-  private selected() {
-    this.roleandpermission = this.permissionManagerServices.getAllPermissions()
-      .subscribe(result2 => this.permissions = result2);
-    console.log(this.roleandpermission);
-    return this.selectedPermission;
-  }
-
   private selected2() {
     this.roleandpermission2 = this.permissionManagerServices.getAllRolesAndPermissions()
       .subscribe(result => this.roles = result);
@@ -46,7 +30,7 @@ export class InsertComponent implements OnInit {
   }
 
   inserted() {
-    this.permissionManagerServices.insertPermission(this.selectedRole.id, this.selectedPermission)
+    this.permissionManagerServices.insertPermission(this.selectedRole.id, this.selection)
       .subscribe(value => {
           console.log(value)
         },
@@ -55,4 +39,37 @@ export class InsertComponent implements OnInit {
         });
 
   }
+
+  permissions = [
+    {
+      id: 1,
+      type: 'PERMISSION_MANAGEMENT',
+      description: 'Permission stuff'
+    },
+    {
+      id: 3,
+      type: 'USER_MANAGEMENT',
+      description: 'Bug stuff'
+    },
+    {
+      id: 4,
+      type: 'BUG_MANAGEMENT',
+      description: 'Bug stuff'
+    },
+    {
+      id: 5,
+      type: 'BUG_CLOSE',
+      description: 'Can close some bugs'
+    },
+    {
+      id: 6,
+      type: 'BUG_EXPLORE_PDF',
+      description: 'exploring bugs'
+    },
+    {
+      id: 7,
+      type: 'USER_ADDRESS',
+      description: 'addressing some users'
+    }
+  ];
 }

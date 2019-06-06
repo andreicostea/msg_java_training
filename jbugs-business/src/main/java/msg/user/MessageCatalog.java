@@ -56,6 +56,11 @@ public class MessageCatalog {
 
     public static final ExceptionMessage BUG_INVALID_PATTERN
             = new ExceptionMessage("BUG-01", "The pattern is invalid!");
+
+    public static final ExceptionMessage USER_WITH_THIS_ID_DONT_HAVE_BUGS
+            = new ExceptionMessage("USER-07", "This user don t have any bugs");
+    public static final ExceptionMessage USER_WITH_THIS_ROLE_DONT_HAVE_PERMISSIONS
+            = new ExceptionMessage("USER-08", "The user with this role don t have any permissions");
 }
 
 

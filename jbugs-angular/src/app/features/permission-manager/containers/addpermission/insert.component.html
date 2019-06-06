@@ -13,7 +13,7 @@
 <div class="form-group">
   <mat-form-field>
     <mat-label>Permission Dropdown multiple</mat-label>
-    <mat-select [(ngModel)]="selectedPermission">
+    <mat-select [(ngModel)]="selection">
       <mat-option *ngFor="let permission of permissions"
                   [value]="permission">{{permission.type}}</mat-option>
     </mat-select>
@@ -22,7 +22,7 @@
 <div class="form-group">
   <mat-form-field>
     <mat-label>Descrrption Dropdown multiple</mat-label>
-    <mat-select [(ngModel)]="selectedPermission">
+    <mat-select [(ngModel)]="selection">
       <mat-option *ngFor="let permission of permissions"
                   [value]="permission">{{permission.description}}</mat-option>
     </mat-select>

@@ -7,6 +7,7 @@ import msg.bug.entity.dto.BugInputDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.List;
 
 @Stateless
 public class BugFacade {
@@ -17,7 +18,7 @@ public class BugFacade {
         this.bugControl.createBug(bug);
     }
 
-    public Object getAll() {
+    public List<BugDTO> getAll() {
         return this.bugControl.getAll();
     }
 
