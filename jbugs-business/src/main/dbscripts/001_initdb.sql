@@ -1,5 +1,14 @@
 -- drop tables
 
+drop table roles_permissions;
+drop table users_roles;
+drop table comments;
+drop table notifications;
+drop table bugs;
+drop table users;
+drop table roles;
+drop table permissions;
+
 -- create tables
 
 create table users
@@ -76,22 +85,12 @@ create table bugs
     status       varchar(255) not null,
     fixedVersion varchar(255),
     severity     varchar(255) not null,
-// storyId16-Bug-management
-    CREATED_ID    bigint,
-    ASSIGNED_ID   bigint,
+    CREATED_ID   bigint,
+    ASSIGNED_ID  bigint,
     constraint FK_bugs_CREATED_ID
         foreign key (CREATED_ID) references users (ID),
     constraint FK_bugs_ASSIGNED_ID
-        foreign key (ASSIGNED_ID ) references users (ID)
-
-    user_id      bigint       not null,
-    CREATED_ID    bigint       not null,
-    ASSIGNED_ID   bigint       not null,
-    constraint FK_bugs_createdBy
-        foreign key (createdBy) references users (ID),
-    constraint FK_bugs_assignedBy
-        foreign key (assignedBy) references users (ID)
-// storyId4-userInsert
+        foreign key (ASSIGNED_ID) references users (ID)
 );
 
 
@@ -107,18 +106,6 @@ create table comments
     text    varchar(1000) not null,
     date    datetime      not null
 );
-
-
-create table attachments
-(
-    ID         bigint auto_increment primary key,
-    attContent varchar(255) not null,
-    id_bug     bigint       not null,
-    constraint FK_attachments_id_bug
-        foreign key (id_bug) references bugs (ID)
-
-);
-
 
 -- insert data
 
@@ -171,5 +158,5 @@ VALUES (2, 2);
 INSERT INTO roles_permissions (role_id, permission_id)
 VALUES (2, 3);
 
-INSERT INTO bugs(title, description, version, targetDate, status, fixedVersion, severity)
-VALUES ('bug1', 'description1', 'v1.2', '30-05-2019', 'NEW', 'v7.2', 'low')
+INSERT INTO bugs(title, description, version, targetDate, status, fixedVersion, severity, CREATED_ID, ASSIGNED_ID)
+VALUES ('bug1', 'description1', 'v1.2', '2019-05-30 20:13:55', 'NEW', 'v7.2', 'low', 1, 5)

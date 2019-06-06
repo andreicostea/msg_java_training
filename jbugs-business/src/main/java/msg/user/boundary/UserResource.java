@@ -27,29 +27,46 @@ public class UserResource {
     public Response createUser(@Context SecurityContext securityContext, UserInputDTO input) {
         if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
             userFacade.createUser(input);
-            return Response.ok().build();
-        } else
-            return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
+            return Response.ok("Successfully created!").build();
+        }
+        return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
     }
 
     @Consumes(MediaType.APPLICATION_JSON)
     @PATCH
     public Response updateUser(@Context SecurityContext securityContext, UserUpdateDTO userUpdateDTO) {
         if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
-            System.out.println(userUpdateDTO.getFirstName());
             userFacade.updateUser(userUpdateDTO);
             return Response.ok("Successfully updated!").build();
-        } else
-            return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
+        }
+        return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
     }
+
+    @Path("/{id}")
+    @DELETE
+    public Response deactivateUser(@Context SecurityContext securityContext, @PathParam("id") long id) {
+        if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
+            userFacade.deactivateUser(id);
+            return Response.ok("Successfully deactivated!").build();
+        }
+        return Response.status(Response.Status.FORBIDDEN).build();
+    }
+
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/login")
+    @POST
+    public Response userLogin(@HeaderParam("Authorization") String header, UserLoginDTO userLoginDTO) {
+        return Response.ok(userFacade.authenticateUser(userLoginDTO)).build();
+    }
+
 
     @Produces(MediaType.APPLICATION_JSON)
     @GET
     public Response getAll(@Context SecurityContext securityContext) {
         if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
             return Response.ok(userFacade.getAll()).build();
-        } else
-            return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
+        }
+        return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
     }
 
 
@@ -59,9 +76,7 @@ public class UserResource {
     public Response getUserById(@Context SecurityContext securityContext, @PathParam("id") long id) {
         if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
             return Response.ok(userFacade.getUserById(id)).build();
-        } else
-            return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
+        }
+        return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
     }
-
-
 }
