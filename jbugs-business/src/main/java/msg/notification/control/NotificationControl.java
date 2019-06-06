@@ -81,7 +81,7 @@ public class NotificationControl {
                 this.createUserUpdateNotification(params, id[0], id[1]);
                 break;
             case USER_DELETED:
-                this.createUserDeleteNotification(params, userID);
+                this.createUserDeleteNotification(params, id[0]);
                 break;
         }
     }
