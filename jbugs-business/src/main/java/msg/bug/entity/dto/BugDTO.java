@@ -2,9 +2,7 @@ package msg.bug.entity.dto;
 
 import msg.base.BaseEntity;
 
-import java.util.Date;
-
-public class BugDTO extends BaseEntity<Long>{
+public class BugDTO extends BaseEntity<Long> {
     private String title;
     private String description;
     private String version;

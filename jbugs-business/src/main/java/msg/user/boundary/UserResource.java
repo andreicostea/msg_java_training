@@ -1,7 +1,6 @@
 package msg.user.boundary;
 
 import msg.bug.boundary.BugFacade;
-import msg.bug.control.ExtractingBugsForAUser;
 import msg.permission.PermissionType;
 import msg.user.MessageCatalog;
 import msg.user.entity.dto.UserInputDTO;
@@ -24,6 +23,7 @@ public class UserResource {
     private UserFacade userFacade;
     @EJB
     private BugFacade bugFacade;
+
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/insert")
     @POST
@@ -59,18 +59,17 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     @GET
     public Response getAll(@Context SecurityContext securityContext) {
-//        if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
+        if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
             return Response.ok(userFacade.getAll()).build();
         }
         return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
     }
+
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
     @GET
     public Response getUserById(@Context SecurityContext securityContext, @PathParam("id") long id) throws IOException {
-        ExtractingBugsForAUser extractingBugsForAUser = new ExtractingBugsForAUser(bugFacade.getAll());
-        extractingBugsForAUser.MakingExcel();
-        //        if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
+        if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
             return Response.ok(userFacade.getUserById(id)).build();
         }
         return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();

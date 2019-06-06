@@ -1,7 +1,5 @@
 package msg.role.entity.dto;
 
-import msg.base.BaseEntity;
-
 import msg.permission.entity.dto.PermissionDTO;
 
 import java.util.ArrayList;
@@ -14,15 +12,15 @@ public class RoleDTO {
     private String type;
     private List<PermissionDTO> permissions = new ArrayList<>();
 
+    public RoleDTO() {
+    }
+
     public List<PermissionDTO> getPermissions() {
         return this.permissions;
     }
 
     public void setPermissions(List<PermissionDTO> permissions) {
         this.permissions = permissions;
-    }
-
-    public RoleDTO() {
     }
 
     public long getId() {

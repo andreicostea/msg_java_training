@@ -1,11 +1,9 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {UsersService} from "../../services/users.service";
 import {Role, User} from "../../models/users.model";
 import {UsersInsertButtonComponent} from "../../components/users-insert-button/users-insert-button.component";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {DialogData} from "../../../login/components/login-form/login-form.component";
-
+import {MatDialogRef} from "@angular/material";
 
 
 @Component({
@@ -13,16 +11,15 @@ import {DialogData} from "../../../login/components/login-form/login-form.compon
   templateUrl: './users-insert.component.html',
   styleUrls: ['./users-insert.component.css']
 })
-export class UsersInsertComponent implements OnInit{
+export class UsersInsertComponent implements OnInit {
 
 
+  roles: Role[];
 
-  roles : Role[];
 
+  public user: User = new User();
 
-  public user: User = new User() ;
-
-  constructor(private router: Router, private userService : UsersService,
+  constructor(private router: Router, private userService: UsersService,
               public dialogRef: MatDialogRef<UsersInsertButtonComponent>) {
 
 
@@ -35,20 +32,24 @@ export class UsersInsertComponent implements OnInit{
   }
 
 
-
-  insert(){
+  insert() {
     console.log(this.user);
     this.userService.insertUser(this.user).subscribe((
-       value => { this.onNoClick();}),
-      (error => {alert(error.error.message)} ),
-       () => {this.router.navigate(['/dashboard'])})
+        value => {
+          this.onNoClick();
+        }),
+      (error => {
+        alert(error.error.message)
+      }),
+      () => {
+        this.router.navigate(['/dashboard'])
+      })
     ;
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
-
 
 
 }

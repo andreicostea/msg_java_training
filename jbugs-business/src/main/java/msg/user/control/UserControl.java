@@ -113,7 +113,7 @@ public class UserControl {
             this.notificationFacade.createNotification(
                     NotificationType.WELCOME_NEW_USER,
                     new NotificationParamsWelcomeUser(userFullName, newUserEntity.getUsername()), id);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new BusinessWebAppException(MessageCatalog.USER_INVALID_PATTERN, 400);
         }
 

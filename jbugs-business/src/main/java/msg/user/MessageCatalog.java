@@ -46,7 +46,6 @@ public class MessageCatalog {
     public static final ExceptionMessage USER_FIELDS_MISSING
             = new ExceptionMessage("USER-06", "Some fields are missing");
 
-   
 
     public static final ExceptionMessage INVALID_OR_NON_EXISTENT_TOKEN
             = new ExceptionMessage("USER-07", "You're not authorized for this operation.");

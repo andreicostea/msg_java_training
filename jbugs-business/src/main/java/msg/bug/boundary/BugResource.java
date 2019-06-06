@@ -46,7 +46,7 @@ public class BugResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll(@Context SecurityContext securityContext) {
 //        if (securityContext.isUserInRole(PermissionType.BUG_MANAGEMENT)) {
-            return Response.status(200).entity(facade.getAll()).build();
+        return Response.status(200).entity(facade.getAll()).build();
 //        } else {
 //            return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
 

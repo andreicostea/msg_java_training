@@ -55,62 +55,62 @@ The bugs
 <!--</table>-->
 <!--mat-paginator [pageSizeOptions]="[25]" showFirstLastButtons></mat-paginator-->
 <mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
 </mat-form-field>
 
 <div class="mat-elevation-z8">
 
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table matSort>
 
-  <!-- Position Column -->
-  <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> title </th>
-    <td mat-cell *matCellDef="let element"> {{element.title}} </td>
-  </ng-container>
+    <!-- Position Column -->
+    <ng-container matColumnDef="title">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> title</th>
+      <td *matCellDef="let element" mat-cell> {{element.title}} </td>
+    </ng-container>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="description">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> description </th>
-    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-  </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="description">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> description</th>
+      <td *matCellDef="let element" mat-cell> {{element.description}} </td>
+    </ng-container>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="version">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> version </th>
-    <td mat-cell *matCellDef="let element"> {{element.version}} </td>
-  </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="version">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> version</th>
+      <td *matCellDef="let element" mat-cell> {{element.version}} </td>
+    </ng-container>
 
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="targetDate">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> targetDate </th>
-    <td mat-cell *matCellDef="let element"> {{element.targetDate}} </td>
-  </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="targetDate">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> targetDate</th>
+      <td *matCellDef="let element" mat-cell> {{element.targetDate}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="status">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> status </th>
-    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-  </ng-container>
+    <ng-container matColumnDef="status">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> status</th>
+      <td *matCellDef="let element" mat-cell> {{element.status}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="fixedVersion">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> fixedVersion </th>
-    <td mat-cell *matCellDef="let element"> {{element.fixedVersion}} </td>
-  </ng-container>
+    <ng-container matColumnDef="fixedVersion">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> fixedVersion</th>
+      <td *matCellDef="let element" mat-cell> {{element.fixedVersion}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="severity">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> severity </th>
-    <td mat-cell *matCellDef="let element"> {{element.severity}} </td>
-  </ng-container>
+    <ng-container matColumnDef="severity">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> severity</th>
+      <td *matCellDef="let element" mat-cell> {{element.severity}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="edit">
-    <th mat-header-cell *matHeaderCellDef> </th>
-    <td mat-cell *matCellDef="let element">
-      <button mat-raised-button (click)="getRecord(element)">Edit</button>
-      <button mat-raised-button (click)="viewRecord(element)">View</button>
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="edit">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let element" mat-cell>
+        <button (click)="getRecord(element)" mat-raised-button>Edit</button>
+        <button (click)="viewRecord(element)" mat-raised-button>View</button>
+      </td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
-</table>
-<mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+    <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
 </div>

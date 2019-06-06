@@ -14,23 +14,24 @@ export class BugDialogAddComponent implements OnInit {
   bug: Bug;
 
   constructor(public dialog: MatDialog,
-              private permissionService: AuthenticationService) { }
+              private permissionService: AuthenticationService) {
+  }
 
   ngOnInit() {
   }
 
-  showButton() : boolean{
+  showButton(): boolean {
     // this.router.navigate(['./insert'], {relativeTo: this.route});
-    if(this.permissionService.getPermissions() === null) return false;
+    if (this.permissionService.getPermissions() === null) return false;
 
-    for(let per of this.permissionService.getPermissions())
-      if(per === "BUG_MANAGEMENT") return true;
+    for (let per of this.permissionService.getPermissions())
+      if (per === "BUG_MANAGEMENT") return true;
     return false;
   }
 
 
-  addDialog(){
-    const dialogRef = this.dialog.open(BugAddComponent , {
+  addDialog() {
+    const dialogRef = this.dialog.open(BugAddComponent, {
       width: '650px',
       height: '660px'
 

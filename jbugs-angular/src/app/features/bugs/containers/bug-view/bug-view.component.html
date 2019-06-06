@@ -1,4 +1,4 @@
-<form #f = 'ngForm' >
+<form #f='ngForm'>
   <mat-card class="example-card">
     <mat-card-title>View Bug</mat-card-title>
     <mat-divider></mat-divider>
@@ -6,99 +6,99 @@
     <br>
     <div>
       <mat-label>Title</mat-label>
-      <input class = "form-control"
-             type ="text"
-             id = "title"
-             name = "title"
+      <input [(ngModel)]="bug.title"
+             class="form-control"
+             id="title"
+             name="title"
              ngModel
              readonly
-             [(ngModel)] = "bug.title">
-      </div>
+             type="text">
+    </div>
     <div>
       <mat-label>Description</mat-label>
-      <input class = "form-control"
-             type ="text"
-             id = "description"
-             name = "description"
+      <input [(ngModel)]="bug.description"
+             class="form-control"
+             id="description"
+             name="description"
              ngModel
              readonly
-             [(ngModel)] = "bug.description">
+             type="text">
     </div>
-    <div class ="form-group">
-      <label > Version</label>
-      <input class = "form-control"
-             type ="text"
-             id = "version"
-             name = "version"
+    <div class="form-group">
+      <label> Version</label>
+      <input #version="ngModel"
+             [(ngModel)]="bug.version"
+             class="form-control"
+             id="version"
+             name="version"
              ngModel
              pattern="^[a-zA-Z0-9.]*$"
-             [(ngModel)] = "bug.version"
+             readonly
              required
-             readonly
-             #version ="ngModel">
+             type="text">
     </div>
-    <div class ="form-group">
-      <label > Target Date</label>
-      <input class = "form-control"
-             type ="text"
-             id = "targetDate"
-             name = "targetDate"
+    <div class="form-group">
+      <label> Target Date</label>
+      <input #version="ngModel"
+             [(ngModel)]="bug.targetDate"
+             class="form-control"
+             id="targetDate"
+             name="targetDate"
              ngModel
-             [(ngModel)] = "bug.targetDate"
              readonly
-             #version ="ngModel">
+             type="text">
     </div>
-    <div class ="form-group">
-      <label >Status</label>
-      <input class = "form-control"
-             type ="text"
-             id = "status"
-             name = "status"
+    <div class="form-group">
+      <label>Status</label>
+      <input #version="ngModel"
+             [(ngModel)]="bug.status"
+             class="form-control"
+             id="status"
+             name="status"
              ngModel
-             [(ngModel)] = "bug.status"
              readonly
-             #version ="ngModel">
+             type="text">
     </div>
 
-    <div class ="form-group">
-      <label > Fixed Version</label>
-      <input class = "form-control"
-             type ="text"
-             id = "fixedVersion"
-             name = "fixedVersion"
+    <div class="form-group">
+      <label> Fixed Version</label>
+      <input [(ngModel)]="bug.fixedVersion"
+             class="form-control"
+             id="fixedVersion"
+             name="fixedVersion"
              ngModel
              readonly
-             [(ngModel)] = "bug.fixedVersion">
+             type="text">
     </div>
     <div>
       <label>Severity</label>
-      <input class = "form-control"
-             type ="text"
-             id = "severity"
-             name = "severity"
+      <input [(ngModel)]="bug.severity"
+             class="form-control"
+             id="severity"
+             name="severity"
              ngModel
              readonly
-             [(ngModel)] = "bug.severity">
+             type="text">
     </div>
     <div>
       <mat-label>Created by user:</mat-label>
-      <input class = "form-control"
-             type ="text"
-             id = "createdId"
-             name = "createdId"
+      <input [(ngModel)]="bug.usernameCreatedBy"
+             class="form-control"
+             id="createdId"
+             name="createdId"
              ngModel
              readonly
-             [(ngModel)] = "bug.usernameCreatedBy">
+             type="text">
     </div>
     <div>
       <mat-label>Assigned to user with id:</mat-label>
-      <input class = "form-control"
-             type ="text"
-             id = "assignedId"
-             name = "assignedId"
+      <input [(ngModel)]="bug.usernameAssignTo"
+             class="form-control"
+             id="assignedId"
+             name="assignedId"
              ngModel
              readonly
-             [(ngModel)] = "bug.usernameAssignTo">
+             type="text">
     </div>
 
     <!--    <mat-form-field >-->

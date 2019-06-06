@@ -12,13 +12,14 @@ import {AuthenticationService} from "../../../../core/services/authentication/au
 export class BugsComponent implements OnInit {
 
 
-  constructor(private router: Router, private route: ActivatedRoute, private permissionService: AuthenticationService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private permissionService: AuthenticationService) {
+  }
 
 
   ngOnInit() {
   }
 
-  add(){
+  add() {
     this.router.navigate(['./insert'], {relativeTo: this.route});
   }
 

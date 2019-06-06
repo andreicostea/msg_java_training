@@ -11,35 +11,10 @@ import {Router} from "@angular/router";
 })
 export class InsertComponent implements OnInit {
 
-  constructor(private router: Router, private permissionManagerServices: PermissionManagerServices) {
-  }
-
   selectedRole: Role = <Role>{};
   roleandpermission2: Subscription;
   roles = [];
   selection: Permission = <Permission>{};
-  ngOnInit() {
-    console.log(
-      this.selected2());
-  }
-  private selected2() {
-    this.roleandpermission2 = this.permissionManagerServices.getAllRolesAndPermissions()
-      .subscribe(result => this.roles = result);
-    console.log(this.roleandpermission2);
-    return this.selectedRole;
-  }
-
-  inserted() {
-    this.permissionManagerServices.insertPermission(this.selectedRole.id, this.selection)
-      .subscribe(value => {
-          console.log(value)
-        },
-        error => {
-          alert(error.error.message)
-        });
-
-  }
-
   permissions = [
     {
       id: 1,
@@ -72,4 +47,30 @@ export class InsertComponent implements OnInit {
       description: 'addressing some users'
     }
   ];
+
+  constructor(private router: Router, private permissionManagerServices: PermissionManagerServices) {
+  }
+
+  ngOnInit() {
+    console.log(
+      this.selected2());
+  }
+
+  inserted() {
+    this.permissionManagerServices.insertPermission(this.selectedRole.id, this.selection)
+      .subscribe(value => {
+          console.log(value)
+        },
+        error => {
+          alert(error.error.message)
+        });
+
+  }
+
+  private selected2() {
+    this.roleandpermission2 = this.permissionManagerServices.getAllRolesAndPermissions()
+      .subscribe(result => this.roles = result);
+    console.log(this.roleandpermission2);
+    return this.selectedRole;
+  }
 }

@@ -62,10 +62,12 @@ public class NotificationMessageCatalog {
     public static String getFullMessageForBugStatusUpdateSource(String usernameSource, String oldStatus, String newStatus, String data) {
         return MessageFormat.format(BUG_STATUS_UPDATED_SOURCE, usernameSource, data, oldStatus, newStatus);
     }
+
     public static String getFullMessageForBugStatusUpdateTarget(String usernameSource, String oldStatus, String newStatus, String data) {
         return MessageFormat.format(BUG_STATUS_UPDATED_TARGET, usernameSource, data, oldStatus, newStatus);
     }
-    public static String getFullMessageForBugClose (String usernameSource, String data) {
+
+    public static String getFullMessageForBugClose(String usernameSource, String data) {
         return MessageFormat.format(BUG_CLOSED, usernameSource, data);
     }
 }

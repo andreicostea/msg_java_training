@@ -1,6 +1,5 @@
 
-
-.mat-form-field{
+.mat-form-field {
   padding-left: 3%;
   font-palette: light;
   width: 40%;
@@ -8,21 +7,19 @@
 
 }
 
-.mat-raised-button{
+.mat-raised-button {
   width: 40%;
   margin-left: 30%;
   margin-right: 30%
 
 }
 
-.mat-card-title{
+.mat-card-title {
   width: 40%;
   margin-left: 30%;
   margin-right: 30%;
-  font-family: "Century Gothic";
-  ;
+  font-family: "Century Gothic";;
 }
-
 
 
 .form-control:focus {
@@ -30,25 +27,26 @@
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 5px rgba(225, 166, 236, 0.6);
 }
 
-#search-box { border: 0; }
+#search-box {
+  border: 0;
+}
 
-.mat-error{
+.mat-error {
   background-color: white;
   /*border: white;*/
 }
 
-.form-group1{
+.form-group1 {
   width: 55%;
   margin-top: 5%;
 }
 
 
-
-.col-lg-12{
+.col-lg-12 {
   font-family: "Century Gothic";
   width: 60%;
 }
 
-.mat-option{
+.mat-option {
   font-family: "Century Gothic";
 }

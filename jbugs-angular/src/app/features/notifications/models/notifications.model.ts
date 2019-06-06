@@ -1,5 +1,3 @@
-import {BugJSON} from "../../bugs/models/bugs.model";
-
 export interface NotificationsJSON {
 
   position: number;
@@ -29,11 +27,11 @@ export class Notifications {
       position: notification.position,
       date: notification.date,
       type: notification.type,
-      description:notification.description
+      description: notification.description
     };
   }
 
-  static createEmpty():Notifications {
+  static createEmpty(): Notifications {
     const bug = new Notifications();
     return bug;
   }

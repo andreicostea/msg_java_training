@@ -1,28 +1,31 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 
-import { CommonModule } from '@angular/common';
-import { BugsComponent } from "./containers/bugs/bugs.component";
-import { BugsRoutingModule } from "./bugs-routing.module";
-import { BugsTableComponentComponent } from './components/bugs-table-component/bugs-table-component.component';
+import {CommonModule} from '@angular/common';
+import {BugsComponent} from "./containers/bugs/bugs.component";
+import {BugsRoutingModule} from "./bugs-routing.module";
+import {BugsTableComponentComponent} from './components/bugs-table-component/bugs-table-component.component';
 
-import {MatPaginatorModule, MatSort, MatSortModule, MatTableDataSource, MatTableModule} from "@angular/material";
-import {MatFormFieldModule} from "@angular/material";
-import { BugAddComponent } from './containers/bug-add/bug-add.component';
 import {
   MatButtonModule,
   MatCardModule,
   MatDatepickerModule,
+  MatFormFieldModule,
   MatInputModule,
-  MatListModule, MatSelectModule,
+  MatListModule,
+  MatPaginatorModule,
+  MatSelectModule,
+  MatSortModule,
+  MatTableModule,
   NativeDateModule
 } from "@angular/material";
+import {BugAddComponent} from './containers/bug-add/bug-add.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { BugDialogAddComponent } from './components/bug-dialog-add/bug-dialog-add.component';
-import {BrowserModule} from "@angular/platform-browser";
-import { BugEditComponent } from './containers/bug-edit/bug-edit.component';
+import {BugDialogAddComponent} from './components/bug-dialog-add/bug-dialog-add.component';
+import {BugEditComponent} from './containers/bug-edit/bug-edit.component';
 import {BugViewComponent} from "./containers/bug-view/bug-view.component";
+
 @NgModule({
   declarations: [
     BugsComponent,
@@ -33,7 +36,7 @@ import {BugViewComponent} from "./containers/bug-view/bug-view.component";
     BugViewComponent
   ],
 
-  entryComponents:[BugsTableComponentComponent, BugEditComponent, BugViewComponent],
+  entryComponents: [BugsTableComponentComponent, BugEditComponent, BugViewComponent],
 
   imports: [
     HttpClientModule,
@@ -56,4 +59,5 @@ import {BugViewComponent} from "./containers/bug-view/bug-view.component";
 
   ]
 })
-export class BugsModule { }
+export class BugsModule {
+}

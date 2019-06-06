@@ -8,8 +8,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.SecurityContext;
 
 /**
@@ -41,7 +39,7 @@ public class RoleResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
     @POST
-    public Response addPermision(@Context SecurityContext securityContext ,@PathParam("id") Long id, PermissionDTO permissionDTO) {
+    public Response addPermision(@Context SecurityContext securityContext, @PathParam("id") Long id, PermissionDTO permissionDTO) {
         return Response.ok(roleFacade.addPermission(id, permissionDTO).getPermissions()).build();
     }
 
@@ -49,7 +47,7 @@ public class RoleResource {
     @Produces(MediaType.APPLICATION_JSON)
     @GET
     @Path("/types")
-    public Response getAllRolesType(){
+    public Response getAllRolesType() {
         return Response.ok(roleFacade.getAllRolesType()).build();
     }
 

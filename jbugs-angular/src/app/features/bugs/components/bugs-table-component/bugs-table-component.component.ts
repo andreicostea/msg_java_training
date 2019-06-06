@@ -1,14 +1,14 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 
-import {Bug, BugJSON} from "../../models/bugs.model";
+import {Bug} from "../../models/bugs.model";
 import {BugsService} from "../../services/bugs.service";
-import {Observable} from "rxjs";
 import {MatTableDataSource} from '@angular/material/table';
-import {MatSort, Sort} from '@angular/material/sort';
+import {MatSort} from '@angular/material/sort';
 import {MatDialog, MatPaginator} from "@angular/material";
 import {BugEditComponent} from "../../containers/bug-edit/bug-edit.component";
 import {BugViewComponent} from "../../containers/bug-view/bug-view.component";
-import {PermissionsService} from "../../../../core/permissions/permissions.service";
+import {AuthenticationService} from "../../../../core/services/authentication/authentication.service";
+
 
 
 @Component({
@@ -26,34 +26,36 @@ export class BugsTableComponentComponent implements OnInit {
   bugt: Bug = new Bug();
   data = this.loadAllBugs();
 
-  status : string[];
+  status: string[];
   //
   dataSource = new MatTableDataSource(this.bugs);
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  ngOnInit(){
+  constructor(private bugService: BugsService, public dialog: MatDialog, public authService: AuthenticationService) {
+    // this.sortedData = this.bugs;
+  }
+
+  ngOnInit() {
     //
-    this.bugService.loadAllBugs().subscribe(bug => {this.bugs = bug; console.log(this.bugs);
-    this.dataSource = new MatTableDataSource<Bug>(this.bugs);
+    this.bugService.loadAllBugs().subscribe(bug => {
+      this.bugs = bug;
+      console.log(this.bugs);
+      this.dataSource = new MatTableDataSource<Bug>(this.bugs);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
-      });
+    });
 
   }
 
-  constructor(private bugService: BugsService, public dialog: MatDialog, public permissionService: PermissionsService) {
-   // this.sortedData = this.bugs;
-  }
-
-  getRecord(bug: Bug){
+  getRecord(bug: Bug) {
     this.bugEdit = bug;
 
     this.bugService.getStatusLimited(this.bugEdit.status).subscribe(value => this.status = value);
     console.log(this.status);
-    for(let per of this.permissionService.getPermissions()){
-      if(per === "BUG_CLOSED") this.bugService.getStatusComplete(this.bugEdit.status).subscribe(value => this.status = value);
+    for (let per of this.authService.getPermissions()) {
+      if (per === "BUG_CLOSED") this.bugService.getStatusComplete(this.bugEdit.status).subscribe(value => this.status = value);
     }
     console.log(this.bugEdit.status);
     console.log(this.status);
@@ -70,7 +72,8 @@ export class BugsTableComponentComponent implements OnInit {
 
 
   }
-  viewRecord(bug: Bug){
+
+  viewRecord(bug: Bug) {
     this.bugView = bug;
     this.dialog.open(BugViewComponent, {
       width: '450px',
@@ -82,8 +85,7 @@ export class BugsTableComponentComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  private loadAllBugs()
-  {
+  private loadAllBugs() {
     //return this.bugService.loadAllBugs();
     //return this.bugService.loadAllBugs().subscribe(bugs => this.bugs.push(bugs));
     return this.bugService.loadAllBugs().forEach(bug => this.bugs = bug);

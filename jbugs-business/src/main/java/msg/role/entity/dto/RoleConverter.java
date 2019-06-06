@@ -50,7 +50,7 @@ public class RoleConverter {
         return r;
     }
 
-    public RoleDTO convertEntityToDTO(RoleEntity roleEntity){
+    public RoleDTO convertEntityToDTO(RoleEntity roleEntity) {
         final RoleDTO roleDTO = new RoleDTO();
         roleDTO.setType(roleEntity.getType());
         roleDTO.setId(roleEntity.getId());

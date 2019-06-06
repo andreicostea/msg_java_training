@@ -16,23 +16,24 @@ export class UsersInsertButtonComponent implements OnInit {
 
 
   constructor(private router: Router, private route: ActivatedRoute, public dialog: MatDialog,
-              private permissionService: AuthenticationService) { }
+              private permissionService: AuthenticationService) {
+  }
 
   ngOnInit() {
   }
 
-  showButton() : boolean{
-   // this.router.navigate(['./insert'], {relativeTo: this.route});
-   if(this.permissionService.getPermissions() === null) return false;
-   //console.log(this.permissionService.getPermissions());
+  showButton(): boolean {
+    // this.router.navigate(['./insert'], {relativeTo: this.route});
+    if (this.permissionService.getPermissions() === null) return false;
+    //console.log(this.authService.getPermissions());
 
-   for(let per of this.permissionService.getPermissions())
-     if(per === "USER_MANAGEMENT") return true;
+    for (let per of this.permissionService.getPermissions())
+      if (per === "USER_MANAGEMENT") return true;
     return false;
   }
 
 
-  addDialog(){
+  addDialog() {
     const dialogRef = this.dialog.open(UsersInsertComponent, {
       width: '590px',
       height: '560px'

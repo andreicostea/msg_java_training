@@ -259,7 +259,7 @@ public class NotificationControl {
             throw new BusinessException(MessageCatalog.MESSAGE_PARAMS_AND_TYPE_ARE_INCOMPATIBLE);
         }
         final NotificationParamsUserDeleted messageParams = (NotificationParamsUserDeleted) params;
-        this.createDeleteUserNotifications(messageParams,userID);
+        this.createDeleteUserNotifications(messageParams, userID);
     }
 
 
@@ -287,16 +287,17 @@ public class NotificationControl {
         this.notificationDao.createNotification(notificationEntity);
 
     }
-    private void createDeleteUserNotifications(final NotificationParamsUserDeleted messageParams,final long userId){
-            final NotificationEntity notificationEntity = new NotificationEntity();
-            notificationEntity.setMessage(
-                    NotificationMessageCatalog.getFullMessageUserDeleted(messageParams.getUsername()));
-            notificationEntity.setNotificationType(NotificationType.USER_DELETED);
-            //todo update with correct link when routing is available
-            notificationEntity.setUrl(SERVER_ADDRESS + "someOtherInfo");
-            notificationEntity.setDate(new Date());
-            notificationEntity.setUserID(userId);
-            this.notificationDao.createNotification(notificationEntity);
+
+    private void createDeleteUserNotifications(final NotificationParamsUserDeleted messageParams, final long userId) {
+        final NotificationEntity notificationEntity = new NotificationEntity();
+        notificationEntity.setMessage(
+                NotificationMessageCatalog.getFullMessageUserDeleted(messageParams.getUsername()));
+        notificationEntity.setNotificationType(NotificationType.USER_DELETED);
+        //todo update with correct link when routing is available
+        notificationEntity.setUrl(SERVER_ADDRESS + "someOtherInfo");
+        notificationEntity.setDate(new Date());
+        notificationEntity.setUserID(userId);
+        this.notificationDao.createNotification(notificationEntity);
     }
 
 }

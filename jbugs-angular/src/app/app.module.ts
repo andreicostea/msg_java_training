@@ -1,31 +1,34 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {ReactiveFormsModule} from '@angular/forms';
-import {FormsModule} from '@angular/forms';
-import {MatSortModule, MatTableModule} from "@angular/material";
-import { DashboardComponent } from "./features/dashboard/dashboard.component";
-import {MatButtonModule, MatCheckboxModule, MatNativeDateModule} from "@angular/material";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatLineModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatSortModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule
+} from "@angular/material";
+import {DashboardComponent} from "./features/dashboard/dashboard.component";
 import {LoginComponent} from "./features/login/containers/login/login.component";
 import {LoginModule} from "./features/login/login.module";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AddHeaderInterceptor} from "./core/backend/request.interceptor";
-import {
-  MatDialogModule,
-  MatFormFieldModule, MatIconModule,
-  MatInputModule,
-  MatLineModule, MatMenuModule,
-  MatTabsModule, MatToolbarModule
-} from "@angular/material";
 
 import {UsersModule} from "./features/users/users.module";
 import {BugsModule} from "./features/bugs/bugs.module";
-import {UsersUpdateDialogComponent} from "./features/users/components/users-update-dialog/users-update-dialog.component";
-import {BugsTableComponentComponent} from "./features/bugs/components/bugs-table-component/bugs-table-component.component";
 
 import {NotificationsModule} from "./features/notifications/notifications.module";
 
@@ -33,8 +36,7 @@ import {NotificationsModule} from "./features/notifications/notifications.module
   declarations: [
     AppComponent,
     DashboardComponent,
-   LoginComponent,
-
+    LoginComponent,
 
 
   ],
@@ -61,7 +63,7 @@ import {NotificationsModule} from "./features/notifications/notifications.module
     MatToolbarModule,
     UsersModule,
     BugsModule,
-    NotificationsModule
+    NotificationsModule,
     MatSortModule
 
   ],
@@ -72,4 +74,5 @@ import {NotificationsModule} from "./features/notifications/notifications.module
   }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

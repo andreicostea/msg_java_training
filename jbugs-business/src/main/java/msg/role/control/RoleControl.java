@@ -54,7 +54,7 @@ public class RoleControl {
         return roleDao.getRolesByTypeList(typeList);
     }
 
-    public List<RoleDTO> getAll(){
+    public List<RoleDTO> getAll() {
         return roleDao.getAll().stream()
                 .map(roleConverter::convertEntityToDTO)
                 .collect(Collectors.toList());
@@ -66,8 +66,8 @@ public class RoleControl {
 
 
     public RoleEntity addPermission(long id, PermissionDTO permissionDTO) {
-        RoleEntity permissionEntities=  roleDao.getRoleById(id);
-        for (PermissionEntity permission: permissionEntities.getPermissions()) {
+        RoleEntity permissionEntities = roleDao.getRoleById(id);
+        for (PermissionEntity permission : permissionEntities.getPermissions()) {
             if (permission.getType().equals(permissionDTO.getType())) {
                 throw new BusinessWebAppException(MessageCatalog.ROLE_WITH_SAME_PERMISSION_EXISTS, 411);
             }

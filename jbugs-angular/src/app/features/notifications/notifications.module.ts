@@ -7,7 +7,7 @@ import {NotificationsComponent} from "./containers/notifications/notifications.c
 import {MatExpansionModule, MatFormFieldModule, MatTableModule} from "@angular/material";
 
 @NgModule({
-  declarations: [NotificationsComponent,NotificationsViewComponent],
+  declarations: [NotificationsComponent, NotificationsViewComponent],
   imports: [
     CommonModule,
     NotificationsRoutingModule,

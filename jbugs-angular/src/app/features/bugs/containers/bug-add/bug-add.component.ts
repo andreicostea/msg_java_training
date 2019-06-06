@@ -18,25 +18,31 @@ import {UsersService} from "../../../users/services/users.service";
 export class BugAddComponent implements OnInit {
 
 
+  public bug: Bug = new Bug();
+  usersList: User[];
 
- public bug : Bug = new Bug();
- usersList : User[];
-
-  constructor(private bugService : BugsService, private router : Router, public dialogRef: MatDialogRef<BugDialogAddComponent>,
-              public permissionService : AuthenticationService, private userService : UsersService) { }
+  constructor(private bugService: BugsService, private router: Router, public dialogRef: MatDialogRef<BugDialogAddComponent>,
+              public permissionService: AuthenticationService, private userService: UsersService) {
+  }
 
   ngOnInit() {
     this.userService.getAllUsers().subscribe(users => this.usersList = users,
       error => console.log(error));
   }
 
-  insert(){
+  insert() {
     this.bug.CREATED_ID = this.permissionService.getUserId();
 
     this.bugService.insertBug(this.bug).subscribe((
-        value => {this.onNoClick();}),
-      (error => {alert(error.error.message)} ),
-      () => {this.router.navigate(['/dashboard/bugs'])})
+        value => {
+          this.onNoClick();
+        }),
+      (error => {
+        alert(error.error.message)
+      }),
+      () => {
+        this.router.navigate(['/dashboard/bugs'])
+      })
     ;
   }
 

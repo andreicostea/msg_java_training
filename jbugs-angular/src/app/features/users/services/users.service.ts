@@ -13,7 +13,8 @@ export class UsersService {
 
   private usersEndpoint = 'users';
 
-  constructor(private backendService: BackendService) { }
+  constructor(private backendService: BackendService) {
+  }
 
   loadUserByUsername(username: number): Observable<User> {
     console.log(`${environment.baseUrl}/${this.usersEndpoint}/${username}`);
@@ -28,18 +29,18 @@ export class UsersService {
 
   }
 
-  insertUser(user: User) : Observable<any> {
-    return  this.backendService
+  insertUser(user: User): Observable<any> {
+    return this.backendService
       .post(`jbugs/jbugs-api/users/insert`, user)
 
   }
 
-  getRoles(roles: Role[]) : Observable<any> {
-    return  this.backendService.get(`${environment.baseUrl}/roles/types`);
+  getRoles(roles: Role[]): Observable<any> {
+    return this.backendService.get(`${environment.baseUrl}/roles/types`);
   }
 
-  getAllUsers() :Observable<any>{
-    return  this.backendService.get(`${environment.baseUrl}/${this.usersEndpoint}`);
+  getAllUsers(): Observable<any> {
+    return this.backendService.get(`${environment.baseUrl}/${this.usersEndpoint}`);
   }
 
   // loadUserByUsername(username: string): Observable<User> {
@@ -55,7 +56,7 @@ export class UsersService {
     return this.backendService.delete(`${environment.baseUrl}/${this.usersEndpoint}/${id}`);
   }
 
-  loadAllUsers() : User[] {
+  loadAllUsers(): User[] {
     return this.backendService.get(`${environment.baseUrl}/${this.usersEndpoint}`);
   }
 }

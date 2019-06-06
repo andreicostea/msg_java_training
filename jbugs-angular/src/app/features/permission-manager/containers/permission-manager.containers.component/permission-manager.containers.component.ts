@@ -14,6 +14,7 @@ export class PermissionManagerInsertComponent implements OnInit {
               private activateRouter: ActivatedRoute,
               private router: Router) {
   }
+
   ngOnInit() {
   }
 }

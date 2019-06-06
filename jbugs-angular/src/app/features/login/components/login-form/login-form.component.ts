@@ -11,6 +11,7 @@ export interface DialogData {
   animal: string;
   name: string;
 }
+
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
@@ -22,7 +23,7 @@ export class LoginFormComponent implements OnInit {
   public loginInput: LoginInput = new LoginInput();
 
 
-  constructor(public dialog: MatDialog,private router: Router,private loginService: LoginService, private authenticationService: AuthenticationService) {
+  constructor(public dialog: MatDialog, private router: Router, private loginService: LoginService, private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
@@ -36,13 +37,13 @@ export class LoginFormComponent implements OnInit {
           localStorage.setItem('api-token', result.token);
           that.dialog.open(DialogComponent, {
             width: '250px',
-            data: {name: "Hello "+that.authenticationService.getUserName()}
+            data: {name: "Hello " + that.authenticationService.getUserName()}
           });
           that.router.navigate(['/dashboard'])
 
-          },
+        },
         error => {
-          console.log(error)
+          console.log(error);
           that.dialog.open(DialogComponent, {
             width: '250px',
             data: {name: error.error.message}

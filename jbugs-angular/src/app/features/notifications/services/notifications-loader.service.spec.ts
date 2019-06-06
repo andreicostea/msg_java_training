@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { NotificationsLoaderService } from './notifications-loader.service';
+import {NotificationsLoaderService} from './notifications-loader.service';
 
 describe('NotificationsLoaderService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

@@ -1,4 +1,3 @@
-
 package msg.role.boundary;
 
 import msg.permission.entity.dto.PermissionDTO;
@@ -28,6 +27,7 @@ public class RoleFacade {
     public List<RoleDTO> getAllRolesAndPermissions() {
         return this.roleControl.getRolesAndPermissions();
     }
+
     public RoleEntity addPermission(long id, PermissionDTO permissionDTO) {
         return this.roleControl.addPermission(id, permissionDTO);
     }
@@ -36,7 +36,7 @@ public class RoleFacade {
         return this.roleControl.getAll();
     }
 
-    public List<String> getAllRolesType(){
+    public List<String> getAllRolesType() {
         return this.roleControl.getAllRolesByType();
     }
 

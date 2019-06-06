@@ -1,29 +1,28 @@
-import {AfterViewInit, Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {BugsService} from "../../services/bugs.service";
 import {Router} from "@angular/router";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {BugDialogAddComponent} from "../../components/bug-dialog-add/bug-dialog-add.component";
-import {PermissionsService} from "../../../../core/permissions/permissions.service";
+
 import {UsersService} from "../../../users/services/users.service";
 import {Bug} from "../../models/bugs.model";
-import {BugsTableComponentComponent} from "../../components/bugs-table-component/bugs-table-component.component";
 import {User} from "../../../users/models/users.model";
+import {AuthenticationService} from "../../../../core/services/authentication/authentication.service";
 
 @Component({
-    selector: 'app-bug-edit',
-    templateUrl: './bug-edit.component.html',
-    styleUrls: ['./bug-edit.component.css']
-  })
-  export class BugEditComponent implements OnInit {
+  selector: 'app-bug-edit',
+  templateUrl: './bug-edit.component.html',
+  styleUrls: ['./bug-edit.component.css']
+})
+export class BugEditComponent implements OnInit {
 
   bug: Bug;
-  usersList : User[];
-  status : any;
+  usersList: User[];
+  status: any;
 
 
-
-  constructor(private bugService : BugsService, private router : Router,  public dialogRef: MatDialogRef<BugEditComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, public permissionService : PermissionsService, private userService : UsersService) { }
+  constructor(private bugService: BugsService, private router: Router, public dialogRef: MatDialogRef<BugEditComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any, public authService: AuthenticationService, private userService: UsersService) {
+  }
 
   ngOnInit() {
     this.userService.getAllUsers().subscribe(users => this.usersList = users,
@@ -35,23 +34,28 @@ import {User} from "../../../users/models/users.model";
   }
 
 
-  editBug(){
+  editBug() {
 
-   console.log(this.usersList);
+    console.log(this.usersList);
 
     console.log(this.bug.status);
 
     this.bugService.editBug(this.bug).subscribe((
-        value => {this.onNoClick();}),
-      (error => {alert(error.error.message)} ),
-      () => {this.router.navigate(['/dashboard/bugs'])})
+        value => {
+          this.onNoClick();
+        }),
+      (error => {
+        alert(error.error.message)
+      }),
+      () => {
+        this.router.navigate(['/dashboard/bugs'])
+      })
     ;
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
-
 
 
 }

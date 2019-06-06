@@ -12,7 +12,7 @@ export class AddHeaderInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<LoginService>, next: HttpHandler): Observable<HttpEvent<any>> {
     // Clone the request to add the new header
-    console.log(req.url)
+    console.log(req.url);
     if (!new RegExp('^/jbugs/jbugs-api/users/login').test(req.url)) {
 
       const clonedRequest = req.clone({

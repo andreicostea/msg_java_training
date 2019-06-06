@@ -1,6 +1,5 @@
-import {Component, ComponentFactoryResolver, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
-import {DialogComponent} from "../../../login/components/dialog/dialog.component";
 import {NotificationsLoaderService} from "../../services/notifications-loader.service";
 import {Notifications} from "../../models/notifications.model";
 
@@ -84,6 +83,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
         two-thirds the density of air.`
   },
 ];
+
 @Component({
   selector: 'app-notifications-view',
   templateUrl: './notifications-view.component.html',
@@ -94,16 +94,16 @@ const ELEMENT_DATA: PeriodicElement[] = [
       state('expanded', style({height: '*'})),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
-    ]
+  ]
 
 })
 export class NotificationsViewComponent implements OnInit {
   columnsToDisplay = ['id', 'notificationType', 'date'];
   expandedElement: PeriodicElement | null;
+  notifications: Notifications[];
 
   constructor(private notificationsService: NotificationsLoaderService) {
   }
-  notifications:Notifications[];
 
   ngOnInit() {
     this.getNotificationsForCurrentUser();
@@ -114,8 +114,8 @@ export class NotificationsViewComponent implements OnInit {
     this.notificationsService.getNotificationsForUser(0)
       .subscribe(
         function (result) {
-        that.notifications = result;
-        console.log(that.notifications);
+          that.notifications = result;
+          console.log(that.notifications);
 
         },
         error => {

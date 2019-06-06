@@ -29,8 +29,8 @@ export class UserUpdate {
 
 
 export class Role {
-  id : number;
-  type : string;
+  id: number;
+  type: string;
 }
 
 export class User {

@@ -14,7 +14,7 @@ const routes: Routes = [
 
   },
   {
-    path:'login',
+    path: 'login',
     component: LoginComponent,
   },
   {
@@ -55,12 +55,12 @@ const routes: Routes = [
       },
     ]
   }
-]
-
+];
 
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
