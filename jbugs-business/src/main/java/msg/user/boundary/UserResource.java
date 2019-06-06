@@ -14,6 +14,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
+@Stateless
 @Path("/users")
 public class UserResource {
 
@@ -26,27 +27,30 @@ public class UserResource {
     public Response createUser(@Context SecurityContext securityContext, UserInputDTO input) {
         if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
             userFacade.createUser(input);
-            return Response.ok().build();
-        } else
-            return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
+            return Response.ok("Successfully created!").build();
+        }
+        return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
     }
 
 
     @Consumes(MediaType.APPLICATION_JSON)
     @PATCH
-    public Response updateUser(UserUpdateDTO userUpdateDTO) {
-        userFacade.updateUser(userUpdateDTO);
-        return Response.ok("Successfully updated!").build();
+    public Response updateUser(@Context SecurityContext securityContext, UserUpdateDTO userUpdateDTO) {
+        if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
+            userFacade.updateUser(userUpdateDTO);
+            return Response.ok("Successfully updated!").build();
+        }
+        return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
     }
 
     @Path("/{id}")
     @DELETE
-    public Response deactivateUser(@PathParam("id") long id) {
-       // if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
+    public Response deactivateUser(@Context SecurityContext securityContext, @PathParam("id") long id) {
+        if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
             userFacade.deactivateUser(id);
             return Response.ok("Successfully deactivated!").build();
-      //  }
-       // return Response.status(Response.Status.FORBIDDEN).build();
+        }
+        return Response.status(Response.Status.FORBIDDEN).build();
     }
 
     @Consumes(MediaType.APPLICATION_JSON)

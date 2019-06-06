@@ -23,8 +23,8 @@ public class UserConverter {
 
     @EJB
     private RoleControl roleControl;
-    @EJB
-    private PermissionFacade permissionFacade;
+//    @EJB
+//    private PermissionFacade permissionFacade;
 
     /**
      * Converts a {@link UserInputDTO} to {@link UserEntity}.
@@ -60,7 +60,7 @@ public class UserConverter {
         u.setEmail(userEntity.getEmail());
         u.setMobileNumber(userEntity.getMobileNumber());
         u.setStatus(userEntity.getStatus());
-        u.setRoles((ArrayList<RoleEntity>) userEntity.getRoles());
+//        u.setRoles((ArrayList<RoleEntity>) userEntity.getRoles());
         return u;
     }
 

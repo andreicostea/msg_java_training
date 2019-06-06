@@ -30,7 +30,6 @@ public class NotificationResource {
         return Response.status(200)
                 .entity(notificationFacade.getAllNotificationById(id))
                 .build();
-
     }
 
     @GET
