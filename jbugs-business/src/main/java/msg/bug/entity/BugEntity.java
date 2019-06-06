@@ -22,7 +22,7 @@ import java.util.Set;
 @Table(name = "bugs")
 @NamedQueries({
         @NamedQuery(name = BugEntity.BUG_GET_ALL,
-                query = "select b from BugEntity b"),
+                query = "select b from BugEntity b ORDER BY b.targetDate desc"),
         @NamedQuery(name = BugEntity.BUG_FIND_BY_ID,
                 query = "select b from BugEntity b where b.id = :" + BugEntity.ID)})
 
@@ -183,5 +183,18 @@ public class BugEntity extends BaseEntity<Long> {
 
     public void setSeverity(String severity) {
         this.severity = severity;
+    }
+
+    @Override
+    public String toString() {
+        return "BugEntity{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", version='" + version + '\'' +
+                ", targetDate=" + targetDate +
+                ", severity='" + severity + '\'' +
+                ", status='" + status + '\'' +
+                ", fixedVersion='" + fixedVersion + '\'' +
+                '}';
     }
 }

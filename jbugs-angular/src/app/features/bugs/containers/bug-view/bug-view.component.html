@@ -1,0 +1,122 @@
+<form #f = 'ngForm' >
+  <mat-card class="example-card">
+    <mat-card-title>View Bug</mat-card-title>
+    <mat-divider></mat-divider>
+    <!--  <mat-card-content>-->
+    <br>
+    <div>
+      <mat-label>Title</mat-label>
+      <input class = "form-control"
+             type ="text"
+             id = "title"
+             name = "title"
+             ngModel
+             readonly
+             [(ngModel)] = "bug.title">
+      </div>
+    <div>
+      <mat-label>Description</mat-label>
+      <input class = "form-control"
+             type ="text"
+             id = "description"
+             name = "description"
+             ngModel
+             readonly
+             [(ngModel)] = "bug.description">
+    </div>
+    <div class ="form-group">
+      <label > Version</label>
+      <input class = "form-control"
+             type ="text"
+             id = "version"
+             name = "version"
+             ngModel
+             pattern="^[a-zA-Z0-9.]*$"
+             [(ngModel)] = "bug.version"
+             required
+             readonly
+             #version ="ngModel">
+    </div>
+    <div class ="form-group">
+      <label > Target Date</label>
+      <input class = "form-control"
+             type ="text"
+             id = "targetDate"
+             name = "targetDate"
+             ngModel
+             [(ngModel)] = "bug.targetDate"
+             readonly
+             #version ="ngModel">
+    </div>
+    <div class ="form-group">
+      <label >Status</label>
+      <input class = "form-control"
+             type ="text"
+             id = "status"
+             name = "status"
+             ngModel
+             [(ngModel)] = "bug.status"
+             readonly
+             #version ="ngModel">
+    </div>
+
+    <div class ="form-group">
+      <label > Fixed Version</label>
+      <input class = "form-control"
+             type ="text"
+             id = "fixedVersion"
+             name = "fixedVersion"
+             ngModel
+             readonly
+             [(ngModel)] = "bug.fixedVersion">
+    </div>
+    <div>
+      <label>Severity</label>
+      <input class = "form-control"
+             type ="text"
+             id = "severity"
+             name = "severity"
+             ngModel
+             readonly
+             [(ngModel)] = "bug.severity">
+    </div>
+    <div>
+      <mat-label>Created by user:</mat-label>
+      <input class = "form-control"
+             type ="text"
+             id = "createdId"
+             name = "createdId"
+             ngModel
+             readonly
+             [(ngModel)] = "bug.usernameCreatedBy">
+    </div>
+    <div>
+      <mat-label>Assigned to user with id:</mat-label>
+      <input class = "form-control"
+             type ="text"
+             id = "assignedId"
+             name = "assignedId"
+             ngModel
+             readonly
+             [(ngModel)] = "bug.usernameAssignTo">
+    </div>
+
+    <!--    <mat-form-field >-->
+
+    <!--      <mat-select [(ngModel)] = "bug.ASSIGNED_ID"-->
+    <!--                  name="roles"-->
+    <!--                  ngModel>-->
+    <!--        <mat-option (selectstart)="bug.ASSIGNED_ID">{{bug.ASSIGNED_ID}}</mat-option>-->
+    <!--        <mat-option *ngFor="let user of usersList" [value]="user.id">{{user.userName}}</mat-option>-->
+    <!--      </mat-select>-->
+
+
+    <!--   </mat-form-field>-->
+    <mat-card-actions></mat-card-actions>
+  </mat-card>
+
+  <p>
+    {{f.value | json}}
+  </p>
+
+</form>

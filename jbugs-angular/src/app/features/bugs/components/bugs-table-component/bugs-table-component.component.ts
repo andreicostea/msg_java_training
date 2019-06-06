@@ -9,6 +9,7 @@ import {MatDialog, MatPaginator} from "@angular/material";
 import {BugEditComponent} from "../../containers/bug-edit/bug-edit.component";
 import {PermissionsService} from "../../../../core/permissions/permissions.service";
 
+import {BugViewComponent} from "../../containers/bug-view/bug-view.component";
 
 @Component({
   selector: 'app-bugs-table-component',
@@ -18,9 +19,11 @@ import {PermissionsService} from "../../../../core/permissions/permissions.servi
 export class BugsTableComponentComponent implements OnInit {
   displayedColumns: string[] = ["title", "description", "version", "targetDate", "status", "fixedVersion", "severity", "edit"];
 
+
   bugs: Bug[];
   bugEdit: Bug = new Bug();
-
+  bugView: Bug = new Bug();
+  bugt: Bug = new Bug();
   data = this.loadAllBugs();
 
   status : string[];
@@ -67,6 +70,14 @@ export class BugsTableComponentComponent implements OnInit {
 
 
   }
+  viewRecord(bug: Bug){
+    this.bugView = bug;
+    this.dialog.open(BugViewComponent, {
+      width: '450px',
+      data: this.bugView
+    });
+  }
+
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
