@@ -1,6 +1,8 @@
 package msg.permission.boundary;
 
+import msg.permission.PermissionType;
 import msg.permission.entity.dto.PermissionDTO;
+import msg.user.MessageCatalog;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -22,17 +24,26 @@ public class PermissionResource {
 
     @Consumes(MediaType.APPLICATION_JSON)
     @POST
-    public Response createPermission(PermissionDTO permissionDTO) {
-        return Response.ok(permissionFacade.createPermission(permissionDTO)).build();
+    public Response createPermission(@Context SecurityContext securityContext,PermissionDTO permissionDTO) {
+        if (securityContext.isUserInRole(PermissionType.PERMISSION_MANAGEMENT)) {
+            return Response.ok(permissionFacade.createPermission(permissionDTO)).build();
+        }
+        else{
+            return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
+        }
     }
 
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     @DELETE
-    public Response removePermission(@PathParam("id") long id) {
+    public Response removePermission(@Context SecurityContext securityContext,@PathParam("id") long id) {
+        if (securityContext.isUserInRole(PermissionType.PERMISSION_MANAGEMENT)){
         System.out.println("deleted permission with id:" + id);
         permissionFacade.removePermission(id);
-        return Response.ok().build();
+        return Response.ok().build(); }
+    else{
+        return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
+        }
     }
 
     //Asta cu token ce o zis catalin

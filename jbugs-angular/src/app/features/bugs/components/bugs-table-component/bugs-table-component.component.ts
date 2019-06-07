@@ -1,5 +1,4 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-
 import {Bug} from "../../models/bugs.model";
 import {BugsService} from "../../services/bugs.service";
 import {Observable} from "rxjs";
@@ -8,11 +7,11 @@ import {MatSort} from '@angular/material/sort';
 import {MatDialog, MatPaginator} from "@angular/material";
 import {BugEditComponent} from "../../containers/bug-edit/bug-edit.component";
 import {BugViewComponent} from "../../containers/bug-view/bug-view.component";
+import {PermissionsService} from "../../../../core/permissions/permissions.service";
+import * as XLSX from 'xlsx';
+import html2canvas from 'html2canvas';
+import * as jspdf from 'jspdf';
 import {AuthenticationService} from "../../../../core/services/authentication/authentication.service";
-
-
-
-
 @Component({
   selector: 'app-bugs-table-component',
   templateUrl: './bugs-table-component.component.html',
@@ -30,8 +29,7 @@ export class BugsTableComponentComponent implements OnInit {
   status: string[];
   //
   dataSource = new MatTableDataSource(this.bugs);
-
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort) sort:MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private bugService: BugsService, public dialog: MatDialog, public permissionService: AuthenticationService) {
@@ -119,7 +117,31 @@ export class BugsTableComponentComponent implements OnInit {
     //return this.bugService.loadAllBugs().subscribe(bugs => this.bugs.push(bugs));
     return this.bugService.loadAllBugs().forEach(bug => this.bugs = bug);
   }
+  public export() {
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.bugs);
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, worksheet, 'Sheet1');
+    /* save to file */
+    XLSX.writeFile(wb, "Bugs.xlsx");
+  }
+  public generatePDF()
+  {
+    var data = document.getElementById('contentToConvert');
+    html2canvas(data).then(canvas => {
+      // Few necessary setting options
+      var imgWidth = 208;
+      var pageHeight = 295;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var heightLeft = imgHeight;
 
-
+      const contentDataURL = canvas.toDataURL('image/png')
+      let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
+      var position = 0;
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+      pdf.save('Bugspdf.pdf'); // Generated PDF
+    });
+  }
 }
+
 

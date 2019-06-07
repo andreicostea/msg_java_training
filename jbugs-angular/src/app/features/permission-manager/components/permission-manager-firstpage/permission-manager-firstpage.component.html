@@ -18,11 +18,11 @@
     </mat-select>
   </mat-form-field>
 </div>
-<div *ngIf="response">
-  <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
-    <mat-button-toggle (click)="addPermission()" value="bold">AddPermissions</mat-button-toggle>
+<div *ngIf="showButton()">
+  <mat-button-toggle-group ng-click name="fonstStyle" aria-label="Font Style">
+    <mat-button-toggle value="permission.id" (click)="addDialog()">Add</mat-button-toggle>
   </mat-button-toggle-group>
-  <mat-button-toggle-group aria-label="Font Style" name="fontStyle" ng-click>
-    <mat-button-toggle (click)="deletePermission()" value="permission.id">RemovePermissions</mat-button-toggle>
+  <mat-button-toggle-group ng-click name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle value="permission.id" (click)="deletePermission()">Remove</mat-button-toggle>
   </mat-button-toggle-group>
 </div>

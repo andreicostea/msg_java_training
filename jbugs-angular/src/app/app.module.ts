@@ -1,8 +1,7 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
@@ -31,7 +30,6 @@ import {UsersModule} from "./features/users/users.module";
 import {BugsModule} from "./features/bugs/bugs.module";
 
 import {NotificationsModule} from "./features/notifications/notifications.module";
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +38,6 @@ import {NotificationsModule} from "./features/notifications/notifications.module
 
 
   ],
-  //entryComponents:[BugsTableComponentComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

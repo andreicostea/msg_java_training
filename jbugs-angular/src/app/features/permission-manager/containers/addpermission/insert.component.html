@@ -1,14 +1,14 @@
 <div class="form-group">
   <mat-form-field>
-    <mat-label>Roles Dropdown multiple</mat-label>
-    <mat-select [(ngModel)]="selectedRole">
+      <mat-label>Roles Dropdown multiple</mat-label>
+      <mat-select [(ngModel)]="selectedRole">
 
-      <mat-option *ngFor="let rol of roles"
-                  [value]="rol">{{rol.type}}
-        <!--      <td>{{rol.id}}</td>  -->
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+        <mat-option *ngFor="let rol of roles"
+                    [value]="rol">{{rol.type}}
+<!--              <td>{{rol.id}}</td>  -->
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 </div>
 <div class="form-group">
   <mat-form-field>
