@@ -9,6 +9,9 @@ import msg.bug.entity.dto.BugInputDTO;
 import msg.exceptions.BusinessException;
 import msg.exceptions.BusinessWebAppException;
 import msg.notification.boundary.NotificationFacade;
+import msg.notification.boundary.notificationParams.NotificationParamsBugCreate;
+import msg.notification.boundary.notificationParams.NotificationParamsBugUpdate;
+import msg.notification.entity.NotificationType;
 import msg.user.MessageCatalog;
 import msg.user.entity.dao.UserDAO;
 
@@ -58,18 +61,29 @@ public class BugControl {
         } catch (Exception e) {
             throw new BusinessWebAppException(MessageCatalog.BUG_INVALID_PATTERN, 400);
         }
-
-
+        try{
+            this.notificationFacade.createNotification(
+                    NotificationType.BUG_CREATED,
+                    new NotificationParamsBugCreate(bug.getCREATED_ID().toString(), bug.getASSIGNED_ID().toString(), newBug));
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
         return newBug;
     }
 
     public BugEntity updateBug(BugDTO input) {
         if (input.getStatus() != null) {
 
-
         }
         final BugEntity newBug = bugConverter.convertDTOToEntity(input);
         bugDao.updateBug(newBug);
+        try {
+            this.notificationFacade.createNotification(
+                    NotificationType.BUG_UPDATED,
+                    new NotificationParamsBugUpdate(input.getUsernameCreatedBy(), input.getUsernameAssignTo(), newBug));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return newBug;
 
     }
