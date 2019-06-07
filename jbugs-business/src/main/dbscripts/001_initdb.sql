@@ -113,7 +113,6 @@ CREATE TABLE `attachments` (
   CONSTRAINT `FK_attachments_id_bug` FOREIGN KEY (`id_bug`) REFERENCES `bugs` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
 -- insert data
 
 INSERT INTO users (ID, counter, email, first_name, last_name, mobile_number, password, username)

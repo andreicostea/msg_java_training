@@ -17,13 +17,15 @@ export class UserUpdate {
   mobileNumber: string;
   // roles: string[];
   // token: string;
+  status: number;
 
-  constructor(firstName: string, lastName: string, emailBeforeUpdate: string, email: string, mobileNumber: string) {
+  constructor(firstName: string, lastName: string, emailBeforeUpdate: string, email: string, mobileNumber: string, status: number) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.emailBeforeUpdate = emailBeforeUpdate;
     this.email = email;
     this.mobileNumber = mobileNumber;
+    this.status = status;
   }
 }
 
