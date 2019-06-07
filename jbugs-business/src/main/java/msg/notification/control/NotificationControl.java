@@ -11,7 +11,9 @@ import msg.notification.entity.dto.NotificationOutputDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,10 +58,13 @@ public class NotificationControl {
 
     }
 
-    public NotificationOutputDTO getDeleteNotificationById(long id) {
-
-        return notificationConverter.convertEntityToDTO(notificationDao.
-                getDeleteNotificationById(id));
+    public void deleteNotificationsPeriodically() {
+        Calendar c = new GregorianCalendar();
+        c.add(Calendar.DATE, -30);
+        java.util.Date dt = c.getTime();
+        java.sql.Date dtSql = new java.sql.Date(dt.getTime());
+        System.out.println(dtSql);
+        notificationDao.deleteNotificationsPeriodically(dtSql);
 
     }
 

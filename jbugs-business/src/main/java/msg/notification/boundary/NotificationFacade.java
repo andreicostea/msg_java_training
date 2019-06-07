@@ -41,7 +41,7 @@ public class NotificationFacade {
         return this.notificationControl.getUpdateNotificationById(id);
     }
 
-    public Object getDeleteNotificationById(long id) {
-        return this.notificationControl.getDeleteNotificationById(id);
+    public void deleteNotificationsPeriodically() {
+       this.notificationControl.deleteNotificationsPeriodically();
     }
 }

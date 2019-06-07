@@ -78,4 +78,5 @@ public class UserDAO {
                 .setParameter("id", id)
                 .getSingleResult();
     }
+
 }

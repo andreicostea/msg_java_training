@@ -50,7 +50,7 @@ public class UserResource {
     public Response deactivateUser(@Context SecurityContext securityContext, @PathParam("id") long id) {
         if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
             userFacade.deactivateUser(id);
-            return Response.ok("Successfully deactivated!").build();
+            return Response.ok().build();
         }
         return Response.status(Response.Status.FORBIDDEN).build();
     }
