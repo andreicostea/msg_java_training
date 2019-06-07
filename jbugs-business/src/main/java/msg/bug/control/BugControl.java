@@ -11,10 +11,8 @@ import msg.bug.entity.dto.BugInputDTO;
 import msg.exceptions.BusinessException;
 import msg.exceptions.BusinessWebAppException;
 import msg.notification.boundary.NotificationFacade;
-import msg.notification.boundary.notificationParams.NotificationParamsWelcomeUser;
+import msg.notification.boundary.notificationParams.*;
 import msg.notification.entity.NotificationType;
-import msg.notification.boundary.notificationParams.NotificationParamsBugCreate;
-import msg.notification.boundary.notificationParams.NotificationParamsBugUpdate;
 import msg.notification.entity.NotificationType;
 import msg.user.MessageCatalog;
 import msg.user.control.UserControl;
@@ -58,7 +56,7 @@ public class BugControl {
                 bug.getCREATED_ID() == null || bug.getTargetDate() == null)
             throw new BusinessWebAppException(MessageCatalog.BUG_NULL_FIELD, 400);
 
-        if (bug.getTitle().length() == 0 || bug.getDescription().length() == 0 ||  bug.getTargetDate().length() == 0 ||
+        if (bug.getTitle().length() == 0 || bug.getDescription().length() == 0 || bug.getTargetDate().length() == 0 ||
                 bug.getVersion().length() == 0 || bug.getSeverity().length() == 0)
             throw new BusinessWebAppException(MessageCatalog.BUG_EMPTY_FIELD, 400);
 
@@ -66,23 +64,24 @@ public class BugControl {
             throw new BusinessWebAppException(MessageCatalog.BUG_LIMIT_EXCEEDED, 400);
 
         boolean checkSeverity = false;
-        for(SeverityType s :SeverityType.values()){
-            if(s.toString().equals(bug.getSeverity().toUpperCase())) checkSeverity = true;
+        for (SeverityType s : SeverityType.values()) {
+            if (s.toString().equals(bug.getSeverity().toUpperCase())) checkSeverity = true;
         }
-        if(!checkSeverity) throw new BusinessWebAppException(MessageCatalog.BUG_INVALID_PATTERN,400);
+        if (!checkSeverity) throw new BusinessWebAppException(MessageCatalog.BUG_INVALID_PATTERN, 400);
 
         final BugEntity newBug = bugConverter.convertInputDTOToEntity(bug);
         newBug.setStatus(String.valueOf(StatusType.NEW));
-        try{
+        try {
             bugDao.createBug(newBug);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new BusinessWebAppException(MessageCatalog.BUG_INVALID_PATTERN, 400);
         }
-        try{
+        try {
             this.notificationFacade.createNotification(
                     NotificationType.BUG_CREATED,
-                    new NotificationParamsBugCreate(bug.getCREATED_ID().toString(), bug.getASSIGNED_ID().toString(), newBug));
-        }catch (Exception e) {
+                    new NotificationParamsBugCreate(bug.getCREATED_ID().toString(), bug.getASSIGNED_ID().toString(), newBug),
+                    bug.getCREATED_ID());
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return newBug;
@@ -94,27 +93,37 @@ public class BugControl {
         boolean checkStatus = false;
         BugEntity oldBug = bugDao.getById(input.getId());
 
-        if(input.getStatus() != null){
-           for(String status: statusMap.get(oldBug.getStatus())){
-                if(status.equals(input.getStatus().toUpperCase())) checkStatus = true;
-           }
-           if(checkStatus){
-               if(input.getTitle() == null || input.getDescription() == null || input.getVersion() == null || input.getSeverity() == null ||
-                       input.getUsernameCreatedBy() == null || input.getTargetDate() == null ){
-                   throw new BusinessWebAppException(MessageCatalog.BUG_NULL_FIELD, 400);
-               }else{
-                   newBug = bugConverter.convertDTOToEntity(input);
-                   bugDao.updateBug(newBug);
-               }
-
-
-           }else{
-               throw new BusinessWebAppException(MessageCatalog.BUG_INVALID_STATUS, 400);
-           }
+        if (input.getStatus() != null) {
+            for (String status : statusMap.get(oldBug.getStatus())) {
+                if (status.equals(input.getStatus().toUpperCase())) checkStatus = true;
+            }
+            if (checkStatus) {
+                if (input.getTitle() == null || input.getDescription() == null || input.getVersion() == null || input.getSeverity() == null ||
+                        input.getUsernameCreatedBy() == null || input.getTargetDate() == null) {
+                    throw new BusinessWebAppException(MessageCatalog.BUG_NULL_FIELD, 400);
+                } else {
+                    newBug = bugConverter.convertDTOToEntity(input);
+                    bugDao.updateBug(newBug);
+                    try {
+                        this.notificationFacade.createNotification(
+                                NotificationType.BUG_UPDATED,
+                                new NotificationParamsBugUpdate(
+                                        newBug.getCreated().getUsername(),
+                                        newBug.getAssigned().getUsername(),
+                                        newBug),
+                                newBug.getCreated().getId(), newBug.getAssigned().getId());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else {
+                throw new BusinessWebAppException(MessageCatalog.BUG_INVALID_STATUS, 400);
+            }
 
         }
 //        newBug = bugConverter.convertDTOToEntity(input);
 //              bugDao.updateBug(newBug);
+
 
         return newBug;
 
