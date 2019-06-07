@@ -2,11 +2,10 @@ import {AfterViewInit, Component, Inject, OnInit} from '@angular/core';
 import {BugsService} from "../../services/bugs.service";
 import {Router} from "@angular/router";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {BugDialogAddComponent} from "../../components/bug-dialog-add/bug-dialog-add.component";
-import {PermissionsService} from "../../../../core/permissions/permissions.service";
+
 import {UsersService} from "../../../users/services/users.service";
 import {Bug} from "../../models/bugs.model";
-import {BugsTableComponentComponent} from "../../components/bugs-table-component/bugs-table-component.component";
+
 import {User} from "../../../users/models/users.model";
 import {AuthenticationService} from "../../../../core/services/authentication/authentication.service";
 
