@@ -7,9 +7,12 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatSort, Sort} from '@angular/material/sort';
 import {MatDialog, MatPaginator} from "@angular/material";
 import {BugEditComponent} from "../../containers/bug-edit/bug-edit.component";
-import {PermissionsService} from "../../../../core/permissions/permissions.service";
 
 import {BugViewComponent} from "../../containers/bug-view/bug-view.component";
+
+import {PermissionsService} from "../../../../core/permissions/permissions.service";
+
+
 
 @Component({
   selector: 'app-bugs-table-component',
@@ -18,7 +21,6 @@ import {BugViewComponent} from "../../containers/bug-view/bug-view.component";
 })
 export class BugsTableComponentComponent implements OnInit {
   displayedColumns: string[] = ["title", "description", "version", "targetDate", "status", "fixedVersion", "severity", "edit"];
-
 
   bugs: Bug[];
   bugEdit: Bug = new Bug();
