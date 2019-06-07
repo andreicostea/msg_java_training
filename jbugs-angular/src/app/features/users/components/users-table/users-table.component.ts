@@ -16,7 +16,7 @@ export class UsersTableComponent implements OnInit {
   @Input()
   dataSource: User[];
 
-  public dataSource: User[] = this.userService.loadAllUsers();
+ //public dataSource: User[] = this.userService.loadAllUsers();
 
   // dataSource = new MatTableDataSource<User>(this.userService.loadAllUsers());
 
