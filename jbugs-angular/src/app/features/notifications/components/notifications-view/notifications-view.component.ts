@@ -103,7 +103,7 @@ export class NotificationsViewComponent implements OnInit {
   expandedElement: PeriodicElement | null;
   notifications: Notifications[];
 
-  constructor(private notificationsService: NotificationsLoaderService,private authenticationService:AuthenticationService) {
+  constructor(private notificationsService: NotificationsLoaderService,private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
@@ -128,7 +128,5 @@ export class NotificationsViewComponent implements OnInit {
 
         }
       );
-
-
   }
 }
