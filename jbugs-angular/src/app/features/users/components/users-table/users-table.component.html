@@ -4,66 +4,45 @@
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
-  <!-- Checkbox Column -->
-  <ng-container matColumnDef="select">
-    <th *matHeaderCellDef mat-header-cell></th>
-    <!--      <mat-checkbox (change)="$event ? masterToggle() : null"-->
-    <!--                    [checked]="selection.hasValue() && isAllSelected()"-->
-    <!--                    [indeterminate]="selection.hasValue() && !isAllSelected()">-->
-    <!--&lt;!&ndash;                    [aria-label]="checkboxLabel()">&ndash;&gt;-->
-    <!--      </mat-checkbox>-->
-    <td *matCellDef="let row" mat-cell>
-      <mat-checkbox (change)="$event ? selection.toggle(row) : null"
-                    (click)="$event.stopPropagation()"
-                    [checked]="selection.isSelected(row)">
-        <!--                    [aria-label]="checkboxLabel(row)">-->
-      </mat-checkbox>
-    </td>
-  </ng-container>
-
   <!-- First name column -->
   <ng-container matColumnDef="id">
     <th *matHeaderCellDef mat-header-cell> ID</th>
-    <td *matCellDef="let element" mat-cell> {{element.id}} </td>
+    <td *matCellDef="let user" mat-cell> {{user.id}} </td>
   </ng-container>
-
 
   <!-- First name column -->
   <ng-container matColumnDef="firstName">
     <th *matHeaderCellDef mat-header-cell> First name</th>
-    <td *matCellDef="let element" mat-cell> {{element.firstName}} </td>
+    <td *matCellDef="let user" mat-cell> {{user.firstName}} </td>
   </ng-container>
 
   <!-- Last name column -->
   <ng-container matColumnDef="lastName">
     <th *matHeaderCellDef mat-header-cell> Last name</th>
-    <td *matCellDef="let element" mat-cell> {{element.lastName}} </td>
+    <td *matCellDef="let user" mat-cell> {{user.lastName}} </td>
   </ng-container>
 
   <!-- Email cclumn -->
   <ng-container matColumnDef="email">
     <th *matHeaderCellDef mat-header-cell> Email</th>
-    <td *matCellDef="let element" mat-cell> {{element.email}} </td>
+    <td *matCellDef="let user" mat-cell> {{user.email}} </td>
   </ng-container>
 
   <!-- Mobile number column -->
   <ng-container matColumnDef="mobileNumber">
     <th *matHeaderCellDef mat-header-cell> Mobile number</th>
-    <td *matCellDef="let element" mat-cell> {{element.mobileNumber}} </td>
+    <td *matCellDef="let user" mat-cell> {{user.mobileNumber}} </td>
   </ng-container>
 
+  <!-- Actions column -->
   <ng-container matColumnDef="actions">
     <th *matHeaderCellDef mat-header-cell> Actions</th>
-    <td *matCellDef="let row" mat-cell>
-      <button (click)="editButtonClicked()" mat-button>Edit</button>
-      <button (click)="deactivateButtonClicked()" mat-button>Deactivate</button>
+    <td *matCellDef="let user" mat-cell>
+      <button (click)="editButtonClicked(user)" mat-button>Edit</button>
+      <button (click)="deactivateButtonClicked(user)" mat-button>Deactivate</button>
     </td>
   </ng-container>
 
   <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
   <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
 </table>
-
-<button (click)="editButtonClicked()" [disabled]="selection.isEmpty()" mat-button>Edit</button>
-<button (click)="deactivateButtonClicked()" [disabled]="selection.isEmpty()" mat-button>Deactivate</button>
-

@@ -11,16 +11,16 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 export class UsersUpdateDialogComponent implements OnInit {
 
   form: FormGroup;
-  selectedUser: User;
+  user: User;
 
   constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<UsersUpdateDialogComponent>, @Inject(MAT_DIALOG_DATA) data) {
-    this.selectedUser = data;
+    this.user = data;
     this.form = fb.group({
-      newFirstName: [this.selectedUser.firstName],
-      newLastName: [this.selectedUser.lastName],
-      newEmail: [this.selectedUser.email],
-      newMobileNumber: [this.selectedUser.mobileNumber],
-      newStatus: [this.selectedUser.status]
+      newFirstName: [this.user.firstName],
+      newLastName: [this.user.lastName],
+      newEmail: [this.user.email],
+      newMobileNumber: [this.user.mobileNumber],
+      newStatus: [this.user.status]
     });
   }
 
