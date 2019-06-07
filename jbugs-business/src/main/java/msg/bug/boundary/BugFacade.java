@@ -19,7 +19,7 @@ public class BugFacade {
         this.bugControl.createBug(bug);
     }
 
-    public Object getAll() {
+    public List<BugDTO> getAll() {
         return this.bugControl.getAll();
     }
 

@@ -29,8 +29,8 @@ export class UserUpdate {
 
 
 export class Role {
-  id : number;
-  type : string;
+  id: number;
+  type: string;
 }
 
 export class User {
@@ -42,6 +42,7 @@ export class User {
   mobileNumber: string;
   roles: string[];
   token: string;
+  status: number;
 
   static fromJSON(json: UserJSON): User {
     const termin = new User();

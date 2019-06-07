@@ -6,7 +6,6 @@ import msg.comment.entity.CommentEntity;
 import msg.role.entity.RoleEntity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -23,13 +22,11 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = UserEntity.USER_FIND_BY_EMAIL, query = "SELECT count(u) from UserEntity u where u.email = :" + UserEntity.EMAIL),
         @NamedQuery(name = UserEntity.USER_COUNT_BY_USERNAME, query = "SELECT count(u) from UserEntity u where u.username = :username"),
-
         @NamedQuery(name = UserEntity.USER_FIND_ALL, query = "SELECT u from UserEntity u"),
         @NamedQuery(name = UserEntity.USER_FIND_BY_ID, query = "SELECT u from UserEntity u where u.id = :id"),
         @NamedQuery(name = UserEntity.USER_FIND_BY_USERNAME, query = "SELECT u from UserEntity u where u.username = :username"),
         @NamedQuery(name = UserEntity.USER_GET_BY_EMAIL, query = "SELECT u from UserEntity u where u.email = :" + UserEntity.EMAIL)
 })
-
 public class UserEntity extends BaseEntity<Long> {
     public static final String USER_FIND_BY_EMAIL = "UserEntity.findByEmail";
     public static final String USER_GET_BY_EMAIL = "UserEntity.getByEmail";
@@ -64,7 +61,7 @@ public class UserEntity extends BaseEntity<Long> {
     @Column(name = "counter")
     private int counter;
     @Column(name = "status")
-    private boolean status;
+    private int status;
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false),
@@ -155,11 +152,11 @@ public class UserEntity extends BaseEntity<Long> {
         this.counter = counter;
     }
 
-    public boolean isStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

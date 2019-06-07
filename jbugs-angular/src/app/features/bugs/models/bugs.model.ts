@@ -30,7 +30,7 @@ export class Bug {
   usernameCreatedBy: string;
   statusList: string[];
 
-  
+
   static fromJSON(json: BugJSON): Bug {
     const termin = new Bug();
     termin.id = json.id;

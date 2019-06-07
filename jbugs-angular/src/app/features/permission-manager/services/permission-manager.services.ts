@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 
 import {environment} from "../../../../environments/environment";
-import {BackendService} from "../../../core/backend/backend.service";
-import {Permission, PermissionJSON, Role, RoleJSON} from "../model/permission-manager.model";
+import {BackendService} from "../../../core/services/backend/backend.service";
+import {Permission, PermissionJSON, RoleJSON} from "../model/permission-manager.model";
 import {map} from "rxjs/operators";
 
 @Injectable({

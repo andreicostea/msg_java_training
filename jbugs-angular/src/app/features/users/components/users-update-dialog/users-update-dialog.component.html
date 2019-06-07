@@ -4,43 +4,47 @@
 
   <div>
     <mat-form-field>
-      <input matInput
-             placeholder="New first name"
-             formControlName="newFirstName">
-<!--             [value]="selectedUser.firstName">-->
+      <input formControlName="newFirstName"
+             matInput
+             placeholder="New first name">
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field>
-      <input matInput
-             placeholder="New last name"
-             formControlName="newLastName">
-<!--             [value]="selectedUser.lastName">-->
+      <input formControlName="newLastName"
+             matInput
+             placeholder="New last name">
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field>
-      <input matInput
-             placeholder="New email"
-             formControlName="newEmail">
-<!--             [value]="selectedUser.email">-->
+      <input formControlName="newEmail"
+             matInput
+             placeholder="New email">
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field>
-      <input matInput
-             placeholder="New mobile number"
-             formControlName="newMobileNumber">
-<!--             [value]="selectedUser.mobileNumber">-->
+      <input formControlName="newMobileNumber"
+             matInput
+             placeholder="New mobile number">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input formControlName="newStatus"
+             matInput
+             placeholder="New status">
     </mat-form-field>
   </div>
 
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button class="mat-raised-button" (click)="close()">Cancel</button>
-  <button class="mat-raised-button mat-primary" (click)="update()">Update</button>
+  <button (click)="close()" class="mat-raised-button">Cancel</button>
+  <button (click)="update()" class="mat-raised-button mat-primary">Update</button>
 </mat-dialog-actions>

@@ -13,7 +13,7 @@
 <div class="form-group">
   <mat-form-field>
     <mat-label>Permission Dropdown multiple</mat-label>
-    <mat-select [(ngModel)]="selectedPermission">
+    <mat-select [(ngModel)]="selection">
       <mat-option *ngFor="let permission of permissions"
                   [value]="permission">{{permission.type}}</mat-option>
     </mat-select>
@@ -22,14 +22,14 @@
 <div class="form-group">
   <mat-form-field>
     <mat-label>Descrrption Dropdown multiple</mat-label>
-    <mat-select [(ngModel)]="selectedPermission">
+    <mat-select [(ngModel)]="selection">
       <mat-option *ngFor="let permission of permissions"
                   [value]="permission">{{permission.description}}</mat-option>
     </mat-select>
   </mat-form-field>
 </div>
 <div>
-  <mat-button-toggle-group ng-click name="fontStyle" aria-label="Font Style">
-    <mat-button-toggle value="permission.id" (click)="inserted()">Add</mat-button-toggle>
+  <mat-button-toggle-group aria-label="Font Style" name="fontStyle" ng-click>
+    <mat-button-toggle (click)="inserted()" value="permission.id">Add</mat-button-toggle>
   </mat-button-toggle-group>
 </div>

@@ -3,19 +3,20 @@ package msg.user.entity.dto;
 import msg.role.entity.RoleEntity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class UserDTO {
-    private Long id;
+
+    private long id;
     private String firstName;
     private String lastName;
     private String email;
     private String mobileNumber;
     private String userName;
     private ArrayList<RoleEntity> roles;
+    private int status;
 
 
-    public UserDTO(Long id, String firstName, String lastName, String email, String mobileNumber,String userName,ArrayList<RoleEntity> roles) {
+    public UserDTO(long id, String firstName, String lastName, String email, String mobileNumber, String userName, ArrayList<RoleEntity> roles) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -26,14 +27,6 @@ public class UserDTO {
     }
 
     public UserDTO() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {
@@ -82,5 +75,21 @@ public class UserDTO {
 
     public void setRoles(ArrayList<RoleEntity> roles) {
         this.roles = roles;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

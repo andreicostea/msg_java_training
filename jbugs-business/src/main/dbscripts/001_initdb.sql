@@ -1,5 +1,14 @@
 -- drop tables
 
+drop table roles_permissions;
+drop table users_roles;
+drop table comments;
+drop table notifications;
+drop table bugs;
+drop table users;
+drop table roles;
+drop table permissions;
+
 -- create tables
 CREATE TABLE `users` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -156,5 +165,5 @@ VALUES (2, 2);
 INSERT INTO roles_permissions (role_id, permission_id)
 VALUES (2, 3);
 
-INSERT INTO bugs(title, description, version, targetDate, status, fixedVersion, severity)
-VALUES ('bug1', 'description1', 'v1.2', '30-05-2019', 'NEW', 'v7.2', 'low')
+INSERT INTO bugs(title, description, version, targetDate, status, fixedVersion, severity, CREATED_ID, ASSIGNED_ID)
+VALUES ('bug1', 'description1', 'v1.2', '2019-05-30 20:13:55', 'NEW', 'v7.2', 'low', 1, 5)

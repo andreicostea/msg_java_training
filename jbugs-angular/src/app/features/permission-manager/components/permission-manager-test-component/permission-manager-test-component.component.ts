@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {PermissionManagerServices} from "../../services/permission-manager.services";
 import {Permission, Role} from "../../model/permission-manager.model";
-import {PermissionsService} from "../../../../core/permissions/permissions.service";
+import {AuthenticationService} from "../../../../core/services/authentication/authentication.service";
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
+
 @Component({
   selector: 'app-permission-manager-test-component',
   templateUrl: './permission-manager-test-component.component.html',
@@ -11,15 +12,19 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class PermissionManagerInsertButtonComponent implements OnInit {
   public userPermission: string[];
-  private response: boolean;
   public roleandpermission: Subscription;
   selectedRole: Role = <Role>{};
   selectedPermission: Permission = <Permission>{};
-  constructor(private permissionService: PermissionsService,
+  roles = [];
+  permissions = [];
+  private response: boolean;
+
+  constructor(private permissionService: AuthenticationService,
               private permissionManagerService: PermissionManagerServices,
               private activateRouter: ActivatedRoute,
               private router: Router) {
   }
+
   ngOnInit() {
     console.log(
       this.permissionManagerService.getAllRolesAndPermissions()
@@ -30,24 +35,11 @@ export class PermissionManagerInsertButtonComponent implements OnInit {
     this.getPermissions();
     this.selected();
   }
-  roles = [];
-  permissions = [];
-  private selected() {
-    this.roleandpermission = this.permissionManagerService.getAllRolesAndPermissions()
-      .subscribe(result => this.roles = result);
-    console.log(this.roles);
-    console.log(this.roleandpermission);
-    return this.selectedRole;
-  }
-  private getPermissions() {
-    this.userPermission = this.permissionService.getPermissions();
-    console.log(this.userPermission);
-    this.response = this.userPermission.includes('PERMISSION_MANAGEMENT');
-    console.log(this.response);
-  }
+
   addPermission(): void {
     this.router.navigate(['./insert'], {relativeTo: this.activateRouter});
   }
+
   deletePermission() {
     this.permissionManagerService.deletePermission(this.selectedPermission.id)
       .subscribe(
@@ -62,7 +54,22 @@ export class PermissionManagerInsertButtonComponent implements OnInit {
               }
             });
         },
-        error1 => alert("error")
+        error1 => alert(error1.error.message)
       );
+  }
+
+  private selected() {
+    this.roleandpermission = this.permissionManagerService.getAllRolesAndPermissions()
+      .subscribe(result => this.roles = result);
+    console.log(this.roles);
+    console.log(this.roleandpermission);
+    return this.selectedRole;
+  }
+
+  private getPermissions() {
+    this.userPermission = this.permissionService.getPermissions();
+    console.log(this.userPermission);
+    this.response = this.userPermission.includes('PERMISSION_MANAGEMENT');
+    console.log(this.response);
   }
 }

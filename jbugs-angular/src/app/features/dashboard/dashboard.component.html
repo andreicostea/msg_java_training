@@ -1,17 +1,15 @@
-
-
 <mat-toolbar class="test">
   <span>{{userName}}</span>
   <!-- This fills the remaining space of the current row -->
   <span class="example-fill-remaining-space"></span>
 
-  <a class="userManagement" routerLinkActive="active current" routerLink="users">User Management</a>
-  <a class="permissionManagement" routerLinkActive="active current" routerLink="permissions">Permission Management</a>
-  <a class="bugManagement"  routerLinkActive="active current" routerLink="bugs">Bug management</a>
-  <button  class="menu" mat-button [matMenuTriggerFor]="menu">Menu</button>
-  <mat-menu  #menu="matMenu">
-    <button mat-menu-item>View Notifications</button>
-    <button mat-menu-item (click)="logout()">Logout</button>
+  <a class="userManagement" routerLink="users" routerLinkActive="active current">User Management</a>
+  <a class="permissionManagement" routerLink="permissions" routerLinkActive="active current">Permission Management</a>
+  <a class="bugManagement" routerLink="bugs" routerLinkActive="active current">Bug management</a>
+  <button [matMenuTriggerFor]="menu" class="menu" mat-button>Menu</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="notifications" routerLinkActive="active current">View Notifications</button>
+    <button (click)="logout()" mat-menu-item>Logout</button>
   </mat-menu>
 </mat-toolbar>
 <router-outlet></router-outlet>

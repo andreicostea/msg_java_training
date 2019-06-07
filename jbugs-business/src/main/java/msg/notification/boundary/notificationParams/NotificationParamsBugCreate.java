@@ -2,7 +2,7 @@ package msg.notification.boundary.notificationParams;
 
 import msg.bug.entity.BugEntity;
 
-public class NotificationParamsBugCreate implements NotificationParams  {
+public class NotificationParamsBugCreate implements NotificationParams {
 
     private String usernameSource;
     private String usernameTarget;

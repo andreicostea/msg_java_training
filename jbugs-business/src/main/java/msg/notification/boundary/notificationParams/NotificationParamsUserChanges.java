@@ -14,12 +14,11 @@ public class NotificationParamsUserChanges implements NotificationParams {
 
     private String usernameSource;
     private String usernameTarget;
-    private String data;
+//    private String data;
 
-    public NotificationParamsUserChanges(final String usernameSource, final String usernameTarget, final String data) {
+    public NotificationParamsUserChanges(final String usernameSource, final String usernameTarget) {
         this.usernameSource = usernameSource;
         this.usernameTarget = usernameTarget;
-        this.data = data;
     }
 
     /**
@@ -58,21 +57,21 @@ public class NotificationParamsUserChanges implements NotificationParams {
         this.usernameTarget = pUsernameTarget;
     }
 
-    /**
-     * Getter.
-     *
-     * @return data
-     */
-    public String getData() {
-        return this.data;
-    }
-
-    /**
-     * Setter.
-     *
-     * @param pData
-     */
-    public void setData(final String pData) {
-        this.data = pData;
-    }
+//    /**
+//     * Getter.
+//     *
+//     * @return data
+//     */
+//    public String getData() {
+//        return this.data;
+//    }
+//
+//    /**
+//     * Setter.
+//     *
+//     * @param pData
+//     */
+//    public void setData(final String pData) {
+//        this.data = pData;
+//    }
 }

@@ -1,75 +1,40 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
 import {DashboardComponent} from "./features/dashboard/dashboard.component";
 import {LoginComponent} from "./features/login/containers/login/login.component";
-
-/*
-const routes: Routes = [
-  {
-    path: '',
-    redirectTo: '/dashboard',
-    pathMatch: 'full'
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'users',
-        pathMatch: 'full'
-      },
-      {
-        path: 'users',
-        children: [
-          {
-            path: '',
-            component: UsersComponent,
-          },
-          {
-            path: ':userId',
-            children: [
-              {
-                path: 'edit',
-                component: UserEditComponent
-              }
-            ]
-
-          }
-        ]
-      },
-      {
-        path: 'bugs',
-        component: BugsComponent
-      }
-    ]
-  }
-];
-*/
+import {RoleGuardService} from "./core/services/role-guard/role-guard.service";
+import {LoginGuardService} from "./core/services/login-guard/login-guard.service";
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: '/dashboard',
-    pathMatch: 'full'
+    pathMatch: 'full',
+
   },
   {
-    path:'login',
+    path: 'login',
     component: LoginComponent,
   },
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [LoginGuardService],
+    data: {permission: 'USER_MANAGEMENT,BUG_MANAGEMENT,PERMISSION_MANAGEMENT'},
+
     children: [
       {
         path: '',
-        redirectTo: 'users',
-        pathMatch: 'full'
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+
       },
       {
         path: 'users',
-        loadChildren: 'src/app/features/users/users.module#UsersModule'
+        loadChildren: 'src/app/features/users/users.module#UsersModule',
+        canActivate: [RoleGuardService],
+        data: {permission: 'USER_MANAGEMENT'},
       },
       {
         path: 'notifications',
@@ -77,20 +42,25 @@ const routes: Routes = [
       },
       {
         path: 'bugs',
-        loadChildren: 'src/app/features/bugs/bugs.module#BugsModule'
+        loadChildren: 'src/app/features/bugs/bugs.module#BugsModule',
+        canActivate: [RoleGuardService],
+        data: {permission: 'BUG_MANAGEMENT'},
+
       },
       {
         path: 'permissions',
-        loadChildren: 'src/app/features/permission-manager/permission-manager.module#PermissionManagerModule'
+        loadChildren: 'src/app/features/permission-manager/permission-manager.module#PermissionManagerModule',
+        canActivate: [RoleGuardService],
+        data: {permission: 'PERMISSION_MANAGEMENT'},
       },
     ]
   }
-]
-
+];
 
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

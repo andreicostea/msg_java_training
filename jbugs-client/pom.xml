@@ -19,6 +19,12 @@
             <type>ejb</type>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>edu.msg.ro</groupId>
+            <artifactId>jbugs-business</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>

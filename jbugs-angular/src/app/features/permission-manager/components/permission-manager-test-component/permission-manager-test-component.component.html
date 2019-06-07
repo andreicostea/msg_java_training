@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="example-container-permission">
   <mat-form-field>
     <mat-label>Roles Dropdown multiple</mat-label>
     <mat-select [(ngModel)]="selectedRole">
@@ -8,7 +8,7 @@
     </mat-select>
   </mat-form-field>
 </div>
-<div class="form-group">
+<div class="example-container-permission">
   <mat-form-field>
     <mat-label>Permission Dropdown multiple</mat-label>
     <mat-select [(ngModel)]="selectedPermission">
@@ -19,10 +19,10 @@
   </mat-form-field>
 </div>
 <div *ngIf="response">
-  <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-    <mat-button-toggle value="bold" (click)="addPermission()">AddPermissions</mat-button-toggle>
+  <mat-button-toggle-group aria-label="Font Style" name="fontStyle">
+    <mat-button-toggle (click)="addPermission()" value="bold">AddPermissions</mat-button-toggle>
   </mat-button-toggle-group>
-  <mat-button-toggle-group ng-click name="fontStyle" aria-label="Font Style">
-    <mat-button-toggle value="permission.id" (click)="deletePermission()">RemovePermissions</mat-button-toggle>
+  <mat-button-toggle-group aria-label="Font Style" name="fontStyle" ng-click>
+    <mat-button-toggle (click)="deletePermission()" value="permission.id">RemovePermissions</mat-button-toggle>
   </mat-button-toggle-group>
 </div>

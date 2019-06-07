@@ -1,0 +1,8 @@
+.mat-form-field-infix {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container-permission > * {
+  width: 480px;
+}

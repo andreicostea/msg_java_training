@@ -13,7 +13,7 @@ import java.io.IOException;
  * time 7:38 PM
  */
 @Provider
-public class CORSFilter implements ContainerResponseFilter  {
+public class CORSFilter implements ContainerResponseFilter {
 
     @Override
     public void filter(ContainerRequestContext requestContext,

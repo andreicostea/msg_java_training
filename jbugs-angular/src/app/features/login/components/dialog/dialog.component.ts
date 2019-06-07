@@ -11,7 +11,8 @@ export class DialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<LoginFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

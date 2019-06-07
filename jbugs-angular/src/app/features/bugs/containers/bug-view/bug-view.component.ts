@@ -4,8 +4,9 @@ import {User} from "../../../users/models/users.model";
 import {BugsService} from "../../services/bugs.service";
 import {Router} from "@angular/router";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {PermissionsService} from "../../../../core/permissions/permissions.service";
+
 import {UsersService} from "../../../users/services/users.service";
+import {AuthenticationService} from "../../../../core/services/authentication/authentication.service";
 
 @Component({
   selector: 'app-bug-view',
@@ -16,10 +17,11 @@ import {UsersService} from "../../../users/services/users.service";
 export class BugViewComponent implements OnInit {
 
   bug: Bug;
-  usersList : User[];
+  usersList: User[];
 
-  constructor(private bugService : BugsService, private router : Router,  public dialogRef: MatDialogRef<BugViewComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, public permissionService : PermissionsService, private userService : UsersService) { }
+  constructor(private bugService: BugsService, private router: Router, public dialogRef: MatDialogRef<BugViewComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any, public authService: AuthenticationService, private userService: UsersService) {
+  }
 
   ngOnInit() {
     this.userService.getAllUsers().subscribe(users => this.usersList = users,
@@ -29,12 +31,18 @@ export class BugViewComponent implements OnInit {
     console.log(this.bug.title);
   }
 
-  insert(){
-    this.bug.CREATED_ID = this.permissionService.getUserId();
+  insert() {
+    this.bug.CREATED_ID = this.authService.getUserId();
     this.bugService.insertBug(this.bug).subscribe((
-        value => {this.onNoClick();}),
-      (error => {alert(error.error.message)} ),
-      () => {this.router.navigate(['/dashboard/bugs'])});
+        value => {
+          this.onNoClick();
+        }),
+      (error => {
+        alert(error.error.message)
+      }),
+      () => {
+        this.router.navigate(['/dashboard/bugs'])
+      });
   }
 
   onNoClick(): void {

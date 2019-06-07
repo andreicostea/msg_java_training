@@ -20,6 +20,7 @@ export class UsersUpdateDialogComponent implements OnInit {
       newLastName: [this.selectedUser.lastName],
       newEmail: [this.selectedUser.email],
       newMobileNumber: [this.selectedUser.mobileNumber],
+      newStatus: [this.selectedUser.status]
     });
   }
 

@@ -1,0 +1,31 @@
+<table [dataSource]="notifications"
+       class="mat-elevation-z8" mat-table
+       multiTemplateDataRows>
+  <ng-container *ngFor="let column of columnsToDisplay" matColumnDef="{{column}}">
+    <th *matHeaderCellDef mat-header-cell> {{column}} </th>
+    <td *matCellDef="let element" mat-cell> {{element[column]}} </td>
+  </ng-container>
+
+  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+  <ng-container matColumnDef="expandedDetail">
+    <td *matCellDef="let element" [attr.colspan]="columnsToDisplay.length" mat-cell>
+      <div [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"
+           class="example-element-detail">
+        <div class="example-element-description">
+          <div class="example-element-position">Message</div>
+        </div>
+        <div class="example-element-description">
+          {{element.message}}
+        </div>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr *matHeaderRowDef="columnsToDisplay" mat-header-row></tr>
+  <tr (click)="expandedElement = expandedElement === element ? null : element" *matRowDef="let element; columns: columnsToDisplay;"
+      [class.example-expanded-row]="expandedElement === element"
+      class="example-element-row"
+      mat-row>
+  </tr>
+  <tr *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row" mat-row></tr>
+</table>

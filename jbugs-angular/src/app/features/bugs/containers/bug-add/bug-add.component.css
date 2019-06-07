@@ -11,16 +11,15 @@
   padding-left: 5%;
 }
 
-.mat-card-title{
+.mat-card-title {
   width: 40%;
   margin-left: 30%;
   margin-right: 30%;
-  font-family: "Century Gothic";
-;
+  font-family: "Century Gothic";;
 }
 
 
-.mat-form-field{
+.mat-form-field {
   padding-left: 3%;
   font-palette: light;
   width: 40%;
@@ -28,11 +27,11 @@
 
 }
 
-.form-group1{
+.form-group1 {
   width: 80%;
 }
 
-.mat-raised-button{
+.mat-raised-button {
   width: 40%;
   margin-left: 30%;
   margin-right: 30%

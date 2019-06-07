@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BackendService} from "../../../core/backend/backend.service";
+import {BackendService} from "../../../core/services/backend/backend.service";
 import {Observable} from "rxjs";
 
 import {environment} from "../../../../environments/environment";

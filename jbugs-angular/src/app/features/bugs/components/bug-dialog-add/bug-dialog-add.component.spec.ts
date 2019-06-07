@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { BugDialogAddComponent } from './bug-dialog-add.component';
+import {BugDialogAddComponent} from './bug-dialog-add.component';
 
 describe('BugDialogAddComponent', () => {
   let component: BugDialogAddComponent;
@@ -8,9 +8,9 @@ describe('BugDialogAddComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BugDialogAddComponent ]
+      declarations: [BugDialogAddComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

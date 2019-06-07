@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { BugViewComponent } from './bug-view.component';
+import {BugViewComponent} from './bug-view.component';
 
 describe('BugViewComponent', () => {
   let component: BugViewComponent;
@@ -8,9 +8,9 @@ describe('BugViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BugViewComponent ]
+      declarations: [BugViewComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,16 +1,15 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 
-import {Bug, BugJSON} from "../../models/bugs.model";
+import {Bug} from "../../models/bugs.model";
 import {BugsService} from "../../services/bugs.service";
 import {Observable} from "rxjs";
 import {MatTableDataSource} from '@angular/material/table';
-import {MatSort, Sort} from '@angular/material/sort';
+import {MatSort} from '@angular/material/sort';
 import {MatDialog, MatPaginator} from "@angular/material";
 import {BugEditComponent} from "../../containers/bug-edit/bug-edit.component";
-
 import {BugViewComponent} from "../../containers/bug-view/bug-view.component";
+import {AuthenticationService} from "../../../../core/services/authentication/authentication.service";
 
-import {PermissionsService} from "../../../../core/permissions/permissions.service";
 
 
 
@@ -28,14 +27,18 @@ export class BugsTableComponentComponent implements OnInit {
   permissonClosed : boolean = false;
   data = this.loadAllBugs();
 
-  status : string[];
+  status: string[];
   //
   dataSource = new MatTableDataSource(this.bugs);
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  ngOnInit(){
+  constructor(private bugService: BugsService, public dialog: MatDialog, public permissionService: AuthenticationService) {
+    // this.sortedData = this.bugs;
+  }
+
+  ngOnInit() {
     //
     this.bugService.loadAllBugs().subscribe(bug => {this.bugs = bug; console.log(this.bugs);
     this.dataSource = new MatTableDataSource<Bug>(this.bugs);
@@ -45,9 +48,7 @@ export class BugsTableComponentComponent implements OnInit {
 
   }
 
-  constructor(private bugService: BugsService, public dialog: MatDialog, public permissionService: PermissionsService) {
-   // this.sortedData = this.bugs;
-  }
+
 
   getRecord(bug: Bug){
     this.bugEdit = bug;

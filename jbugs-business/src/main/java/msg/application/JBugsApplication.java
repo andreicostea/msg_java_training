@@ -7,8 +7,6 @@ import msg.filters.AuthorizationFilter;
 import msg.notification.boundary.NotificationResource;
 import msg.permission.boundary.PermissionResource;
 import msg.role.boundary.RoleResource;
-
-import msg.user.boundary.AuthResource;
 import msg.user.boundary.UserResource;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 

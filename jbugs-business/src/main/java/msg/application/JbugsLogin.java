@@ -3,7 +3,6 @@ package msg.application;
 
 import msg.exceptions.BusinessExceptionMapper;
 import msg.exceptions.BusinessWebAppExceptionMapper;
-import msg.filters.AuthorizationFilter;
 import msg.user.boundary.AuthResource;
 import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider;
 

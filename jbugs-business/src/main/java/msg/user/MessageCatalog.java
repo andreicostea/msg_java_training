@@ -28,8 +28,8 @@ public class MessageCatalog {
     /**
      * A message for the case when you specified an user id that doesn't exists in the database
      */
-    public static final ExceptionMessage USER_WITH_THAT_ID_DOES_NOT_EXISTS
-            = new ExceptionMessage("USER-03", "User with that specified id doesn't exists");
+    public static final ExceptionMessage USER_WITH_THAT_ID_DOES_NOT_EXIST
+            = new ExceptionMessage("USER-03", "There is no user with that id");
 
     public static final ExceptionMessage USER_INACTIVE
             = new ExceptionMessage("USER-04", "Your account is inactive");
@@ -56,6 +56,11 @@ public class MessageCatalog {
 
     public static final ExceptionMessage BUG_INVALID_PATTERN
             = new ExceptionMessage("BUG-01", "The pattern is invalid!");
+
+    public static final ExceptionMessage USER_WITH_THIS_ID_DONT_HAVE_BUGS
+            = new ExceptionMessage("USER-07", "This user don t have any bugs");
+    public static final ExceptionMessage USER_WITH_THIS_ROLE_DONT_HAVE_PERMISSIONS
+            = new ExceptionMessage("USER-08", "The user with this role don t have any permissions");
 
     public static final ExceptionMessage BUG_NULL_FIELD
             = new ExceptionMessage("BUG-02", "Some fields are missing!");

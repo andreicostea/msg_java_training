@@ -3,7 +3,6 @@
 // =================================================================================================
 package msg.user.entity.dto;
 
-import msg.permission.boundary.PermissionFacade;
 import msg.role.control.RoleControl;
 import msg.user.entity.UserEntity;
 
@@ -22,8 +21,8 @@ public class UserConverter {
 
     @EJB
     private RoleControl roleControl;
-    @EJB
-    private PermissionFacade permissionFacade;
+//    @EJB
+//    private PermissionFacade permissionFacade;
 
     /**
      * Converts a {@link UserInputDTO} to {@link UserEntity}.
@@ -58,6 +57,8 @@ public class UserConverter {
         u.setLastName(userEntity.getLastName());
         u.setEmail(userEntity.getEmail());
         u.setMobileNumber(userEntity.getMobileNumber());
+        u.setStatus(userEntity.getStatus());
+        u.setRoles(new ArrayList<>(userEntity.getRoles()));
         return u;
     }
 

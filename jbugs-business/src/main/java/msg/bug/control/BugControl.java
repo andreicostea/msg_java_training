@@ -27,7 +27,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import static msg.bug.MessageCatalog.*;
+import static msg.bug.MessageCatalog.LIMIT_EXCEEDED;
+import static msg.bug.MessageCatalog.NULL_FIELD;
 
 @Stateless
 public class BugControl {
@@ -74,6 +75,7 @@ public class BugControl {
         }catch (Exception e){
             throw new BusinessWebAppException(MessageCatalog.BUG_INVALID_PATTERN, 400);
         }
+
 
         return newBug;
     }

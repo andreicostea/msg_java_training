@@ -77,6 +77,9 @@ public class NotificationControl {
             case USER_UPDATED:
                 this.createUserUpdateNotification(params, id[0], id[1]);
                 break;
+            case USER_DELETED:
+                this.createUserDeleteNotification(params, id[0]);
+                break;
             case BUG_UPDATED:
                 this.createBugUpdatedNotification(params, id[0], id[1]);
                 break;
@@ -241,40 +244,60 @@ public class NotificationControl {
      *
      * @param params the input params.
      */
-    private void createUserUpdateNotification(final NotificationParams params, final long userSourceID, final long userTargetID) {
+    private void createUserUpdateNotification(final NotificationParams params, final long userIdSource, final long userIdTarget) {
         if (!(params instanceof NotificationParamsUserChanges)) {
             throw new BusinessException(MessageCatalog.MESSAGE_PARAMS_AND_TYPE_ARE_INCOMPATIBLE);
         }
 
         final NotificationParamsUserChanges messageParams = (NotificationParamsUserChanges) params;
-        this.createWelcomeUpdateTarget(messageParams, userSourceID);
-        this.createWelcomeUpdateSource(messageParams);
+        this.createWelcomeUpdateTarget(messageParams, userIdTarget);
+        this.createWelcomeUpdateSource(messageParams, userIdSource);
     }
+
+    private void createUserDeleteNotification(final NotificationParams params, final long userID) {
+        if (!(params instanceof NotificationParamsUserDeleted)) {
+            throw new BusinessException(MessageCatalog.MESSAGE_PARAMS_AND_TYPE_ARE_INCOMPATIBLE);
+        }
+        final NotificationParamsUserDeleted messageParams = (NotificationParamsUserDeleted) params;
+        this.createDeleteUserNotifications(messageParams, userID);
+    }
+
 
     private void createWelcomeUpdateTarget(final NotificationParamsUserChanges messageParams, final long userID) {
         final NotificationEntity notificationEntity = new NotificationEntity();
-        notificationEntity.setMessage(NotificationMessageCatalog
-                .getFullMessageForUserUpdatedTarget(messageParams.getUsernameSource(),
-                        messageParams.getUsernameTarget(), messageParams.getData()));
+//        notificationEntity.setMessage(NotificationMessageCatalog.getFullMessageForUserUpdatedTarget(messageParams.getUsernameSource(), messageParams.getUsernameTarget(), messageParams.getData()));
+        notificationEntity.setMessage(NotificationMessageCatalog.getFullMessageForUserUpdatedTarget(messageParams.getUsernameSource()));
         notificationEntity.setNotificationType(NotificationType.USER_UPDATED);
         //todo update with correct link when routing is available
         notificationEntity.setUrl(SERVER_ADDRESS + "someOtherInfo");
         notificationEntity.setDate(new Date());
         notificationEntity.setUserID(userID);
         this.notificationDao.createNotification(notificationEntity);
-
     }
 
-    private void createWelcomeUpdateSource(final NotificationParamsUserChanges messageParams) {
+    private void createWelcomeUpdateSource(final NotificationParamsUserChanges messageParams, final long userIdSource) {
         final NotificationEntity notificationEntity = new NotificationEntity();
-        notificationEntity.setMessage(
-                NotificationMessageCatalog.getFullMessageForUserUpdatedSource(
-                        messageParams.getUsernameSource(), messageParams.getData()));
+//        notificationEntity.setMessage(NotificationMessageCatalog.getFullMessageForUserUpdatedSource(messageParams.getUsernameSource(), messageParams.getData()));
+        notificationEntity.setMessage(NotificationMessageCatalog.getFullMessageForUserUpdatedSource(messageParams.getUsernameTarget()));
         notificationEntity.setNotificationType(NotificationType.USER_UPDATED);
         //todo update with correct link when routing is available
         notificationEntity.setUrl(SERVER_ADDRESS + "someOtherInfo");
         notificationEntity.setDate(new Date());
+        notificationEntity.setUserID(userIdSource);
         this.notificationDao.createNotification(notificationEntity);
 
     }
+
+    private void createDeleteUserNotifications(final NotificationParamsUserDeleted messageParams, final long userId) {
+        final NotificationEntity notificationEntity = new NotificationEntity();
+        notificationEntity.setMessage(
+                NotificationMessageCatalog.getFullMessageUserDeleted(messageParams.getUsername()));
+        notificationEntity.setNotificationType(NotificationType.USER_DELETED);
+        //todo update with correct link when routing is available
+        notificationEntity.setUrl(SERVER_ADDRESS + "someOtherInfo");
+        notificationEntity.setDate(new Date());
+        notificationEntity.setUserID(userId);
+        this.notificationDao.createNotification(notificationEntity);
+    }
+
 }

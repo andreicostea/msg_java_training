@@ -1,4 +1,4 @@
-<form #f = 'ngForm' >
+<form #f='ngForm'>
 
   <mat-card class="example-card">
 
@@ -10,15 +10,15 @@
     <br>
 
     <mat-form-field class="form-group">
-      <input matInput placeholder="Title"
-             class = "form-control"
-             type ="text"
-             id = "title"
-             name = "title"
+      <input #title="ngModel" [(ngModel)]="bug.title"
+             class="form-control"
+             id="title"
+             matInput
+             name="title"
              ngModel
-             [(ngModel)] = "bug.title"
+             placeholder="Title"
              required
-             #title ="ngModel">
+             type="text">
       <mat-error *ngIf="title.touched && title.invalid">
         <mat-error *ngIf="title.errors.required">The field is required</mat-error>
       </mat-error>
@@ -27,16 +27,16 @@
     </mat-form-field>
 
 
-    <mat-form-field class ="form-group">
-      <input matInput placeholder="Description"
-             class = "form-control"
-             type ="text"
-             id = "description"
-             name = "description"
+    <mat-form-field class="form-group">
+      <input #description="ngModel" [(ngModel)]="bug.description"
+             class="form-control"
+             id="description"
+             matInput
+             name="description"
              ngModel
-             [(ngModel)] = "bug.description"
+             placeholder="Description"
              required
-             #description ="ngModel">
+             type="text">
       <mat-error
         *ngIf="description.touched && description.invalid">
         <mat-error *ngIf="description.errors.required">The field is required</mat-error>
@@ -44,12 +44,13 @@
       </mat-error>
     </mat-form-field>
 
-    <div class ="form-group">
-      <label > Version</label>
-      <input class = "form-control"
-             type ="text"
-             id = "version"
-             name = "version"
+    <div class="form-group">
+      <label> Version</label>
+      <input #version="ngModel"
+             [(ngModel)]="bug.version"
+             class="form-control"
+             id="version"
+             name="version"
              ngModel
              pattern="^[a-zA-Z]*[0-9].[0-9]"
              [(ngModel)] = "bug.version"
@@ -92,9 +93,9 @@
 
 
 
-    <mat-form-field >
+    <mat-form-field>
       <mat-label>Assign to:</mat-label>
-      <mat-select [(ngModel)] = "bug.usernameAssignTo"
+      <mat-select [(ngModel)]="bug.usernameAssignTo"
                   name="usernameAssignTo"
                   ngModel>
         <option selected="bug.usernameAssignTo">{{bug.usernameAssignTo}}</option>
@@ -102,11 +103,11 @@
       </mat-select>
 
 
-   </mat-form-field>
+    </mat-form-field>
 
-    <mat-form-field >
+    <mat-form-field>
       <mat-label>Status:</mat-label>
-      <mat-select [(ngModel)] = "bug.status"
+      <mat-select [(ngModel)]="bug.status"
                   name="status"
                   ngModel>
         <option selected="bug.status">{{bug.status}}</option>
@@ -124,12 +125,13 @@
     </mat-card-actions>
   </mat-card>
 
-  <button mat-raised-button
-          (click)="editBug()"
-          [disabled]="f.invalid">
+  <button (click)="editBug()"
+          [disabled]="f.invalid"
+          mat-raised-button>
 
 
-    Submit</button>
+    Submit
+  </button>
 
 
 <!--  <p>-->

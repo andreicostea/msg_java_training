@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {ActivatedRoute, Router} from "@angular/router";
-import {PermissionsService} from "../../../../core/permissions/permissions.service";
+import {AuthenticationService} from "../../../../core/services/authentication/authentication.service";
 
 
 @Component({
@@ -12,13 +12,14 @@ import {PermissionsService} from "../../../../core/permissions/permissions.servi
 export class BugsComponent implements OnInit {
 
 
-  constructor(private router: Router, private route: ActivatedRoute, private permissionService: PermissionsService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private permissionService: AuthenticationService) {
+  }
 
 
   ngOnInit() {
   }
 
-  add(){
+  add() {
     this.router.navigate(['./insert'], {relativeTo: this.route});
   }
 

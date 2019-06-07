@@ -8,28 +8,27 @@ import {UsersService} from "../../../users/services/users.service";
 import {Bug} from "../../models/bugs.model";
 import {BugsTableComponentComponent} from "../../components/bugs-table-component/bugs-table-component.component";
 import {User} from "../../../users/models/users.model";
+import {AuthenticationService} from "../../../../core/services/authentication/authentication.service";
 
 @Component({
-    selector: 'app-bug-edit',
-    templateUrl: './bug-edit.component.html',
-    styleUrls: ['./bug-edit.component.css']
-  })
-  export class BugEditComponent implements OnInit {
+  selector: 'app-bug-edit',
+  templateUrl: './bug-edit.component.html',
+  styleUrls: ['./bug-edit.component.css']
+})
+export class BugEditComponent implements OnInit {
 
   bug: Bug;
-  usersList : User[];
-  status : any;
+  usersList: User[];
+  status: any;
 
 
-
-
-  constructor(private bugService : BugsService, private router : Router,  public dialogRef: MatDialogRef<BugEditComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, public permissionService : PermissionsService, private userService : UsersService) { }
+  constructor(private bugService: BugsService, private router: Router, public dialogRef: MatDialogRef<BugEditComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any, public authService: AuthenticationService, private userService: UsersService) {
+  }
 
   ngOnInit() {
     this.userService.getAllUsers().subscribe(users => this.usersList = users,
       error => console.log(error));
-
 
 
     this.bug = this.data;
@@ -37,16 +36,22 @@ import {User} from "../../../users/models/users.model";
   }
 
 
-  editBug(){
+  editBug() {
 
-   console.log(this.usersList);
+    console.log(this.usersList);
 
     console.log(this.bug.status);
 
     this.bugService.editBug(this.bug).subscribe((
-        value => {this.onNoClick();}),
-      (error => {alert(error.error.message)} ),
-      () => {this.router.navigate(['/dashboard/bugs'])})
+        value => {
+          this.onNoClick();
+        }),
+      (error => {
+        alert(error.error.message)
+      }),
+      () => {
+        this.router.navigate(['/dashboard/bugs'])
+      })
     ;
   }
 

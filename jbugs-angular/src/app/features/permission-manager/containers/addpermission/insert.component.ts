@@ -11,42 +11,53 @@ import {Router} from "@angular/router";
 })
 export class InsertComponent implements OnInit {
 
+  selectedRole: Role = <Role>{};
+  roleandpermission2: Subscription;
+  roles = [];
+  selection: Permission = <Permission>{};
+  permissions = [
+    {
+      id: 1,
+      type: 'PERMISSION_MANAGEMENT',
+      description: 'Permission stuff'
+    },
+    {
+      id: 3,
+      type: 'USER_MANAGEMENT',
+      description: 'Bug stuff'
+    },
+    {
+      id: 4,
+      type: 'BUG_MANAGEMENT',
+      description: 'Bug stuff'
+    },
+    {
+      id: 5,
+      type: 'BUG_CLOSE',
+      description: 'Can close some bugs'
+    },
+    {
+      id: 6,
+      type: 'BUG_EXPLORE_PDF',
+      description: 'exploring bugs'
+    },
+    {
+      id: 7,
+      type: 'USER_ADDRESS',
+      description: 'addressing some users'
+    }
+  ];
+
   constructor(private router: Router, private permissionManagerServices: PermissionManagerServices) {
   }
 
-  selectedRole: Role = <Role>{};
-  roleandpermission: Subscription;
-  roleandpermission2: Subscription;
-  permissions = [];
-  roles = [];
-  selectedPermission: Permission = <Permission>{};
   ngOnInit() {
     console.log(
-      this.permissionManagerServices.getAllPermissions()
-        .subscribe((permissionList) => {
-            this.permissions = permissionList;
-          }
-        ));
-    this.selected();
-    this.selected2();
-  }
-
-  private selected() {
-    this.roleandpermission = this.permissionManagerServices.getAllPermissions()
-      .subscribe(result2 => this.permissions = result2);
-    console.log(this.roleandpermission);
-    return this.selectedPermission;
-  }
-
-  private selected2() {
-    this.roleandpermission2 = this.permissionManagerServices.getAllRolesAndPermissions()
-      .subscribe(result => this.roles = result);
-    console.log(this.roleandpermission2);
-    return this.selectedRole;
+      this.selected2());
   }
 
   inserted() {
-    this.permissionManagerServices.insertPermission(this.selectedRole.id, this.selectedPermission)
+    this.permissionManagerServices.insertPermission(this.selectedRole.id, this.selection)
       .subscribe(value => {
           console.log(value)
         },
@@ -54,5 +65,12 @@ export class InsertComponent implements OnInit {
           alert(error.error.message)
         });
 
+  }
+
+  private selected2() {
+    this.roleandpermission2 = this.permissionManagerServices.getAllRolesAndPermissions()
+      .subscribe(result => this.roles = result);
+    console.log(this.roleandpermission2);
+    return this.selectedRole;
   }
 }
