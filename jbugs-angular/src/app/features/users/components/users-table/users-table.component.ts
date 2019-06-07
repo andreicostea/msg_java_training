@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {User, UserUpdate} from "../../models/users.model";
 import {UsersService} from "../../services/users.service";
 import {MatDialog, MatDialogConfig} from "@angular/material";
@@ -12,6 +12,9 @@ import {UsersUpdateDialogComponent} from "../users-update-dialog/users-update-di
 })
 export class UsersTableComponent implements OnInit {
   displayedColumns: string[] = ["id", "firstName", "lastName", "email", "mobileNumber", "actions"];
+
+  @Input()
+  dataSource: User[];
 
   public dataSource: User[] = this.userService.loadAllUsers();
 

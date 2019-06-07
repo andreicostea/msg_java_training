@@ -1,5 +1,11 @@
-<app-users-insert-button></app-users-insert-button>
-<app-users-table></app-users-table>
+<app-users-insert-button
+  (clicked)="refresh()"
+>
+</app-users-insert-button>
+<app-users-table
+  [dataSource]="users"
+>
+</app-users-table>
 
 
 
