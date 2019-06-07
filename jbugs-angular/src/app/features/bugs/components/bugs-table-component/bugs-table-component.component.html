@@ -60,7 +60,7 @@ The bugs
 
 <div class="mat-elevation-z8">
 
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" id="contentToConvert">
 
   <!-- Position Column -->
   <ng-container matColumnDef="title">
@@ -114,3 +114,10 @@ The bugs
 </table>
 <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
 </div>
+<!--<button (click)="export()" >ExportinXls</button>-->
+<mat-button-toggle-group ng-click name="fontStyle" aria-label="Font Style" color="success">
+  <mat-button-toggle (click)="export()">ExportinXls</mat-button-toggle>
+</mat-button-toggle-group>
+<mat-button-toggle-group ng-click name="fontStyle" aria-label="Font Style">
+  <mat-button-toggle (click)="generatePDF()">Download PDF</mat-button-toggle>
+</mat-button-toggle-group>

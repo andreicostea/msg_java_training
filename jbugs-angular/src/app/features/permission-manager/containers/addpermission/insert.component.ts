@@ -3,6 +3,8 @@ import {PermissionManagerServices} from "../../services/permission-manager.servi
 import {Permission, Role} from "../../model/permission-manager.model";
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
+import {MatDialogRef} from "@angular/material";
+import {PermissionManagerInsertButtonComponent} from "../../components/permission-manager-firstpage/permission-manager-firstpage.component";
 
 @Component({
   selector: 'app-insertpermission',
@@ -11,10 +13,14 @@ import {Router} from "@angular/router";
 })
 export class InsertComponent implements OnInit {
 
-  constructor(private router: Router, private permissionManagerServices: PermissionManagerServices) {
-  }
-
+  constructor(
+    private router: Router,
+    private permissionManagerServices: PermissionManagerServices,
+    private dialogRef: MatDialogRef<PermissionManagerInsertButtonComponent>
+  ) {}
   selectedRole: Role = <Role>{};
+
+  selectedRole2: Role = <Role>{};
   roleandpermission2: Subscription;
   roles = [];
   selection: Permission = <Permission>{};
@@ -26,18 +32,16 @@ export class InsertComponent implements OnInit {
     this.roleandpermission2 = this.permissionManagerServices.getAllRolesAndPermissions()
       .subscribe(result => this.roles = result);
     console.log(this.roleandpermission2);
-    return this.selectedRole;
+    return this.selectedRole2;
   }
 
   inserted() {
     this.permissionManagerServices.insertPermission(this.selectedRole.id, this.selection)
-      .subscribe(value => {
-          console.log(value)
-        },
+      .subscribe(
+        value => this.dialogRef.close(),
         error => {
           alert(error.error.message)
         });
-
   }
 
   permissions = [

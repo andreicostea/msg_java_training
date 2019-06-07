@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
@@ -24,8 +23,7 @@ import {
 
 import {UsersModule} from "./features/users/users.module";
 import {BugsModule} from "./features/bugs/bugs.module";
-import {UsersUpdateDialogComponent} from "./features/users/components/users-update-dialog/users-update-dialog.component";
-import {BugsTableComponentComponent} from "./features/bugs/components/bugs-table-component/bugs-table-component.component";
+
 
 @NgModule({
   declarations: [
@@ -34,7 +32,6 @@ import {BugsTableComponentComponent} from "./features/bugs/components/bugs-table
    LoginComponent
 
   ],
-  //entryComponents:[BugsTableComponentComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

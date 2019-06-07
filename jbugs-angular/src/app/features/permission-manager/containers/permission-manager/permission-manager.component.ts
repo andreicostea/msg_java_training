@@ -5,8 +5,8 @@ import {PermissionsService} from "../../../../core/permissions/permissions.servi
 
 @Component({
   selector: 'app-permission-manager',
-  templateUrl: './permission-manager.containers.component.html',
-  styleUrls: ['./permission-manager.containers.component.css']
+  templateUrl: './permission-manager.component.html',
+  styleUrls: ['./permission-manager.component.css']
 })
 export class PermissionManagerInsertComponent implements OnInit {
   constructor(private permissionService: PermissionsService,

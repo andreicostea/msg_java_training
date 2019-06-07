@@ -4,11 +4,14 @@ import {Permission, Role} from "../../model/permission-manager.model";
 import {PermissionsService} from "../../../../core/permissions/permissions.service";
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
+import {UsersInsertComponent} from "../../../users/containers/users-insert/users-insert.component";
+import {MatDialog} from "@angular/material";
+import {InsertComponent} from "../../containers/addpermission/insert.component";
 
 @Component({
-  selector: 'app-permission-manager-test-component',
-  templateUrl: './permission-manager-test-component.component.html',
-  styleUrls: ['./permission-manager-test-component.component.css']
+  selector: 'app-permission-manager-firstpage',
+  templateUrl: './permission-manager-firstpage.component.html',
+  styleUrls: ['./permission-manager-firstpage.component.css']
 })
 export class PermissionManagerInsertButtonComponent implements OnInit {
   public userPermission: string[];
@@ -19,7 +22,8 @@ export class PermissionManagerInsertButtonComponent implements OnInit {
   constructor(private permissionService: PermissionsService,
               private permissionManagerService: PermissionManagerServices,
               private activateRouter: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              public dialog: MatDialog) {
   }
   ngOnInit() {
     console.log(
@@ -46,24 +50,47 @@ export class PermissionManagerInsertButtonComponent implements OnInit {
     this.response = this.userPermission.includes('PERMISSION_MANAGEMENT');
     console.log(this.response);
   }
-  addPermission(): void {
-    this.router.navigate(['./insert'], {relativeTo: this.activateRouter});
-  }
+  // addPermission(): void {
+  //   this.router.navigate(['./insert'], {relativeTo: this.activateRouter});
+  // }
   deletePermission() {
     this.permissionManagerService.deletePermission(this.selectedPermission.id)
       .subscribe(
-        value => {
-          this.permissionManagerService.getAllRolesAndPermissions()
-            .subscribe(result => {
-              this.roles = result;
-              for (const role of result) {
-                if (this.selectedRole.id === role.id) {
-                  return this.selectedRole = role;
-                }
-              }
-            });
-        },
+        value => this.reloadRolesandPermissions(),
         error1 => alert(error1.error.message)
       );
+  }
+
+  showButton() : boolean{
+    if(this.permissionService.getPermissions() === null) return false;
+    for(let per of this.permissionService.getPermissions())
+      if(per === "PERMISSION_MANAGEMENT") return true;
+    return false;
+  }
+
+  addDialog(){
+    const dialogRef = this.dialog.open(InsertComponent, {
+      width: '590px',
+      height: '560px'
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.permissions = result;
+      this.reloadRolesandPermissions();
+    });
+  }
+
+  private reloadRolesandPermissions(){
+    this.permissionManagerService.getAllRolesAndPermissions()
+      .subscribe(result => {
+        this.roles = result;
+        for (const role of result) {
+          if (this.selectedRole.id === role.id) {
+            return this.selectedRole = role;
+          }
+        }
+      });
   }
 }

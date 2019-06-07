@@ -7,7 +7,14 @@ import { BugsComponent } from "./containers/bugs/bugs.component";
 import { BugsRoutingModule } from "./bugs-routing.module";
 import { BugsTableComponentComponent } from './components/bugs-table-component/bugs-table-component.component';
 
-import {MatPaginatorModule, MatSort, MatSortModule, MatTableDataSource, MatTableModule} from "@angular/material";
+import {
+  MatButtonToggleModule,
+  MatPaginatorModule,
+  MatSort,
+  MatSortModule,
+  MatTableDataSource,
+  MatTableModule
+} from "@angular/material";
 import {MatFormFieldModule} from "@angular/material";
 import { BugAddComponent } from './containers/bug-add/bug-add.component';
 import {
@@ -51,7 +58,8 @@ import {BugViewComponent} from "./containers/bug-view/bug-view.component";
     ReactiveFormsModule,
     NativeDateModule,
     MatSelectModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatButtonToggleModule
 
 
   ]

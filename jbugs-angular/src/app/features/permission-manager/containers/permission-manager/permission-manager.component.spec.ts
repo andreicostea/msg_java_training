@@ -1,6 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {PermissionManagerInsertComponent} from './permission-manager.containers.component';
+import {PermissionManagerInsertComponent} from './permission-manager.component';
 
 describe('PermissionManagerContainersComponent', () => {
   let component: PermissionManagerInsertComponent;
