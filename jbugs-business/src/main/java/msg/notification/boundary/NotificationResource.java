@@ -2,10 +2,7 @@ package msg.notification.boundary;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -50,15 +47,17 @@ public class NotificationResource {
 
     }
 
-    @GET
-    @Path("/delete/{id}")
+    @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getDeleteNotificationById(@PathParam("id") long id) {
-        return Response.status(200)
-                .entity(notificationFacade.getDeleteNotificationById(id))
-                .build();
+    public Response deleteNotificationsPeriodically( ) {
+
+            notificationFacade.deleteNotificationsPeriodically();
+            return Response.ok()
+                    .build();
+
 
     }
+
 
 }
 

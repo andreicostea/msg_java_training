@@ -9,6 +9,7 @@ import msg.exceptions.BusinessException;
 import msg.exceptions.BusinessWebAppException;
 import msg.notification.boundary.NotificationFacade;
 import msg.notification.boundary.notificationParams.NotificationParamsUserChanges;
+import msg.notification.boundary.notificationParams.NotificationParamsUserDeleted;
 import msg.notification.boundary.notificationParams.NotificationParamsWelcomeUser;
 import msg.notification.entity.NotificationType;
 import msg.permission.PermissionEntity;
@@ -301,6 +302,7 @@ public class UserControl {
             UserEntity userToDeactivate = userDao.getUserById(id);
             userToDeactivate.setStatus(0);
             userDao.updateUser(userToDeactivate);
+            this.notificationFacade.createNotification(NotificationType.USER_DELETED,new NotificationParamsUserDeleted(userToDeactivate.getUsername()),id);
         } catch (Exception e) {
             throw new BusinessException(MessageCatalog.USER_WITH_THAT_ID_DOES_NOT_EXIST);
         }

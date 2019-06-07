@@ -6,6 +6,14 @@ import msg.notification.entity.NotificationType;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.sql.Date;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -51,15 +59,16 @@ public class NotificationDAO {
 
     }
 
-    public NotificationEntity getDeleteNotificationById(long id) {
-        return em.createNamedQuery(NotificationEntity.NOTIFICATION_FIND_BY_NOTIFICATION_TYPE, NotificationEntity.class)
-                .setParameter("id", id)
-                .setParameter("notificationType", NotificationType.USER_DELETED)
-                .getSingleResult();
+    public void deleteNotificationsPeriodically(Date dtSql) {
+
+        em.createNamedQuery(NotificationEntity.DELETE_NOTIFICATIONS_PERIODICALLY, NotificationEntity.class)
+                .setParameter("currentDate", dtSql)
+                .executeUpdate();
 
     }
-
-
 }
+
+
+
 
 

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {NotificationsLoaderService} from "../../services/notifications-loader.service";
 import {Notifications} from "../../models/notifications.model";
+import {AuthenticationService} from "../../../../core/services/authentication/authentication.service";
 
 
 export interface PeriodicElement {
@@ -102,21 +103,25 @@ export class NotificationsViewComponent implements OnInit {
   expandedElement: PeriodicElement | null;
   notifications: Notifications[];
 
-  constructor(private notificationsService: NotificationsLoaderService) {
+  constructor(private notificationsService: NotificationsLoaderService,private authenticationService:AuthenticationService) {
   }
 
   ngOnInit() {
     this.getNotificationsForCurrentUser();
+    this.cleanNotifications();
+  }
+
+  cleanNotifications(){
+    this.notificationsService.deleteNotifications().subscribe();
   }
 
   getNotificationsForCurrentUser() {
     var that = this;
-    this.notificationsService.getNotificationsForUser(0)
+    this.notificationsService.getNotificationsForUser(this.authenticationService.getUserId())
       .subscribe(
         function (result) {
           that.notifications = result;
           console.log(that.notifications);
-
         },
         error => {
           console.log(error)

@@ -25,7 +25,7 @@ import java.util.Set;
         @NamedQuery(name = UserEntity.USER_FIND_ALL, query = "SELECT u from UserEntity u"),
         @NamedQuery(name = UserEntity.USER_FIND_BY_ID, query = "SELECT u from UserEntity u where u.id = :id"),
         @NamedQuery(name = UserEntity.USER_FIND_BY_USERNAME, query = "SELECT u from UserEntity u where u.username = :username"),
-        @NamedQuery(name = UserEntity.USER_GET_BY_EMAIL, query = "SELECT u from UserEntity u where u.email = :" + UserEntity.EMAIL)
+        @NamedQuery(name = UserEntity.USER_GET_BY_EMAIL, query = "SELECT u from UserEntity u where u.email = :" + UserEntity.EMAIL),
 })
 public class UserEntity extends BaseEntity<Long> {
     public static final String USER_FIND_BY_EMAIL = "UserEntity.findByEmail";
@@ -36,6 +36,7 @@ public class UserEntity extends BaseEntity<Long> {
     public static final String USER_FIND_ALL = "UserEntity.findAll";
     public static final String USER_FIND_BY_ID = "UserEntity.findById";
     public static final String USER_FIND_BY_USERNAME = "UserEntity.findByUsername";
+    public static final String GET_USERS_BY_PERMISSIONS = "UserEntity.findByPermissions";
     @OneToMany(mappedBy = "userEntity")
     Set<CommentEntity> comments;
     @OneToMany(mappedBy = "assignedTo")
