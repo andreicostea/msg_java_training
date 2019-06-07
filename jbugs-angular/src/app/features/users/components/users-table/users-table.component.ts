@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {User, UserUpdate} from "../../models/users.model";
 import {UsersService} from "../../services/users.service";
 import {SelectionModel} from "@angular/cdk/collections";
@@ -19,7 +19,13 @@ export class UsersTableComponent implements OnInit {
   //   {firstName: "Marius", lastName: "Calin", email: "ccc@yahoo.com", roles: ["role3"]}
   // ];
 
+  @Input()
+  dataSource: User[];
+/*
   public dataSource: User[] = this.userService.loadAllUsers();
+  updateUsers(){
+    this.dataSource = this.userService.loadAllUsers();
+  }*/
   // dataSource = new MatTableDataSource<User>(this.userService.loadAllUsers());
 
   public selection: SelectionModel<User> = new SelectionModel<User>(false, []);

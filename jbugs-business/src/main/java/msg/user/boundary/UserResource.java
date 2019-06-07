@@ -30,7 +30,7 @@ public class UserResource {
     public Response createUser(@Context SecurityContext securityContext, UserInputDTO input) {
         if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
             userFacade.createUser(input);
-            return Response.ok("Successfully created!").build();
+            return Response.ok().build();
         }
         return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
     }
@@ -40,7 +40,7 @@ public class UserResource {
     public Response updateUser(@Context SecurityContext securityContext, UserUpdateDTO userUpdateDTO) {
         if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
             userFacade.updateUser(userUpdateDTO);
-            return Response.ok("Successfully updated!").build();
+            return Response.ok().build();
         }
         return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
     }
@@ -50,7 +50,7 @@ public class UserResource {
     public Response deactivateUser(@Context SecurityContext securityContext, @PathParam("id") long id) {
         if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
             userFacade.deactivateUser(id);
-            return Response.ok("Successfully deactivated!").build();
+            return Response.ok().build();
         }
         return Response.status(Response.Status.FORBIDDEN).build();
     }

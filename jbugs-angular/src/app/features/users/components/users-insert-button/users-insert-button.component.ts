@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UsersInsertComponent} from "../../containers/users-insert/users-insert.component";
 import {MatDialog} from "@angular/material";
@@ -14,6 +14,8 @@ export class UsersInsertButtonComponent implements OnInit {
 
   user: User;
 
+  @Output()
+  clicked: EventEmitter<any> = new EventEmitter();
 
   constructor(private router: Router, private route: ActivatedRoute, public dialog: MatDialog,
               private permissionService: AuthenticationService) {
@@ -43,6 +45,7 @@ export class UsersInsertButtonComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.user = result;
+      this.clicked.emit();
     });
   }
 

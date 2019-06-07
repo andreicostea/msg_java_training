@@ -4,6 +4,8 @@ import {UsersService} from "../../services/users.service";
 import {Role, User} from "../../models/users.model";
 import {UsersInsertButtonComponent} from "../../components/users-insert-button/users-insert-button.component";
 import {MatDialogRef} from "@angular/material";
+import {UsersTableComponent} from "../../components/users-table/users-table.component";
+import {UsersComponent} from "../users/users.component";
 
 
 @Component({
@@ -15,6 +17,7 @@ export class UsersInsertComponent implements OnInit {
 
 
   roles: Role[];
+  updateTable : UsersTableComponent;
 
 
   public user: User = new User();
@@ -37,12 +40,13 @@ export class UsersInsertComponent implements OnInit {
     this.userService.insertUser(this.user).subscribe((
         value => {
           this.onNoClick();
+          this.router.navigate(['/dashboard/users'])
         }),
       (error => {
         alert(error.error.message)
       }),
       () => {
-        this.router.navigate(['/dashboard'])
+
       })
     ;
   }
