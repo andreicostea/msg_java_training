@@ -15,33 +15,38 @@ public class StatusUpdate {
 
         result.put(StatusType.NEW.toString(), new ArrayList<String>(){
             {
+                add(StatusType.NEW.toString());
                 add(StatusType.IN_PROGRESS.toString());
                 add(StatusType.REJECTED.toString());
             }});
         result.put(StatusType.REJECTED.toString(), new ArrayList<String>(){
             {
+                add(StatusType.REJECTED.toString());
                 add(StatusType.CLOSED.toString());
 
             }});
         result.put(StatusType.IN_PROGRESS.toString(), new ArrayList<String>(){
             {
+                add(StatusType.IN_PROGRESS.toString());
                 add(StatusType.REJECTED.toString());
                 add(StatusType.INFO_NEEDED.toString());
                 add(StatusType.FIXED.toString());
             }});
         result.put(StatusType.INFO_NEEDED.toString(), new ArrayList<String>(){
             {
+                add(StatusType.INFO_NEEDED.toString());
                 add(StatusType.IN_PROGRESS.toString());
 
             }});
         result.put(StatusType.FIXED.toString(), new ArrayList<String>(){
             {
+                add(StatusType.FIXED.toString());
                 add(StatusType.NEW.toString());
                 add(StatusType.CLOSED.toString());
             }});
         result.put(StatusType.CLOSED.toString(), new ArrayList<String>(){
             {
-
+                add(StatusType.CLOSED.toString());
             }});
 
 
@@ -52,7 +57,12 @@ public class StatusUpdate {
         Map<String, List<String>> result = createMapComplete();
        
         result.remove(StatusType.FIXED.toString());
-        result.put(StatusType.FIXED.toString(), new ArrayList<String>(){{add(StatusType.NEW.toString());}});
+        result.put(StatusType.FIXED.toString(), new ArrayList<String>(){
+            {
+                add(StatusType.NEW.toString());
+                add(StatusType.FIXED.toString());
+            }
+        });
         return result;
     }
 }

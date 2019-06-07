@@ -32,8 +32,8 @@ export class BugDialogAddComponent implements OnInit {
 
   addDialog(){
     const dialogRef = this.dialog.open(BugAddComponent , {
-      width: '650px',
-      height: '660px'
+      width: '500px',
+      height: '600px'
 
     });
 

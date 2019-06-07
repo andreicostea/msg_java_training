@@ -1,6 +1,7 @@
 package msg.bug.control;
 
 import msg.bug.entity.BugEntity;
+import msg.bug.entity.SeverityType;
 import msg.bug.entity.StatusType;
 import msg.bug.entity.StatusUpdate;
 import msg.bug.entity.dao.BugDAO;
@@ -21,6 +22,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -48,15 +50,22 @@ public class BugControl {
     }
 
     public BugEntity createBug(BugInputDTO bug) {
-        if (bug.getTitle() == null || bug.getDescription() == null || bug.getVersion() == null || bug.getSeverity() == null) {
-            throw new BusinessException(NULL_FIELD);
+        if (bug.getTitle() == null || bug.getDescription() == null || bug.getVersion() == null || bug.getSeverity() == null ||
+                bug.getCREATED_ID() == null || bug.getTargetDate() == null)
+            throw new BusinessWebAppException(MessageCatalog.BUG_NULL_FIELD, 400);
+
+        if (bug.getTitle().length() == 0 || bug.getDescription().length() == 0 ||  bug.getTargetDate().length() == 0 ||
+                bug.getVersion().length() == 0 || bug.getSeverity().length() == 0)
+            throw new BusinessWebAppException(MessageCatalog.BUG_EMPTY_FIELD, 400);
+
+        if (bug.getDescription().length() > 250 || bug.getTitle().length() > 250 || bug.getFixedVersion().length() > 250)
+            throw new BusinessWebAppException(MessageCatalog.BUG_LIMIT_EXCEEDED, 400);
+
+        boolean checkSeverity = false;
+        for(SeverityType s :SeverityType.values()){
+            if(s.toString().equals(bug.getSeverity().toUpperCase())) checkSeverity = true;
         }
-        if (bug.getTitle().length() == 0 || bug.getDescription().length() == 0 || bug.getVersion().length() == 0 || bug.getSeverity().length() == 0) {
-            throw new BusinessException(NULL_FIELD);
-        }
-        if (bug.getDescription().length() > 250) {
-            throw new BusinessException(LIMIT_EXCEEDED);
-        }
+        if(!checkSeverity) throw new BusinessWebAppException(MessageCatalog.BUG_INVALID_PATTERN,400);
 
         final BugEntity newBug = bugConverter.convertInputDTOToEntity(bug);
         newBug.setStatus(String.valueOf(StatusType.NEW));
@@ -66,18 +75,40 @@ public class BugControl {
             throw new BusinessWebAppException(MessageCatalog.BUG_INVALID_PATTERN, 400);
         }
 
-
         return newBug;
     }
 
-    public BugEntity updateBug(BugDTO input) {
-        if(input.getStatus() != null){
 
+    public BugEntity updateBug(BugDTO input, Map<String, List<String>> statusMap) {
+        BugEntity newBug = null;
+        boolean checkStatus = false;
+        BugEntity oldBug = bugDao.getById(input.getId());
+
+        if(input.getStatus() != null){
+           for(String status: statusMap.get(oldBug.getStatus())){
+                if(status.equals(input.getStatus().toUpperCase())) checkStatus = true;
+           }
+           if(checkStatus){
+               if(input.getTitle() == null || input.getDescription() == null || input.getVersion() == null || input.getSeverity() == null ||
+                       input.getUsernameCreatedBy() == null || input.getTargetDate() == null ){
+                   throw new BusinessWebAppException(MessageCatalog.BUG_NULL_FIELD, 400);
+               }else{
+                   newBug = bugConverter.convertDTOToEntity(input);
+                   bugDao.updateBug(newBug);
+               }
+
+
+           }else{
+               throw new BusinessWebAppException(MessageCatalog.BUG_INVALID_STATUS, 400);
+           }
 
         }
-        final BugEntity newBug = bugConverter.convertDTOToEntity(input);
-        bugDao.updateBug(newBug);
+//        newBug = bugConverter.convertDTOToEntity(input);
+//              bugDao.updateBug(newBug);
+
         return newBug;
 
     }
+
+
 }

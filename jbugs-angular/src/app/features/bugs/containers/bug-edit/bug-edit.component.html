@@ -51,7 +51,7 @@
              id = "version"
              name = "version"
              ngModel
-             pattern="^[a-zA-Z0-9.]*$"
+             pattern="^[a-zA-Z]*[0-9].[0-9]"
              [(ngModel)] = "bug.version"
              required
              #version ="ngModel">
@@ -90,19 +90,7 @@
       </select>
     </mat-form-field>
 
-<!--    <mat-form-field>-->
-<!--      <mat-label>Assigned id:</mat-label>-->
 
-<!--      <select matNativeControl-->
-<!--              [(ngModel)] = "bug.ASSIGNED_ID"-->
-<!--              name="assigned_id"-->
-<!--              ngModel required>-->
-<!--        <option selected="bug.usernameAssignTo">{{bug.usernameAssignTo}}</option>-->
-<!--        <option  *ngFor="let user of usersList" [value]="user.id">{{user.userName}}</option>-->
-<!--&lt;!&ndash;        <option selected="bug.ASSIGNED_ID">{{bug.ASSIGNED_ID}}</option>&ndash;&gt;-->
-
-<!--      </select>-->
-<!--    </mat-form-field>-->
 
     <mat-form-field >
       <mat-label>Assign to:</mat-label>
@@ -144,9 +132,9 @@
     Submit</button>
 
 
-  <p>
-    {{f.value | json}}
-  </p>
+<!--  <p>-->
+<!--    {{f.value | json}}-->
+<!--  </p>-->
 
 </form>
 

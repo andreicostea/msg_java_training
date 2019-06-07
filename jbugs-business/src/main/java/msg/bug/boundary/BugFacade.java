@@ -7,6 +7,8 @@ import msg.bug.entity.dto.BugInputDTO;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.util.List;
+import java.util.Map;
 
 @Stateless
 public class BugFacade {
@@ -21,8 +23,8 @@ public class BugFacade {
         return this.bugControl.getAll();
     }
 
-    public void updateBug(BugDTO input) {
-        this.bugControl.updateBug(input);
+    public void updateBug(BugDTO input, Map<String, List<String>> statusMap) {
+        this.bugControl.updateBug(input, statusMap);
     }
 
     public Object getStatusBugComplete(String status) {

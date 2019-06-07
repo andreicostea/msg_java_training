@@ -1,6 +1,8 @@
 package msg.bug.entity.dto;
 
 import msg.bug.entity.BugEntity;
+import msg.exceptions.BusinessWebAppException;
+import msg.user.MessageCatalog;
 import msg.user.entity.UserEntity;
 import msg.user.entity.dao.UserDAO;
 
@@ -33,21 +35,22 @@ public class BugConverter {
         } else {
             b.setFixedVersion(bugDTO.getFixedVersion());
         }
-
-
         try {
             if (bugDTO.getUsernameAssignTo() != null) {
                 UserEntity userEntity = userDao.getUserByUsername(bugDTO.getUsernameAssignTo());
                 b.setAssigned(userEntity);
             }
             UserEntity userEntity = userDao.getUserByUsername(bugDTO.getUsernameCreatedBy());
-            b.setCreated(userEntity);
+                b.setCreated(userEntity);
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return b;
     }
+
 
     public BugEntity convertInputDTOToEntity(BugInputDTO input) {
         final BugEntity b = new BugEntity();
@@ -56,7 +59,9 @@ public class BugConverter {
         b.setVersion(input.getVersion());
         b.setFixedVersion(input.getFixedVersion());
         b.setTargetDate(parseStringToDateCalendar(input.getTargetDate()));
-        b.setSeverity(input.getSeverity());
+        String severity = input.getSeverity().substring(0, 1).toUpperCase() + input.getSeverity().substring(1);
+        b.setSeverity(severity);
+
 
 
         if (input.getCREATED_ID() != 0) {
@@ -77,8 +82,6 @@ public class BugConverter {
         }
 
 
-        //b.setAssigned(input.);
-        //b.setAttachmentEntities(input.);
         return b;
     }
 

@@ -26,4 +26,9 @@ public class BugDAO {
 
 
     }
+
+    public BugEntity getById(long id){
+        return em.createNamedQuery(BugEntity.BUG_FIND_BY_ID, BugEntity.class)
+                .setParameter("id", id).getSingleResult();
+    }
 }

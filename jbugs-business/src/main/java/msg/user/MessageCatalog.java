@@ -56,6 +56,20 @@ public class MessageCatalog {
 
     public static final ExceptionMessage BUG_INVALID_PATTERN
             = new ExceptionMessage("BUG-01", "The pattern is invalid!");
+
+    public static final ExceptionMessage BUG_NULL_FIELD
+            = new ExceptionMessage("BUG-02", "Some fields are missing!");
+
+    public static final ExceptionMessage BUG_EMPTY_FIELD
+            = new ExceptionMessage("BUG-03", "Some fields are empty!");
+
+    public static final ExceptionMessage BUG_LIMIT_EXCEEDED
+            = new ExceptionMessage("BUG-04", "Max Limit was reached!");
+
+    public static final ExceptionMessage BUG_INVALID_STATUS
+            = new ExceptionMessage("BUG-05", "Invalid status");
+
+
 }
 
 

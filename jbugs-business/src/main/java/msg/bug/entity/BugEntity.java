@@ -24,7 +24,9 @@ import java.util.Set;
         @NamedQuery(name = BugEntity.BUG_GET_ALL,
                 query = "select b from BugEntity b ORDER BY b.targetDate desc"),
         @NamedQuery(name = BugEntity.BUG_FIND_BY_ID,
-                query = "select b from BugEntity b where b.id = :" + BugEntity.ID)})
+                query = "select b from BugEntity b where b.id = :id" ),
+
+})
 
 public class BugEntity extends BaseEntity<Long> {
     public static final String BUG_GET_ALL = "BugEntity.getAllBugEntities";
@@ -44,7 +46,8 @@ public class BugEntity extends BaseEntity<Long> {
     @Column(name = "description", nullable = false)
     private String description;
     @Column(name = "version", nullable = false)
-    @Pattern(regexp="[a-zA-Z].*[0-9].[0-9]$", message = "{invalid.version}")
+    //[a-zA-Z].*[0-9].[0-9]$
+    @Pattern(regexp="^[a-zA-Z]*[0-9].[0-9]", message = "{invalid.version}")
     private String version;
     @Column(name = "targetDate")
     private Date targetDate;

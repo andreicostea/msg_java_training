@@ -22,12 +22,14 @@ import {User} from "../../../users/models/users.model";
 
 
 
+
   constructor(private bugService : BugsService, private router : Router,  public dialogRef: MatDialogRef<BugEditComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, public permissionService : PermissionsService, private userService : UsersService) { }
 
   ngOnInit() {
     this.userService.getAllUsers().subscribe(users => this.usersList = users,
       error => console.log(error));
+
 
 
     this.bug = this.data;

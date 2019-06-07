@@ -51,7 +51,7 @@
              id = "version"
              name = "version"
              ngModel
-             pattern="^[a-zA-Z0-9.]*$"
+             pattern="^[a-zA-Z]*[0-9].[0-9]"
              [(ngModel)] = "bug.version"
              required
              #version ="ngModel">
@@ -68,6 +68,7 @@
                        [(ngModel)] = "bug.targetDate"
                       name = "date"
                        ngModel
+                       required
                       placeholder="Choose a date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
@@ -125,9 +126,9 @@
     Submit</button>
 
 
-<!--<p>-->
-<!--  {{f.value | json}}-->
-<!--</p>-->
+<p>
+  {{f.value | json}}
+</p>
 
 </form>
 
