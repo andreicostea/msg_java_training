@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {PermissionManagerServices} from "../../services/permission-manager.services";
 import {Permission, Role} from "../../model/permission-manager.model";
-import {PermissionsService} from "../../../../core/permissions/permissions.service";
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
-import {UsersInsertComponent} from "../../../users/containers/users-insert/users-insert.component";
 import {MatDialog} from "@angular/material";
 import {InsertComponent} from "../../containers/addpermission/insert.component";
+import {AuthenticationService} from "../../../../core/services/authentication/authentication.service";
 
 @Component({
   selector: 'app-permission-manager-firstpage',
@@ -15,16 +14,20 @@ import {InsertComponent} from "../../containers/addpermission/insert.component";
 })
 export class PermissionManagerInsertButtonComponent implements OnInit {
   public userPermission: string[];
-  private response: boolean;
   public roleandpermission: Subscription;
   selectedRole: Role = <Role>{};
   selectedPermission: Permission = <Permission>{};
-  constructor(private permissionService: PermissionsService,
+  roles = [];
+  permissions = [];
+  private response: boolean;
+
+  constructor(private authenticationService: AuthenticationService,
               private permissionManagerService: PermissionManagerServices,
               private activateRouter: ActivatedRoute,
               private router: Router,
               public dialog: MatDialog) {
   }
+
   ngOnInit() {
     console.log(
       this.permissionManagerService.getAllRolesAndPermissions()
@@ -35,23 +38,7 @@ export class PermissionManagerInsertButtonComponent implements OnInit {
     this.getPermissions();
     this.selected();
   }
-  roles = [];
-  permissions = [];
-  private selected() {
-    this.roleandpermission = this.permissionManagerService.getAllRolesAndPermissions()
-      .subscribe(result => this.roles = result);
-    console.log(this.roles);
-    console.log(this.roleandpermission);
-    return this.selectedRole;
-  }
-  private getPermissions() {
-    this.userPermission = this.permissionService.getPermissions();
-    console.log(this.userPermission);
-    this.response = this.userPermission.includes('PERMISSION_MANAGEMENT');
-    console.log(this.response);
-  }
-  // addPermission(): void {
-  //   this.router.navigate(['./insert'], {relativeTo: this.activateRouter});
+
   // }
   deletePermission() {
     this.permissionManagerService.deletePermission(this.selectedPermission.id)
@@ -61,14 +48,17 @@ export class PermissionManagerInsertButtonComponent implements OnInit {
       );
   }
 
-  showButton() : boolean{
-    if(this.permissionService.getPermissions() === null) return false;
-    for(let per of this.permissionService.getPermissions())
-      if(per === "PERMISSION_MANAGEMENT") return true;
+  showButton(): boolean {
+    if (this.authenticationService.getPermissions() === null) return false;
+    for (let per of this.authenticationService.getPermissions())
+      if (per === "PERMISSION_MANAGEMENT") return true;
     return false;
   }
 
-  addDialog(){
+  // addPermission(): void {
+  //   this.router.navigate(['./insert'], {relativeTo: this.activateRouter});
+
+  addDialog() {
     const dialogRef = this.dialog.open(InsertComponent, {
       width: '590px',
       height: '560px'
@@ -82,7 +72,22 @@ export class PermissionManagerInsertButtonComponent implements OnInit {
     });
   }
 
-  private reloadRolesandPermissions(){
+  private selected() {
+    this.roleandpermission = this.permissionManagerService.getAllRolesAndPermissions()
+      .subscribe(result => this.roles = result);
+    console.log(this.roles);
+    console.log(this.roleandpermission);
+    return this.selectedRole;
+  }
+
+  private getPermissions() {
+    this.userPermission = this.authenticationService.getPermissions();
+    console.log(this.userPermission);
+    this.response = this.userPermission.includes('PERMISSION_MANAGEMENT');
+    console.log(this.response);
+  }
+
+  private reloadRolesandPermissions() {
     this.permissionManagerService.getAllRolesAndPermissions()
       .subscribe(result => {
         this.roles = result;

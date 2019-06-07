@@ -10,7 +10,8 @@ table {
 th.mat-sort-header-sorted {
   color: black;
 }
-.mat-button, .mat-button-toggle{
+
+.mat-button, .mat-button-toggle {
   background-color: #1187ff;
 }
 

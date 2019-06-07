@@ -13,35 +13,11 @@ import {PermissionManagerInsertButtonComponent} from "../../components/permissio
 })
 export class InsertComponent implements OnInit {
 
-  constructor(
-    private router: Router,
-    private permissionManagerServices: PermissionManagerServices,
-    private dialogRef: MatDialogRef<PermissionManagerInsertButtonComponent>
-  ) {}
   selectedRole: Role = <Role>{};
   selectedRole2: Role = <Role>{};
   roleandpermission2: Subscription;
   roles = [];
   selection: Permission = <Permission>{};
-  ngOnInit() {
-    console.log(
-      this.selected2());
-  }
-  private selected2() {
-    this.roleandpermission2 = this.permissionManagerServices.getAllRolesAndPermissions()
-      .subscribe(result => this.roles = result);
-    console.log(this.roleandpermission2);
-    return this.selectedRole2;
-  }
-
-  inserted() {
-    this.permissionManagerServices.insertPermission(this.selectedRole.id, this.selection)
-      .subscribe(
-        value => this.dialogRef.close(),
-        error => {
-          alert(error.error.message)
-        });
-  }
   permissions = [
     {
       id: 1,
@@ -75,23 +51,25 @@ export class InsertComponent implements OnInit {
     }
   ];
 
-  constructor(private router: Router, private permissionManagerServices: PermissionManagerServices) {
+  constructor(
+    private router: Router,
+    private permissionManagerServices: PermissionManagerServices,
+    private dialogRef: MatDialogRef<PermissionManagerInsertButtonComponent>
+  ) {
+  }
+
+  inserted() {
+    this.permissionManagerServices.insertPermission(this.selectedRole.id, this.selection)
+      .subscribe(
+        value => this.dialogRef.close(),
+        error => {
+          alert(error.error.message)
+        });
   }
 
   ngOnInit() {
     console.log(
       this.selected2());
-  }
-
-  inserted() {
-    this.permissionManagerServices.insertPermission(this.selectedRole.id, this.selection)
-      .subscribe(value => {
-          console.log(value)
-        },
-        error => {
-          alert(error.error.message)
-        });
-
   }
 
   private selected2() {

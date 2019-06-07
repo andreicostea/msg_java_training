@@ -6,6 +6,7 @@
 .form-group > * {
   width: 480px;
 }
+
 .example-form {
   min-width: 150px;
   max-width: 500px;
@@ -19,7 +20,8 @@
 td {
   padding-right: 8px;
 }
-.mat-button, .mat-button-toggle{
+
+.mat-button, .mat-button-toggle {
   background-color: #1187ff;
   width: 80px;
   height: 40px;

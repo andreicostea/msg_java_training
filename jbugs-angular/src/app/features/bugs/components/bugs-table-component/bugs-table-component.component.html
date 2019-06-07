@@ -1,11 +1,10 @@
-
 <mat-form-field>
   <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
 </mat-form-field>
 
 <div class="mat-elevation-z8">
 
-  <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table matSort>
+  <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table matSort id="contentToConvert">
 
     <!-- Position Column -->
     <ng-container matColumnDef="title">
@@ -60,9 +59,9 @@
   <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
 </div>
 <!--<button (click)="export()" >ExportinXls</button>-->
-<mat-button-toggle-group ng-click name="fontStyle" aria-label="Font Style" color="success">
+<mat-button-toggle-group aria-label="Font Style" color="success" name="fontStyle" ng-click>
   <mat-button-toggle (click)="export()">ExportinXls</mat-button-toggle>
 </mat-button-toggle-group>
-<mat-button-toggle-group ng-click name="fontStyle" aria-label="Font Style">
+<mat-button-toggle-group aria-label="Font Style" name="fontStyle" ng-click>
   <mat-button-toggle (click)="generatePDF()">Download PDF</mat-button-toggle>
 </mat-button-toggle-group>

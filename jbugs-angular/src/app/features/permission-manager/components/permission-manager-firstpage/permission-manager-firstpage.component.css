@@ -6,7 +6,8 @@
 .example-container-permission > * {
   width: 480px;
 }
-.mat-button, .mat-button-toggle{
+
+.mat-button, .mat-button-toggle {
   background-color: #1187ff;
   width: 80px;
   height: 40px;

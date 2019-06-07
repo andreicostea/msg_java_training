@@ -1,24 +1,24 @@
-<form #f = 'ngForm' >
+<form #f='ngForm'>
 
-<mat-card class="example-card">
+  <mat-card class="example-card">
 
     <mat-card-title>Insert Bug</mat-card-title>
 
 
-  <mat-divider></mat-divider>
-<!--  <mat-card-content>-->
+    <mat-divider></mat-divider>
+    <!--  <mat-card-content>-->
     <br>
 
     <mat-form-field class="form-group">
-      <input matInput placeholder="Title"
-             class = "form-control"
-             type ="text"
-             id = "title"
-             name = "title"
+      <input #title="ngModel" [(ngModel)]="bug.title"
+             class="form-control"
+             id="title"
+             matInput
+             name="title"
              ngModel
-             [(ngModel)] = "bug.title"
+             placeholder="Title"
              required
-             #title ="ngModel">
+             type="text">
       <mat-error *ngIf="title.touched && title.invalid">
         <mat-error *ngIf="title.errors.required">The field is required</mat-error>
       </mat-error>
@@ -27,36 +27,36 @@
     </mat-form-field>
 
 
-    <mat-form-field class ="form-group">
-      <input matInput placeholder="Description"
-             class = "form-control"
-             type ="text"
-             id = "description"
-             name = "description"
+    <mat-form-field class="form-group">
+      <input #description="ngModel" [(ngModel)]="bug.description"
+             class="form-control"
+             id="description"
+             matInput
+             name="description"
              ngModel
-             [(ngModel)] = "bug.description"
+             placeholder="Description"
              required
-             #description ="ngModel">
+             type="text">
       <mat-error
-           *ngIf="description.touched && description.invalid">
+        *ngIf="description.touched && description.invalid">
         <mat-error *ngIf="description.errors.required">The field is required</mat-error>
 
       </mat-error>
     </mat-form-field>
 
-    <div class ="form-group">
-      <label > Version</label>
-      <input class = "form-control"
-             type ="text"
-             id = "version"
-             name = "version"
+    <div class="form-group">
+      <label> Version</label>
+      <input #version="ngModel"
+             [(ngModel)]="bug.version"
+             class="form-control"
+             id="version"
+             name="version"
              ngModel
              pattern="^[a-zA-Z]*[0-9].[0-9]"
-             [(ngModel)] = "bug.version"
              required
-             #version ="ngModel">
-      <div class ="alert alert-danger"
-           *ngIf="version.touched && version.invalid">
+             type="text">
+      <div *ngIf="version.touched && version.invalid"
+           class="alert alert-danger">
         <div *ngIf="version.errors.required">The field is required</div>
         <div *ngIf="version.errors.pattern">The pattern is invalid</div>
 
@@ -64,44 +64,44 @@
     </div>
 
     <mat-form-field>
-      <input matInput [matDatepicker]="picker"
-                       [(ngModel)] = "bug.targetDate"
-                      name = "date"
-                       ngModel
-                       required
-                      placeholder="Choose a date">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <input [(ngModel)]="bug.targetDate" [matDatepicker]="picker"
+             matInput
+             name="date"
+             ngModel
+             placeholder="Choose a date"
+             required>
+      <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
-    <div class ="form-group">
-      <label > Fixed Version</label>
-      <input class = "form-control"
-             type ="text"
-             id = "fixedVersion"
-             name = "fixedVersion"
+    <div class="form-group">
+      <label> Fixed Version</label>
+      <input [(ngModel)]="bug.fixedVersion"
+             class="form-control"
+             id="fixedVersion"
+             name="fixedVersion"
              ngModel
-             [(ngModel)] = "bug.fixedVersion">
+             type="text">
 
     </div>
 
     <mat-form-field>
-    <mat-label>Severity</mat-label>
+      <mat-label>Severity</mat-label>
 
-    <select matNativeControl
-            [(ngModel)] = "bug.severity"
-            name="severity"
-            ngModel required>
-      <option value="Low">Low</option>
-      <option value="Medium">Medium</option>
-      <option value="High">High</option>
-      <option value="Critical">Critical</option>
-    </select>
+      <select [(ngModel)]="bug.severity"
+              matNativeControl
+              name="severity"
+              ngModel required>
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+        <option value="Critical">Critical</option>
+      </select>
     </mat-form-field>
 
-    <mat-form-field >
+    <mat-form-field>
       <mat-label>Assigned to:</mat-label>
-      <mat-select [(ngModel)] = "bug.ASSIGNED_ID"
+      <mat-select [(ngModel)]="bug.ASSIGNED_ID"
                   name="roles"
                   ngModel>
         <mat-option *ngFor="let user of usersList" [value]="user.id">{{user.userName}}</mat-option>
@@ -111,19 +111,20 @@
     </mat-form-field>
 
 
-<!--  </mat-card-content>-->
-  <mat-card-actions>
+    <!--  </mat-card-content>-->
+    <mat-card-actions>
 
 
-  </mat-card-actions>
-</mat-card>
+    </mat-card-actions>
+  </mat-card>
 
-  <button mat-raised-button
-          (click)="insert()"
-          [disabled]="f.invalid">
+  <button (click)="insert()"
+          [disabled]="f.invalid"
+          mat-raised-button>
 
 
-    Submit</button>
+    Submit
+  </button>
 
 
   <!--<p>-->

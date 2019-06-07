@@ -22,7 +22,8 @@
   </ng-container>
 
   <tr *matHeaderRowDef="columnsToDisplay" mat-header-row></tr>
-  <tr (click)="expandedElement = expandedElement === element ? null : element" *matRowDef="let element; columns: columnsToDisplay;"
+  <tr (click)="expandedElement = expandedElement === element ? null : element"
+      *matRowDef="let element; columns: columnsToDisplay;"
       [class.example-expanded-row]="expandedElement === element"
       class="example-element-row"
       mat-row>

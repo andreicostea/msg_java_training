@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {BugsService} from "../../services/bugs.service";
 import {Router} from "@angular/router";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
@@ -57,7 +57,6 @@ export class BugEditComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
 
 
 }

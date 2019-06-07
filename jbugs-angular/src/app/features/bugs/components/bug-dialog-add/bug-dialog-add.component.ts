@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material";
 import {AuthenticationService} from "../../../../core/services/authentication/authentication.service";
 import {BugAddComponent} from "../../containers/bug-add/bug-add.component";

@@ -2,22 +2,24 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {PermissionRoutingModule} from "./permission-manager-routing.module";
 import {PermissionManagerInsertButtonComponent} from "./components/permission-manager-firstpage/permission-manager-firstpage.component";
-import {MatButtonToggleModule, MatFormFieldModule, MatSelectModule} from "@angular/material";
-import {InsertComponent} from "./containers/addpermission/insert.component";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {PermissionManagerInsertComponent} from './containers/permission-manager/permission-manager.component';
 import {
   MatButtonModule,
+  MatButtonToggleModule,
   MatCardModule,
-  MatInputModule,
-  MatListModule,
-  MatOptionModule,
   MatCheckboxModule,
   MatDialogModule,
   MatDividerModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatListModule,
+  MatOptionModule,
   MatRadioModule,
-  MatTableModule
+  MatSelectModule
 } from "@angular/material";
+import {InsertComponent} from "./containers/addpermission/insert.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {PermissionManagerInsertComponent} from './containers/permission-manager/permission-manager.component';
+
 @NgModule({
   declarations: [
     PermissionManagerInsertComponent,

@@ -1,7 +1,7 @@
 <form #f='ngForm'>
 
   <mat-card class="example-card">
-<!--  <div mat-dialog-content>-->
+    <!--  <div mat-dialog-content>-->
 
 
     <mat-card-title>Insert User</mat-card-title>
@@ -101,22 +101,23 @@
       </mat-select>
 
 
-      </mat-form-field>
+    </mat-form-field>
   </mat-card>
 
-    <mat-divider></mat-divider>
+  <mat-divider></mat-divider>
 
-    <button mat-raised-button
-            (click)="insert()"
-            [disabled]="f.invalid">Submit</button>
-<!--    </mat-card-content>-->
+  <button (click)="insert()"
+          [disabled]="f.invalid"
+          mat-raised-button>Submit
+  </button>
+  <!--    </mat-card-content>-->
 
 
-    <!--  <p>-->
-    <!--    {{f.value | json}}-->
-    <!--  </p>-->
+  <!--  <p>-->
+  <!--    {{f.value | json}}-->
+  <!--  </p>-->
 
-<!--  </div>-->
+  <!--  </div>-->
 
 </form>
 
