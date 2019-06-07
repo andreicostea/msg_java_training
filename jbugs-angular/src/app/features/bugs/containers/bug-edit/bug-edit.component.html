@@ -52,11 +52,12 @@
              id="version"
              name="version"
              ngModel
-             pattern="^[a-zA-Z0-9.]*$"
+             pattern="^[a-zA-Z]*[0-9].[0-9]"
+             [(ngModel)] = "bug.version"
              required
-             type="text">
-      <div *ngIf="version.touched && version.invalid"
-           class="alert alert-danger">
+             #version ="ngModel">
+      <div class ="alert alert-danger"
+           *ngIf="version.touched && version.invalid">
         <div *ngIf="version.errors.required">The field is required</div>
         <div *ngIf="version.errors.pattern">The pattern is invalid</div>
 
@@ -64,21 +65,22 @@
     </div>
 
 
-    <div class="form-group">
-      <label> Fixed Version</label>
-      <input [(ngModel)]="bug.fixedVersion"
-             class="form-control"
-             id="fixedVersion"
-             name="fixedVersion"
+
+    <div class ="form-group">
+      <label > Fixed Version</label>
+      <input class = "form-control"
+             type ="text"
+             id = "fixedVersion"
+             name = "fixedVersion"
              ngModel
-             type="text">
+             [(ngModel)] = "bug.fixedVersion">
     </div>
 
     <mat-form-field>
       <mat-label>Severity</mat-label>
 
-      <select [(ngModel)]="bug.severity"
-              matNativeControl
+      <select matNativeControl
+              [(ngModel)] = "bug.severity"
               name="severity"
               ngModel required>
         <option selected="bug.severity">{{bug.severity}}</option>
@@ -89,19 +91,7 @@
       </select>
     </mat-form-field>
 
-    <!--    <mat-form-field>-->
-    <!--      <mat-label>Assigned id:</mat-label>-->
 
-    <!--      <select matNativeControl-->
-    <!--              [(ngModel)] = "bug.ASSIGNED_ID"-->
-    <!--              name="assigned_id"-->
-    <!--              ngModel required>-->
-    <!--        <option selected="bug.usernameAssignTo">{{bug.usernameAssignTo}}</option>-->
-    <!--        <option  *ngFor="let user of usersList" [value]="user.id">{{user.userName}}</option>-->
-    <!--&lt;!&ndash;        <option selected="bug.ASSIGNED_ID">{{bug.ASSIGNED_ID}}</option>&ndash;&gt;-->
-
-    <!--      </select>-->
-    <!--    </mat-form-field>-->
 
     <mat-form-field>
       <mat-label>Assign to:</mat-label>
@@ -128,6 +118,7 @@
     </mat-form-field>
 
 
+
     <mat-card-actions>
 
 
@@ -143,9 +134,9 @@
   </button>
 
 
-  <p>
-    {{f.value | json}}
-  </p>
+<!--  <p>-->
+<!--    {{f.value | json}}-->
+<!--  </p>-->
 
 </form>
 

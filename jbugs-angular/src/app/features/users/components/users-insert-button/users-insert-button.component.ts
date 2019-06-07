@@ -35,7 +35,7 @@ export class UsersInsertButtonComponent implements OnInit {
 
   addDialog() {
     const dialogRef = this.dialog.open(UsersInsertComponent, {
-      width: '590px',
+      width: '450px',
       height: '560px'
 
     });

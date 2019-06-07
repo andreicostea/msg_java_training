@@ -1,10 +1,11 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Inject, OnInit} from '@angular/core';
 import {BugsService} from "../../services/bugs.service";
 import {Router} from "@angular/router";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 
 import {UsersService} from "../../../users/services/users.service";
 import {Bug} from "../../models/bugs.model";
+
 import {User} from "../../../users/models/users.model";
 import {AuthenticationService} from "../../../../core/services/authentication/authentication.service";
 
@@ -56,6 +57,7 @@ export class BugEditComponent implements OnInit {
   onNoClick(): void {
     this.dialogRef.close();
   }
+
 
 
 }

@@ -1,6 +1,7 @@
 package msg.bug.boundary;
 //todo: fix bug insertion and update [specifically, the part with users]
 
+import msg.bug.entity.StatusUpdate;
 import msg.bug.entity.dto.BugDTO;
 import msg.bug.entity.dto.BugInputDTO;
 import msg.permission.PermissionType;
@@ -35,7 +36,12 @@ public class BugResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateBug(@Context SecurityContext securityContext, BugDTO input) {
         if (securityContext.isUserInRole(PermissionType.BUG_MANAGEMENT)) {
-            facade.updateBug(input);
+            if (securityContext.isUserInRole(PermissionType.BUG_CLOSED)) {
+                facade.updateBug(input, StatusUpdate.allStatusValue);
+            }else{
+                facade.updateBug(input, StatusUpdate.limitedStatusValue);
+            }
+
             return Response.ok().build();
         } else {
             return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();

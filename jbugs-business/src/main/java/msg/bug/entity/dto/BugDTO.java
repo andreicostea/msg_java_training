@@ -2,7 +2,10 @@ package msg.bug.entity.dto;
 
 import msg.base.BaseEntity;
 
-public class BugDTO extends BaseEntity<Long> {
+import java.util.Date;
+
+public class BugDTO {
+    private Long id;
     private String title;
     private String description;
     private String version;
@@ -24,6 +27,13 @@ public class BugDTO extends BaseEntity<Long> {
     public BugDTO() {
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

@@ -46,6 +46,7 @@ public class MessageCatalog {
     public static final ExceptionMessage USER_FIELDS_MISSING
             = new ExceptionMessage("USER-06", "Some fields are missing");
 
+   
 
     public static final ExceptionMessage INVALID_OR_NON_EXISTENT_TOKEN
             = new ExceptionMessage("USER-07", "You're not authorized for this operation.");
@@ -60,6 +61,20 @@ public class MessageCatalog {
             = new ExceptionMessage("USER-07", "This user don t have any bugs");
     public static final ExceptionMessage USER_WITH_THIS_ROLE_DONT_HAVE_PERMISSIONS
             = new ExceptionMessage("USER-08", "The user with this role don t have any permissions");
+
+    public static final ExceptionMessage BUG_NULL_FIELD
+            = new ExceptionMessage("BUG-02", "Some fields are missing!");
+
+    public static final ExceptionMessage BUG_EMPTY_FIELD
+            = new ExceptionMessage("BUG-03", "Some fields are empty!");
+
+    public static final ExceptionMessage BUG_LIMIT_EXCEEDED
+            = new ExceptionMessage("BUG-04", "Max Limit was reached!");
+
+    public static final ExceptionMessage BUG_INVALID_STATUS
+            = new ExceptionMessage("BUG-05", "Invalid status");
+
+
 }
 
 
