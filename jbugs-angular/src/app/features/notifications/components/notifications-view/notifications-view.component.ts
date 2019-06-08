@@ -35,14 +35,11 @@ export class NotificationsViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.cleanNotifications();
+
     this.getNotificationsForCurrentUser();
 
   }
 
-  cleanNotifications() {
-    this.notificationsService.deleteNotifications().subscribe();
-  }
 
   getNotificationsForCurrentUser() {
     var that = this;
