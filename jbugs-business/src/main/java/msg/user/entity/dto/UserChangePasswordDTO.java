@@ -1,20 +1,15 @@
 package msg.user.entity.dto;
 
 public class UserChangePasswordDTO {
-    private long id;
+    private String username;
     private String newPassword;
 
-    public UserChangePasswordDTO(long id, String newPassword) {
-        this.id = id;
-        this.newPassword = newPassword;
+    public String getUsername() {
+        return username;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getNewPassword() {

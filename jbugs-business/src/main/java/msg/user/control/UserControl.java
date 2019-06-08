@@ -282,7 +282,6 @@ public class UserControl {
 
     }
 
-    // todo: polish notification
     public void updateUser(UserUpdateDTO userUpdateDTO) {
         UserEntity userToUpdate = userDao.getUserByEmail(userUpdateDTO.getEmailBeforeUpdate());
         userToUpdate.setFirstName(userUpdateDTO.getFirstName());
@@ -293,29 +292,21 @@ public class UserControl {
         userToUpdate.setRoles(roleControl.getRolesByTypeList(userUpdateDTO.getRoles()));
         userDao.updateUser(userToUpdate);
         // send notification
-        try {
-            this.notificationFacade.createNotification(NotificationType.USER_UPDATED, new NotificationParamsUserChanges(userUpdateDTO.getWhoUpdatedHim(), userToUpdate.getUsername()), userDao.getUserByUsername(userUpdateDTO.getWhoUpdatedHim()).getId(), userToUpdate.getId());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.notificationFacade.createNotification(NotificationType.USER_UPDATED, new NotificationParamsUserChanges(userUpdateDTO.getWhoUpdatedHim(), userToUpdate.getUsername()), userDao.getUserByUsername(userUpdateDTO.getWhoUpdatedHim()).getId(), userToUpdate.getId());
     }
 
-    // todo: notification USER_DELETED
+    // todo: deactivate only if he has no tasks
     public void deactivateUser(long id) {
-        try {
-            UserEntity userToDeactivate = userDao.getUserById(id);
-            userToDeactivate.setStatus(0);
-            userDao.updateUser(userToDeactivate);
-            this.notificationFacade.createNotification(NotificationType.USER_DELETED,new NotificationParamsUserDeleted(userToDeactivate.getUsername()),id);
-        } catch (Exception e) {
-            throw new BusinessException(MessageCatalog.USER_WITH_THAT_ID_DOES_NOT_EXIST);
-        }
+        UserEntity userToDeactivate = userDao.getUserById(id);
+        userToDeactivate.setStatus(0);
+        userDao.updateUser(userToDeactivate);
+        this.notificationFacade.createNotification(NotificationType.USER_DELETED, new NotificationParamsUserDeleted(userToDeactivate.getUsername()), id);
         // if no bugs assigned then deactivate
         // else throw exception
     }
 
     public void changePassword(UserChangePasswordDTO userChangePasswordDTO) {
-        UserEntity userToChangePassword = userDao.getUserById(userChangePasswordDTO.getId());
+        UserEntity userToChangePassword = userDao.getUserByUsername(userChangePasswordDTO.getUsername());
         userToChangePassword.setPassword(userChangePasswordDTO.getNewPassword());
         userDao.updateUser(userToChangePassword);
     }

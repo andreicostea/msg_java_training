@@ -47,12 +47,11 @@ public class UserResource {
         return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
     }
 
-//    @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/{id}")
+    @Path("/password")
     @PATCH
-    public Response changePassword(@Context SecurityContext securityContext, @PathParam("id") long id, String newPassword) {
+    public Response changePassword(@Context SecurityContext securityContext, UserChangePasswordDTO userChangePasswordDTO) {
         if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
-            userFacade.changePassword(new UserChangePasswordDTO(id, newPassword));
+            userFacade.changePassword(userChangePasswordDTO);
             return Response.ok().build();
         }
         return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();

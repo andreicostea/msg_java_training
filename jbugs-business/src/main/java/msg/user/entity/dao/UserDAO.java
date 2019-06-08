@@ -61,7 +61,7 @@ public class UserDAO {
         return (count > 0);
     }
 
-    public UserEntity getUserByUsername(String username) throws Exception {
+    public UserEntity getUserByUsername(String username) {
         return em.createNamedQuery(UserEntity.USER_FIND_BY_USERNAME, UserEntity.class)
                 .setParameter("username", username)
                 .getSingleResult();
