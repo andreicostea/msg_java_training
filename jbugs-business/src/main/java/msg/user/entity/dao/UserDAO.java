@@ -46,7 +46,6 @@ public class UserDAO {
     public UserEntity updateUser(UserEntity user) {
         em.merge(user);
         return user;
-
     }
 
     public UserEntity getUserByEmail(String email) {
@@ -73,7 +72,7 @@ public class UserDAO {
                 .getResultList();
     }
 
-    public UserEntity getUserById(long id) throws Exception {
+    public UserEntity getUserById(long id) {
         return em.createNamedQuery(UserEntity.USER_FIND_BY_ID, UserEntity.class)
                 .setParameter("id", id)
                 .getSingleResult();

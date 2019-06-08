@@ -3,6 +3,7 @@ package msg.user.boundary;
 import msg.bug.boundary.BugFacade;
 import msg.permission.PermissionType;
 import msg.user.MessageCatalog;
+import msg.user.entity.dto.UserChangePasswordDTO;
 import msg.user.entity.dto.UserInputDTO;
 import msg.user.entity.dto.UserUpdateDTO;
 
@@ -41,6 +42,17 @@ public class UserResource {
         if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
             userUpdateDTO.setWhoUpdatedHim(securityContext.getUserPrincipal().getName());
             userFacade.updateUser(userUpdateDTO);
+            return Response.ok().build();
+        }
+        return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
+    }
+
+//    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/{id}")
+    @PATCH
+    public Response changePassword(@Context SecurityContext securityContext, @PathParam("id") long id, String newPassword) {
+        if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
+            userFacade.changePassword(new UserChangePasswordDTO(id, newPassword));
             return Response.ok().build();
         }
         return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();

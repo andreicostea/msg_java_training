@@ -313,4 +313,10 @@ public class UserControl {
         // if no bugs assigned then deactivate
         // else throw exception
     }
+
+    public void changePassword(UserChangePasswordDTO userChangePasswordDTO) {
+        UserEntity userToChangePassword = userDao.getUserById(userChangePasswordDTO.getId());
+        userToChangePassword.setPassword(userChangePasswordDTO.getNewPassword());
+        userDao.updateUser(userToChangePassword);
+    }
 }
