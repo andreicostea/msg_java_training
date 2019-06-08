@@ -4,41 +4,64 @@
 
   <div>
     <mat-form-field>
-      <input formControlName="newFirstName"
-             matInput
-             placeholder="New first name">
+      <label>
+        <input formControlName="newFirstName"
+               matInput
+               placeholder="New first name"
+               required>
+      </label>
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field>
-      <input formControlName="newLastName"
-             matInput
-             placeholder="New last name">
+      <label>
+        <input formControlName="newLastName"
+               matInput
+               placeholder="New last name"
+               required>
+      </label>
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field>
-      <input formControlName="newEmail"
-             matInput
-             placeholder="New email">
+      <label>
+        <input formControlName="newEmail"
+               matInput
+               placeholder="New email"
+               required>
+      </label>
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field>
-      <input formControlName="newMobileNumber"
-             matInput
-             placeholder="New mobile number">
+      <label>
+        <input formControlName="newMobileNumber"
+               matInput
+               placeholder="New mobile number">
+      </label>
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field>
-      <input formControlName="newStatus"
-             matInput
-             placeholder="New status">
+      <label>
+        <input formControlName="newStatus"
+               matInput
+               placeholder="New status"
+               required>
+      </label>
+    </mat-form-field>
+  </div>
+
+  <div>
+    {{selectedRoles}}
+    <mat-form-field>
+      <mat-select multiple placeholder="Roles" required>
+        <mat-option *ngFor="let role of roles" (click)="handleRoleSelected(role)">{{role}}</mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
 

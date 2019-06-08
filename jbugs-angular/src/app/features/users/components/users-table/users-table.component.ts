@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {User, UserUpdate} from "../../models/users.model";
 import {UsersService} from "../../services/users.service";
 import {MatDialog, MatDialogConfig} from "@angular/material";
@@ -13,7 +13,10 @@ import {UsersUpdateDialogComponent} from "../users-update-dialog/users-update-di
 export class UsersTableComponent implements OnInit {
   displayedColumns: string[] = ["id", "firstName", "lastName", "email", "mobileNumber", "actions"];
 
-  public dataSource: User[] = this.userService.loadAllUsers();
+  @Input()
+  dataSource: User[];
+
+ //public dataSource: User[] = this.userService.loadAllUsers();
 
   // dataSource = new MatTableDataSource<User>(this.userService.loadAllUsers());
 
@@ -36,9 +39,9 @@ export class UsersTableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(updatedUser => {
       if (updatedUser) {
-        console.log(updatedUser);
-        console.log(user.email);
-        this.userService.updateUser(new UserUpdate(updatedUser.newFirstName, updatedUser.newLastName, user.email, updatedUser.newEmail, updatedUser.newMobileNumber, updatedUser.newStatus)).subscribe();
+        // console.log(updatedUser);
+        // console.log(user.email);
+        this.userService.updateUser(new UserUpdate(updatedUser.newFirstName, updatedUser.newLastName, user.email, updatedUser.newEmail, updatedUser.newMobileNumber, updatedUser.newStatus, updatedUser.newRoles)).subscribe();
       }
     });
   }

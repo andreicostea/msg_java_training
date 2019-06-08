@@ -9,18 +9,24 @@ import {User} from "../../models/users.model";
 })
 export class UsersComponent implements OnInit {
 
-  user: User;
+  users: User[];
 
   constructor(private userService: UsersService) {
   }
 
-  get currentUser(): string {
-    return this.user ? JSON.stringify(this.user) : '';
-  }
-
   ngOnInit() {
-
+    this.loadUsers();
   }
 
+  refresh() {
+    this.loadUsers();
+  }
 
+  private loadUsers() {
+    this.userService.loadAllUsers()
+      .subscribe(
+        users => this.users = users,
+        error => alert(error)
+      )
+  }
 }
