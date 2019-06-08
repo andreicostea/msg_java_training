@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from "@angular/forms";
 import {ErrorStateMatcher} from "@angular/material";
 import {UsersService} from "../../../users/services/users.service";
+import {AuthenticationService} from "../../../../core/services/authentication/authentication.service";
+import {UserChangePasswordDTO} from "../../../users/models/users.model";
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -24,14 +26,14 @@ export class ChangePasswordComponent {
   changePasswordForm: FormGroup;
   matcher = new MyErrorStateMatcher();
 
-  constructor(private formBuilder: FormBuilder, private userService: UsersService) {
+  constructor(private formBuilder: FormBuilder, private userService: UsersService, private authService: AuthenticationService) {
     this.changePasswordForm = this.formBuilder.group({
       password: ['', [Validators.required]],
       confirmPassword: ['']
-    }, {validator: this.checkPasswords});
+    }, {validator: ChangePasswordComponent.checkPasswords});
   }
 
-  private checkPasswords(group: FormGroup) { // here we have the 'passwords' group
+  private static checkPasswords(group: FormGroup) { // here we have the 'passwords' group
     let pass = group.controls.password.value;
     let confirmPass = group.controls.confirmPassword.value;
 
@@ -39,6 +41,10 @@ export class ChangePasswordComponent {
   }
 
   onSubmit() {
-    this.userService.
+    let loggedInUsername = this.authService.getUserName();
+    let newPassword = this.changePasswordForm.controls.password.value;
+
+    let newPasswordDTO = new UserChangePasswordDTO(loggedInUsername, newPassword);
+    this.userService.changePassword(newPasswordDTO).subscribe();
   }
 }

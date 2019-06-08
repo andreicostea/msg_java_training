@@ -4,7 +4,7 @@ import {map} from "rxjs/operators";
 
 import {environment} from "../../../../environments/environment";
 import {BackendService} from "../../../core/services/backend/backend.service";
-import {Role, User, UserJSON, UserUpdate} from "../models/users.model";
+import {Role, User, UserChangePasswordDTO, UserJSON, UserUpdate} from "../models/users.model";
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +54,10 @@ export class UsersService {
 
   deactivateUser(id: number): Observable<any> {
     return this.backendService.delete(`${environment.baseUrl}/${this.usersEndpoint}/${id}`);
+  }
+
+  changePassword(newPassword: UserChangePasswordDTO) {
+    return this.backendService.patch(`${environment.baseUrl}/${this.usersEndpoint}/password`, newPassword);
   }
 
   loadAllUsers(): Observable<User[]> {
