@@ -39,9 +39,9 @@ export class UsersTableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(updatedUser => {
       if (updatedUser) {
-        console.log(updatedUser);
-        console.log(user.email);
-        this.userService.updateUser(new UserUpdate(updatedUser.newFirstName, updatedUser.newLastName, user.email, updatedUser.newEmail, updatedUser.newMobileNumber, updatedUser.newStatus)).subscribe();
+        // console.log(updatedUser);
+        // console.log(user.email);
+        this.userService.updateUser(new UserUpdate(updatedUser.newFirstName, updatedUser.newLastName, user.email, updatedUser.newEmail, updatedUser.newMobileNumber, updatedUser.newStatus, updatedUser.newRoles)).subscribe();
       }
     });
   }

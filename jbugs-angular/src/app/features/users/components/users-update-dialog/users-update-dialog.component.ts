@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {User} from "../../models/users.model";
 import {FormBuilder, FormGroup} from "@angular/forms";
-
+// todo: form validation
 @Component({
   selector: 'app-users-update-dialog',
   templateUrl: './users-update-dialog.component.html',
@@ -12,6 +12,8 @@ export class UsersUpdateDialogComponent implements OnInit {
 
   form: FormGroup;
   user: User;
+  roles: string[] = ["ADMINISTRATOR", "PROJECT MANAGER", "TEST MANAGER", "DEVELOPER", "TESTER"];
+  selectedRoles: string[] = [];
 
   constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<UsersUpdateDialogComponent>, @Inject(MAT_DIALOG_DATA) data) {
     this.user = data;
@@ -20,7 +22,8 @@ export class UsersUpdateDialogComponent implements OnInit {
       newLastName: [this.user.lastName],
       newEmail: [this.user.email],
       newMobileNumber: [this.user.mobileNumber],
-      newStatus: [this.user.status]
+      newStatus: [this.user.status],
+      newRoles: [this.selectedRoles]
     });
   }
 
@@ -33,5 +36,9 @@ export class UsersUpdateDialogComponent implements OnInit {
 
   update() {
     this.dialogRef.close(this.form.value);
+  }
+
+  handleRoleSelected(role: string) {
+    this.selectedRoles.push(role);
   }
 }
