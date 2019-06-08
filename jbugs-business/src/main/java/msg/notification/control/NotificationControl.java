@@ -60,7 +60,7 @@ public class NotificationControl {
 
     public void deleteNotificationsPeriodically() {
         Calendar c = new GregorianCalendar();
-        c.add(Calendar.DATE, -30);
+        c.add(Calendar.DATE,-30);
         java.util.Date dt = c.getTime();
         java.sql.Date dtSql = new java.sql.Date(dt.getTime());
         System.out.println(dtSql);

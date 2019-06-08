@@ -14,9 +14,9 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "notifications")
-@NamedQueries({@NamedQuery(name = NotificationEntity.NOTIFICATION_FIND_USER_ID, query = "SELECT n from NotificationEntity n where n.userID =:id"),
+@NamedQueries({@NamedQuery(name = NotificationEntity.NOTIFICATION_FIND_USER_ID, query = "SELECT n from NotificationEntity n where n.userID =:id order by n.date desc "),
         @NamedQuery(name = NotificationEntity.NOTIFICATION_FIND_BY_NOTIFICATION_TYPE, query = "SELECT n from NotificationEntity n  where n.userID =:id and n.notificationType =:notificationType"),
-        @NamedQuery(name = NotificationEntity.DELETE_NOTIFICATIONS_PERIODICALLY, query = "DELETE FROM NotificationEntity n WHERE n.date =:currentDate")
+        @NamedQuery(name = NotificationEntity.DELETE_NOTIFICATIONS_PERIODICALLY, query = "DELETE FROM NotificationEntity n WHERE n.date <:currentDate")
 })
 public class NotificationEntity extends BaseEntity<Long> {
 
@@ -34,7 +34,7 @@ public class NotificationEntity extends BaseEntity<Long> {
     @Column(name = "message")
     private String message;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date")
     private Date date;
 

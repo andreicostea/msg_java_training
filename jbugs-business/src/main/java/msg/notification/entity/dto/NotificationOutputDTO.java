@@ -17,7 +17,7 @@ public class NotificationOutputDTO  //e de output
     private Long id;
     private String urlBug;
     private String message;
-    private Date date;
+    private String date;
     private NotificationType notificationType;
 
     public NotificationOutputDTO() {
@@ -48,11 +48,11 @@ public class NotificationOutputDTO  //e de output
         this.message = message;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
