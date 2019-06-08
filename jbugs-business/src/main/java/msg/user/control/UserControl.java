@@ -13,6 +13,7 @@ import msg.notification.boundary.notificationParams.NotificationParamsUserDelete
 import msg.notification.boundary.notificationParams.NotificationParamsWelcomeUser;
 import msg.notification.entity.NotificationType;
 import msg.permission.PermissionEntity;
+import msg.role.control.RoleControl;
 import msg.role.entity.RoleEntity;
 import msg.user.MessageCatalog;
 import msg.user.entity.UserEntity;
@@ -44,6 +45,9 @@ public class UserControl {
 
     @EJB
     private NotificationFacade notificationFacade;
+
+    @EJB
+    private RoleControl roleControl;
 
 
     public UserOutputDto authenticateUser(UserLoginDTO userLoginDTO) {
@@ -286,7 +290,7 @@ public class UserControl {
         userToUpdate.setEmail(userUpdateDTO.getEmail());
         userToUpdate.setMobileNumber(userUpdateDTO.getMobileNumber());
         userToUpdate.setStatus(userUpdateDTO.getStatus());
-//        userToUpdate.setRoles(roleControl.getRolesByTypeList(userUpdateDTO.getRoles()));
+        userToUpdate.setRoles(roleControl.getRolesByTypeList(userUpdateDTO.getRoles()));
         userDao.updateUser(userToUpdate);
         // send notification
         try {

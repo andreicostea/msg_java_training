@@ -15,17 +15,18 @@ export class UserUpdate {
   emailBeforeUpdate: string;
   email: string;
   mobileNumber: string;
-  // roles: string[];
+  roles: string[];
   // token: string;
   status: number;
 
-  constructor(firstName: string, lastName: string, emailBeforeUpdate: string, email: string, mobileNumber: string, status: number) {
+  constructor(firstName: string, lastName: string, emailBeforeUpdate: string, email: string, mobileNumber: string, status: number, roles: string[]) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.emailBeforeUpdate = emailBeforeUpdate;
     this.email = email;
     this.mobileNumber = mobileNumber;
     this.status = status;
+    this.roles = roles;
   }
 }
 
@@ -34,6 +35,7 @@ export class Role {
   id: number;
   type: string;
 }
+
 
 export class User {
   id: number;
@@ -57,19 +59,6 @@ export class User {
     termin.roles = json.roles;
     termin.token = json.token;
     return termin;
-  }
-
-  static toJSON(user: User): UserJSON {
-    return <UserJSON>{
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      userName: user.userName,
-      email: user.email,
-      roles: user.roles,
-      token: user.token,
-      mobileNumber: user.mobileNumber,
-    };
   }
 
   static createEmpty(): User {
