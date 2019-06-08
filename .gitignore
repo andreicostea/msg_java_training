@@ -108,3 +108,9 @@ yarn-error.log
 
 # User specific bazel settings
 .bazelrc.user
+
+jbugs-client/target/jbugs-client-1\.0\.0-SNAPSHOT\.war
+
+jbugs-client/target/maven-archiver/pom\.properties
+
+jbugs-client/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles\.lst
