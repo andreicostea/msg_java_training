@@ -39,7 +39,6 @@ export class BugsTableComponentComponent implements OnInit {
     //
     this.bugService.loadAllBugs().subscribe(bug => {
       this.bugs = bug;
-      console.log(this.bugs);
       this.dataSource = new MatTableDataSource<Bug>(this.bugs);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;

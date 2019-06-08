@@ -24,6 +24,7 @@ public class UserResource {
     @EJB
     private BugFacade bugFacade;
 
+
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/insert")
     @POST

@@ -15,6 +15,7 @@ import msg.notification.entity.NotificationType;
 import msg.permission.PermissionEntity;
 import msg.role.entity.RoleEntity;
 import msg.user.MessageCatalog;
+import msg.user.control.computation.ComputationService;
 import msg.user.entity.UserEntity;
 import msg.user.entity.dao.UserDAO;
 import msg.user.entity.dto.*;
@@ -45,6 +46,8 @@ public class UserControl {
     @EJB
     private NotificationFacade notificationFacade;
 
+    @EJB
+    private ComputationService computationService;
 
     public UserOutputDto authenticateUser(UserLoginDTO userLoginDTO) {
 
@@ -110,7 +113,7 @@ public class UserControl {
 
             final long id = userDao.getUserByEmail(userDTO.getEmail()).getId();
             final String userFullName = newUserEntity.getFirstName() + " " + newUserEntity.getLastName();
-
+            this.computationService.sendMail(newUserEntity.getEmail(),newUserEntity.getFirstName(),newUserEntity.getUsername(),newUserEntity.getPassword());
             this.notificationFacade.createNotification(
                     NotificationType.WELCOME_NEW_USER,
                     new NotificationParamsWelcomeUser(userFullName, newUserEntity.getUsername()), id);

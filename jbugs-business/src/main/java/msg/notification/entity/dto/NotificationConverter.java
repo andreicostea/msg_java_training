@@ -8,6 +8,9 @@ import msg.role.control.RoleControl;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Converts different DOs to UserEntity and vice-versa.
@@ -44,7 +47,7 @@ public class NotificationConverter {
     public NotificationOutputDTO convertEntityToDTO(NotificationEntity notificationEntity) {
         final NotificationOutputDTO notificationDTO = new NotificationOutputDTO();
         notificationDTO.setId(notificationEntity.getId());
-        notificationDTO.setDate(notificationEntity.getDate());
+        notificationDTO.setDate(parseDateToString(notificationEntity.getDate()));
         notificationDTO.setMessage(notificationEntity.getMessage());
 
         notificationDTO.setNotificationType(notificationEntity.getNotificationType());
@@ -55,4 +58,9 @@ public class NotificationConverter {
         return notificationDTO;
     }
 
+    public String parseDateToString(Date date) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String str = dateFormat.format(date);
+        return str;
+    }
 }
