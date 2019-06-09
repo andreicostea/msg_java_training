@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {User} from "../../models/users.model";
 import {FormBuilder, FormGroup} from "@angular/forms";
-// todo: form validation
+
 @Component({
   selector: 'app-users-update-dialog',
   templateUrl: './users-update-dialog.component.html',

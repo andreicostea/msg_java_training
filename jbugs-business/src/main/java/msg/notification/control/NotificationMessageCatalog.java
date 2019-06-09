@@ -11,7 +11,7 @@ import java.text.MessageFormat;
 public class NotificationMessageCatalog {
 
     private static final String WELCOME_NEW_USER = "Bun venit {0},username-ul tau este {1}!";
-    private static final String USER_DELETED_NOTIFICATIONS = "Userul {0} a fost sters";
+    private static final String USER_DELETED_NOTIFICATIONS = "{0}, ai fost dezactivat";
     private static final String USER_UPDATED_TARGET = " Datele tale au fost modificate de catre {0}";
     private static final String USER_UPDATED_SOURCE = "Ai modificat datele lui {0}";
     private static final String BUG_UPDATED_NEW_SOURCE = "{0}, bug-ul {1} a fost creat, si asignat utilizatorului {2}!";

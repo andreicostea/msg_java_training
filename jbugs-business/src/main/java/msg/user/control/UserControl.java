@@ -136,7 +136,6 @@ public class UserControl {
      * @param lastName  the last name of the user. mandatory
      * @return a unique identifier for the input user.
      */
-    //TODO Replace with logic based on the specification
     private String createUserName(final String firstName, final String lastName) {
         String username = "";
 
