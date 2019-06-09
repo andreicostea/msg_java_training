@@ -38,11 +38,11 @@ public class UserEntity extends BaseEntity<Long> {
     public static final String USER_FIND_BY_USERNAME = "UserEntity.findByUsername";
     public static final String GET_USERS_BY_PERMISSIONS = "UserEntity.findByPermissions";
     @OneToMany(mappedBy = "userEntity")
-    Set<CommentEntity> comments;
+    private Set<CommentEntity> comments;
     @OneToMany(mappedBy = "assignedTo")
-    Set<BugEntity> assigned;
+    private Set<BugEntity> assigned;
     @OneToMany(mappedBy = "createdBy")
-    Set<BugEntity> created;
+    private Set<BugEntity> created;
     @Column(name = "first_name", nullable = false)
     //@Pattern(regexp="^(?=\\s*\\S).*$", message = "{invalid.first_name}") //for empty or spaces without data
     private String firstName;

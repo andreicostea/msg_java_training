@@ -44,5 +44,6 @@
   </ng-container>
 
   <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
-  <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns;" [ngStyle]="row.status == 0 && {'background-color': 'lightgrey'}"
+      mat-row></tr>
 </table>

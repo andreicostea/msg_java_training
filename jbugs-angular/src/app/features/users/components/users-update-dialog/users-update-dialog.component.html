@@ -40,7 +40,8 @@
       <label>
         <input formControlName="newMobileNumber"
                matInput
-               placeholder="New mobile number">
+               placeholder="New mobile number"
+               required>
       </label>
     </mat-form-field>
   </div>
@@ -57,10 +58,9 @@
   </div>
 
   <div>
-    {{selectedRoles}}
     <mat-form-field>
-      <mat-select multiple placeholder="Roles" required>
-        <mat-option *ngFor="let role of roles" (click)="handleRoleSelected(role)">{{role}}</mat-option>
+      <mat-select formControlName="newRoles" multiple placeholder="Roles" required>
+        <mat-option *ngFor="let role of roles" [value]="role" (click)="handleRoleSelected(role)">{{role}}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
@@ -69,5 +69,5 @@
 
 <mat-dialog-actions>
   <button (click)="close()" class="mat-raised-button">Cancel</button>
-  <button (click)="update()" class="mat-raised-button mat-primary">Update</button>
+  <button (click)="update()" class="mat-raised-button mat-primary" [disabled]="form.invalid">Update</button>
 </mat-dialog-actions>

@@ -13,12 +13,12 @@ import {
   MatCheckboxModule,
   MatDialogModule,
   MatDividerModule,
-  MatFormFieldModule,
+  MatFormFieldModule, MatIconModule,
   MatInputModule,
   MatListModule,
-  MatOptionModule,
+  MatOptionModule, MatPaginatorModule,
   MatRadioModule,
-  MatSelectModule,
+  MatSelectModule, MatSnackBarModule,
   MatTableModule
 } from "@angular/material";
 import {UsersTableComponent} from "./components/users-table/users-table.component";
@@ -50,7 +50,10 @@ import {UsersTableComponent} from "./components/users-table/users-table.componen
     MatListModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule,
+    MatSnackBarModule,
+    MatPaginatorModule
   ],
 
 })

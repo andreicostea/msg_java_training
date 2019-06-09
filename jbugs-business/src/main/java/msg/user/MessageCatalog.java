@@ -46,7 +46,10 @@ public class MessageCatalog {
     public static final ExceptionMessage USER_FIELDS_MISSING
             = new ExceptionMessage("USER-06", "Some fields are missing");
 
-   
+    public static final ExceptionMessage USER_HAS_BUGS_ASSIGNED
+            = new ExceptionMessage("USER-13", "The user has bugs assigned!");
+
+
 
     public static final ExceptionMessage INVALID_OR_NON_EXISTENT_TOKEN
             = new ExceptionMessage("USER-07", "You're not authorized for this operation.");
@@ -57,8 +60,6 @@ public class MessageCatalog {
     public static final ExceptionMessage BUG_INVALID_PATTERN
             = new ExceptionMessage("BUG-01", "The pattern is invalid!");
 
-    public static final ExceptionMessage USER_WITH_THIS_ID_DONT_HAVE_BUGS
-            = new ExceptionMessage("USER-07", "This user don t have any bugs");
     public static final ExceptionMessage USER_WITH_THIS_ROLE_DONT_HAVE_PERMISSIONS
             = new ExceptionMessage("USER-08", "The user with this role don t have any permissions");
 
