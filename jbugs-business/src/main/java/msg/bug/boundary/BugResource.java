@@ -41,7 +41,6 @@ public class BugResource {
             }else{
                 facade.updateBug(input, StatusUpdate.limitedStatusValue);
             }
-
             return Response.ok().build();
         } else {
             return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
@@ -51,12 +50,11 @@ public class BugResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll(@Context SecurityContext securityContext) {
-//        if (securityContext.isUserInRole(PermissionType.BUG_MANAGEMENT)) {
+        if (securityContext.isUserInRole(PermissionType.BUG_MANAGEMENT)) {
         return Response.status(200).entity(facade.getAll()).build();
-//        } else {
-//            return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
-
-//        }
+        } else {
+            return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
+        }
     }
 
     @Produces(MediaType.APPLICATION_JSON)
@@ -65,7 +63,6 @@ public class BugResource {
     public Response getStatusLimited(@Context SecurityContext securityContext, @PathParam("status") String status) {
         if (securityContext.isUserInRole(PermissionType.BUG_MANAGEMENT)) {
             return Response.ok(facade.getStatusBugLimited(status)).build();
-
         } else
             return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
     }
@@ -76,6 +73,16 @@ public class BugResource {
     public Response getStatusAll(@Context SecurityContext securityContext, @PathParam("status") String status) {
         if (securityContext.isUserInRole(PermissionType.BUG_CLOSED)) {
             return Response.ok(facade.getStatusBugComplete(status)).build();
+        } else
+            return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
+    }
+    @Produces(MediaType.APPLICATION_JSON)
+
+    @Path("/statistics")
+    @GET
+    public Response getStatistics(@Context SecurityContext securityContext) {
+        if (securityContext.isUserInRole(PermissionType.BUG_MANAGEMENT)) {
+            return Response.ok(facade.getStatistics()).build();
         } else
             return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
     }

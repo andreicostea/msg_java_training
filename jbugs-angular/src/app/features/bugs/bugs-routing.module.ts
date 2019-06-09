@@ -4,6 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {BugsComponent} from "./containers/bugs/bugs.component";
 
 import {BugAddComponent} from "./containers/bug-add/bug-add.component";
+import {BugsStatisticsComponent} from "./components/bugs-statistics/bugs-statistics.component";
 
 const routes: Routes = [
   {
@@ -14,6 +15,9 @@ const routes: Routes = [
   {
     path: 'insert',
     component: BugAddComponent
+  }, {
+    path: 'statistics',
+    component: BugsStatisticsComponent
   }
 ];
 

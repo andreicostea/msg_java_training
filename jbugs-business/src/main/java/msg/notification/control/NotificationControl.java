@@ -101,15 +101,17 @@ public class NotificationControl {
         final NotificationEntity notificationEntityS = new NotificationEntity();
         final NotificationEntity notificationEntityT = new NotificationEntity();
         notificationEntityS.setMessage(
-                NotificationMessageCatalog.getFullMessageForBugCreateSource(
+                NotificationMessageCatalog.getFullMessageForBugUpdateSource(
                         messageParams.getUsernameSource(),
-                        messageParams.getUsernameTarget(),
-                        messageParams.getBug().toString()));
+                        messageParams.getBug().getTitle(),
+                        messageParams.getBug().getSeverity(),
+                        messageParams.getUsernameTarget()));
         notificationEntityT.setMessage(
-                NotificationMessageCatalog.getFullMessageForBugCreateTarget(
-                        messageParams.getUsernameTarget(),
+                NotificationMessageCatalog.getFullMessageForBugUpdateTarget(
                         messageParams.getUsernameSource(),
-                        messageParams.getBug().toString()));
+                        messageParams.getBug().getTitle(),
+                        messageParams.getBug().getSeverity(),
+                        messageParams.getUsernameTarget()));
         notificationEntityS.setNotificationType(NotificationType.BUG_UPDATED);
         notificationEntityT.setNotificationType(NotificationType.BUG_UPDATED);
         //todo update with correct link when routing is available
@@ -131,17 +133,19 @@ public class NotificationControl {
         final NotificationEntity notificationEntityS = new NotificationEntity();
         final NotificationEntity notificationEntityT = new NotificationEntity();
         notificationEntityS.setMessage(
-                NotificationMessageCatalog.getFullMessageForBugUpdateSource(
+                NotificationMessageCatalog.getFullMessageForBugCreateSource(
                         messageParams.getUsernameSource(),
-                        messageParams.getUsernameTarget(),
-                        messageParams.getBug().toString()));
-//        notificationEntityT.setMessage(
-//                NotificationMessageCatalog.getFullMessageForBugUpdateTarget(
-//                        messageParams.getUsernameTarget(),
-//                        messageParams.getUsernameSource(),
-//                        messageParams.getBug().toString()));
+                        messageParams.getBug().getTitle(),
+                        messageParams.getBug().getSeverity(),
+                        messageParams.getUsernameTarget()));
+        notificationEntityT.setMessage(
+                NotificationMessageCatalog.getFullMessageForBugCreateTarget(
+                        messageParams.getUsernameSource(),
+                        messageParams.getBug().getTitle(),
+                        messageParams.getBug().getSeverity(),
+                        messageParams.getUsernameTarget()));
         notificationEntityS.setNotificationType(NotificationType.BUG_CREATED);
-//        notificationEntityT.setNotificationType(NotificationType.BUG_CREATED);
+        notificationEntityT.setNotificationType(NotificationType.BUG_CREATED);
         //todo update with correct link when routing is available
         notificationEntityS.setUrl(SERVER_ADDRESS + "someOtherInfo");
         notificationEntityS.setDate(new Date());
@@ -150,10 +154,10 @@ public class NotificationControl {
 //        notificationEntityT.setDate(new Date());
 //        notificationEntityT.setUserID(userTargetID);
         this.notificationDao.createNotification(notificationEntityS);
-//        this.notificationDao.createNotification(notificationEntityT);
+         this.notificationDao.createNotification(notificationEntityT);
     }
 
-    private void createBugStatusUpdatedNotification(NotificationParams params, long userSourceID, long userTargetID) {
+    private void createBugStatusUpdatedNotification(NotificationParams params, long userSourceID,long userTargetID) {
         if (!(params instanceof NotificationParamsBugStatusUpdate)) {
             throw new BusinessException(MessageCatalog.MESSAGE_PARAMS_AND_TYPE_ARE_INCOMPATIBLE);
         }
@@ -180,9 +184,8 @@ public class NotificationControl {
         notificationEntityS.setUserID(userSourceID);
         notificationEntityT.setUrl(SERVER_ADDRESS + "someOtherInfo");
         notificationEntityT.setDate(new Date());
-        notificationEntityT.setUserID(userTargetID);
         this.notificationDao.createNotification(notificationEntityS);
-        this.notificationDao.createNotification(notificationEntityT);
+//        this.notificationDao.createNotification(notificationEntityT);
     }
 
     private void createBugClosedNotification(final NotificationParams params, final long userSourceID, final long userTargetID) {
