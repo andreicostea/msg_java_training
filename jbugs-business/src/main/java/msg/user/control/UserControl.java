@@ -117,7 +117,7 @@ public class UserControl {
 
             final long id = userDao.getUserByEmail(userDTO.getEmail()).getId();
             final String userFullName = newUserEntity.getFirstName() + " " + newUserEntity.getLastName();
-            this.computationService.sendMail(newUserEntity.getEmail(),newUserEntity.getFirstName(),newUserEntity.getUsername(),newUserEntity.getPassword());
+            this.computationService.sendMail(newUserEntity.getEmail(), newUserEntity.getFirstName(), newUserEntity.getUsername(), newUserEntity.getPassword());
             this.notificationFacade.createNotification(
                     NotificationType.WELCOME_NEW_USER,
                     new NotificationParamsWelcomeUser(userFullName, newUserEntity.getUsername()), id);
@@ -294,18 +294,18 @@ public class UserControl {
         userToUpdate.setStatus(userUpdateDTO.getStatus());
         userToUpdate.setRoles(roleControl.getRolesByTypeList(userUpdateDTO.getRoles()));
         userDao.updateUser(userToUpdate);
-        // send notification
         this.notificationFacade.createNotification(NotificationType.USER_UPDATED, new NotificationParamsUserChanges(userUpdateDTO.getWhoUpdatedHim(), userToUpdate.getUsername()), userDao.getUserByUsername(userUpdateDTO.getWhoUpdatedHim()).getId(), userToUpdate.getId());
     }
 
-    // todo: deactivate only if he has no tasks
     public void deactivateUser(long id) {
         UserEntity userToDeactivate = userDao.getUserById(id);
-        userToDeactivate.setStatus(0);
-        userDao.updateUser(userToDeactivate);
-        this.notificationFacade.createNotification(NotificationType.USER_DELETED, new NotificationParamsUserDeleted(userToDeactivate.getUsername()), id);
-        // if no bugs assigned then deactivate
-        // else throw exception
+        if (userToDeactivate.getAssigned().isEmpty()) {
+            userToDeactivate.setStatus(0);
+            userDao.updateUser(userToDeactivate);
+            this.notificationFacade.createNotification(NotificationType.USER_DELETED, new NotificationParamsUserDeleted(userToDeactivate.getUsername()), id);
+        } else {
+            throw new BusinessException(MessageCatalog.USER_HAS_BUGS_ASSIGNED);
+        }
     }
 
     public void changePassword(UserChangePasswordDTO userChangePasswordDTO) {
