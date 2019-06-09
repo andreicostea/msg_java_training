@@ -1,10 +1,10 @@
 <form #f='ngForm'>
 
   <mat-card class="example-card">
-<!--  <div mat-dialog-content>-->
+    <!--  <div mat-dialog-content>-->
 
 
-    <mat-card-title i18n="InsertingUser|The insetinguser button">Insert User</mat-card-title>
+    <mat-card-title i18n="@@templatesTitle">Insert User</mat-card-title>
     <mat-divider></mat-divider>
     <br>
 
@@ -22,9 +22,7 @@
                type="text" i18n="@@templatesTitle">
         <mat-error *ngIf="firstName.touched && firstName.invalid"
                    class="alert alert-danger">
-          <mat-error *ngIf="firstName.errors.required" i18n="fieldrequired|The field is required">The field is
-            required
-          </mat-error>
+          <mat-error *ngIf="firstName.errors.required" i18n="@@templatesTitle">The field is required</mat-error>
         </mat-error>
       </mat-form-field>
 
@@ -42,8 +40,7 @@
 
         <mat-error *ngIf="lastName.touched && lastName.invalid"
                    class="alert alert-danger">
-          <mat-error *ngIf="lastName.errors.required" i18n="fieldrequired|The field is required">The field is required
-          </mat-error>
+          <mat-error *ngIf="lastName.errors.required" i18n="@@templatesTitle">The field is required</mat-error>
 
         </mat-error>
       </mat-form-field>
@@ -64,11 +61,8 @@
 
       <mat-error *ngIf="mobileNumber.touched && mobileNumber.invalid"
                  class="alert alert-danger">
-        <mat-error *ngIf="mobileNumber.errors.required" i18n="fieldrequired|The field is required">The field is
-          required
-        </mat-error>
-        <mat-error *ngIf="mobileNumber.errors.pattern" i18n="numberinvalid|The number is invalid">Number is invalid
-        </mat-error>
+        <mat-error *ngIf="mobileNumber.errors.required" i18n="@@templatesTitle">The field is required</mat-error>
+        <mat-error *ngIf="mobileNumber.errors.pattern" i18n="@@templatesTitle">Number is invalid</mat-error>
 
       </mat-error>
     </mat-form-field>
@@ -90,11 +84,8 @@
 
       <mat-error *ngIf="email.touched && email.invalid "
                  class="alert alert-danger">
-        <mat-error *ngIf="email.errors.required" i18n="fieldrequired|The field is required">The field is required
-        </mat-error>
-        <mat-error *ngIf="email.errors.pattern" i18n="fieldrequiredmsg|The field msg group is required">Requires a msg
-          group email !
-        </mat-error>
+        <mat-error *ngIf="email.errors.required" i18n="@@templatesTitle">The field is required</mat-error>
+        <mat-error *ngIf="email.errors.pattern" i18n="@@templatesTitle">Requires a msg group email !</mat-error>
 
       </mat-error>
     </mat-form-field>
@@ -110,23 +101,23 @@
       </mat-select>
 
 
-      </mat-form-field>
+    </mat-form-field>
   </mat-card>
 
-    <mat-divider></mat-divider>
+  <mat-divider></mat-divider>
 
-    <button mat-raised-button
-            (click)="insert()"
-            [disabled]="f.invalid" i18n="Submit|The submit field is required">Submit
-    </button>
-<!--    </mat-card-content>-->
+  <button mat-raised-button
+          (click)="insert()"
+          [disabled]="f.invalid" i18n="@@templatesTitle">Submit
+  </button>
+  <!--    </mat-card-content>-->
 
 
-    <!--  <p>-->
-    <!--    {{f.value | json}}-->
-    <!--  </p>-->
+  <!--  <p>-->
+  <!--    {{f.value | json}}-->
+  <!--  </p>-->
 
-<!--  </div>-->
+  <!--  </div>-->
 
 </form>
 

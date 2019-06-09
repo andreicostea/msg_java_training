@@ -19,11 +19,11 @@
   </mat-form-field>
 </div>
 <div *ngIf="showButton()">
-  <button mat-raised-button ng-click name="fonstStyle" aria-label="Font Style"
-          value="permission.id" (click)="addDialog()" i18n="Add|The Add button">Add
-  </button>
-  <button mat-raised-button ng-click name="fontStyle" aria-label="Font Style"
-          value="permission.id" (click)="deletePermission()" i18n="Remove|The remove button">Remove
-  </button>
-
+  <mat-button-toggle-group ng-click name="fonstStyle" aria-label="Font Style">
+    <mat-button-toggle value="permission.id" (click)="addDialog()" i18n="Add|The Add button">Add</mat-button-toggle>
+  </mat-button-toggle-group>
+  <mat-button-toggle-group ng-click name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle value="permission.id" (click)="deletePermission()" i18n="Remove|The remove button">Remove
+    </mat-button-toggle>
+  </mat-button-toggle-group>
 </div>
