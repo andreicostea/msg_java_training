@@ -31,14 +31,18 @@ const routes: Routes = [
 
       },
       {
+        path: 'notifications',
+        loadChildren: 'src/app/features/notifications/notifications.module#NotificationsModule'
+      },
+      {
+        path: 'view-profile',
+        loadChildren: 'src/app/features/view-profile/view-profile.module#ViewProfileModule'
+      },
+      {
         path: 'users',
         loadChildren: 'src/app/features/users/users.module#UsersModule',
         canActivate: [RoleGuardService],
         data: {permission: 'USER_MANAGEMENT'},
-      },
-      {
-        path: 'notifications',
-        loadChildren: 'src/app/features/notifications/notifications.module#NotificationsModule'
       },
       {
         path: 'bugs',

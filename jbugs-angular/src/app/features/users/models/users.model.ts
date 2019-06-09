@@ -1,42 +1,3 @@
-export interface UserJSON {
-  id: number;
-  firstName: string;
-  lastName: string;
-  userName: string;
-  email: string;
-  mobileNumber: string;
-  roles: string[];
-  token: string;
-}
-
-export class UserUpdate {
-  firstName: string;
-  lastName: string;
-  emailBeforeUpdate: string;
-  email: string;
-  mobileNumber: string;
-  roles: string[];
-  // token: string;
-  status: number;
-
-  constructor(firstName: string, lastName: string, emailBeforeUpdate: string, email: string, mobileNumber: string, status: number, roles: string[]) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.emailBeforeUpdate = emailBeforeUpdate;
-    this.email = email;
-    this.mobileNumber = mobileNumber;
-    this.status = status;
-    this.roles = roles;
-  }
-}
-
-
-export class Role {
-  id: number;
-  type: string;
-}
-
-
 export class User {
   id: number;
   firstName: string;
@@ -60,9 +21,53 @@ export class User {
     termin.token = json.token;
     return termin;
   }
+}
 
-  static createEmpty(): User {
-    const user = new User();
-    return user;
+
+export interface UserJSON {
+  id: number;
+  firstName: string;
+  lastName: string;
+  userName: string;
+  email: string;
+  mobileNumber: string;
+  roles: string[];
+  token: string;
+}
+
+
+export class UserUpdate {
+  firstName: string;
+  lastName: string;
+  emailBeforeUpdate: string;
+  email: string;
+  mobileNumber: string;
+  roles: string[];
+  // token: string;
+  status: number;
+
+  constructor(firstName: string, lastName: string, emailBeforeUpdate: string, email: string, mobileNumber: string, status: number, roles: string[]) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.emailBeforeUpdate = emailBeforeUpdate;
+    this.email = email;
+    this.mobileNumber = mobileNumber;
+    this.status = status;
+    this.roles = roles;
   }
+}
+
+export class UserChangePasswordDTO {
+  username: string;
+  newPassword: string;
+
+  constructor(username: string, newPassword: string) {
+    this.username = username;
+    this.newPassword = newPassword;
+  }
+}
+
+export class Role {
+  id: number;
+  type: string;
 }
