@@ -9,7 +9,8 @@
   <button [matMenuTriggerFor]="menu" class="menu" mat-button>Menu</button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item routerLink="bugs/statistics" routerLinkActive="active current">View Bugs Statistics</button>
-    <button mat-menu-item routerLink="notifications" routerLinkActive="active current">View Notifications</button>
+    <button mat-menu-item routerLink="notifications" routerLinkActive="active current">View notifications</button>
+    <button mat-menu-item routerLink="view-profile" routerLinkActive="active current">View profile</button>
     <button (click)="logout()" mat-menu-item>Logout</button>
   </mat-menu>
 </mat-toolbar>

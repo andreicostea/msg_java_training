@@ -46,7 +46,6 @@ public class UserDAO {
     public UserEntity updateUser(UserEntity user) {
         em.merge(user);
         return user;
-
     }
 
     public UserEntity getUserByEmail(String email) {
@@ -62,7 +61,7 @@ public class UserDAO {
         return (count > 0);
     }
 
-    public UserEntity getUserByUsername(String username) throws Exception {
+    public UserEntity getUserByUsername(String username) {
         return em.createNamedQuery(UserEntity.USER_FIND_BY_USERNAME, UserEntity.class)
                 .setParameter("username", username)
                 .getSingleResult();
@@ -73,7 +72,7 @@ public class UserDAO {
                 .getResultList();
     }
 
-    public UserEntity getUserById(long id) throws Exception {
+    public UserEntity getUserById(long id) {
         return em.createNamedQuery(UserEntity.USER_FIND_BY_ID, UserEntity.class)
                 .setParameter("id", id)
                 .getSingleResult();

@@ -4,10 +4,7 @@
 package msg.user.boundary;
 
 import msg.user.control.UserControl;
-import msg.user.entity.dto.UserDTO;
-import msg.user.entity.dto.UserInputDTO;
-import msg.user.entity.dto.UserLoginDTO;
-import msg.user.entity.dto.UserUpdateDTO;
+import msg.user.entity.dto.*;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -58,5 +55,9 @@ public class UserFacade {
 
     public void deactivateUser(long id) {
         userControl.deactivateUser(id);
+    }
+
+    public void changePassword(UserChangePasswordDTO userChangePasswordDTO) {
+        this.userControl.changePassword(userChangePasswordDTO);
     }
 }
