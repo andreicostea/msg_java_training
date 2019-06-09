@@ -52,9 +52,7 @@ export class UsersTableComponent implements OnInit {
 
   deactivateButtonClicked(user: User) {
     this.userService.deactivateUser(user.id)
-      .subscribe(any => {
-          console.log(any);
-        },
+      .subscribe(null,
         error1 => {
           this.snackbar.open("ERROR: " + error1.error.message, null, {duration: 2000});
         }
