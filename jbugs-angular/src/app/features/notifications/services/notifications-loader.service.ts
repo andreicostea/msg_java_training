@@ -18,8 +18,4 @@ export class NotificationsLoaderService {
       .get(`${environment.baseUrl}/${this.notificationsEndpoint}/${userId}`);
   }
 
-  public deleteNotifications():Observable<String> {
-    return this.backendService
-      .delete(`${environment.baseUrl}/${this.notificationsEndpoint}`);
-  }
 }

@@ -24,10 +24,12 @@ private PrintTask printTask;
     public void execute() {
         Timer timer = new Timer();
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 22);
         calendar.set(Calendar.MINUTE, 43);
         calendar.set(Calendar.SECOND, 00);
+
         Date time = calendar.getTime();
+        System.out.println(calendar.getTime());
         timer.schedule(printTask,
                 time);
     }

@@ -29,8 +29,7 @@ public class PermissionResource {
     public Response createPermission(@Context SecurityContext securityContext, PermissionDTO permissionDTO) {
         if (securityContext.isUserInRole(PermissionType.PERMISSION_MANAGEMENT)) {
             return Response.ok(permissionFacade.createPermission(permissionDTO)).build();
-        }
-        else{
+        } else {
             return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
         }
     }
@@ -38,29 +37,24 @@ public class PermissionResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     @DELETE
-    public Response removePermission(@Context SecurityContext securityContext,@PathParam("id") long id) {
-        if (securityContext.isUserInRole(PermissionType.PERMISSION_MANAGEMENT)){
-        System.out.println("deleted permission with id:" + id);
-        permissionFacade.removePermission(id);
-        return Response.ok().build(); }
-    else{
-        return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
+    public Response removePermission(@Context SecurityContext securityContext, @PathParam("id") long id) {
+        if (securityContext.isUserInRole(PermissionType.PERMISSION_MANAGEMENT)) {
+            permissionFacade.removePermission(id);
+            return Response.ok().build();
+        } else {
+            return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
         }
     }
 
-    //Asta cu token ce o zis catalin
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Path("/test")
-//    @GET
-//    public Response createUser(@Context SecurityContext securityContext) {
-//        return Response.ok(securityContext.isUserInRole("PERMISSION_MANAGER")).build();
-//    }
 
-    //get for permissions
     @Produces(MediaType.APPLICATION_JSON)
     @GET
-    public Response getAll() {
+    public Response getAll(@Context SecurityContext securityContext) {
+        if (securityContext.isUserInRole(PermissionType.PERMISSION_MANAGEMENT)) {
         return Response.ok(permissionFacade.getAll()).build();
+        } else {
+            return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
+        }
     }
 
 }

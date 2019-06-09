@@ -4,6 +4,7 @@ import msg.bug.control.BugControl;
 import msg.bug.entity.StatusUpdate;
 import msg.bug.entity.dto.BugDTO;
 import msg.bug.entity.dto.BugInputDTO;
+import msg.bug.entity.dto.BugStatisticsDto;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -33,5 +34,9 @@ public class BugFacade {
 
     public Object getStatusBugLimited(String status) {
         return StatusUpdate.limitedStatusValue.get(status.toUpperCase());
+    }
+
+    public BugStatisticsDto getStatistics() {
+        return this.bugControl.getStatistics();
     }
 }

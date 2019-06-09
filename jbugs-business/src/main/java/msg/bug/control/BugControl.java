@@ -8,6 +8,7 @@ import msg.bug.entity.dao.BugDAO;
 import msg.bug.entity.dto.BugConverter;
 import msg.bug.entity.dto.BugDTO;
 import msg.bug.entity.dto.BugInputDTO;
+import msg.bug.entity.dto.BugStatisticsDto;
 import msg.exceptions.BusinessException;
 import msg.exceptions.BusinessWebAppException;
 import msg.notification.boundary.NotificationFacade;
@@ -79,7 +80,7 @@ public class BugControl {
         try {
             this.notificationFacade.createNotification(
                     NotificationType.BUG_CREATED,
-                    new NotificationParamsBugCreate(bug.getCREATED_ID().toString(), bug.getASSIGNED_ID().toString(), newBug),
+                    new NotificationParamsBugCreate(newBug.getCreated().getUsername(), newBug.getAssigned().getUsername(), newBug),
                     bug.getCREATED_ID());
         } catch (Exception e) {
             e.printStackTrace();
@@ -126,6 +127,28 @@ public class BugControl {
 
 
         return newBug;
+
+    }
+    public BugStatisticsDto getStatistics(){
+        BugStatisticsDto bugStatisticsDto = new BugStatisticsDto();
+        List<BugEntity> bugs = this.bugDao.getAll();
+         for (BugEntity bugEntity:bugs){
+             if (bugEntity.getStatus().equals("NEW")){
+                 System.out.println("ok");
+                 bugStatisticsDto.setNewBug(bugStatisticsDto.getNewBug()+1);
+             } else if (bugEntity.getStatus().equals("FIXED")){
+                 bugStatisticsDto.setFixed(bugStatisticsDto.getFixed()+1);
+             } else if (bugEntity.getStatus().equals("IN_PROGRESS")){
+                 bugStatisticsDto.setInProgress(bugStatisticsDto.getInProgress()+1);
+             }else if (bugEntity.getStatus().equals("REJECTED")){
+                 bugStatisticsDto.setRejected(bugStatisticsDto.getRejected()+1);
+             }else if (bugEntity.getStatus().equals("CLOSED")){
+                 bugStatisticsDto.setClosed(bugStatisticsDto.getClosed()+1);
+             }else if (bugEntity.getStatus().equals("INFO_NEEDED")){
+                 bugStatisticsDto.setInfoNeeded(bugStatisticsDto.getInfoNeeded()+1);
+             }
+         }
+         return bugStatisticsDto;
 
     }
 

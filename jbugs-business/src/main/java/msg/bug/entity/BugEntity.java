@@ -3,7 +3,7 @@ package msg.bug.entity;
 import msg.attachment.entity.AttachmentEntity;
 import msg.base.BaseEntity;
 import msg.comment.entity.CommentEntity;
-import msg.history.HistoryEntity;
+
 import msg.user.entity.UserEntity;
 
 import javax.persistence.*;
@@ -67,8 +67,6 @@ public class BugEntity extends BaseEntity<Long> {
     private UserEntity createdBy;
     @OneToMany(mappedBy = "bugEntity")
     private Set<AttachmentEntity> attachments;
-    @OneToMany(mappedBy = "bugEntity")
-    private Set<HistoryEntity> historyEntities;
 
     public BugEntity() {
     }
@@ -95,14 +93,6 @@ public class BugEntity extends BaseEntity<Long> {
 
     public void setCreated(UserEntity createdBy) {
         this.createdBy = createdBy;
-    }
-
-    public Set<HistoryEntity> getHistoryEntities() {
-        return historyEntities;
-    }
-
-    public void setHistoryEntities(Set<HistoryEntity> historyEntities) {
-        this.historyEntities = historyEntities;
     }
 
     public Set<AttachmentEntity> getAttachmentEntities() {

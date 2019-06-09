@@ -5,6 +5,7 @@ import {environment} from "../../../../environments/environment";
 
 import {Bug} from "../models/bugs.model";
 import {BackendService} from "../../../core/services/backend/backend.service";
+import {Statistics} from "../models/statistics.model";
 
 
 @Injectable({
@@ -43,6 +44,11 @@ export class BugsService {
   getStatusLimited(status: string): Observable<any> {
     return this.backendService
       .get(`${environment.baseUrl}/${this.bugsEndpoint}/status-limited/${status}`);
+
+  }
+getStatistics(): Observable<Statistics> {
+    return this.backendService
+      .get(`${environment.baseUrl}/${this.bugsEndpoint}/statistics`);
 
   }
 
