@@ -47,17 +47,6 @@ public class NotificationResource {
 
     }
 
-    @DELETE
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteNotificationsPeriodically( ) {
-
-            notificationFacade.deleteNotificationsPeriodically();
-            return Response.ok()
-                    .build();
-
-
-    }
-
 
 }
 

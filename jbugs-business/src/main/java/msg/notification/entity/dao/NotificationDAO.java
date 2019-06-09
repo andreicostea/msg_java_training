@@ -4,8 +4,13 @@ import msg.notification.entity.NotificationEntity;
 import msg.notification.entity.NotificationType;
 
 import javax.ejb.Stateless;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.rmi.PortableRemoteObject;
 import java.sql.Date;
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -15,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.TimerTask;
 
 /**
  * The DAO for the Notification Entities.
@@ -25,7 +31,7 @@ import java.util.List;
 @Stateless
 public class NotificationDAO {
     @PersistenceContext(unitName = "persistenceUnit")
-    private EntityManager em;
+    private  EntityManager em;
 
     /**
      * Creates a notification based on the input Entity.
@@ -66,6 +72,9 @@ public class NotificationDAO {
                 .executeUpdate();
 
     }
+
+
+
 }
 
 

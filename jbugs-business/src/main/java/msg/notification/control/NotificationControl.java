@@ -10,11 +10,13 @@ import msg.notification.entity.dto.NotificationConverter;
 import msg.notification.entity.dto.NotificationOutputDTO;
 
 import javax.ejb.EJB;
+import javax.ejb.Singleton;
 import javax.ejb.Stateless;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.rmi.PortableRemoteObject;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -58,15 +60,6 @@ public class NotificationControl {
 
     }
 
-    public void deleteNotificationsPeriodically() {
-        Calendar c = new GregorianCalendar();
-        c.add(Calendar.DATE,-30);
-        java.util.Date dt = c.getTime();
-        java.sql.Date dtSql = new java.sql.Date(dt.getTime());
-        System.out.println(dtSql);
-        notificationDao.deleteNotificationsPeriodically(dtSql);
-
-    }
 
     /**
      * Creates a notification based on the input {@link NotificationType} and {@link NotificationParams}.
@@ -304,5 +297,14 @@ public class NotificationControl {
         notificationEntity.setUserID(userId);
         this.notificationDao.createNotification(notificationEntity);
     }
+
+    public void deleteNotificationsPeriodically() {
+        Calendar c = new GregorianCalendar();
+        c.add(Calendar.DATE, 0);
+        java.util.Date dt = c.getTime();
+        java.sql.Date dtSql = new java.sql.Date(dt.getTime());
+        notificationDao.deleteNotificationsPeriodically(dtSql);
+    }
+
 
 }
