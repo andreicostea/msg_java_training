@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {User, UserUpdate} from "../../models/users.model";
 import {UsersService} from "../../services/users.service";
 import {MatDialog, MatDialogConfig, MatSnackBar} from "@angular/material";
@@ -10,20 +10,13 @@ import {UsersUpdateDialogComponent} from "../users-update-dialog/users-update-di
   templateUrl: './users-table.component.html',
   styleUrls: ['./users-table.component.css']
 })
-export class UsersTableComponent implements OnInit {
+export class UsersTableComponent {
   displayedColumns: string[] = ["id", "firstName", "lastName", "email", "mobileNumber", "actions"];
 
   @Input()
   dataSource: User[];
 
-  //public dataSource: User[] = this.userService.loadAllUsers();
-
-  // dataSource = new MatTableDataSource<User>(this.userService.loadAllUsers());
-
   constructor(private userService: UsersService, private dialog: MatDialog, private snackbar: MatSnackBar) {
-  }
-
-  ngOnInit() {
   }
 
   openDialog(user: User) {
@@ -39,9 +32,9 @@ export class UsersTableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(updatedUser => {
       if (updatedUser) {
-        // console.log(updatedUser);
-        // console.log(user.email);
-        this.userService.updateUser(new UserUpdate(updatedUser.newFirstName, updatedUser.newLastName, user.email, updatedUser.newEmail, updatedUser.newMobileNumber, updatedUser.newStatus, updatedUser.newRoles)).subscribe();
+        this.userService.updateUser(new UserUpdate(updatedUser.newFirstName, updatedUser.newLastName, user.email, updatedUser.newEmail, updatedUser.newMobileNumber, updatedUser.newStatus, updatedUser.newRoles))
+          .subscribe();
+        window.location.reload();
       }
     });
   }
@@ -52,7 +45,9 @@ export class UsersTableComponent implements OnInit {
 
   deactivateButtonClicked(user: User) {
     this.userService.deactivateUser(user.id)
-      .subscribe(null,
+      .subscribe(any => {
+          window.location.reload();
+        },
         error1 => {
           this.snackbar.open("ERROR: " + error1.error.message, null, {duration: 2000});
         }

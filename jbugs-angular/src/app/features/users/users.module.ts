@@ -16,7 +16,7 @@ import {
   MatFormFieldModule, MatIconModule,
   MatInputModule,
   MatListModule,
-  MatOptionModule,
+  MatOptionModule, MatPaginatorModule,
   MatRadioModule,
   MatSelectModule, MatSnackBarModule,
   MatTableModule
@@ -52,7 +52,8 @@ import {UsersTableComponent} from "./components/users-table/users-table.componen
     MatCheckboxModule,
     MatDialogModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatPaginatorModule
   ],
 
 })
