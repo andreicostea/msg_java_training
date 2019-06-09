@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="c774e63f316637a4d5bb8c763e011270c1383694" datatype="html">
+        <source>UserName</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/login/components/login-form/login-form.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">The field for UserName</note>
+        <note priority="1" from="meaning">UserName</note>
+       <target>NumeleUtilizatorului</target>
+        </trans-unit>
+      <trans-unit id="4b7a654dff71c465f86263b1df367b73569a65cf" datatype="html">
+        <source>The field is required</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/login/components/login-form/login-form.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/login/components/login-form/login-form.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/users/containers/users-insert/users-insert.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/users/containers/users-insert/users-insert.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/users/containers/users-insert/users-insert.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/users/containers/users-insert/users-insert.component.html</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-edit/bug-edit.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-edit/bug-edit.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-edit/bug-edit.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-add/bug-add.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-add/bug-add.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-add/bug-add.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+        <note priority="1" from="description">The field is required</note>
+        <note priority="1" from="meaning">fieldrequired</note>
+      <target>Campul este obligatoriu </target>
+       </trans-unit>
+      <trans-unit id="30baf8b3b2c5215039d5a27e23ecd8d76de25be9" datatype="html">
+        <source>Password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/login/components/login-form/login-form.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <note priority="1" from="description">The field for Password</note>
+        <note priority="1" from="meaning">Password</note>
+       <target>Parola </target>
+       </trans-unit>
+      <trans-unit id="707b03d2d86656f4ea46f9b36be16ff44a758235" datatype="html">
+        <source>Login
+    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/login/components/login-form/login-form.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <note priority="1" from="description">The field for Login</note>
+        <note priority="1" from="meaning">Login</note>
+         <target>Logare </target>
+      </trans-unit>
+      <trans-unit id="9b64ecdfb660bbe5adf5ee6f1a373aa222e483ed" datatype="html">
+        <source>User Management</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">The button for UserManagement</note>
+        <note priority="1" from="meaning">UserManagement</note>
+      <target>
+     Gestionarea utilizatorilor
+     </target>
+      </trans-unit>
+      <trans-unit id="55fc9a6510d69943f344a424b12f96d1e664b9db" datatype="html">
+        <source>Permission Management</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <note priority="1" from="description">The button for PermissionManagement</note>
+        <note priority="1" from="meaning">PermissionManagement</note>
+      <target>Gestionarea Permisiunilor
+             </target>
+              </trans-unit>
+      <trans-unit id="013a8fcd208829a6a15ef639a1281e63802c8b39" datatype="html">
+        <source>Bug management</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <note priority="1" from="description">The button for BugManagement</note>
+        <note priority="1" from="meaning">BugManagement</note>
+     <target>Gestionarea Defectelor</target>
+       </trans-unit>
+      <trans-unit id="4f3a8d38431c2420e23733722b80aebb96102fd3" datatype="html">
+        <source>Menu</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <note priority="1" from="description">The button for Menu</note>
+        <note priority="1" from="meaning">Menu</note>
+     <target>Meniu</target>
+      </trans-unit>
+      <trans-unit id="85def28b1809b17e5d272f34d867a48ec3a81293" datatype="html">
+        <source>View Notifications</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <note priority="1" from="description">The button for ViewNotification</note>
+        <note priority="1" from="meaning">VieNotification</note>
+     <target>Vizualizare Notificari</target>
+      </trans-unit>
+      <trans-unit id="templatesTitle" datatype="html">
+        <source>Logout</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <target>Deconectare</target>
+         </trans-unit>
+      <trans-unit id="9eecf475b65857e27414a63305d2c99d11adbf28" datatype="html">
+        <source>Insert User</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/users/containers/users-insert/users-insert.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <note priority="1" from="description">The insetinguser button</note>
+        <note priority="1" from="meaning">InsertingUser</note>
+      <target>Inserare User</target>
+       </trans-unit>
+      <trans-unit id="ccd9c963329a899e03ba6c4cd3ef558ff1da98b4" datatype="html">
+        <source>Number is invalid</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/users/containers/users-insert/users-insert.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+        <note priority="1" from="description">The number is invalid</note>
+        <note priority="1" from="meaning">numberinvalid</note>
+        <target>Numarul este invalid</target>
+        </trans-unit>
+      <trans-unit id="2e2325b5159736b579f60db5712b70f5e566eee9" datatype="html">
+        <source>Requires a msg group email !</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/users/containers/users-insert/users-insert.component.html</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+        <note priority="1" from="description">The field msg group is required</note>
+        <note priority="1" from="meaning">fieldrequiredmsg</note>
+         <target>Este necesar un email te tipul msg grup</target>
+         </trans-unit>
+      <trans-unit id="2a53409d2c4c9f8d1a9fd0e3dff8fadd977cdde2" datatype="html">
+        <source>Submit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/users/containers/users-insert/users-insert.component.html</context>
+          <context context-type="linenumber">111</context>
+        </context-group>
+        <note priority="1" from="description">The submit field is required</note>
+        <note priority="1" from="meaning">Submit</note>
+    <target>Depune</target>
+      </trans-unit>
+      <trans-unit id="2152085a877ec92601d11c7c856eca8c6b11c52b" datatype="html">
+        <source>Add</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/users/components/users-insert-button/users-insert-button.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/permission-manager/components/permission-manager-firstpage/permission-manager-firstpage.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/permission-manager/containers/addpermission/insert.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <note priority="1" from="description">The add button</note>
+        <note priority="1" from="meaning">Add</note>
+       <target>Adaugare</target>
+        </trans-unit>
+      <trans-unit id="e5723af1f45250573b3a4c241358b9ef592cf748" datatype="html">
+        <source>Cancel</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/users/components/users-update-dialog/users-update-dialog.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+        <note priority="1" from="description">The cancel button</note>
+        <note priority="1" from="meaning">Cancel</note>
+       <target>Anulare</target>
+        </trans-unit>
+      <trans-unit id="c2b6e66fe74b954087914cd501b241bd774a97a5" datatype="html">
+        <source>Update</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/users/components/users-update-dialog/users-update-dialog.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+        <note priority="1" from="description">The update button</note>
+        <note priority="1" from="meaning">Update</note>
+      <target>Actualizare</target>
+       </trans-unit>
+      <trans-unit id="bcd8ec7cc3c816d0665bfc61bf95e4b3d46ebd80" datatype="html">
+        <source> First name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/users/components/users-table/users-table.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <note priority="1" from="description">The firstname filed</note>
+        <note priority="1" from="meaning">FirstName</note>
+       <target>Prenume</target>
+        </trans-unit>
+      <trans-unit id="ce54fa8862f657645db2c537e79156dfd666be7d" datatype="html">
+        <source> Last name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/users/components/users-table/users-table.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <note priority="1" from="description">The lastname filed</note>
+        <note priority="1" from="meaning">LastName</note>
+       <target>Numele de familie</target>
+       </trans-unit>
+      <trans-unit id="0406a78b858f93d93658ffc271625d2ea5ff7fd8" datatype="html">
+        <source> Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/users/components/users-table/users-table.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <note priority="1" from="description">The email files</note>
+        <note priority="1" from="meaning">Email</note>
+       <target>Email</target>
+        </trans-unit>
+      <trans-unit id="a57a143a32b02037249d269b2289e844f854fff5" datatype="html">
+        <source> Mobile number</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/users/components/users-table/users-table.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <note priority="1" from="description">The mobilrnumber filed</note>
+        <note priority="1" from="meaning">MobileNumber</note>
+       <target>Numarul de telefon</target>
+        </trans-unit>
+      <trans-unit id="baa75a08c5262f534585fe911a3bd5d9e91f6027" datatype="html">
+        <source> Actions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/users/components/users-table/users-table.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <note priority="1" from="description">The actions field</note>
+        <note priority="1" from="meaning">Actions</note>
+      <target>Actiuni</target>
+       </trans-unit>
+      <trans-unit id="1ca6e4ab7c9f940176a892cf3754fa06614a5cc2" datatype="html">
+        <source>Edit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/users/components/users-table/users-table.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+        <note priority="1" from="description">The edit buttom</note>
+        <note priority="1" from="meaning">Edit</note>
+    <target>Editare</target>
+      </trans-unit>
+      <trans-unit id="773705e7972a75cd9a0440ad4ba85b65f533b694" datatype="html">
+        <source>Deactivate</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/users/components/users-table/users-table.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <note priority="1" from="description">The desactive button</note>
+        <note priority="1" from="meaning">Desactive</note>
+     <target>Dezactivare</target>
+      </trans-unit>
+      <trans-unit id="ec30c03a67acffba5537b875943096dd75da9404" datatype="html">
+        <source>Update Bug</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-edit/bug-edit.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <note priority="1" from="description">The diagonal to update bug</note>
+        <note priority="1" from="meaning">updatedbug</note>
+        <target>Actualizare Buguri</target>
+        </trans-unit>
+      <trans-unit id="703ac90e10f414487f7356d503546d401156b164" datatype="html">
+        <source>The pattern is invalid</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-edit/bug-edit.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+        <note priority="1" from="description">The patern is invlid</note>
+        <note priority="1" from="meaning">paterninvalid</note>
+     <target>Modelul este incorect</target>
+      </trans-unit>
+      <trans-unit id="7f46ef4a8be0d75585996b37ecad6687586be935" datatype="html">
+        <source> Fixed Version</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-edit/bug-edit.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-view/bug-view.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+        <note priority="1" from="description">The version fixed</note>
+        <note priority="1" from="meaning">fixedversion</note>
+      <target>Versiune fixata</target>
+      </trans-unit>
+      <trans-unit id="5d4019872e2036b4433ce4731a92e482c6731a35" datatype="html">
+        <source>Severity</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-edit/bug-edit.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-view/bug-view.component.html</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+        <note priority="1" from="description">The severity field</note>
+        <note priority="1" from="meaning">severity</note>
+       <target>Severitate</target>
+      </trans-unit>
+      <trans-unit id="744f4992853be8e9285f5edcf79156658edc80e7" datatype="html">
+        <source>Low</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-edit/bug-edit.component.html</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-add/bug-add.component.html</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+        <note priority="1" from="description">The field is low</note>
+        <note priority="1" from="meaning">low</note>
+        <target>Scazut</target>
+         </trans-unit>
+      <trans-unit id="cfe9a46ad4ce394470c90dd60fbeca57b328ef5c" datatype="html">
+        <source>Medium</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-edit/bug-edit.component.html</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-add/bug-add.component.html</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+        <note priority="1" from="description">The field is medium</note>
+        <note priority="1" from="meaning">medium</note>
+     <target>Mediu</target>
+      </trans-unit>
+      <trans-unit id="a6f98a3a76298916c75204bd99faa97a5934c121" datatype="html">
+        <source>High</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-edit/bug-edit.component.html</context>
+          <context context-type="linenumber">89</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-add/bug-add.component.html</context>
+          <context context-type="linenumber">97</context>
+        </context-group>
+        <note priority="1" from="description">The field is high</note>
+        <note priority="1" from="meaning">high</note>
+        <target>Ridicat</target>
+         </trans-unit>
+      <trans-unit id="7d0d800a9c07c2b0c65ae5606ff73d7fa2345e7b" datatype="html">
+        <source>Critical</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-edit/bug-edit.component.html</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-add/bug-add.component.html</context>
+          <context context-type="linenumber">98</context>
+        </context-group>
+        <note priority="1" from="description">The field is critical</note>
+        <note priority="1" from="meaning">critical</note>
+      <target>Critic</target>
+      </trans-unit>
+      <trans-unit id="0607b2fa53914a41e3af56f1d86f8ae3a2f4629e" datatype="html">
+        <source>Assign to:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-edit/bug-edit.component.html</context>
+          <context context-type="linenumber">97</context>
+        </context-group>
+        <note priority="1" from="description">The field assignedto</note>
+        <note priority="1" from="meaning">assignedto</note>
+      <target>Asignat lui</target>
+       </trans-unit>
+      <trans-unit id="aabf234b8fa9d3c5717a807312d0da24a581b6ca" datatype="html">
+        <source>Status:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-edit/bug-edit.component.html</context>
+          <context context-type="linenumber">109</context>
+        </context-group>
+        <note priority="1" from="description">The field is status</note>
+        <note priority="1" from="meaning">status</note>
+      <target>Status</target>
+      </trans-unit>
+      <trans-unit id="7e1a47cb6276b7720cbb5be012796f5d04d2a169" datatype="html">
+        <source>View Bug</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-view/bug-view.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <note priority="1" from="description">The viewbug field</note>
+        <note priority="1" from="meaning">viewbug</note>
+      <target>Vizualizare Bug</target>
+      </trans-unit>
+      <trans-unit id="84c7021965638b3b436a94f709c40b88ff19178f" datatype="html">
+        <source>Title</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-view/bug-view.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <note priority="1" from="description">The field is title</note>
+        <note priority="1" from="meaning">title</note>
+      <target>Titlu</target>
+       </trans-unit>
+      <trans-unit id="eb1fb11b2300177e9e4f66af643664ca98893879" datatype="html">
+        <source>Description</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-view/bug-view.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <note priority="1" from="description">The field is description</note>
+        <note priority="1" from="meaning">description</note>
+       <target>Descriere</target>
+       </trans-unit>
+      <trans-unit id="3815ac40da1b5bac353ec6a96b54339a90118c58" datatype="html">
+        <source> Version</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-view/bug-view.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <note priority="1" from="description">The field is version</note>
+        <note priority="1" from="meaning">version</note>
+       <target>Versiune</target>
+       </trans-unit>
+      <trans-unit id="874b98ed30523def0a308aa4f19c3686f1c370f5" datatype="html">
+        <source> Target Date</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-view/bug-view.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+        <note priority="1" from="description">The field is targetdate</note>
+        <note priority="1" from="meaning">targetdate</note>
+      <target>Data-tinta</target>
+       </trans-unit>
+      <trans-unit id="48a4a7566221779fcc50e807207a33e3731706e3" datatype="html">
+        <source>Status</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-view/bug-view.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+        <note priority="1" from="description">The field is status</note>
+        <note priority="1" from="meaning">status</note>
+      <target>Status</target>
+       </trans-unit>
+      <trans-unit id="aa772b3c5de43c6cc724044120e6c28498fcbef5" datatype="html">
+        <source>Created by user:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-view/bug-view.component.html</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+        <note priority="1" from="description">The field is createdby</note>
+        <note priority="1" from="meaning">createdby</note>
+      <target>Creat de userul</target>
+       </trans-unit>
+      <trans-unit id="9299188c508279f0225e01312dec9a0589f0fc96" datatype="html">
+        <source>Assigned to user with id:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-view/bug-view.component.html</context>
+          <context context-type="linenumber">94</context>
+        </context-group>
+        <note priority="1" from="description">The field is assignedtouser by id</note>
+        <note priority="1" from="meaning">assignedtouserbyid</note>
+    <target>Asignat userului cu id-ul</target>
+       </trans-unit>
+      <trans-unit id="61d06002b010ad9f59116f87bfb803bca1fc3640" datatype="html">
+        <source> title</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/components/bugs-table-component/bugs-table-component.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <note priority="1" from="description">The title of the bug</note>
+        <note priority="1" from="meaning">title</note>
+      <target>Titlu</target>
+       </trans-unit>
+      <trans-unit id="16a3b93624dbc7161e3dc5fb0fd1afd4a56cd188" datatype="html">
+        <source> description</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/components/bugs-table-component/bugs-table-component.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+        <note priority="1" from="description">The description of the bug</note>
+        <note priority="1" from="meaning">description</note>
+      <target>Descriere</target>
+       </trans-unit>
+      <trans-unit id="a06d7fd46a985854497cae2817fd6b1bd2f4483f" datatype="html">
+        <source> version</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/components/bugs-table-component/bugs-table-component.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <note priority="1" from="description">The version</note>
+        <note priority="1" from="meaning">version</note>
+      <target>Versiune</target> </trans-unit>
+      <trans-unit id="71dab7f147d9f263a674609cfb47c445e90e5f28" datatype="html">
+        <source> targetDate</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/components/bugs-table-component/bugs-table-component.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <note priority="1" from="description">The targetDate</note>
+        <note priority="1" from="meaning">targetDate</note>
+       <target>Data-tinta</target>
+       </trans-unit>
+      <trans-unit id="9877953e73f02776771129181486735a104d7828" datatype="html">
+        <source> status</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/components/bugs-table-component/bugs-table-component.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <note priority="1" from="description">The status</note>
+        <note priority="1" from="meaning">status</note>
+       <target>Status</target>
+       </trans-unit>
+      <trans-unit id="4ae2c11194b00575b24311a51c0dcba01ff99c3b" datatype="html">
+        <source> fixedVersion</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/components/bugs-table-component/bugs-table-component.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <note priority="1" from="description">The version fixed</note>
+        <note priority="1" from="meaning">fixedversion</note>
+       <target>Versiune fixa</target>
+        </trans-unit>
+      <trans-unit id="75d1ecbddf99ea1a37f4844c937396d091ad5ef9" datatype="html">
+        <source> severity</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/components/bugs-table-component/bugs-table-component.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <note priority="1" from="description">The severity</note>
+        <note priority="1" from="meaning">severity</note>
+       <target>Severitate</target>
+       </trans-unit>
+      <trans-unit id="3fcf98faf26d73b64a5f7c1ccadd09a3bcd0837d" datatype="html">
+        <source>Edit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/components/bugs-table-component/bugs-table-component.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+        <note priority="1" from="description">The edit button</note>
+        <note priority="1" from="meaning">edit</note>
+      <target>Editare</target>
+      </trans-unit>
+      <trans-unit id="871486b866e1ce4988486849b6ef4894c355248a" datatype="html">
+        <source>View</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/components/bugs-table-component/bugs-table-component.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <note priority="1" from="description">The view button</note>
+        <note priority="1" from="meaning">view</note>
+      <target>Vizualizare</target>
+      </trans-unit>
+      <trans-unit id="10aaef98e2887343196939e66231c2038cf6d0e8" datatype="html">
+        <source>ExportinXls</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/components/bugs-table-component/bugs-table-component.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+        <note priority="1" from="description">The export button</note>
+        <note priority="1" from="meaning">export</note>
+       <target>Export in Xls</target>
+       </trans-unit>
+      <trans-unit id="bd12ad5a1052a4a803557d9df4e345ff3527d8f1" datatype="html">
+        <source>Download PDF</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/components/bugs-table-component/bugs-table-component.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+        <note priority="1" from="description">The downloadng xi18n button</note>
+        <note priority="1" from="meaning">download</note>
+     <target>Download Pdf</target>
+      </trans-unit>
+      <trans-unit id="2be98b08eae316b6497e92af5acf2a8cdf0ba09f" datatype="html">
+        <source>Add</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/components/bug-dialog-add/bug-dialog-add.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">Adding a bug</note>
+        <note priority="1" from="meaning">addbutton</note>
+      <target>Adaugare</target>
+       </trans-unit>
+      <trans-unit id="abe1e686b4f2387b1998349e82f6c80a78fe27fb" datatype="html">
+        <source>Insert Bug</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-add/bug-add.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <note priority="1" from="description">Inserting a bug</note>
+        <note priority="1" from="meaning">insertbutton</note>
+     <target>Inserare Bug</target>
+      </trans-unit>
+      <trans-unit id="74ab55e9c8e5bfdc110d1e7605c6e1aacd28fa5f" datatype="html">
+        <source>The pattern is invalid</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/bugs/containers/bug-add/bug-add.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+        <note priority="1" from="description">The patern is invalid</note>
+        <note priority="1" from="meaning">peterninvalid</note>
+      <target>Modelul este invalid</target>
+       </trans-unit>
+      <trans-unit id="939018a4f1bdf64ff9e5c2f843660497c9f05611" datatype="html">
+        <source>Message</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/notifications/components/notifications-view/notifications-view.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <note priority="1" from="description">The notification massage</note>
+        <note priority="1" from="meaning">Message</note>
+       <target>Mesaj</target>
+       </trans-unit>
+      <trans-unit id="08fbc6977a6d46253ba923de16609b413d1b7232" datatype="html">
+        <source>Roles Dropdown multiple</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/permission-manager/components/permission-manager-firstpage/permission-manager-firstpage.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/permission-manager/containers/addpermission/insert.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <note priority="1" from="description">The dropdown for Roles</note>
+        <note priority="1" from="meaning">RolesDropDown</note>
+     <target>Lista de roluri</target>
+      </trans-unit>
+      <trans-unit id="ba47e2fadf4704000e8411badec35a84e5ef6354" datatype="html">
+        <source>Permission Dropdown multiple</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/permission-manager/components/permission-manager-firstpage/permission-manager-firstpage.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/permission-manager/containers/addpermission/insert.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <note priority="1" from="description">The dropdown for Permission</note>
+        <note priority="1" from="meaning">PermissionDropDown</note>
+       <target>Lista de permisiuni</target>
+       </trans-unit>
+      <trans-unit id="9dce4e5f6a05ab233e35f63a46e8d0c772e77fbd" datatype="html">
+        <source>Remove</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/permission-manager/components/permission-manager-firstpage/permission-manager-firstpage.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <note priority="1" from="description">The remove button</note>
+        <note priority="1" from="meaning">Remove</note>
+      <target>Stergere</target>
+      </trans-unit>
+      <trans-unit id="7b34eba151250742b8405c509dc04c9f886ce0e4" datatype="html">
+        <source>Descrrption Dropdown multiple</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/features/permission-manager/containers/addpermission/insert.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <note priority="1" from="description">The dropdown for Description</note>
+        <note priority="1" from="meaning">DescriptionDropDown</note>
+      <target>Descrierea permisiunii</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

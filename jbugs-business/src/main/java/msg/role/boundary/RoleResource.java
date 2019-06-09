@@ -1,6 +1,8 @@
 package msg.role.boundary;
 
+import msg.permission.PermissionType;
 import msg.permission.entity.dto.PermissionDTO;
+import msg.user.MessageCatalog;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -29,21 +31,20 @@ public class RoleResource {
 
         return Response.ok(roleFacade.getRoleById(id)).build();
     }
-
     @Produces(MediaType.APPLICATION_JSON)
     @GET
     public Response getAllRolesAndPermissions() {
         return Response.ok(roleFacade.getAllRolesAndPermissions()).header("Cache-Control", "no-cache").build();
     }
-
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
     @POST
     public Response addPermision(@Context SecurityContext securityContext, @PathParam("id") Long id, PermissionDTO permissionDTO) {
-        return Response.ok(roleFacade.addPermission(id, permissionDTO).getPermissions()).build();
+        if (securityContext.isUserInRole(String.valueOf(PermissionType.PERMISSION_MANAGEMENT))) {
+            return Response.ok(roleFacade.addPermission(id, permissionDTO).getPermissions()).build();
+        }
+        return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
     }
-
-
     @Produces(MediaType.APPLICATION_JSON)
     @GET
     @Path("/types")

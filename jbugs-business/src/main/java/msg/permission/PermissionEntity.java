@@ -17,9 +17,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "permissions")
 @NamedQueries({
-        @NamedQuery(name = PermissionEntity.QUERY_GET_PERMISSION_BY_TYPE_LIST,
-                query = "select p from PermissionEntity p "
-                        + "where p.type in :" + PermissionEntity.INPUT_TYPE_LIST),
         @NamedQuery(name = PermissionEntity.PERMISSION_FIND_BY_ID,
                 query = "select p from PermissionEntity p where p.id= :" + PermissionEntity.INPUT_ID),
         @NamedQuery(name = PermissionEntity.PERMISSION_FIND_ALL, query = "SELECT p from PermissionEntity p"),
@@ -27,8 +24,6 @@ import java.util.Objects;
 public class PermissionEntity extends BaseEntity<Long> {
     public static final String INPUT_ID = "id";
     public static final String PERMISSION_FIND_BY_ID = "PermissionEntity.findById";
-    public static final String QUERY_GET_PERMISSION_BY_TYPE_LIST = "getPermissionByTypeList";
-    public static final String INPUT_TYPE_LIST = "type";
     public static final String PERMISSION_FIND_ALL = "PermissionEntity.findAll";
     @Column(name = "description")
     private String description;

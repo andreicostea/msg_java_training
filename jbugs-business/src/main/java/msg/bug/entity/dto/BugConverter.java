@@ -1,8 +1,6 @@
 package msg.bug.entity.dto;
 
 import msg.bug.entity.BugEntity;
-import msg.exceptions.BusinessWebAppException;
-import msg.user.MessageCatalog;
 import msg.user.entity.UserEntity;
 import msg.user.entity.dao.UserDAO;
 
@@ -25,7 +23,6 @@ public class BugConverter {
         b.setTitle(bugDTO.getTitle());
         b.setDescription(bugDTO.getDescription());
         b.setVersion(bugDTO.getVersion());
-
         b.setStatus(bugDTO.getStatus());
         b.setSeverity(bugDTO.getSeverity());
         b.setTargetDate(parseStringToDate(bugDTO.getTargetDate()));

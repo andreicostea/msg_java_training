@@ -1,17 +1,16 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Bug} from "../../models/bugs.model";
 import {BugsService} from "../../services/bugs.service";
-import {Observable} from "rxjs";
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {MatDialog, MatPaginator} from "@angular/material";
 import {BugEditComponent} from "../../containers/bug-edit/bug-edit.component";
 import {BugViewComponent} from "../../containers/bug-view/bug-view.component";
-import {PermissionsService} from "../../../../core/permissions/permissions.service";
 import * as XLSX from 'xlsx';
 import html2canvas from 'html2canvas';
 import * as jspdf from 'jspdf';
 import {AuthenticationService} from "../../../../core/services/authentication/authentication.service";
+
 @Component({
   selector: 'app-bugs-table-component',
   templateUrl: './bugs-table-component.component.html',
@@ -32,7 +31,7 @@ export class BugsTableComponentComponent implements OnInit {
   @ViewChild(MatSort) sort:MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private bugService: BugsService, public dialog: MatDialog, public permissionService: AuthenticationService) {
+  constructor(private bugService: BugsService, public dialog: MatDialog, public authenticationService: AuthenticationService) {
     // this.sortedData = this.bugs;
   }
 
@@ -52,7 +51,7 @@ export class BugsTableComponentComponent implements OnInit {
     this.bugEdit = bug;
     console.log(this.bugEdit.status);
 
-    for(let per of this.permissionService.getPermissions()){
+    for (let per of this.authenticationService.getPermissions()) {
       if(per === "BUG_CLOSED"){
         this.permissonClosed = true;
       }
@@ -141,6 +140,21 @@ export class BugsTableComponentComponent implements OnInit {
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
       pdf.save('Bugspdf.pdf'); // Generated PDF
     });
+  }
+
+  showButton(): boolean {
+    if (this.authenticationService.getPermissions() === null) return false;
+    for (let per of this.authenticationService.getPermissions())
+      if (per === "BUG_MANAGEMENT") return true;
+    return false;
+  }
+
+  showButton2(): boolean {
+    if (this.authenticationService.getPermissions() === null) return false;
+    for (let per of this.authenticationService.getPermissions()) {
+      if (per === "BUG_EXPORT_PDF") return true;
+    }
+    return false;
   }
 }
 

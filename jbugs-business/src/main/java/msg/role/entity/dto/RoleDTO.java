@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RoleDTO {
-
-    // todo: this should be an enum
     private long id;
     private String type;
     private List<PermissionDTO> permissions = new ArrayList<>();

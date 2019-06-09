@@ -45,10 +45,6 @@ public class PermissionControl {
 
     }
 
-    public List<PermissionEntity> getPermissionByTypeList(List<String> typeList) {
-        return permissionDAO.getPermissionByTypeList(typeList);
-    }
-
     public List<PermissionDTO> getAll() {
         return permissionDAO.getAll().stream()
                 .map(permissionConverter::convertEntityToInputDTO)

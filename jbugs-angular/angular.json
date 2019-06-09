@@ -30,6 +30,66 @@
             "es5BrowserSupport": true
           },
           "configurations": {
+            "production-ro": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "outputPath": "dist/bugs-web-ro/",
+              "i18nFile": "src/locale/messages.ro.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "ro",
+              "i18nMissingTranslation": "error"
+            },
+            "production-en": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "outputPath": "dist/bugs-web-en/",
+              "i18nFile": "src/locale/messages.en.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "en",
+              "i18nMissingTranslation": "error"
+            },
+            "ro": {
+              "aot": true,
+              "outputPath": "dist/bugs-web-ro/",
+              "i18nFile": "src/locale/messages.ro.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "ro",
+              "i18nMissingTranslation": "error"
+            },
+            "en": {
+              "aot": true,
+              "outputPath": "dist/bugs-web-en/",
+              "i18nFile": "src/locale/messages.en.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "en",
+              "i18nMissingTranslation": "error"
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -63,6 +123,12 @@
             "proxyConfig": "proxy.config.json"
           },
           "configurations": {
+            "ro": {
+              "browserTarget": "jbugs-web:build:ro"
+            },
+            "en": {
+              "browserTarget": "jbugs-web:build:en"
+            },
             "production": {
               "browserTarget": "jbugs-web:build:production"
             }
@@ -71,7 +137,9 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "jbugs-web:build"
+            "browserTarget": "jbugs-web:build",
+            "browserTarget": "jbugs-web:build:ro",
+            "browserTarget": "jbugs-web:build:en"
           }
         },
         "test": {

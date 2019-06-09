@@ -21,7 +21,6 @@ public class PermissionFacade {
     public PermissionDTO createPermission(PermissionDTO permissionDTO) {
         return permissionControl.createPermission(permissionDTO);
     }
-
     public void removePermission(long id) {
         this.permissionControl.removePermission(id);
     }

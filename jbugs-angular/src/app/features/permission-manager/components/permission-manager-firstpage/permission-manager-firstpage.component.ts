@@ -1,12 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {PermissionManagerServices} from "../../services/permission-manager.services";
 import {Permission, Role} from "../../model/permission-manager.model";
-import {PermissionsService} from "../../../../core/permissions/permissions.service";
 import {Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
-import {UsersInsertComponent} from "../../../users/containers/users-insert/users-insert.component";
 import {MatDialog} from "@angular/material";
 import {InsertComponent} from "../../containers/addpermission/insert.component";
+import {AuthenticationService} from "../../../../core/services/authentication/authentication.service";
 
 @Component({
   selector: 'app-permission-manager-firstpage',
@@ -19,7 +18,8 @@ export class PermissionManagerInsertButtonComponent implements OnInit {
   public roleandpermission: Subscription;
   selectedRole: Role = <Role>{};
   selectedPermission: Permission = <Permission>{};
-  constructor(private permissionService: PermissionsService,
+
+  constructor(private permissionService: AuthenticationService,
               private permissionManagerService: PermissionManagerServices,
               private activateRouter: ActivatedRoute,
               private router: Router,

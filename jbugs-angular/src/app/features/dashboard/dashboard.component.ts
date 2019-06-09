@@ -12,11 +12,11 @@ import {Router} from "@angular/router";
 export class DashboardComponent implements OnInit {
   private userName: String;
 
-  constructor(private cookieService: CookieService, private permissionService: AuthenticationService, private router: Router) {
+  constructor(private cookieService: CookieService, private authenticationService: AuthenticationService, private router: Router) {
   }
 
   ngOnInit() {
-    this.userName = this.permissionService.getUserName();
+    this.userName = this.authenticationService.getUserName();
   }
 
 

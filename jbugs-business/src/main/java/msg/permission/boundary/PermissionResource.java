@@ -7,8 +7,10 @@ import msg.user.MessageCatalog;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.SecurityContext;
 
 /**
  * Document me.
@@ -24,8 +26,8 @@ public class PermissionResource {
 
     @Consumes(MediaType.APPLICATION_JSON)
     @POST
-    public Response createPermission(@Context SecurityContext securityContext,PermissionDTO permissionDTO) {
-        if (securityContext.isUserInRole(PermissionType.PERMISSION_MANAGEMENT)) {
+    public Response createPermission(@Context SecurityContext securityContext, PermissionDTO permissionDTO) {
+        if (securityContext.isUserInRole(String.valueOf(PermissionType.PERMISSION_MANAGEMENT))) {
             return Response.ok(permissionFacade.createPermission(permissionDTO)).build();
         }
         else{
@@ -37,7 +39,7 @@ public class PermissionResource {
     @Path("/{id}")
     @DELETE
     public Response removePermission(@Context SecurityContext securityContext,@PathParam("id") long id) {
-        if (securityContext.isUserInRole(PermissionType.PERMISSION_MANAGEMENT)){
+        if (securityContext.isUserInRole(String.valueOf(PermissionType.PERMISSION_MANAGEMENT))) {
         System.out.println("deleted permission with id:" + id);
         permissionFacade.removePermission(id);
         return Response.ok().build(); }
@@ -45,22 +47,12 @@ public class PermissionResource {
         return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
         }
     }
-
-    //Asta cu token ce o zis catalin
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Path("/test")
-//    @GET
-//    public Response createUser(@Context SecurityContext securityContext) {
-//        return Response.ok(securityContext.isUserInRole("PERMISSION_MANAGER")).build();
-//    }
-
-    //get for permissions
     @Produces(MediaType.APPLICATION_JSON)
     @GET
     public Response getAll() {
+
         return Response.ok(permissionFacade.getAll()).build();
     }
-
 }
 
 

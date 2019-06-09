@@ -20,7 +20,7 @@ public class RoleFacade {
     @EJB
     private RoleControl roleControl;
 
-    public RoleEntity getRoleById(long id) {
+    public RoleDTO getRoleById(long id) {
         return this.roleControl.getRoleById(id);
     }
 
@@ -30,10 +30,6 @@ public class RoleFacade {
 
     public RoleEntity addPermission(long id, PermissionDTO permissionDTO) {
         return this.roleControl.addPermission(id, permissionDTO);
-    }
-
-    public List<RoleDTO> getAll() {
-        return this.roleControl.getAll();
     }
 
     public List<String> getAllRolesType() {

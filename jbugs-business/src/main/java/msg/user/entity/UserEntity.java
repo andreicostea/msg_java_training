@@ -22,11 +22,13 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name = UserEntity.USER_FIND_BY_EMAIL, query = "SELECT count(u) from UserEntity u where u.email = :" + UserEntity.EMAIL),
         @NamedQuery(name = UserEntity.USER_COUNT_BY_USERNAME, query = "SELECT count(u) from UserEntity u where u.username = :username"),
+
         @NamedQuery(name = UserEntity.USER_FIND_ALL, query = "SELECT u from UserEntity u"),
         @NamedQuery(name = UserEntity.USER_FIND_BY_ID, query = "SELECT u from UserEntity u where u.id = :id"),
         @NamedQuery(name = UserEntity.USER_FIND_BY_USERNAME, query = "SELECT u from UserEntity u where u.username = :username"),
         @NamedQuery(name = UserEntity.USER_GET_BY_EMAIL, query = "SELECT u from UserEntity u where u.email = :" + UserEntity.EMAIL)
 })
+
 public class UserEntity extends BaseEntity<Long> {
     public static final String USER_FIND_BY_EMAIL = "UserEntity.findByEmail";
     public static final String USER_GET_BY_EMAIL = "UserEntity.getByEmail";

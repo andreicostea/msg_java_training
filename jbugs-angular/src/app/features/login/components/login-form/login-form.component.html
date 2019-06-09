@@ -1,9 +1,8 @@
 <form #f="ngForm">
   <div #user="ngModelGroup" class="example-form" ngModelGroup="user">
-
     <div>
       <mat-form-field class="example-full-width">
-        <label>UserName</label>
+        <label i18n="UserName|The field for UserName">UserName</label>
         <input #userName="ngModel" [(ngModel)]="loginInput.username"
                class="form-control"
                id="userName"
@@ -14,12 +13,12 @@
                type="text">
       </mat-form-field>
       <div *ngIf="userName.touched && userName.invalid" class="alert alert-danger">
-        <div *ngIf="userName.errors?.required">The field is required</div>
+        <div *ngIf="userName.errors?.required" i18n="fieldrequired|The field is required">The field is required</div>
       </div>
     </div>
     <div class="form-group">
       <mat-form-field class="example-full-width">
-        <label>Password</label>
+        <label i18n="Password|The field for Password">Password</label>
         <input #password="ngModel" [(ngModel)]="loginInput.password"
                class="form-control"
                id="password"
@@ -30,11 +29,11 @@
                type="password">
       </mat-form-field>
       <div *ngIf="password.touched && password.invalid" class="alert alert-danger">
-        <div *ngIf="password.errors?.required">The field is required</div>
+        <div *ngIf="password.errors?.required" i18n="fieldrequired|The field is required">The field is required</div>
       </div>
     </div>
     <button
-      (click)="sendCredentials()" class="btn-primary">Login
+      (click)="sendCredentials()" class="btn-primary" i18n="Login|The field for Login">Login
     </button>
   </div>
 

@@ -6,7 +6,7 @@
     <mat-form-field>
       <input formControlName="newFirstName"
              matInput
-             placeholder="New first name">
+             placeholder="New first name" i18n="NewFistName|The newfirstname field">
     </mat-form-field>
   </div>
 
@@ -14,7 +14,7 @@
     <mat-form-field>
       <input formControlName="newLastName"
              matInput
-             placeholder="New last name">
+             placeholder="New last name" i18n="NewLastName|The newlastname filed">
     </mat-form-field>
   </div>
 
@@ -22,7 +22,7 @@
     <mat-form-field>
       <input formControlName="newEmail"
              matInput
-             placeholder="New email">
+             placeholder="New email" i18n="newEmail|The newEmail">
     </mat-form-field>
   </div>
 
@@ -30,7 +30,7 @@
     <mat-form-field>
       <input formControlName="newMobileNumber"
              matInput
-             placeholder="New mobile number">
+             placeholder="New mobile number" i18n="newmobilenumber|New mobilenumber">
     </mat-form-field>
   </div>
 
@@ -38,13 +38,13 @@
     <mat-form-field>
       <input formControlName="newStatus"
              matInput
-             placeholder="New status">
+             placeholder="New status" i18n="newstatus|The newstatus button">
     </mat-form-field>
   </div>
 
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button (click)="close()" class="mat-raised-button">Cancel</button>
-  <button (click)="update()" class="mat-raised-button mat-primary">Update</button>
+  <button (click)="close()" class="mat-raised-button" i18n="Cancel|The cancel button">Cancel</button>
+  <button (click)="update()" class="mat-raised-button mat-primary" i18n="Update|The update button">Update</button>
 </mat-dialog-actions>

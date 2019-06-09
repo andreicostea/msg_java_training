@@ -5,52 +5,53 @@
 
 <div class="mat-elevation-z8">
 
-  <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table matSort>
+  <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table matSort id="contentToConvert">
 
     <!-- Position Column -->
     <ng-container matColumnDef="title">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header> title</th>
+      <th *matHeaderCellDef mat-header-cell mat-sort-header i18n="title|The title of the bug"> title</th>
       <td *matCellDef="let element" mat-cell> {{element.title}} </td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="description">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header> description</th>
+      <th *matHeaderCellDef mat-header-cell mat-sort-header i18n="description|The description of the bug"> description
+      </th>
       <td *matCellDef="let element" mat-cell> {{element.description}} </td>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="version">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header> version</th>
+      <th *matHeaderCellDef mat-header-cell mat-sort-header i18n="version|The version"> version</th>
       <td *matCellDef="let element" mat-cell> {{element.version}} </td>
     </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="targetDate">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header> targetDate</th>
+      <th *matHeaderCellDef mat-header-cell mat-sort-header i18n="targetDate|The targetDate"> targetDate</th>
       <td *matCellDef="let element" mat-cell> {{element.targetDate}} </td>
     </ng-container>
 
     <ng-container matColumnDef="status">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header> status</th>
+      <th *matHeaderCellDef mat-header-cell mat-sort-header i18n="status|The status"> status</th>
       <td *matCellDef="let element" mat-cell> {{element.status}} </td>
     </ng-container>
 
     <ng-container matColumnDef="fixedVersion">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header> fixedVersion</th>
+      <th *matHeaderCellDef mat-header-cell mat-sort-header i18n="fixedversion|The version fixed"> fixedVersion</th>
       <td *matCellDef="let element" mat-cell> {{element.fixedVersion}} </td>
     </ng-container>
 
     <ng-container matColumnDef="severity">
-      <th *matHeaderCellDef mat-header-cell mat-sort-header> severity</th>
+      <th *matHeaderCellDef mat-header-cell mat-sort-header i18n="severity|The severity"> severity</th>
       <td *matCellDef="let element" mat-cell> {{element.severity}} </td>
     </ng-container>
 
     <ng-container matColumnDef="edit">
       <th *matHeaderCellDef mat-header-cell></th>
       <td *matCellDef="let element" mat-cell>
-        <button (click)="getRecord(element)" mat-raised-button>Edit</button>
-        <button (click)="viewRecord(element)" mat-raised-button>View</button>
+        <button (click)="getRecord(element)" mat-raised-button i18n="edit|The edit button">Edit</button>
+        <button (click)="viewRecord(element)" mat-raised-button i18n="view|The view button">View</button>
       </td>
     </ng-container>
 
@@ -60,9 +61,15 @@
   <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
 </div>
 <!--<button (click)="export()" >ExportinXls</button>-->
-<mat-button-toggle-group ng-click name="fontStyle" aria-label="Font Style" color="success">
-  <mat-button-toggle (click)="export()">ExportinXls</mat-button-toggle>
-</mat-button-toggle-group>
-<mat-button-toggle-group ng-click name="fontStyle" aria-label="Font Style">
-  <mat-button-toggle (click)="generatePDF()">Download PDF</mat-button-toggle>
-</mat-button-toggle-group>
+<div *ngIf="showButton()">
+  <mat-button-toggle-group ng-click name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle i18n="export|The export button" (click)="export()">ExportinXls</mat-button-toggle>
+  </mat-button-toggle-group>
+  <div *ngIf="showButton2()">
+    <mat-button-toggle-group ng-click name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle i18n="download|The downloadng xi18n button" (click)="generatePDF()">Download PDF
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+</div>
+

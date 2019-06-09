@@ -26,14 +26,6 @@ public class RoleConverter {
         final RoleEntity r = new RoleEntity();
         r.setType(roleDTO.getType());
         r.setPermissions(new ArrayList<>());
-
-        if (roleDTO.getPermissions() != null && !roleDTO.getPermissions().isEmpty()) {
-            //TODO Refactor to use permissions
-//            r.getPermissions().addAll(
-//                    permissionControl.getPermissionByTypeList(
-//                            roleDTO.getPermissions().stream()
-//                                    .map(roleDTO::getType).collect()));
-        }
         return r;
     }
 
@@ -50,12 +42,5 @@ public class RoleConverter {
         return r;
     }
 
-    public RoleDTO convertEntityToDTO(RoleEntity roleEntity) {
-        final RoleDTO roleDTO = new RoleDTO();
-        roleDTO.setType(roleEntity.getType());
-        roleDTO.setId(roleEntity.getId());
-
-        return roleDTO;
-    }
 }
 
