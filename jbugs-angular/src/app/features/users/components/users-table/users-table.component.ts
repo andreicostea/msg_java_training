@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User, UserUpdate} from "../../models/users.model";
 import {UsersService} from "../../services/users.service";
-import {MatDialog, MatDialogConfig} from "@angular/material";
+import {MatDialog, MatDialogConfig, MatSnackBar} from "@angular/material";
 import {UsersUpdateDialogComponent} from "../users-update-dialog/users-update-dialog.component";
 
 
@@ -16,11 +16,11 @@ export class UsersTableComponent implements OnInit {
   @Input()
   dataSource: User[];
 
- //public dataSource: User[] = this.userService.loadAllUsers();
+  //public dataSource: User[] = this.userService.loadAllUsers();
 
   // dataSource = new MatTableDataSource<User>(this.userService.loadAllUsers());
 
-  constructor(private userService: UsersService, private dialog: MatDialog) {
+  constructor(private userService: UsersService, private dialog: MatDialog, private snackbar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -51,6 +51,13 @@ export class UsersTableComponent implements OnInit {
   }
 
   deactivateButtonClicked(user: User) {
-    this.userService.deactivateUser(user.id).subscribe();
+    this.userService.deactivateUser(user.id)
+      .subscribe(any => {
+          console.log(any);
+        },
+        error1 => {
+          this.snackbar.open("ERROR: " + error1.error.message, null, {duration: 2000});
+        }
+      );
   }
 }
