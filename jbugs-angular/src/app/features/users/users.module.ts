@@ -38,6 +38,7 @@ import {UsersTableComponent} from "./components/users-table/users-table.componen
     CommonModule,
     UsersRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     MatOptionModule,
     MatFormFieldModule,
     MatSelectModule,
