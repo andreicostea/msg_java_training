@@ -1,0 +1,66 @@
+<h2 mat-dialog-title>User update</h2>
+
+<mat-dialog-content [formGroup]="form">
+
+  <div>
+    <mat-form-field>
+      <input formControlName="newFirstName"
+             matInput
+             placeholder="New first name" i18n="NewFistName|The newfirstname field">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input formControlName="newLastName"
+             matInput
+             placeholder="New last name" i18n="NewLastName|The newlastname filed">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <label>
+        <input formControlName="newEmail"
+               matInput
+               placeholder="New email"
+               pattern="^[a-z0-9._%+-]+@msggroup.com|[a-z0-9._%+-]+@gmail.com"
+               required>
+      </label>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <label>
+        <input formControlName="newMobileNumber"
+               matInput
+               placeholder="New mobile number"
+               pattern="[+]4[0,9]{1}[0-9]{9}"
+               required>
+      </label>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input formControlName="newStatus"
+             matInput
+             placeholder="New status" i18n="newstatus|The newstatus button">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <mat-select formControlName="newRoles" multiple placeholder="Roles" required>
+        <mat-option *ngFor="let role of roles" [value]="role" (click)="handleRoleSelected(role)">{{role}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button (click)="close()" class="mat-raised-button" i18n="Cancel|The cancel button">Cancel</button>
+  <button (click)="update()" class="mat-raised-button mat-primary" i18n="Update|The update button">Update</button>
+</mat-dialog-actions>

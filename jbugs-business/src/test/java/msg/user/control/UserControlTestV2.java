@@ -3,9 +3,9 @@
 // =================================================================================================
 package msg.user.control;
 
-import msg.exeptions.BusinessException;
-import msg.notifications.boundary.NotificationFacade;
-import msg.user.entity.UserDao;
+import msg.exceptions.BusinessException;
+import msg.notification.boundary.NotificationFacade;
+import msg.user.entity.dao.UserDAO;
 import msg.user.entity.dto.UserConverter;
 import msg.user.entity.dto.UserInputDTO;
 import org.junit.Before;
@@ -30,7 +30,7 @@ public class UserControlTestV2 {
     UserControl userControl;
 
     @Mock
-    UserDao userDao;
+    UserDAO userDao;
 
     @Mock
     UserConverter userConverter;
@@ -41,7 +41,7 @@ public class UserControlTestV2 {
     @Before
     public void setUp() {
 
-        try{
+        try {
             FieldSetter.setField(this.userControl,
                     UserControl.class.getDeclaredField("notificationFacade"),
                     this.notificationFacade);
@@ -51,7 +51,7 @@ public class UserControlTestV2 {
     }
 
     @Test
-    public void testCreateUserWithSuccess(){
+    public void testCreateUserWithSuccess() {
         UserInputDTO user = createTestInputDTO();
 
         Mockito.when(userConverter.convertInputDTOtoEntity(Mockito.any())).thenCallRealMethod();
@@ -62,7 +62,7 @@ public class UserControlTestV2 {
     }
 
     @Test(expected = BusinessException.class)
-    public void testCreateUserWhenEmailAddressAlreadyExists(){
+    public void testCreateUserWhenEmailAddressAlreadyExists() {
         UserInputDTO user = createTestInputDTO();
 
         Mockito.when(userDao.existsEmail(user.getEmail())).thenReturn(true);
@@ -73,7 +73,7 @@ public class UserControlTestV2 {
 
 //    @Test
 //    public void testCreateUserNotificationSent(){
-//        UserInputDTO user = createTestInputDTO();
+//        NotificationInputDTO user = createTestInputDTO();
 //
 //        ArgumentCaptor<NotificationType> sentNotificationType = ArgumentCaptor.forClass(NotificationType.class);
 //        Mockito.when(userConverter.convertInputDTOtoEntity(Mockito.any())).thenCallRealMethod();
@@ -90,7 +90,6 @@ public class UserControlTestV2 {
         user.setFirstName("Andrei");
         user.setEmail("axasde@yahoo.com");
         user.setMobileNumber("0700000000");
-        user.setCounter(0);
         return user;
     }
 

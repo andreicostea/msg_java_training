@@ -1,0 +1,29 @@
+<div class="example-container-permission">
+  <mat-form-field>
+    <mat-label i18n="RolesDropDown|The dropdown for Roles">Roles Dropdown multiple</mat-label>
+    <mat-select [(ngModel)]="selectedRole">
+      <mat-option *ngFor="let rol of roles"
+                  [value]="rol">{{rol.type}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="example-container-permission">
+  <mat-form-field>
+    <mat-label i18n="PermissionDropDown|The dropdown for Permission">Permission Dropdown multiple</mat-label>
+    <mat-select [(ngModel)]="selectedPermission">
+      <mat-option *ngFor="let permission of selectedRole.permissions"
+                  [value]="permission">{{permission.type}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div *ngIf="showButton()">
+  <mat-button-toggle-group ng-click name="fonstStyle" aria-label="Font Style">
+    <mat-button-toggle value="permission.id" (click)="addDialog()" i18n="Add|The Add button">Add</mat-button-toggle>
+  </mat-button-toggle-group>
+  <mat-button-toggle-group ng-click name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle value="permission.id" (click)="deletePermission()" i18n="Remove|The remove button">Remove
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+</div>

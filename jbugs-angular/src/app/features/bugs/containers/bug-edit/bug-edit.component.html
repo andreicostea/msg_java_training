@@ -1,0 +1,142 @@
+<form #f='ngForm'>
+
+  <mat-card class="example-card">
+
+    <mat-card-title i18n="@@templatesTitle">Update Bug</mat-card-title>
+
+
+    <mat-divider></mat-divider>
+    <!--  <mat-card-content>-->
+    <br>
+
+    <mat-form-field class="form-group">
+      <input #title="ngModel" [(ngModel)]="bug.title"
+             class="form-control"
+             id="title"
+             matInput
+             name="title"
+             ngModel
+             placeholder="Title"
+             required
+             type="text">
+      <mat-error *ngIf="title.touched && title.invalid">
+        <mat-error *ngIf="title.errors.required" i18n="@@templatesTitle">The field is required</mat-error>
+      </mat-error>
+
+
+    </mat-form-field>
+
+
+    <mat-form-field class="form-group">
+      <input #description="ngModel" [(ngModel)]="bug.description"
+             class="form-control"
+             id="description"
+             matInput
+             name="description"
+             ngModel
+             placeholder="Description"
+             required
+             type="text">
+      <mat-error
+        *ngIf="description.touched && description.invalid">
+        <mat-error *ngIf="description.errors.required" i18n="@@templatesTitle">The field is required</mat-error>
+
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-group">
+      <label> Version</label>
+      <input #version="ngModel"
+             #version="ngModel"
+             [(ngModel)]="bug.version"
+             [(ngModel)]="bug.version"
+             class="form-control"
+             id="version"
+             name="version"
+             ngModel
+             pattern="^[a-zA-Z]*[0-9].[0-9]"
+             [(ngModel)] = "bug.version"
+             required
+             #version ="ngModel">
+      <div class ="alert alert-danger"
+           *ngIf="version.touched && version.invalid">
+        <div *ngIf="version.errors.required" i18n="@@templatesTitle">The field is required</div>
+        <div *ngIf="version.errors.pattern" i18n="@@templatesTitle">The pattern is invalid</div>
+
+      </div>
+    </div>
+
+
+
+    <div class ="form-group">
+      <label i18n="@@templatesTitle"> Fixed Version</label>
+      <input class = "form-control"
+             type ="text"
+             id = "fixedVersion"
+             name = "fixedVersion"
+             ngModel
+             type="text">
+    </div>
+
+    <mat-form-field>
+      <mat-label i18n="@@templatesTitle">Severity</mat-label>
+
+      <select [(ngModel)]="bug.severity"
+              matNativeControl
+              name="severity"
+              ngModel required>
+        <option selected="bug.severity">{{bug.severity}}</option>
+        <option value="Low" i18n="@@templatesTitle">Low</option>
+        <option value="Medium" i18n="@@templatesTitle">Medium</option>
+        <option value="High" i18n="@@templatesTitle">High</option>
+        <option value="Critical" i18n="@@templatesTitle">Critical</option>
+      </select>
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <mat-label i18n="@@templatesTitle">Assign to:</mat-label>
+      <mat-select [(ngModel)]="bug.usernameAssignTo"
+                  name="usernameAssignTo"
+                  ngModel>
+        <option selected="bug.usernameAssignTo">{{bug.usernameAssignTo}}</option>
+        <mat-option *ngFor="let user of usersList" [value]="user.userName">{{user.userName}}</mat-option>
+      </mat-select>
+
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label i18n="@@templatesTitle">Status:</mat-label>
+      <mat-select [(ngModel)]="bug.status"
+                  name="status"
+                  ngModel>
+        <option selected="bug.status">{{bug.status}}</option>
+        <mat-option *ngFor="let st of bug.statusList" [value]="st">{{st}}</mat-option>
+      </mat-select>
+
+
+    </mat-form-field>
+
+
+    <mat-card-actions>
+
+
+    </mat-card-actions>
+  </mat-card>
+
+  <button (click)="editBug()"
+          [disabled]="f.invalid"
+          mat-raised-button>
+
+
+    Submit
+  </button>
+
+
+  <!--  <p>-->
+  <!--    {{f.value | json}}-->
+  <!--  </p>-->
+
+</form>
+

@@ -1,0 +1,13 @@
+.mat-form-field-infix {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container-permission > * {
+  width: 480px;
+}
+.mat-button, .mat-button-toggle{
+  width: 80px;
+  height: 40px;
+}
+

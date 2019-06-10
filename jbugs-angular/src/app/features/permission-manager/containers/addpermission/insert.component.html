@@ -1,0 +1,35 @@
+<div class="form-group">
+  <mat-form-field>
+    <mat-label i18n="RolesDropDown|The dropdown for Roles">Roles Dropdown multiple</mat-label>
+      <mat-select [(ngModel)]="selectedRole">
+
+      <mat-option *ngFor="let rol of roles"
+                  [value]="rol">{{rol.type}}
+        <!--              <td>{{rol.id}}</td>  -->
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="form-group">
+  <mat-form-field>
+    <mat-label i18n="PermissionDropDown|The dropdown for Permission">Permission Dropdown multiple</mat-label>
+    <mat-select [(ngModel)]="selection">
+      <mat-option *ngFor="let permission of permissions"
+                  [value]="permission">{{permission.type}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="form-group">
+  <mat-form-field>
+    <mat-label i18n="DescriptionDropDown|The dropdown for Description">Descrrption Dropdown multiple</mat-label>
+    <mat-select [(ngModel)]="selection">
+      <mat-option *ngFor="let permission of permissions"
+                  [value]="permission">{{permission.description}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div>
+  <mat-button-toggle-group aria-label="Font Style" name="fontStyle" ng-click>
+    <mat-button-toggle (click)="inserted()" value="permission.id" i18n="Add|The add button">Add</mat-button-toggle>
+  </mat-button-toggle-group>
+</div>

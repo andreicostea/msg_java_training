@@ -1,0 +1,33 @@
+.mat-form-field-infix {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group > * {
+  width: 480px;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+td {
+  padding-right: 8px;
+}
+.mat-button, .mat-button-toggle{
+  width: 80px;
+  height: 40px;
+}
+
+.mat-raised-button {
+  width: 40%;
+  margin-left: 30%;
+  margin-right: 30%
+
+}
