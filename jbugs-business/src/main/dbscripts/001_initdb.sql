@@ -1,14 +1,3 @@
--- drop tables
-
-drop table roles_permissions;
-drop table users_roles;
-drop table comments;
-drop table notifications;
-drop table bugs;
-drop table users;
-drop table roles;
-drop table permissions;
-
 -- create tables
 CREATE TABLE `users` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
