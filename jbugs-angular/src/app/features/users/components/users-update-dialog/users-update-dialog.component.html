@@ -20,17 +20,25 @@
 
   <div>
     <mat-form-field>
-      <input formControlName="newEmail"
-             matInput
-             placeholder="New email" i18n="newEmail|The newEmail">
+      <label>
+        <input formControlName="newEmail"
+               matInput
+               placeholder="New email"
+               pattern="^[a-z0-9._%+-]+@msggroup.com|[a-z0-9._%+-]+@gmail.com"
+               required>
+      </label>
     </mat-form-field>
   </div>
 
   <div>
     <mat-form-field>
-      <input formControlName="newMobileNumber"
-             matInput
-             placeholder="New mobile number" i18n="newmobilenumber|New mobilenumber">
+      <label>
+        <input formControlName="newMobileNumber"
+               matInput
+               placeholder="New mobile number"
+               pattern="[+]4[0,9]{1}[0-9]{9}"
+               required>
+      </label>
     </mat-form-field>
   </div>
 
