@@ -73,6 +73,7 @@ public class UserEntity extends BaseEntity<Long> {
     public UserEntity() {
     }
 
+
     public Set<CommentEntity> getComments() {
         return comments;
     }

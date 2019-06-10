@@ -52,21 +52,21 @@ public class BugConverter {
 
 
     public BugEntity convertInputDTOToEntity(BugInputDTO input) {
-        final BugEntity b = new BugEntity();
-        b.setTitle(input.getTitle());
-        b.setDescription(input.getDescription());
-        b.setVersion(input.getVersion());
-        b.setFixedVersion(input.getFixedVersion());
-        b.setTargetDate(parseStringToDateCalendar(input.getTargetDate()));
+        final BugEntity bugEntity = new BugEntity();
+        bugEntity.setTitle(input.getTitle());
+        bugEntity.setDescription(input.getDescription());
+        bugEntity.setVersion(input.getVersion());
+        bugEntity.setFixedVersion(input.getFixedVersion());
+        bugEntity.setTargetDate(parseStringToDateCalendar(input.getTargetDate()));
         String severity = input.getSeverity().substring(0, 1).toUpperCase() + input.getSeverity().substring(1);
-        b.setSeverity(severity);
+        bugEntity.setSeverity(severity);
 
 
 
         if (input.getCREATED_ID() != 0) {
             try {
                 UserEntity userEntity = userDao.getUserById(input.getCREATED_ID());
-                b.setCreated(userEntity);
+                bugEntity.setCreated(userEntity);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -74,14 +74,14 @@ public class BugConverter {
         if (input.getASSIGNED_ID() != null) {
             try {
                 UserEntity userEntity = userDao.getUserById(input.getASSIGNED_ID());
-                b.setAssigned(userEntity);
+                bugEntity.setAssigned(userEntity);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
 
-        return b;
+        return bugEntity;
     }
 
     public BugDTO convertEntityDTOtoEntity(BugEntity bug) {

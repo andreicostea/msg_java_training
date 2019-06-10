@@ -36,7 +36,7 @@ public class BugResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateBug(@Context SecurityContext securityContext, BugDTO input) {
         if (securityContext.isUserInRole(PermissionType.BUG_MANAGEMENT)) {
-            if (securityContext.isUserInRole(PermissionType.BUG_CLOSED)) {
+            if (securityContext.isUserInRole(PermissionType.BUG_CLOSE)) {
                 facade.updateBug(input, StatusUpdate.allStatusValue);
             }else{
                 facade.updateBug(input, StatusUpdate.limitedStatusValue);
@@ -74,7 +74,7 @@ public class BugResource {
     @Path("/status-all/{status}")
     @GET
     public Response getStatusAll(@Context SecurityContext securityContext, @PathParam("status") String status) {
-        if (securityContext.isUserInRole(PermissionType.BUG_CLOSED)) {
+        if (securityContext.isUserInRole(PermissionType.BUG_CLOSE)) {
             return Response.ok(facade.getStatusBugComplete(status)).build();
         } else
             return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
