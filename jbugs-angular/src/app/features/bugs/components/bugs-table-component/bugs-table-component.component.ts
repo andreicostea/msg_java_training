@@ -31,7 +31,7 @@ export class BugsTableComponentComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private bugService: BugsService, public dialog: MatDialog, public permissionService: AuthenticationService) {
+  constructor(private bugService: BugsService, public dialog: MatDialog, public authenticationService: AuthenticationService) {
     // this.sortedData = this.bugs;
   }
 
@@ -51,8 +51,8 @@ export class BugsTableComponentComponent implements OnInit {
     this.bugEdit = bug;
     console.log(this.bugEdit.status);
 
-    for (let per of this.permissionService.getPermissions()) {
-      if (per === "BUG_CLOSED") {
+    for (let per of this.authenticationService.getPermissions()) {
+      if(per === "BUG_CLOSED"){
         this.permissonClosed = true;
       }
     }
@@ -138,6 +138,21 @@ export class BugsTableComponentComponent implements OnInit {
     //return this.bugService.loadAllBugs();
     //return this.bugService.loadAllBugs().subscribe(bugs => this.bugs.push(bugs));
     return this.bugService.loadAllBugs().forEach(bug => this.bugs = bug);
+  }
+
+  showButton(): boolean {
+    if (this.authenticationService.getPermissions() === null) return false;
+    for (let per of this.authenticationService.getPermissions())
+      if (per === "BUG_MANAGEMENT") return true;
+    return false;
+  }
+
+  showButton2(): boolean {
+    if (this.authenticationService.getPermissions() === null) return false;
+    for (let per of this.authenticationService.getPermissions()) {
+      if (per === "BUG_EXPORT_PDF") return true;
+    }
+    return false;
   }
 }
 

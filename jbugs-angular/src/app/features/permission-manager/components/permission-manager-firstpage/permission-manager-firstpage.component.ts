@@ -17,11 +17,8 @@ export class PermissionManagerInsertButtonComponent implements OnInit {
   public roleandpermission: Subscription;
   selectedRole: Role = <Role>{};
   selectedPermission: Permission = <Permission>{};
-  roles = [];
-  permissions = [];
-  private response: boolean;
 
-  constructor(private authenticationService: AuthenticationService,
+  constructor(private permissionService: AuthenticationService,
               private permissionManagerService: PermissionManagerServices,
               private activateRouter: ActivatedRoute,
               private router: Router,

@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  baseUrl: '/jbugs/jbugs-api',
+  loginUrl: '/jbugs/login',
 };

@@ -1,8 +1,6 @@
 package msg.permission.entity.dto;
 
 public class PermissionDTO {
-
-    // todo: type should be an enum
     private String description;
     private String type;
     private Long id;
@@ -33,4 +31,5 @@ public class PermissionDTO {
     public void setId(Long id) {
         this.id = id;
     }
+
 }

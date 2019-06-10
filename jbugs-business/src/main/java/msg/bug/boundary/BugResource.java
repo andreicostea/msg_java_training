@@ -24,7 +24,7 @@ public class BugResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createBug(@Context SecurityContext securityContext, BugInputDTO input) {
-        if (securityContext.isUserInRole(PermissionType.BUG_MANAGEMENT)) {
+        if (securityContext.isUserInRole(String.valueOf(PermissionType.BUG_MANAGEMENT))) {
             facade.createBug(input);
             return Response.ok().build();
         } else {
@@ -35,8 +35,8 @@ public class BugResource {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     public Response updateBug(@Context SecurityContext securityContext, BugDTO input) {
-        if (securityContext.isUserInRole(PermissionType.BUG_MANAGEMENT)) {
-            if (securityContext.isUserInRole(PermissionType.BUG_CLOSED)) {
+        if (securityContext.isUserInRole(String.valueOf(PermissionType.BUG_MANAGEMENT))) {
+            if (securityContext.isUserInRole(String.valueOf(PermissionType.BUG_CLOSED))) {
                 facade.updateBug(input, StatusUpdate.allStatusValue);
             }else{
                 facade.updateBug(input, StatusUpdate.limitedStatusValue);
@@ -50,10 +50,11 @@ public class BugResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAll(@Context SecurityContext securityContext) {
-        if (securityContext.isUserInRole(PermissionType.BUG_MANAGEMENT)) {
-        return Response.status(200).entity(facade.getAll()).build();
+        if (securityContext.isUserInRole(String.valueOf(PermissionType.BUG_MANAGEMENT))) {
+            return Response.status(200).entity(facade.getAll()).build();
         } else {
             return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
+
         }
     }
 
@@ -61,7 +62,7 @@ public class BugResource {
     @Path("/status-limited/{status}")
     @GET
     public Response getStatusLimited(@Context SecurityContext securityContext, @PathParam("status") String status) {
-        if (securityContext.isUserInRole(PermissionType.BUG_MANAGEMENT)) {
+        if (securityContext.isUserInRole(String.valueOf(PermissionType.BUG_MANAGEMENT))) {
             return Response.ok(facade.getStatusBugLimited(status)).build();
         } else
             return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
@@ -71,7 +72,7 @@ public class BugResource {
     @Path("/status-all/{status}")
     @GET
     public Response getStatusAll(@Context SecurityContext securityContext, @PathParam("status") String status) {
-        if (securityContext.isUserInRole(PermissionType.BUG_CLOSED)) {
+        if (securityContext.isUserInRole(String.valueOf(PermissionType.BUG_CLOSED))) {
             return Response.ok(facade.getStatusBugComplete(status)).build();
         } else
             return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();

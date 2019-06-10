@@ -19,7 +19,7 @@ import {
   MatSelectModule,
   MatSortModule,
   MatTableModule,
-  NativeDateModule
+  NativeDateModule,
 } from "@angular/material";
 import {BugAddComponent} from './containers/bug-add/bug-add.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";

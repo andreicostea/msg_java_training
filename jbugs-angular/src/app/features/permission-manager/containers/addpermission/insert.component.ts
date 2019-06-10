@@ -14,7 +14,6 @@ import {PermissionManagerInsertButtonComponent} from "../../components/permissio
 export class InsertComponent implements OnInit {
 
   selectedRole: Role = <Role>{};
-  selectedRole2: Role = <Role>{};
   roleandpermission2: Subscription;
   roles = [];
   selection: Permission = <Permission>{};
@@ -22,42 +21,34 @@ export class InsertComponent implements OnInit {
     {
       id: 1,
       type: 'PERMISSION_MANAGEMENT',
-      description: 'Permission stuff'
+      description: 'Can add or remove permissions'
     },
     {
       id: 3,
       type: 'USER_MANAGEMENT',
-      description: 'Bug stuff'
+      description: 'Can make the CRUD operations for a user'
     },
     {
       id: 4,
       type: 'BUG_MANAGEMENT',
-      description: 'Bug stuff'
+      description: 'Can make the CRUD operations for a bug+export the list of bugs in pdf'
     },
     {
       id: 5,
       type: 'BUG_CLOSE',
-      description: 'Can close some bugs'
+      description: 'Closing the bug and updating a status '
     },
     {
       id: 6,
-      type: 'BUG_EXPLORE_PDF',
-      description: 'exploring bugs'
+      type: 'BUG_EXPORT_PDF',
+      description: 'Can exporting the list of bugs'
     },
     {
       id: 7,
       type: 'USER_ADDRESS',
-      description: 'addressing some users'
+      description: 'Just the user address can see the notification'
     }
   ];
-
-  constructor(
-    private router: Router,
-    private permissionManagerServices: PermissionManagerServices,
-    private dialogRef: MatDialogRef<PermissionManagerInsertButtonComponent>
-  ) {
-  }
-
   inserted() {
     this.permissionManagerServices.insertPermission(this.selectedRole.id, this.selection)
       .subscribe(

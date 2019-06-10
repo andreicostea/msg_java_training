@@ -34,8 +34,6 @@ public class RoleControl {
     private RoleDAO roleDao;
     @EJB
     private RoleConverter roleConverter;
-
-
     @EJB
     private PermissionFacade permissionFacade;
     @EJB
@@ -43,31 +41,17 @@ public class RoleControl {
     @EJB
     private PermissionDAO permissionDAO;
 
-
-    /**
-     * Given a input list of {@link RoleEntity#getType()}s, returns the corresponding list of RoleEntity Entities.
-     *
-     * @param typeList a list of role types.
-     * @return a list of role entities.
-     */
     public List<RoleEntity> getRolesByTypeList(List<String> typeList) {
+
         return roleDao.getRolesByTypeList(typeList);
     }
-
-    public List<RoleDTO> getAll() {
-        return roleDao.getAll().stream()
-                .map(roleConverter::convertEntityToDTO)
-                .collect(Collectors.toList());
-    }
-
     public List<String> getAllRolesByType() {
+
         return roleDao.getAllRolesByType();
     }
-
-
     public RoleEntity addPermission(long id, PermissionDTO permissionDTO) {
-        RoleEntity permissionEntities = roleDao.getRoleById(id);
-        for (PermissionEntity permission : permissionEntities.getPermissions()) {
+        RoleEntity role = roleDao.getRoleById(id);
+        for (PermissionEntity permission : role.getPermissions()) {
             if (permission.getType().equals(permissionDTO.getType())) {
                 throw new BusinessWebAppException(MessageCatalog.ROLE_WITH_SAME_PERMISSION_EXISTS, 411);
             }
@@ -80,37 +64,21 @@ public class RoleControl {
         return roleDao.addPermission(roleEntity, newPermission);
     }
 
-    public RoleEntity getRoleById(long id) {
+    public RoleDTO getRoleById(long id) {
         RoleEntity roleEntity;
         try {
             roleEntity = roleDao.getRoleById(id);
         } catch (Exception e) {
-            throw new BusinessException(MessageCatalog.USER_WITH_THIS_ROLE_DONT_HAVE_PERMISSIONS);
+            throw new BusinessException(MessageCatalog.THIS_ROLE_DOES_NOT_EXIST);
         }
-        //roleEntity.addPermission();
-        return roleEntity;
+        return roleConverter.convertInputEntityToDTO(roleEntity);
     }
 
     public List<RoleDTO> getRolesAndPermissions() {
         List<RoleEntity> roleEntity2 = roleDao.getAllRolesAndPermissions();
-        List<RoleDTO> collect = roleEntity2.stream().map(roleConverter::convertInputEntityToDTO).collect(Collectors.toList());
+        List<RoleDTO> collect = roleEntity2.stream().
+                map(roleConverter::convertInputEntityToDTO).
+                collect(Collectors.toList());
         return collect;
     }
 }
-//    public List<String> getAllRolesAndPermissions(RoleDTO roleDTO, PermissionDTO permissionDTO){
-//    }
-
-//    public List<String> getRolesAndPermissions() {
-//        int n = 4;
-//        List<String> rolesandpermissions = null;
-//        for (int i = 0; i < n; i++) {
-//            rolesandpermissions = (List<String>) this.getRoleById(i);
-//            return null;
-//        }
-//        return rolesandpermissions;
-//    }
-
-
-//    public List<PermissionEntity> getPermission(List<String> permissionEntityList){
-//        return roleDao.getPermission(permissionEntityList);
-//    }

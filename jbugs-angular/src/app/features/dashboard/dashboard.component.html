@@ -1,17 +1,21 @@
 <mat-toolbar class="test">
-  <span>{{userName}}</span>
+  <!--  <span>{{userName}}</span>-->
   <!-- This fills the remaining space of the current row -->
   <span class="example-fill-remaining-space"></span>
 
-  <a class="userManagement" routerLink="users" routerLinkActive="active current">User Management</a>
-  <a class="permissionManagement" routerLink="permissions" routerLinkActive="active current">Permission Management</a>
-  <a class="bugManagement" routerLink="bugs" routerLinkActive="active current">Bug management</a>
-  <button [matMenuTriggerFor]="menu" class="menu" mat-button>Menu</button>
+  <a class="userManagement" routerLink="users" routerLinkActive="active current"
+     i18n="UserManagement|The button for UserManagement">User Management</a>
+  <a class="permissionManagement" routerLink="permissions" routerLinkActive="active current"
+     i18n="PermissionManagement|The button for PermissionManagement">Permission Management</a>
+  <a class="bugManagement" routerLink="bugs" routerLinkActive="active current"
+     i18n="BugManagement|The button for BugManagement">Bug management</a>
+  <button [matMenuTriggerFor]="menu" class="menu" mat-button i18n="Menu|The button for Menu">Menu</button>
   <mat-menu #menu="matMenu">
     <button mat-menu-item routerLink="bugs/statistics" routerLinkActive="active current">View Bugs Statistics</button>
     <button mat-menu-item routerLink="notifications" routerLinkActive="active current">View notifications</button>
     <button mat-menu-item routerLink="view-profile" routerLinkActive="active current">Change password</button>
     <button (click)="logout()" mat-menu-item>Logout</button>
+    <button mat-menu-item routerLink="notifications" routerLinkActive="active current"
   </mat-menu>
 </mat-toolbar>
 <router-outlet></router-outlet>

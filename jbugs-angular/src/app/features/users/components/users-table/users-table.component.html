@@ -12,34 +12,34 @@
 
   <!-- First name column -->
   <ng-container matColumnDef="firstName">
-    <th *matHeaderCellDef mat-header-cell> First name</th>
+    <th *matHeaderCellDef mat-header-cell i18n="@@templatesTitle"> First name</th>
     <td *matCellDef="let user" mat-cell> {{user.firstName}} </td>
   </ng-container>
 
   <!-- Last name column -->
   <ng-container matColumnDef="lastName">
-    <th *matHeaderCellDef mat-header-cell> Last name</th>
+    <th *matHeaderCellDef mat-header-cell i18n="@@templatesTitle"> Last name</th>
     <td *matCellDef="let user" mat-cell> {{user.lastName}} </td>
   </ng-container>
 
   <!-- Email cclumn -->
   <ng-container matColumnDef="email">
-    <th *matHeaderCellDef mat-header-cell> Email</th>
+    <th *matHeaderCellDef mat-header-cell i18n="@@templatesTitle"> Email</th>
     <td *matCellDef="let user" mat-cell> {{user.email}} </td>
   </ng-container>
 
   <!-- Mobile number column -->
   <ng-container matColumnDef="mobileNumber">
-    <th *matHeaderCellDef mat-header-cell> Mobile number</th>
+    <th *matHeaderCellDef mat-header-cell i18n="@@templatesTitle"> Mobile number</th>
     <td *matCellDef="let user" mat-cell> {{user.mobileNumber}} </td>
   </ng-container>
 
   <!-- Actions column -->
   <ng-container matColumnDef="actions">
-    <th *matHeaderCellDef mat-header-cell> Actions</th>
+    <th *matHeaderCellDef mat-header-cell i18n="@@templatesTitle"> Actions</th>
     <td *matCellDef="let user" mat-cell>
-      <button (click)="editButtonClicked(user)" mat-button>Edit</button>
-      <button (click)="deactivateButtonClicked(user)" mat-button>Deactivate</button>
+      <button (click)="editButtonClicked(user)" mat-button i18n="@@templatesTitle">Edit</button>
+      <button (click)="deactivateButtonClicked(user)" mat-button i18n="@@templatesTitle">Deactivate</button>
     </td>
   </ng-container>
 

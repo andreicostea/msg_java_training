@@ -27,7 +27,7 @@ public class PermissionResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @POST
     public Response createPermission(@Context SecurityContext securityContext, PermissionDTO permissionDTO) {
-        if (securityContext.isUserInRole(PermissionType.PERMISSION_MANAGEMENT)) {
+        if (securityContext.isUserInRole(String.valueOf(PermissionType.PERMISSION_MANAGEMENT))) {
             return Response.ok(permissionFacade.createPermission(permissionDTO)).build();
         } else {
             return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
@@ -37,16 +37,15 @@ public class PermissionResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     @DELETE
-    public Response removePermission(@Context SecurityContext securityContext, @PathParam("id") long id) {
-        if (securityContext.isUserInRole(PermissionType.PERMISSION_MANAGEMENT)) {
-            permissionFacade.removePermission(id);
-            return Response.ok().build();
-        } else {
-            return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
+    public Response removePermission(@Context SecurityContext securityContext,@PathParam("id") long id) {
+        if (securityContext.isUserInRole(String.valueOf(PermissionType.PERMISSION_MANAGEMENT))) {
+        System.out.println("deleted permission with id:" + id);
+        permissionFacade.removePermission(id);
+        return Response.ok().build(); }
+    else{
+        return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
         }
     }
-
-
     @Produces(MediaType.APPLICATION_JSON)
     @GET
     public Response getAll(@Context SecurityContext securityContext) {
@@ -56,7 +55,6 @@ public class PermissionResource {
             return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();
         }
     }
-
 }
 
 

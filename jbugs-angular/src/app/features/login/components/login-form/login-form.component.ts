@@ -28,7 +28,6 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit() {
   }
-
   sendCredentials() {
     var that = this;
     this.loginService.loginUser(this.loginInput)

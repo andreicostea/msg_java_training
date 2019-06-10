@@ -2,7 +2,7 @@
 
   <mat-card class="example-card">
 
-    <mat-card-title>Insert Bug</mat-card-title>
+  <mat-card-title i18n="insertbutton|Inserting a bug">Insert Bug</mat-card-title>
 
 
     <mat-divider></mat-divider>
@@ -20,7 +20,8 @@
              required
              type="text">
       <mat-error *ngIf="title.touched && title.invalid">
-        <mat-error *ngIf="title.errors.required">The field is required</mat-error>
+        <mat-error *ngIf="title.errors.required" i18n="fieldrequired|The field is required">The field is required
+        </mat-error>
       </mat-error>
 
 
@@ -38,8 +39,10 @@
              required
              type="text">
       <mat-error
-        *ngIf="description.touched && description.invalid">
-        <mat-error *ngIf="description.errors.required">The field is required</mat-error>
+           *ngIf="description.touched && description.invalid">
+        <mat-error *ngIf="description.errors.required" i18n="fieldrequired|The field is required">The field is
+          required
+        </mat-error>
 
       </mat-error>
     </mat-form-field>
@@ -54,11 +57,11 @@
              ngModel
              pattern="^[a-zA-Z]*[0-9].[0-9]"
              required
-             type="text">
-      <div *ngIf="version.touched && version.invalid"
-           class="alert alert-danger">
-        <div *ngIf="version.errors.required">The field is required</div>
-        <div *ngIf="version.errors.pattern">The pattern is invalid</div>
+             #version ="ngModel">
+      <div class ="alert alert-danger"
+           *ngIf="version.touched && version.invalid">
+        <div *ngIf="version.errors.required" i18n="fieldrequired|The field is required">The field is required</div>
+        <div *ngIf="version.errors.pattern" i18n="peterninvalid|The patern is invalid">The pattern is invalid</div>
 
       </div>
     </div>
@@ -88,15 +91,15 @@
     <mat-form-field>
       <mat-label>Severity</mat-label>
 
-      <select [(ngModel)]="bug.severity"
-              matNativeControl
-              name="severity"
-              ngModel required>
-        <option value="Low">Low</option>
-        <option value="Medium">Medium</option>
-        <option value="High">High</option>
-        <option value="Critical">Critical</option>
-      </select>
+    <select matNativeControl
+            [(ngModel)] = "bug.severity"
+            name="severity"
+            ngModel required>
+      <option value="Low" i18n="low|The field is low">Low</option>
+      <option value="Medium" i18n="medium|The field is medium">Medium</option>
+      <option value="High" i18n="high|The field is high">High</option>
+      <option value="Critical" i18n="critical|The field is critical">Critical</option>
+    </select>
     </mat-form-field>
 
     <mat-form-field>

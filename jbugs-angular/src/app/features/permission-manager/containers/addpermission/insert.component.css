@@ -20,9 +20,14 @@
 td {
   padding-right: 8px;
 }
-
-.mat-button, .mat-button-toggle {
-  background-color: #1187ff;
+.mat-button, .mat-button-toggle{
   width: 80px;
   height: 40px;
+}
+
+.mat-raised-button {
+  width: 40%;
+  margin-left: 30%;
+  margin-right: 30%
+
 }

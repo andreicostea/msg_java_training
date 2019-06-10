@@ -1,7 +1,6 @@
 package servlet;
 
 import msg.ejb.SomeEjb;
-import msg.permission.PermissionType;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -15,7 +14,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet(urlPatterns = {"/TestServlet"})
-@ServletSecurity(@HttpConstraint(rolesAllowed = PermissionType.USER_MANAGEMENT))
+@ServletSecurity(value = @HttpConstraint(rolesAllowed = "USER_MANAGEMENT"))
 public class TestServlet extends HttpServlet {
 
     @EJB

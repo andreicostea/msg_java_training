@@ -3,11 +3,15 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --open --proxy-config proxy.config.json",
-    "build": "ng build",
     "test": "ng add @angular/material",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "start": "ng serve --aot",
+    "build": "ng build",
+    "extract": "ng xi18n --outputPath=src/locale",
+    "start:ro": "ng serve --aot  --configuration=ro",
+    "build:ro": "ng build --aot --output-path dist/ro --base-href /jbugs-web-i18n-multilingual/ro/ --i18nFile=src/locale/messages.ro.xlf --i18nFormat=xlf --i18n-locale=ro",
+    "build-locale": "npm run build && npm run build:ro"
   },
   "private": true,
   "dependencies": {
@@ -33,7 +37,8 @@
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "xlsx": "^0.14.3",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.8.26",
+    "@nguniversal/express-engine": "latest"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",

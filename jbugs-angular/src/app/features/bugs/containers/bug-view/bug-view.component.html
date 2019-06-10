@@ -1,11 +1,11 @@
 <form #f='ngForm'>
   <mat-card class="example-card">
-    <mat-card-title>View Bug</mat-card-title>
+    <mat-card-title i18n="viewbug|The viewbug field">View Bug</mat-card-title>
     <mat-divider></mat-divider>
     <!--  <mat-card-content>-->
     <br>
     <div>
-      <mat-label>Title</mat-label>
+      <mat-label i18n="title|The field is title">Title</mat-label>
       <input [(ngModel)]="bug.title"
              class="form-control"
              id="title"
@@ -15,7 +15,7 @@
              type="text">
     </div>
     <div>
-      <mat-label>Description</mat-label>
+      <mat-label i18n="description|The field is description">Description</mat-label>
       <input [(ngModel)]="bug.description"
              class="form-control"
              id="description"
@@ -25,7 +25,7 @@
              type="text">
     </div>
     <div class="form-group">
-      <label> Version</label>
+      <label i18n="version|The field is version"> Version</label>
       <input #version="ngModel"
              [(ngModel)]="bug.version"
              class="form-control"
@@ -38,7 +38,7 @@
              type="text">
     </div>
     <div class="form-group">
-      <label> Target Date</label>
+      <label i18n="targetdate|The field is targetdate"> Target Date</label>
       <input #version="ngModel"
              [(ngModel)]="bug.targetDate"
              class="form-control"
@@ -49,7 +49,7 @@
              type="text">
     </div>
     <div class="form-group">
-      <label>Status</label>
+      <label i18n="status|The field is status">Status</label>
       <input #version="ngModel"
              [(ngModel)]="bug.status"
              class="form-control"
@@ -61,7 +61,7 @@
     </div>
 
     <div class="form-group">
-      <label> Fixed Version</label>
+      <label i18n="fixedversion|The field is fixedversion"> Fixed Version</label>
       <input [(ngModel)]="bug.fixedVersion"
              class="form-control"
              id="fixedVersion"
@@ -71,7 +71,7 @@
              type="text">
     </div>
     <div>
-      <label>Severity</label>
+      <label i18n="severity|The field is severity">Severity</label>
       <input [(ngModel)]="bug.severity"
              class="form-control"
              id="severity"
@@ -81,7 +81,7 @@
              type="text">
     </div>
     <div>
-      <mat-label>Created by user:</mat-label>
+      <mat-label i18n="createdby|The field is createdby">Created by user:</mat-label>
       <input [(ngModel)]="bug.usernameCreatedBy"
              class="form-control"
              id="createdId"
@@ -91,7 +91,7 @@
              type="text">
     </div>
     <div>
-      <mat-label>Assigned to user:</mat-label>
+      <mat-label i18n="assignedtouserbyid|The field is assignedtouser by id">Assigned to user with id:</mat-label>
       <input [(ngModel)]="bug.usernameAssignTo"
              class="form-control"
              id="assignedId"

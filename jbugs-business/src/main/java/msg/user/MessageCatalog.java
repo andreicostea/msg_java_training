@@ -50,12 +50,11 @@ public class MessageCatalog {
             = new ExceptionMessage("USER-13", "The user has bugs assigned!");
 
 
-
     public static final ExceptionMessage INVALID_OR_NON_EXISTENT_TOKEN
             = new ExceptionMessage("USER-07", "You're not authorized for this operation.");
 
     public static final ExceptionMessage ROLE_WITH_SAME_PERMISSION_EXISTS
-            = new ExceptionMessage("PERMISSION-03", "The permission u want to insert already exist!");
+            = new ExceptionMessage("PERMISSION-03", "The permission you want to insert already exist!");
 
     public static final ExceptionMessage BUG_INVALID_PATTERN
             = new ExceptionMessage("BUG-01", "The pattern is invalid!");
@@ -74,7 +73,10 @@ public class MessageCatalog {
 
     public static final ExceptionMessage BUG_INVALID_STATUS
             = new ExceptionMessage("BUG-05", "Invalid status");
-
+    public static final ExceptionMessage PERMISSION_WITH_SAME_NAME_EXISTS
+            = new ExceptionMessage("PERMISSION-04", "This permission already exists");
+    public static final ExceptionMessage THIS_ROLE_DOES_NOT_EXIST
+            = new ExceptionMessage("PERMISSION-05", "This role does not exist");
 
 }
 
