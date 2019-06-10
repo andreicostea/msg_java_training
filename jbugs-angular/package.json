@@ -25,6 +25,7 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
+    "@nguniversal/express-engine": "latest",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
     "core-js": "^2.6.9",
@@ -37,8 +38,7 @@
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "xlsx": "^0.14.3",
-    "zone.js": "~0.8.26",
-    "@nguniversal/express-engine": "latest"
+    "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",
