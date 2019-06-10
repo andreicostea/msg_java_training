@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  private userName: String;
+  public userName: String;
 
   constructor(private cookieService: CookieService, private authenticationService: AuthenticationService, private router: Router) {
   }

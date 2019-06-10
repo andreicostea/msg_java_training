@@ -1,4 +1,10 @@
 .mat-raised-button {
-  width: 10%;
-  margin-left: 40%;
+  width: 20%;
+
+
+}
+.test{
+  display: inline-block;
+  margin-right: 5%;
+  margin-left:5%;
 }

@@ -49,7 +49,7 @@ public class PermissionResource {
     @Produces(MediaType.APPLICATION_JSON)
     @GET
     public Response getAll(@Context SecurityContext securityContext) {
-        if (securityContext.isUserInRole(PermissionType.PERMISSION_MANAGEMENT)) {
+        if (securityContext.isUserInRole(String.valueOf(PermissionType.PERMISSION_MANAGEMENT))) {
         return Response.ok(permissionFacade.getAll()).build();
         } else {
             return Response.status(Response.Status.FORBIDDEN).entity(MessageCatalog.PERMISSION_NOT_FOUND).build();

@@ -51,7 +51,7 @@ export class BugsTableComponentComponent implements OnInit {
     this.bugEdit = bug;
     console.log(this.bugEdit.status);
 
-    for (let per of this.permissionService.getPermissions()) {
+    for (let per of this.authenticationService.getPermissions()) {
       if (per === "BUG_CLOSE") {
         this.permissonClosed = true;
       }

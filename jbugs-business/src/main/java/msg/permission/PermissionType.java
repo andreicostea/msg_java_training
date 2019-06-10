@@ -14,6 +14,6 @@ package msg.permission;
     // can be refactored to enum and PermissionType.type will be of this enum
     // but adds additional method calls to role checks
 public enum PermissionType {
-    PERMISSION_MANAGEMENT, USER_MANAGEMENT, BUG_MANAGEMENT, BUG_CLOSED, BUG_UPDATED
+    PERMISSION_MANAGEMENT, USER_MANAGEMENT, BUG_MANAGEMENT, BUG_CLOSE, BUG_UPDATED
 }
 

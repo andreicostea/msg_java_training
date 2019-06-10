@@ -13,6 +13,11 @@ import {PermissionManagerInsertButtonComponent} from "../../components/permissio
 })
 export class InsertComponent implements OnInit {
 
+  constructor(
+    private router: Router,
+    private permissionManagerServices: PermissionManagerServices,
+    private dialogRef: MatDialogRef<PermissionManagerInsertButtonComponent>
+  ) {}
   selectedRole: Role = <Role>{};
   roleandpermission2: Subscription;
   roles = [];

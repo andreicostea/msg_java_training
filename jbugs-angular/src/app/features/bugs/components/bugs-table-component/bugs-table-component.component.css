@@ -14,3 +14,7 @@ th.mat-sort-header-sorted {
 .mat-raised-button {
   width: 130px;
 }
+.test{
+  display: inline-block;
+  margin-left: 25%;
+}

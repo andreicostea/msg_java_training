@@ -51,7 +51,7 @@ public class UserResource {
     @Path("/password")
     @PATCH
     public Response changePassword(@Context SecurityContext securityContext, UserChangePasswordDTO userChangePasswordDTO) {
-        if (securityContext.isUserInRole(PermissionType.USER_MANAGEMENT)) {
+        if (securityContext.isUserInRole(String.valueOf(PermissionType.USER_MANAGEMENT))) {
             userFacade.changePassword(userChangePasswordDTO);
             return Response.ok().build();
         }

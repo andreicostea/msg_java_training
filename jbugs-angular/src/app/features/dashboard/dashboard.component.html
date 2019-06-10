@@ -1,5 +1,5 @@
 <mat-toolbar class="test">
-  <!--  <span>{{userName}}</span>-->
+    <span>{{userName}}</span>
   <!-- This fills the remaining space of the current row -->
   <span class="example-fill-remaining-space"></span>
 
@@ -15,7 +15,6 @@
     <button mat-menu-item routerLink="notifications" routerLinkActive="active current">View notifications</button>
     <button mat-menu-item routerLink="view-profile" routerLinkActive="active current">Change password</button>
     <button (click)="logout()" mat-menu-item>Logout</button>
-    <button mat-menu-item routerLink="notifications" routerLinkActive="active current"
   </mat-menu>
 </mat-toolbar>
 <router-outlet></router-outlet>

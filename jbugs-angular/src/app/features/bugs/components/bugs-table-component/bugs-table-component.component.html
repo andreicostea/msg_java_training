@@ -1,3 +1,15 @@
+<div>
+  <app-bug-dialog-add></app-bug-dialog-add>
+<div class = "test" *ngIf="showButton()">
+  <mat-button-toggle-group  ng-click name="fontStyle" aria-label="Font Style">
+    <button mat-raised-button i18n="export|The export button" (click)="export()">Download Excel</button>
+  </mat-button-toggle-group>
+</div>
+  <div class = "test" *ngIf="showButton2()">
+    <mat-button-toggle-group ng-click name="fontStyle" aria-label="Font Style">
+      <button mat-raised-button i18n="download|The download button" (click)="generatePDF()">Download PDF</button>
+    </mat-button-toggle-group>
+  </div>
 <mat-form-field>
   <input (keyup)="applyFilter($event.target.value)" matInput placeholder="Filter">
 </mat-form-field>
@@ -60,13 +72,5 @@
   <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
 </div>
 <!--<button (click)="export()" >ExportinXls</button>-->
-<div *ngIf="showButton()">
-  <mat-button-toggle-group ng-click name="fontStyle" aria-label="Font Style">
-    <mat-button-toggle i18n="export|The export button" (click)="export()">ExportinXls</mat-button-toggle>
-  </mat-button-toggle-group>
-  <div *ngIf="showButton2()">
-    <mat-button-toggle-group ng-click name="fontStyle" aria-label="Font Style">
-      <mat-button-toggle i18n="download|The download button" (click)="generatePDF()">Download PDF</mat-button-toggle>
-    </mat-button-toggle-group>
-  </div>
+
 </div>
