@@ -53,6 +53,28 @@ public class BugControl {
     }
 
     public BugEntity createBug(BugInputDTO bug) {
+
+        validateFieldsForCreateBug(bug);
+        final BugEntity newBug = bugConverter.convertInputDTOToEntity(bug);
+        newBug.setStatus(String.valueOf(StatusType.NEW));
+        try {
+            bugDao.createBug(newBug);
+        } catch (Exception e) {
+            throw new BusinessWebAppException(MessageCatalog.BUG_INVALID_PATTERN, 400);
+        }
+        try {
+            this.notificationFacade.createNotification(
+                    NotificationType.BUG_CREATED,
+                    new NotificationParamsBugCreate(newBug.getCreated().getUsername(), newBug.getAssigned().getUsername(), newBug),
+                    bug.getCREATED_ID());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return newBug;
+    }
+
+    private void validateFieldsForCreateBug(BugInputDTO bug){
+
         if (bug.getTitle() == null || bug.getDescription() == null || bug.getVersion() == null || bug.getSeverity() == null ||
                 bug.getCREATED_ID() == null || bug.getTargetDate() == null)
             throw new BusinessWebAppException(MessageCatalog.BUG_NULL_FIELD, 400);
@@ -70,22 +92,6 @@ public class BugControl {
         }
         if (!checkSeverity) throw new BusinessWebAppException(MessageCatalog.BUG_INVALID_PATTERN, 400);
 
-        final BugEntity newBug = bugConverter.convertInputDTOToEntity(bug);
-        newBug.setStatus(String.valueOf(StatusType.NEW));
-        try {
-            bugDao.createBug(newBug);
-        } catch (Exception e) {
-            throw new BusinessWebAppException(MessageCatalog.BUG_INVALID_PATTERN, 400);
-        }
-        try {
-            this.notificationFacade.createNotification(
-                    NotificationType.BUG_CREATED,
-                    new NotificationParamsBugCreate(newBug.getCreated().getUsername(), newBug.getAssigned().getUsername(), newBug),
-                    bug.getCREATED_ID());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return newBug;
     }
 
 
